@@ -86,3 +86,8 @@ django-treebeard==1.61
 
 -e git+http://github.com/snswa/django-wakawaka.git@master#egg=django-wakawaka
 django-markup==0.3
+
+# -e svn+http://django-voice.googlecode.com/svn/trunk@16#egg=django-voice
+-e git+http://github.com/snswa/django-voice.git@303d54b2c1ef23c27a349ad1acd8b6e04a3c02bb#egg=django-voice
+-e svn+http://django-voting.googlecode.com/svn/trunk@73#egg=django-voting
+-e svn+http://django-gravatar.googlecode.com/svn/trunk@13#egg=django-gravatar

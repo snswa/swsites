@@ -164,8 +164,6 @@ APPEND_SLASH = True
 # ==================================================================
 # zinnia
 
-# For now we are not allowing comments.
-
 # TODO: Get a key for sensible washington.
 # AKISMET_SECRET_KEY_API = '...'
 
@@ -175,6 +173,11 @@ ZINNIA_AKISMET_COMMENT = False
 # XMLRPC_METHODS = ZINNIA_XMLRPC_METHODS
 
 ZINNIA_MEDIA_URL = '/media/zinnia/'
+
+# ==================================================================
+# comments
+
+COMMENTS_APP = 'swsite.custom_comments'
 
 # ==================================================================
 # wakawaka (wiki)
@@ -271,6 +274,14 @@ INSTALLED_APPS = (
     'wakawaka',
     'django_markup',
     'wakacmsplugin',
+    #
+    # django-voice (feedback)
+    'djangovoice',
+    'voting',
+    'gravatar',
+    #
+    # Comment extensions
+    'swsite.custom_comments',
 )
 
 import os

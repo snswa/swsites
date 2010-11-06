@@ -45,7 +45,9 @@ urlpatterns += patterns('',
     #
     # Blog:
     (r'^blog/', include('zinnia.urls')),
-    # (r'^comments/', include('django.contrib.comments.urls')),
+    #
+    # Comments:
+    (r'^comments/', include('django.contrib.comments.urls')),
     #
     # # Wiki:
     # (r'^wiki/', include('wiki.urls'), {'SSL': True}),
@@ -55,6 +57,9 @@ urlpatterns += patterns('',
     #
     # Wakawaka (wiki):
     (r'^wiki/', include('swproject.urls_wiki'), {'SSL': True}),
+    #
+    # voice (feedback):
+    (r'^feedback/', include('djangovoice.urls'), {'SSL': True}),
     #
     # TODO: Legacy redirects from sensiblewashington.org site
     #
