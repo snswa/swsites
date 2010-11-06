@@ -14,3 +14,7 @@ textarea#id_content {
     width: 100%;
     height: 25em;
 }
+
+.info span {
+    padding-right: 1em;
+}
