@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block page_title %}{% block head_title %}{% endblock %}{% endblock %}
+
+{% block content_wrapper %}
+    <div id="content" class="alpha omega grid_12">
+        <div class="section">
+            {% block body %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}

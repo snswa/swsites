@@ -1,0 +1,11 @@
+#wiki-info {
+    float: right;
+    padding: .5em;
+    margin: 1em;
+    border: 2px solid #257329;
+}
+
+#wiki-info span {
+    padding-left: 1em;
+    padding-right: 1em;
+}

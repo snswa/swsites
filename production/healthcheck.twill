@@ -1,0 +1,3 @@
+go http://snswa.org/_site/deploy_tests/report_ok
+code 200
+find OK

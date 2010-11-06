@@ -1,0 +1,124 @@
+{% load cms_tags menu_tags %}
+<!doctype html>
+<html>
+<head>
+    <title>{% block page_title %}Welcome{% endblock %} - Sensible Washington</title>
+
+    <link href="{{ STATIC_URL }}css/reset.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}css/text.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}css/960.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}css/base.css" rel="stylesheet">
+
+    {% block css %}{% endblock %}
+
+    <script src="{{ STATIC_URL }}js/html5.js" type="text/javascript" charset="UTF-8"></script>
+
+    {% block headscripts %}{% endblock %}
+
+    {# Google Analytics tracking #}
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-15636009-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    {# /Google #}
+</head>
+<body class="container_12">
+
+<div id="auth-info">
+    {% if user.is_authenticated %}
+        <span>Welcome, {{ user.username }}.</span>
+        <span><a href="{% url account_logout %}">Sign Out</a></span>
+    {% else %}
+        <span><a href="{% url account_signup %}">Sign Up</a></span>
+        <span><a href="{% url account_login %}">Sign In</a></span>
+    {% endif %}
+</div>
+
+{% block header %}
+<div class="header large" class="grid_12">
+    <h1><a href="/">SensibleWashington.org</a></h1>
+    <h2>Legalize Cannabis<br/>in 2011</h2>
+    <div id="site-search">
+        <form action="" method="get">
+            <input name="search" type="text" value="Search">
+        </form>
+    </div>
+    <div id="follow-campaign">
+        Follow the campaign:
+        <ul>
+            <li><a href="http://www.facebook.com/pages/Sensible-Washington/250965900741"><img src="{{ STATIC_URL }}images/social/facebook.png" height="32" width="32"></a></li>
+            <li><a href="http://twitter.com/sensiblewash"><img src="{{ STATIC_URL }}images/social/twitter.png" height="32" width="32"></a></li>
+{#            <li><a href="#"><img src="rss.png" height="32" width="32"></a></li>#}
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
+<div id="site-sections" class="grid_12 alpha omega">
+    {% block site_sections %}
+        {% show_menu 0 100 0 100 "cms/site_sections_menu.html" %}
+    {% endblock %}
+</div>
+
+{% block messages %}
+    {% if messages %}
+    	<ul id="site-messages">
+        	{% for message in messages %}
+        		<li>{{ message }}</li>
+        	{% endfor %}
+    	</ul>
+    {% endif %}
+{% endblock %}
+
+{% block content_wrapper %}
+    <div id="content" class="alpha omega grid_8">
+        {% block content_body %}
+            Content sections here.
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+    <div id="sidebar" class="alpha grid_3 prefix_1">
+        {% block sidebar_sections %}
+            <div class="section">
+                Sidebar sections here.
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}
+
+<div class="clear">&nbsp;</div>
+
+<div class="footer" class="clear grid_12">
+    Copyright &copy; 2010 Sensible Washington.
+    <a href="/privacy-policy">Read our privacy policy.</a>
+</div>
+
+{% block bodyscripts %}{% endblock %}
+
+{# Clicky analytics #}
+<script type="text/javascript">
+var clicky = { log: function(){ return; }, goal: function(){ return; }};
+var clicky_site_id = 66349596;
+(function() {
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = ( document.location.protocol == 'https:' ? 'https://static.getclicky.com/js' : 'http://static.getclicky.com/js' );
+  ( document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] ).appendChild( s );
+})();
+</script>
+<a title="Real Time Web Analytics" href="http://getclicky.com/66349596"></a>
+<noscript><p><img alt="Clicky" width="1" height="1" src="http://in.getclicky.com/66349596ns.gif" /></p></noscript>
+{# /Clicky #}
+
+</body>
+</html>

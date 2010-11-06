@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load cms_tags %}
+
+{% block page_title %}{% page_attribute "page_title" %}{% endblock %}
+
+{% block content_wrapper %}
+    <div id="content" class="alpha omega grid_12">
+        <div class="section">
+            <h1>{% page_attribute "page_title" %}</h1>
+
+            {% placeholder "content" %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}

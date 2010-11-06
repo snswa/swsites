@@ -1,0 +1,12 @@
+{% spaceless %}
+    {% if snippet_pages %}
+        <div>
+            CMS pages containing this snippet:
+            <ul>
+                {% for sp in snippet_pages %}
+                    <li><a href="{{ sp.page.get_absolute_url }}">{{ sp.page.get_title }}</a> (revision {{ sp.snippet.rev }})</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+{% endspaceless %}

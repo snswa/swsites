@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block header %}
+<div class="header large" class="grid_12">
+    <h1><a href="/">SensibleWashington.org</a></h1>
+    <h2>Legalize Cannabis<br/>in 2011</h2>
+    <div id="site-search">
+        <form action="" method="get">
+            <input name="search" type="text" value="Search">
+        </form>
+    </div>
+    <div id="follow-campaign">
+        Follow the campaign:
+        <ul>
+            <li><a href="http://www.facebook.com/pages/Sensible-Washington/250965900741"><img src="{{ STATIC_URL }}images/social/facebook.png" height="32" width="32"></a></li>
+            <li><a href="http://twitter.com/sensiblewash"><img src="{{ STATIC_URL }}images/social/twitter.png" height="32" width="32"></a></li>
+{#            <li><a href="#"><img src="rss.png" height="32" width="32"></a></li>#}
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
+{% block content_wrapper %}
+    <div id="content" class="alpha omega grid_12">
+        {% block content_body %}{% endblock %}
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base_short.html" %}
+
+{% load i18n %}
+
+{# Insert 'title' from wiki templates into 'page_title' in base #}
+{% block page_title %}{% block title %}{% endblock %}{% endblock %}
+
+{% block css %}
+<link href="{{ STATIC_URL }}css/wiki.css" rel="stylesheet">
+{% endblock %}
+
+{# Insert 'extrahead' from wiki templates into 'headscripts' in base #}
+{% block headscripts %}{% block extrahead %}{% endblock %}{% endblock %}
+
+{% block content_body %}
+    {% spaceless %}
+    <div id="wiki-info">
+    	<span>
+    		<a href="{% url wakawaka_index %}">{% trans "Start" %}</a>
+    	</span>
+    	<span>
+    		<a href="{% url wakawaka_revision_list %}">{% trans "Recent revisions" %}</a>
+    	</span>
+    	<span>
+    		<a href="{% url wakawaka_page_list %}">{% trans "All Pages" %}</a>
+    	</span>
+    </div>
+    {% endspaceless %}
+
+    {% block content %}
+    {% endblock %}
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}

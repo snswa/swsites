@@ -1,0 +1,15 @@
+*~
+*.db
+*.egg-info
+*.pid
+*.pyc
+*.pyd
+*.pyo
+
+.idea/workspace.xml
+celerybeat-schedule
+
+static/
+uploaded_media/*
+._*
+swproject/localsettings.py
