@@ -121,7 +121,6 @@ Set up git
 
 $ git config --global user.name "Your Name"
 $ git config --global user.email "your@email.com"
-$ git config --global http.sslVerify 0
 
 
 Clone repository, install dependencies
@@ -132,8 +131,12 @@ $ cat >> $VIRTUAL_ENV/bin/postactivate <<EOF
 export DJANGO_SETTINGS_MODULE=swproject.localsettings
 EOF
 $ workon sw
+  # I needed to do the following due to problems with git updating
+  # in the official released version of pip.
 $ pip install -U -e hg+http://bitbucket.org/gldnspud/pip-sw#egg=pip
-$ git clone https://USER:PASS@git.sensiblewashington.org/swsites.git
+$ git clone http://github.com/snswa/swsites.git
+    ~ or with your own clone: ~
+$ git clone git@github.com:YOURNAME/swsites.git
 $ cd swsites
 $ pip install -r requirements.txt
 $ python setup.py develop
