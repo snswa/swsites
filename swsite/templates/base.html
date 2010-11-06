@@ -112,8 +112,11 @@
 <div class="clear">&nbsp;</div>
 
 <div class="footer" class="clear grid_12">
-    Copyright &copy; 2010 Sensible Washington.
-    <a href="/privacy-policy">Read our privacy policy.</a>
+    <span>Copyright &copy; 2010 Sensible Washington.</span>
+    <span>Read our <a href="/privacy-policy/">privacy policy</a>.</span>
+    {% if user.is_authenticated %}
+        <span>Leave <a href="/feedback/">feedback</a>.</span>
+    {% endif %}
 </div>
 
 {% block bodyscripts %}{% endblock %}
