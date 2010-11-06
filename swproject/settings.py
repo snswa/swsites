@@ -209,8 +209,8 @@ INSTALLED_APPS = (
     #
     # Custom
     'swsite',
-    'swcontacts',
-    'swfundraiser',
+    'roster',
+    'fundraiser',
     'swimporter',
     'swlegacy',
     #

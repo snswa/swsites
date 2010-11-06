@@ -5,8 +5,8 @@ from pprint import pprint
 
 from django.core.management.base import BaseCommand
 
-from swcontacts.models import Person, Change, Address, Phone, Email
-from swfundraiser.models import Donation
+from roster.models import Person, Change, Address, Phone, Email
+from fundraiser.models import Donation
 
 
 class Command(BaseCommand):

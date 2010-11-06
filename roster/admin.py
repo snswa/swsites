@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.contenttypes import generic
 
-import swcontacts.models as m
+import roster.models as m
 
 
 class AddressInline(generic.GenericTabularInline):

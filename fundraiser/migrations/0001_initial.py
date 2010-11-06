@@ -9,7 +9,7 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
         
         # Adding model 'Donation'
-        db.create_table('swfundraiser_donation', (
+        db.create_table('fundraiser_donation', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('content_type', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['contenttypes.ContentType'])),
             ('object_id', self.gf('django.db.models.fields.PositiveIntegerField')()),
@@ -18,13 +18,13 @@ class Migration(SchemaMigration):
             ('compliance_information', self.gf('django.db.models.fields.TextField')()),
             ('timestamp', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
         ))
-        db.send_create_signal('swfundraiser', ['Donation'])
+        db.send_create_signal('fundraiser', ['Donation'])
 
 
     def backwards(self, orm):
         
         # Deleting model 'Donation'
-        db.delete_table('swfundraiser_donation')
+        db.delete_table('fundraiser_donation')
 
 
     models = {
@@ -35,7 +35,7 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
-        'swfundraiser.donation': {
+        'fundraiser.donation': {
             'Meta': {'object_name': 'Donation'},
             'amount': ('django.db.models.fields.DecimalField', [], {'max_digits': '10', 'decimal_places': '2'}),
             'compliance_information': ('django.db.models.fields.TextField', [], {}),
@@ -47,4 +47,4 @@ class Migration(SchemaMigration):
         }
     }
 
-    complete_apps = ['swfundraiser']
+    complete_apps = ['fundraiser']

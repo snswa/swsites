@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-import swfundraiser.models as m
+import fundraiser.models as m
 
 
 r = admin.site.register

@@ -7,7 +7,7 @@ from django.conf import settings
 from django.contrib.comments.models import Comment
 from django.core.management.base import BaseCommand
 
-from swcontacts.models import (
+from roster.models import (
     Address, Change, Email, Interest, Organization, Person, Phone,
     Relationship,
     )

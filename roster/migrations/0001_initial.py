@@ -9,33 +9,33 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
         
         # Adding model 'Person'
-        db.create_table('swcontacts_person', (
+        db.create_table('roster_person', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('given_name', self.gf('django.db.models.fields.CharField')(max_length=50, null=True)),
             ('middle_name', self.gf('django.db.models.fields.CharField')(max_length=50, null=True)),
             ('surname', self.gf('django.db.models.fields.CharField')(max_length=50, null=True)),
             ('last_contacted', self.gf('django.db.models.fields.DateTimeField')(null=True)),
         ))
-        db.send_create_signal('swcontacts', ['Person'])
+        db.send_create_signal('roster', ['Person'])
 
         # Adding M2M table for field interests on 'Person'
-        db.create_table('swcontacts_person_interests', (
+        db.create_table('roster_person_interests', (
             ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('person', models.ForeignKey(orm['swcontacts.person'], null=False)),
-            ('interest', models.ForeignKey(orm['swcontacts.interest'], null=False))
+            ('person', models.ForeignKey(orm['roster.person'], null=False)),
+            ('interest', models.ForeignKey(orm['roster.interest'], null=False))
         ))
-        db.create_unique('swcontacts_person_interests', ['person_id', 'interest_id'])
+        db.create_unique('roster_person_interests', ['person_id', 'interest_id'])
 
         # Adding model 'Organization'
-        db.create_table('swcontacts_organization', (
+        db.create_table('roster_organization', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('name', self.gf('django.db.models.fields.CharField')(max_length=200, null=True)),
             ('last_contacted', self.gf('django.db.models.fields.DateTimeField')(null=True)),
         ))
-        db.send_create_signal('swcontacts', ['Organization'])
+        db.send_create_signal('roster', ['Organization'])
 
         # Adding model 'Change'
-        db.create_table('swcontacts_change', (
+        db.create_table('roster_change', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('content_type', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['contenttypes.ContentType'])),
             ('object_id', self.gf('django.db.models.fields.PositiveIntegerField')()),
@@ -43,10 +43,10 @@ class Migration(SchemaMigration):
             ('timestamp', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
             ('message', self.gf('django.db.models.fields.CharField')(max_length=250)),
         ))
-        db.send_create_signal('swcontacts', ['Change'])
+        db.send_create_signal('roster', ['Change'])
 
         # Adding model 'Address'
-        db.create_table('swcontacts_address', (
+        db.create_table('roster_address', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('content_type', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['contenttypes.ContentType'])),
             ('object_id', self.gf('django.db.models.fields.PositiveIntegerField')()),
@@ -55,10 +55,10 @@ class Migration(SchemaMigration):
             ('postal_code', self.gf('django.db.models.fields.CharField')(max_length=20, null=True)),
             ('added', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
         ))
-        db.send_create_signal('swcontacts', ['Address'])
+        db.send_create_signal('roster', ['Address'])
 
         # Adding model 'Phone'
-        db.create_table('swcontacts_phone', (
+        db.create_table('roster_phone', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('content_type', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['contenttypes.ContentType'])),
             ('object_id', self.gf('django.db.models.fields.PositiveIntegerField')()),
@@ -67,10 +67,10 @@ class Migration(SchemaMigration):
             ('added', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
             ('validated', self.gf('django.db.models.fields.DateTimeField')(null=True)),
         ))
-        db.send_create_signal('swcontacts', ['Phone'])
+        db.send_create_signal('roster', ['Phone'])
 
         # Adding model 'Email'
-        db.create_table('swcontacts_email', (
+        db.create_table('roster_email', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('content_type', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['contenttypes.ContentType'])),
             ('object_id', self.gf('django.db.models.fields.PositiveIntegerField')()),
@@ -79,10 +79,10 @@ class Migration(SchemaMigration):
             ('added', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
             ('validated', self.gf('django.db.models.fields.DateTimeField')(null=True)),
         ))
-        db.send_create_signal('swcontacts', ['Email'])
+        db.send_create_signal('roster', ['Email'])
 
         # Adding model 'Relationship'
-        db.create_table('swcontacts_relationship', (
+        db.create_table('roster_relationship', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('who_content_type', self.gf('django.db.models.fields.related.ForeignKey')(related_name='relationship_who_set', to=orm['contenttypes.ContentType'])),
             ('who_object_id', self.gf('django.db.models.fields.PositiveIntegerField')()),
@@ -91,44 +91,44 @@ class Migration(SchemaMigration):
             ('tag', self.gf('django.db.models.fields.CharField')(max_length=50)),
             ('added', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
         ))
-        db.send_create_signal('swcontacts', ['Relationship'])
+        db.send_create_signal('roster', ['Relationship'])
 
         # Adding model 'Interest'
-        db.create_table('swcontacts_interest', (
+        db.create_table('roster_interest', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('name', self.gf('django.db.models.fields.CharField')(unique=True, max_length=100)),
         ))
-        db.send_create_signal('swcontacts', ['Interest'])
+        db.send_create_signal('roster', ['Interest'])
 
 
     def backwards(self, orm):
         
         # Deleting model 'Person'
-        db.delete_table('swcontacts_person')
+        db.delete_table('roster_person')
 
         # Removing M2M table for field interests on 'Person'
-        db.delete_table('swcontacts_person_interests')
+        db.delete_table('roster_person_interests')
 
         # Deleting model 'Organization'
-        db.delete_table('swcontacts_organization')
+        db.delete_table('roster_organization')
 
         # Deleting model 'Change'
-        db.delete_table('swcontacts_change')
+        db.delete_table('roster_change')
 
         # Deleting model 'Address'
-        db.delete_table('swcontacts_address')
+        db.delete_table('roster_address')
 
         # Deleting model 'Phone'
-        db.delete_table('swcontacts_phone')
+        db.delete_table('roster_phone')
 
         # Deleting model 'Email'
-        db.delete_table('swcontacts_email')
+        db.delete_table('roster_email')
 
         # Deleting model 'Relationship'
-        db.delete_table('swcontacts_relationship')
+        db.delete_table('roster_relationship')
 
         # Deleting model 'Interest'
-        db.delete_table('swcontacts_interest')
+        db.delete_table('roster_interest')
 
 
     models = {
@@ -168,7 +168,7 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
-        'swcontacts.address': {
+        'roster.address': {
             'Meta': {'object_name': 'Address'},
             'added': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'address': ('django.db.models.fields.TextField', [], {}),
@@ -178,7 +178,7 @@ class Migration(SchemaMigration):
             'postal_code': ('django.db.models.fields.CharField', [], {'max_length': '20', 'null': 'True'}),
             'type': ('django.db.models.fields.CharField', [], {'max_length': '1', 'null': 'True'})
         },
-        'swcontacts.change': {
+        'roster.change': {
             'Meta': {'object_name': 'Change'},
             'content_type': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['contenttypes.ContentType']"}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
@@ -187,7 +187,7 @@ class Migration(SchemaMigration):
             'timestamp': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']", 'null': 'True'})
         },
-        'swcontacts.email': {
+        'roster.email': {
             'Meta': {'object_name': 'Email'},
             'added': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'content_type': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['contenttypes.ContentType']"}),
@@ -197,27 +197,27 @@ class Migration(SchemaMigration):
             'type': ('django.db.models.fields.CharField', [], {'max_length': '1', 'null': 'True'}),
             'validated': ('django.db.models.fields.DateTimeField', [], {'null': 'True'})
         },
-        'swcontacts.interest': {
+        'roster.interest': {
             'Meta': {'object_name': 'Interest'},
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '100'})
         },
-        'swcontacts.organization': {
+        'roster.organization': {
             'Meta': {'object_name': 'Organization'},
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'last_contacted': ('django.db.models.fields.DateTimeField', [], {'null': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True'})
         },
-        'swcontacts.person': {
+        'roster.person': {
             'Meta': {'object_name': 'Person'},
             'given_name': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'interests': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['swcontacts.Interest']", 'symmetrical': 'False'}),
+            'interests': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['roster.Interest']", 'symmetrical': 'False'}),
             'last_contacted': ('django.db.models.fields.DateTimeField', [], {'null': 'True'}),
             'middle_name': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True'}),
             'surname': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True'})
         },
-        'swcontacts.phone': {
+        'roster.phone': {
             'Meta': {'object_name': 'Phone'},
             'added': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'content_type': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['contenttypes.ContentType']"}),
@@ -227,7 +227,7 @@ class Migration(SchemaMigration):
             'type': ('django.db.models.fields.CharField', [], {'max_length': '1', 'null': 'True'}),
             'validated': ('django.db.models.fields.DateTimeField', [], {'null': 'True'})
         },
-        'swcontacts.relationship': {
+        'roster.relationship': {
             'Meta': {'object_name': 'Relationship'},
             'added': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
@@ -252,4 +252,4 @@ class Migration(SchemaMigration):
         }
     }
 
-    complete_apps = ['swcontacts']
+    complete_apps = ['roster']
