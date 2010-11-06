@@ -56,8 +56,7 @@ PIL==1.1.7
 akismet==0.2.0
 BeautifulSoup==3.1.0.1
 
-# -e git+http://github.com/gldnspud/django-allauth.git@sw#egg=django-allauth
--e git+http://github.com/gldnspud/django-allauth.git@fe9d0a1f47a68933c2c4282ee915e8814a5517c1#egg=django-allauth
+-e git+http://github.com/gldnspud/django-allauth.git@453273c187fe7f10039a4dcf1fc3f5605ce051a8#egg=django-allauth
 httplib2==0.6.0
 oauth2==1.2.0
 python-openid==2.2.5
