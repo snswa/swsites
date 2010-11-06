@@ -9,3 +9,8 @@
     padding-left: 1em;
     padding-right: 1em;
 }
+
+textarea#id_content {
+    width: 100%;
+    height: 25em;
+}

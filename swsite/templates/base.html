@@ -4,14 +4,28 @@
 <head>
     <title>{% block page_title %}Welcome{% endblock %} - Sensible Washington</title>
 
+    {# 960.gs #}
     <link href="{{ STATIC_URL }}css/reset.css" rel="stylesheet">
     <link href="{{ STATIC_URL }}css/text.css" rel="stylesheet">
     <link href="{{ STATIC_URL }}css/960.css" rel="stylesheet">
+
+    {# Uni-form #}
+    <link href="{{ STATIC_URL }}uni_form/uni-form-generic.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}uni_form/uni-form.css" rel="stylesheet">
+
+    {# Base #}
     <link href="{{ STATIC_URL }}css/base.css" rel="stylesheet">
 
     {% block css %}{% endblock %}
 
+    {# jQuery first #}
+    <script src="{{ STATIC_URL }}js/jquery-1.4.3.min.js" type="text/javascript" charset="utf-8"></script>
+
+    {# Add some HTML5 capabilities to older browsers #}
     <script src="{{ STATIC_URL }}js/html5.js" type="text/javascript" charset="UTF-8"></script>
+
+    {# Uni-form #}
+    <script src="{{ STATIC_URL }}uni_form/uni-form.jquery.js" type="text/javascript" charset="utf-8"></script>
 
     {% block headscripts %}{% endblock %}
 

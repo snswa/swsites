@@ -1,6 +1,7 @@
 {% extends "wakawaka/base.html" %}
 
 {% load i18n %}
+{% load uni_form_tags %}
 
 {% block extrahead %}
 	{{ block.super }}
@@ -33,28 +34,37 @@
 	{% endif %}
 
 	{% if is_locked and have_lock %}
-    	<p class="lock-notice">{% trans "Edit the page below. If you change your mind click" %} <a href="?cancel_lock=true">{% trans "Cancel" %}</a> {% trans "so others may edit the page." %}</p>
+        <div class="grid_8 alpha">
+        	<p class="lock-notice">{% trans "Edit the page below. If you change your mind click" %} <a href="?cancel_lock=true">{% trans "Cancel" %}</a> {% trans "so others may edit the page." %}</p>
 
-        {# creole cheatsheet #}
-        <img style="float:right;" src="{{ MEDIA_URL }}wiki/creole_cheat_sheet.png" width="275" height="469" alt="Creole Cheat Sheet">
+        	<form class="wakawaka_edit_form uniForm" method="POST" action="">
+        	    {% csrf_token %}
+        		{{ form|as_uni_form }}
+        		<p>
+                    <input type="submit" value="{% trans "Save changes" %}" />
+                    {% trans "or" %} <a href="?cancel_lock=true">{% trans "Cancel" %}</a>
+        		</p>
+        	</form>
 
-    	<form class="wakawaka_edit_form" method="POST" action="">
-    	    {% csrf_token %}
-    		{{ form.as_p }}
-    		<p>
-                <input type="submit" value="{% trans "Save changes" %}" />
-                {% trans "or" %} <a href="?cancel_lock=true">{% trans "Cancel" %}</a>
-    		</p>
-    	</form>
+        	<h2>{% trans "Revisions for this page" %}</h2>
+
+        	{% include "wakawaka/revision_table.html" %}
+        </div>
+        <div class="grid_4 omega">
+            {# creole cheatsheet #}
+            <img style="float:right;" src="{{ MEDIA_URL }}wiki/creole_cheat_sheet.png" width="275" height="469" alt="Creole Cheat Sheet">
+        </div>
+
 	{% else %}
     	{% blocktrans with lock_timestamp|timesince as lock_timestamp %}The page is locked for {{ lock_owner }} since about {{ lock_timestamp }}.{% endblocktrans %}
     	{% if allowed_to_reset %}<a href="?reset_lock=true" title="Locked for another {{ lock_ttl|timeuntil }}">{% trans "Reset lock" %}</a>{% endif %}
     	<div class="page">
     		{% include "wakawaka/page_content.html" %}
     	</div>
+
+    	<h2>{% trans "Revisions for this page" %}</h2>
+
+    	{% include "wakawaka/revision_table.html" %}
 	{% endif %}
 
-	<h2>{% trans "Revisions for this page" %}</h2>
-
-	{% include "wakawaka/revision_table.html" %}
 {% endblock %}
