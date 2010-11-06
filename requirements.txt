@@ -30,7 +30,6 @@ psycopg2==2.2.2
 pycrypto==2.0.1
 pyparsing==1.5.5
 -e git+http://github.com/snswa/python-dateutil.git@93f2157fc38500dc73d4#egg=python-dateutil
-python-dateutil==1.5
 supervisor==3.0a9
 twill==0.9
 wsgiref==0.1.2
