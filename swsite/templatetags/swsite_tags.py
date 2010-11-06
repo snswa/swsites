@@ -8,7 +8,7 @@ from wakawaka.models import WikiPage
 register = Library()
 
 
-CREOLE_WIKILINK_REGEX = r'\[\[(.*)\]\]'
+CREOLE_WIKILINK_REGEX = r'\[\[([^\]]*)\]\]'
 CREOLE_WIKILINK_REGEX = re.compile(CREOLE_WIKILINK_REGEX)
 
 
