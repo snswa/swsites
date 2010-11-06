@@ -40,9 +40,8 @@
 	        {% trans "Revision" %} {{ rev.id }}.
         </span>
     	<span>
-    		{% blocktrans with page.current.creator as creator and rev.modified|date:_("DATETIME_FORMAT") as modified %}
-    		    Recently modified by <em>{{ creator }}</em>: {{ modified }}
-    		{% endblocktrans %}
+            {% trans "Recently modified by" %}
+            <a href="{{ page.current.creator.get_absolute_url }}">{{ page.current.creator }}</a>: {{ rev.modified|date:_("DATETIME_FORMAT") }}
     		(<a href="{% url wakawaka_revision_list slug=page.slug %}">{% trans "History" %}</a>)
     	</span>
 
