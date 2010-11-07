@@ -33,11 +33,8 @@ class Command(BaseCommand):
                     )
                 #
                 # Find donation amount.
-                parts = row['Donation'].split('<br>')
-                for part in parts:
-                    if part.startswith('Total'):
-                        donation_amount = int(part.split('$')[1])
-                        break
+                parts = row['Donation'].split('$', 1)
+                donation_amount = int(parts[1])
                 #
                 # Create Person
                 person = Person.objects.create(
