@@ -84,7 +84,7 @@ django-uni-form==0.7.0
 -e git+http://github.com/11craft/django-teams.git@master#egg=django-teams
 django-treebeard==1.61
 
--e git+http://github.com/snswa/django-wakawaka.git@master#egg=django-wakawaka
+-e git+http://github.com/snswa/django-wakawaka.git@f5226719af2a75b129e6fa0491309424c8e412ee#egg=django-wakawaka
 django-markup==0.3
 
 # -e svn+http://django-voice.googlecode.com/svn/trunk@16#egg=django-voice
