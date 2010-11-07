@@ -13,6 +13,20 @@ from roster.models import (
     )
 
 
+INTERESTS = set([
+    'Signing the 2011 Sensible Washingtton initiative',
+    'Signature collection',
+    'Media and message',
+    'Information technology',
+    'Volunteer coordination',
+    'Business outreach / liaison',
+    'Fundraising',
+    'Phone banking',
+    'Petition validation',
+    'Beta-test Volunteer Support Website',
+])
+
+
 class Command(BaseCommand):
     args = '<input_file>'
     help = 'Import the specified jotform volunteer CSV file'
@@ -90,15 +104,16 @@ class Command(BaseCommand):
                     )
                 #
                 # Separate and record interests.
-                interests = row['Interests'].split('<br>')
-                for interest in interests:
-                    interest_obj, created = Interest.objects.get_or_create(
-                        name=interest,
-                        )
-                    if created:
-                        interest_obj.save()
-                    person.interests.add(interest_obj)
-                    person.save()
+                row_interests = row['Interests']
+                for interest in INTERESTS:
+                    if interest in row_interests:
+                        interest_obj, created = Interest.objects.get_or_create(
+                            name=interest,
+                            )
+                        if created:
+                            interest_obj.save()
+                        person.interests.add(interest_obj)
+                        person.save()
                 #
                 # Record other talents or resources as comments.
                 comment = Comment.objects.create(
