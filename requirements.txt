@@ -12,7 +12,6 @@ celery==2.1.1
 django-celery==2.1.1
 django-debug-toolbar==0.8.3
 django-filter==0.5.3
-django-haystack==1.0.1-final
 django-picklefield==0.1.6
 django-piston==0.2.2
 django-profiles==0.2
@@ -91,3 +90,9 @@ django-markup==0.3
 -e git+http://github.com/snswa/django-voice.git@303d54b2c1ef23c27a349ad1acd8b6e04a3c02bb#egg=django-voice
 -e svn+http://django-voting.googlecode.com/svn/trunk@73#egg=django-voting
 -e svn+http://django-gravatar.googlecode.com/svn/trunk@13#egg=django-gravatar
+
+-e git+http://github.com/toastdriven/django-haystack.git@c5f8f1a5a063d3781009dd4b9cb993685805705a#egg=django-haystack
+# django-haystack==1.0.2-final
+# Whoosh==0.3.18
+# Whoosh==1.1.1
+Whoosh==1.3.1

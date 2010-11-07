@@ -13,3 +13,4 @@ static/
 uploaded_media/*
 ._*
 swproject/localsettings.py
+whoosh_index

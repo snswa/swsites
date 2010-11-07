@@ -202,6 +202,11 @@ EMAIL_BACKEND = 'postmark.django_backend.EmailBackend'
 EMAIL_CONFIRMATION_DAYS = 7
 
 # ==================================================================
+# Haystack (search)
+
+HAYSTACK_SITECONF = 'swproject.search_sites'
+
+# ==================================================================
 
 INSTALLED_APPS = (
     #
@@ -282,6 +287,9 @@ INSTALLED_APPS = (
     #
     # Comment extensions
     'swsite.custom_comments',
+    #
+    # Haystack (search)
+    'haystack',
 )
 
 import os

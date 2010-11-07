@@ -58,8 +58,11 @@ urlpatterns += patterns('',
     # Wakawaka (wiki):
     (r'^wiki/', include('swproject.urls_wiki'), {'SSL': True}),
     #
-    # voice (feedback):
+    # djangovoice (feedback):
     (r'^feedback/', include('djangovoice.urls'), {'SSL': True}),
+    #
+    # haystack (search):
+    (r'^search/', include('haystack.urls')),
     #
     # TODO: Legacy redirects from sensiblewashington.org site
     #
