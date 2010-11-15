@@ -62,7 +62,7 @@ urlpatterns += patterns('',
     (r'^feedback/', include('djangovoice.urls'), {'SSL': True}),
     #
     # haystack (search):
-    (r'^search/', include('haystack.urls')),
+    (r'^search/', include('swproject.urls_search')),
     #
     # TODO: Legacy redirects from sensiblewashington.org site
     #

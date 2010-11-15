@@ -205,6 +205,8 @@ EMAIL_CONFIRMATION_DAYS = 7
 # Haystack (search)
 
 HAYSTACK_SITECONF = 'swproject.search_sites'
+HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10
+HAYSTACK_LIMIT_TO_REGISTERED_MODELS = False
 
 # ==================================================================
 
