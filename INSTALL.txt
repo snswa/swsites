@@ -169,4 +169,18 @@ $ django-admin.py runserver 0.0.0.0:8000
 Browse to http://swdev.local:8000
 
 
+Installing solr
+===============
 
+$ sudo aptitude install solr-jetty openjdk-6-jdk
+$ sudo $EDITOR /etc/default/jetty
+     NO_START=0
+$ sudo service jetty restart
+
+In top level of swsites repo:
+
+$ django-admin.py build_solr_schema > solr-schema.xml
+$ sudo ln -sf $PWD/solr-schema.xml /etc/solr/conf/schema.xml
+$ sudo service jetty restart
+$ django-admin.py rebuild_index
+$ django-admin.py update_index

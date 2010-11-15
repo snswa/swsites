@@ -57,11 +57,5 @@ STATICFILES_RESOLVERS += (
 
 POSTMARK_DEBUG = True
 
-HAYSTACK_SEARCH_ENGINE = 'whoosh'
-import os
-import swproject
-HAYSTACK_WHOOSH_PATH = os.path.join(
-    os.path.dirname(swproject.__file__),
-    os.pardir,
-    'whoosh_index',
-)
+HAYSTACK_SEARCH_ENGINE = 'solr'
+HAYSTACK_SOLR_URL = 'http://127.0.0.1:8080/solr'

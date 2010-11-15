@@ -14,3 +14,4 @@ uploaded_media/*
 ._*
 swproject/localsettings.py
 whoosh_index
+solr-schema.xml
