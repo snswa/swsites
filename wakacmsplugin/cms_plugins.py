@@ -15,22 +15,7 @@ class WikiPageSnippetPlugin(CMSPluginBase):
     render_template = "wakacmsplugin/wikipagesnippet.html"
 
     def render(self, context, instance, placeholder):
-        #
-        # Get the actual wiki page and strip everything but the content block.
-        try:
-            revision = Revision.objects.filter(
-                pk=instance.rev,
-                page__slug=instance.slug,
-            )[0]
-            content = revision.content
-            content = content.split('-BEGINSNIPPET-')[1]
-            content = content.split('-ENDSNIPPET-')[0]
-        except IndexError:
-            raise ValueError(
-                'No content snippet found at %s:%s'
-                % (instance.slug, instance.rev)
-            )
-        #
+        content = instance.content()
         context.update({
             'content': content,
             'placeholder': placeholder,
