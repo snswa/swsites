@@ -10,7 +10,7 @@ env.settings_module = 'snswa_deploy.localsettings'
 
 def _admin():
     require('settings_module')
-    return 'PYTHONPATH=$HOME DJANGO_SETTINGS_MODULE={0:>s} ~/src/env/bin/django-admin.py'.format(env.settings_module)
+    return 'PYTHONPATH=$HOME DJANGO_SETTINGS_MODULE={0} ~/src/env/bin/django-admin.py'.format(env.settings_module)
 
 
 def update_repo():
@@ -44,21 +44,36 @@ def prepare_virtualenv():
 
 def sync_and_migrate():
     require('srcdir')
-    run('{0:>s} syncdb --migrate --noinput'.format(_admin()))
+    run('{0} syncdb --migrate --noinput'.format(_admin()))
 
 
 def collectstatic():
     require('srcdir')
     if django.VERSION >= (1, 3):
-        run('{0:>s} collectstatic --noinput --link'.format(_admin()))
+        run('{0} collectstatic --noinput --link'.format(_admin()))
     else:
-        run('{0:>s} build_static --noinput --link'.format(_admin()))
+        run('{0} build_static --noinput --link'.format(_admin()))
 
 
-def restart_processes():
+def restart_app_server():
     require('srcdir')
     with cd(env.srcdir):
         run('production/supervisord.sh reload')
+
+
+def rebuild_solr_schema():
+    require('srcdir')
+    with cd(env.srcdir):
+        run('{0} build_solr_schema > ~/solr-schema.xml'.format(_admin()))
+        run('sudo /etc/init.d/jetty stop')
+        run('sudo /etc/init.d/jetty start')
+
+
+def rebuild_search_index():
+    require('srcdir')
+    rebuild_solr_schema()
+    with cd(env.srcdir):
+        run('{0} rebuild_index --noinput'.format(_admin()))
 
 
 def deploy():
@@ -67,4 +82,4 @@ def deploy():
     prepare_virtualenv()
     sync_and_migrate()
     collectstatic()
-    restart_processes()
+    restart_app_server()
