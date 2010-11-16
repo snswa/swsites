@@ -19,15 +19,24 @@
     {% block css %}{% endblock %}
 
     {# jQuery first #}
-    <script src="{{ STATIC_URL }}js/jquery-1.4.3.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{ STATIC_URL }}js/jquery-1.4.4.min.js" type="text/javascript" charset="utf-8"></script>
 
     {# Add some HTML5 capabilities to older browsers #}
     <script src="{{ STATIC_URL }}js/html5.js" type="text/javascript" charset="UTF-8"></script>
+
+    {# jQuery plugins #}
+    <script src="{{ STATIC_URL }}js/jquery.watermark.min.js" type="text/javascript" charset="utf-8"></script>
 
     {# Uni-form #}
     <script src="{{ STATIC_URL }}uni_form/uni-form.jquery.js" type="text/javascript" charset="utf-8"></script>
 
     {% block headscripts %}{% endblock %}
+
+    <script type="text/javascript" charset="utf-8">
+        $(function () {
+            $('#search_q').watermark('Search');
+        });
+    </script>
 
     {# Google Analytics tracking #}
     <script type="text/javascript">
@@ -60,8 +69,8 @@
     <h1><a href="/">SensibleWashington.org</a></h1>
     <h2>Legalize Cannabis<br/>in 2011</h2>
     <div id="site-search">
-        <form action="" method="get">
-            <input name="search" type="text" value="Search">
+        <form action="/search/" method="get">
+            <input name="q" type="search" id="search_q">
         </form>
     </div>
     <div id="follow-campaign">
