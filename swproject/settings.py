@@ -202,6 +202,15 @@ EMAIL_BACKEND = 'postmark.django_backend.EmailBackend'
 EMAIL_CONFIRMATION_DAYS = 7
 
 # ==================================================================
+# emailfwd
+
+EMAILFWD_VALID_DOMAINS = [
+    ('sensiblewashington.org', '@sensiblewashington.org'),
+]
+
+EMAILFWD_DEFAULT_DOMAIN = 'sensiblewashington.org'
+
+# ==================================================================
 # Haystack (search)
 
 HAYSTACK_SITECONF = 'swproject.search_sites'
@@ -292,6 +301,9 @@ INSTALLED_APPS = (
     #
     # Haystack (search)
     'haystack',
+    #
+    # email forwarding
+    'emailfwd',
 )
 
 import os
