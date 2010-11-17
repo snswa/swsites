@@ -18,7 +18,9 @@ class Command(BaseCommand):
             print('Provide an empty directory that exists', file=sys.stderr)
             return 1
         for fwd in ForwardedEmailAddress.objects.all():
-            outname = os.path.join(output_dir, '{0.name}@{0.domain}'.format(fwd))
+            name = fwd.name.lower()
+            domain = fwd.domain.lower()
+            outname = os.path.join(output_dir, '{0}@{1}'.format(name, domain))
             with open(outname, 'wb') as out:
                 for dest in fwd.emaildestination_set.all():
-                    print(dest.email, file=out)
+                    print(dest.email.lower(), file=out)
