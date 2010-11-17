@@ -8,6 +8,6 @@ export EMAILFWD_DATA=$HOME/emailfwd-data
 mkdir -p ${EMAILFWD_DATA}
 rm ${EMAILFWD_DATA}/*
 
-exec $HOME/src/env/bin/django-admin.py export_emailfwd ${EMAILFWD_DATA}
+$HOME/src/env/bin/django-admin.py export_emailfwd ${EMAILFWD_DATA}
 
 $HOME/sync-emailfwd-data.sh
