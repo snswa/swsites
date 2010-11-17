@@ -17,7 +17,7 @@
         <th>{% trans "Modified by" %}</th>
 		<th>&nbsp;</th>
 	</tr>
-	{% for rev in revision_list %}
+	{% for rev in revisions.object_list %}
 	<tr>
 		<td>{{ rev.page.slug }}</td>
 		<td class="modifed">{{ rev.modified|timesince }} ago</td>
@@ -32,5 +32,21 @@
 	</tr>
 	{% endfor %}
 	</table>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if revisions.has_previous %}
+                <a href="?page={{ revisions.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ revisions.number }} of {{ revisions.paginator.num_pages }}.
+            </span>
+
+            {% if revisions.has_next %}
+                <a href="?page={{ revisions.next_page_number }}">next</a>
+            {% endif %}
+        </span>
+    </div>
 
 {% endblock %}
