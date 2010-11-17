@@ -35,7 +35,7 @@
 	</tr>
 	{% for rev in revisions.object_list %}
 	<tr>
-		<td>{{ rev.page.slug }}</td>
+		<td><a href="{% url wakawaka_page slug=rev.page.slug, rev_id=rev.pk %}">{{ rev.page.slug }}</a></td>
 		<td class="modifed">{{ rev.modified|timesince }} ago</td>
 		<td class="message">{{ rev.message }}</td>
 		<td class="creator">{{ rev.creator.username }}</td>
