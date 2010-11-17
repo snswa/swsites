@@ -9,6 +9,22 @@
 {% block content %}
 	<h1>{% trans "List of all revisions" %}</h1>
 
+    <div class="pagination">
+        <span class="step-links">
+            {% if revisions.has_previous %}
+                <a href="?page={{ revisions.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ revisions.number }} of {{ revisions.paginator.num_pages }}.
+            </span>
+
+            {% if revisions.has_next %}
+                <a href="?page={{ revisions.next_page_number }}">next</a>
+            {% endif %}
+        </span>
+    </div>
+
 	<table class="history" border="1">
 	<tr>
         <th>{% trans "Page" %}</th>
