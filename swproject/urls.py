@@ -31,14 +31,14 @@ urlpatterns += patterns('',
     (r'^_site/', include('swsite.urls')),
     #
     # Accounts:
-    (r'^accounts/', include('allauth.urls'), {'SSL': True}),
+    (r'^accounts/', include('allauth.urls')),
     #
     # Admin:
-    (r'^admin/doc/', include('django.contrib.admindocs.urls'), {'SSL': True}),
-    (r'^admin/', include(admin.site.urls), {'SSL': True}),
+    (r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    (r'^admin/', include(admin.site.urls)),
     #
     # Sentry:
-    (r'^sentry/', include('sentry.urls'), {'SSL': True}),
+    (r'^sentry/', include('sentry.urls')),
     #
     # New index prototype.
     (r'^newindex', 'swsite.views.newindex', {}, 'index'),
@@ -50,16 +50,16 @@ urlpatterns += patterns('',
     (r'^comments/', include('django.contrib.comments.urls')),
     #
     # # Wiki:
-    # (r'^wiki/', include('wiki.urls'), {'SSL': True}),
+    # (r'^wiki/', include('wiki.urls')),
     #
     # # Notifications:
     # (r'^notification/', include('notification.urls')),
     #
     # Wakawaka (wiki):
-    (r'^wiki/', include('swproject.urls_wiki'), {'SSL': True}),
+    (r'^wiki/', include('swproject.urls_wiki')),
     #
     # djangovoice (feedback):
-    (r'^feedback/', include('djangovoice.urls'), {'SSL': True}),
+    (r'^feedback/', include('djangovoice.urls')),
     #
     # haystack (search):
     (r'^search/', include('swproject.urls_search')),
