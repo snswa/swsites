@@ -37,7 +37,7 @@ def pull_deploy():
 def prepare_virtualenv():
     require('srcdir')
     with cd(env.srcdir):
-        run('if [ ! -d env ]; then virtualenv -p python2.6 --no-site-packages env; env/bin/pip install -U -e hg+http://bitbucket.org/gldnspud/pip-sw#egg=pip; fi')
+        run('if [ ! -d env ]; then virtualenv -p python2.6 env; env/bin/pip install -U -e hg+http://bitbucket.org/gldnspud/pip-sw#egg=pip; fi')
         run('PATH=/usr/local/pgsql/bin:$PATH env/bin/pip install -r requirements.txt')
         run('env/bin/python2.6 setup.py develop')
 
