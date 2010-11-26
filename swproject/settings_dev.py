@@ -29,18 +29,6 @@ INTERNAL_IPS = glob_list([
 
 SENTRY_TESTING = True
 
-DEBUG_TOOLBAR_CONFIG = {
-    'INTERCEPT_REDIRECTS': False,
-}
-
-MIDDLEWARE_CLASSES += (
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
-)
-
-INSTALLED_APPS += (
-    'debug_toolbar',
-)
-
 MEDIA_PATH = 'uploaded_media/'
 
 CMS_PAGE_MEDIA_PATH = 'cms_page_media/'
@@ -59,3 +47,46 @@ POSTMARK_DEBUG = True
 
 HAYSTACK_SEARCH_ENGINE = 'solr'
 HAYSTACK_SOLR_URL = 'http://127.0.0.1:8080/solr'
+
+### Suggested additions to your localsettings.py ###
+
+# ----
+# Devserver
+#
+# $ pip install git+git://github.com/dcramer/django-devserver#egg=django-devserver
+# $ pip install sqlparse
+# $ pip install werkzeug
+# $ pip install guppy
+#
+
+# INSTALLED_APPS += (
+#     'devserver',
+# )
+#
+# DEVSERVER_MODULES = (
+#     'devserver.modules.sql.SQLRealTimeModule',
+#     'devserver.modules.sql.SQLSummaryModule',
+#     'devserver.modules.profile.ProfileSummaryModule',
+#     # Modules not enabled by default
+#     ## 'devserver.modules.ajax.AjaxDumpModule',
+#     ## 'devserver.modules.profile.MemoryUseModule',
+#     ## 'devserver.modules.cache.CacheSummaryModule',
+# )
+
+# ----
+# Debug toolbar
+#
+# $ pip install django-debug-toolbar
+#
+
+# MIDDLEWARE_CLASSES += (
+#     'debug_toolbar.middleware.DebugToolbarMiddleware',
+# )
+#
+# INSTALLED_APPS += (
+#     'debug_toolbar',
+# )
+#
+# DEBUG_TOOLBAR_CONFIG = {
+#     'INTERCEPT_REDIRECTS': False,
+# }
