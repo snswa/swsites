@@ -1,6 +1,6 @@
 import django
 from django.conf import settings
-from django.conf.urls.defaults import *
+from django.conf.urls.defaults import include, patterns, url
 from django.contrib import admin
 from django.views.generic.simple import redirect_to
 
@@ -28,26 +28,26 @@ urlpatterns += patterns('',
     # (r'^swproject/', include('swproject.foo.urls')),
     #
     # Deployment tests:
-    (r'^_site/', include('swsite.urls')),
+    url(r'^_site/', include('sw.urls')),
     #
     # Accounts:
-    (r'^accounts/', include('allauth.urls')),
+    url(r'^accounts/', include('allauth.urls')),
     #
     # Admin:
-    (r'^admin/doc/', include('django.contrib.admindocs.urls')),
-    (r'^admin/', include(admin.site.urls)),
+    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    url(r'^admin/', include(admin.site.urls)),
     #
     # Sentry:
-    (r'^sentry/', include('sentry.urls')),
+    url(r'^sentry/', include('sentry.urls')),
     #
     # New index prototype.
     url(r'^newindex', 'sw.views.newindex', {}, 'index'),
     #
     # Blog:
-    (r'^blog/', include('zinnia.urls')),
+    url(r'^blog/', include('zinnia.urls')),
     #
     # Comments:
-    (r'^comments/', include('django.contrib.comments.urls')),
+    url(r'^comments/', include('django.contrib.comments.urls')),
     #
     # # Wiki:
     # (r'^wiki/', include('wiki.urls')),
@@ -56,16 +56,16 @@ urlpatterns += patterns('',
     # (r'^notification/', include('notification.urls')),
     #
     # Wakawaka (wiki):
-    (r'^wiki/', include('swproject.urls_wiki')),
+    url(r'^wiki/', include('swproject.urls_wiki')),
     #
     # djangovoice (feedback):
-    (r'^feedback/', include('djangovoice.urls')),
+    url(r'^feedback/', include('djangovoice.urls')),
     #
     # haystack (search):
-    (r'^search/', include('swproject.urls_search')),
+    url(r'^search/', include('swproject.urls_search')),
     #
     # TODO: Legacy redirects from sensiblewashington.org site
     #
     # CMS: catch everything else.
-    (r'^', include('cms.urls')),
+    url(r'^', include('cms.urls')),
 )
