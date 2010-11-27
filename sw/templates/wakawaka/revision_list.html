@@ -1,6 +1,7 @@
 {% extends "wakawaka/base.html" %}
 
 {% load i18n %}
+{% load pagination_tags %}
 
 {% block title %}
 	{% trans "List of all revisions" %}
@@ -9,21 +10,7 @@
 {% block content %}
 	<h1>{% trans "List of all revisions" %}</h1>
 
-    <div class="pagination">
-        <span class="step-links">
-            {% if revisions.has_previous %}
-                <a href="?page={{ revisions.previous_page_number }}">previous</a>
-            {% endif %}
-
-            <span class="current">
-                Page {{ revisions.number }} of {{ revisions.paginator.num_pages }}.
-            </span>
-
-            {% if revisions.has_next %}
-                <a href="?page={{ revisions.next_page_number }}">next</a>
-            {% endif %}
-        </span>
-    </div>
+	{% autopaginate revision_list %}
 
 	<table class="history" border="1">
 	<tr>
@@ -33,7 +20,7 @@
         <th>{% trans "Modified by" %}</th>
 		<th>&nbsp;</th>
 	</tr>
-	{% for rev in revisions.object_list %}
+	{% for rev in revision_list %}
 	<tr>
 		<td><a href="{% url wakawaka_page slug=rev.page.slug, rev_id=rev.pk %}">{{ rev.page.slug }}</a></td>
 		<td class="modifed">{{ rev.modified|timesince }} ago</td>
@@ -49,20 +36,6 @@
 	{% endfor %}
 	</table>
 
-    <div class="pagination">
-        <span class="step-links">
-            {% if revisions.has_previous %}
-                <a href="?page={{ revisions.previous_page_number }}">previous</a>
-            {% endif %}
-
-            <span class="current">
-                Page {{ revisions.number }} of {{ revisions.paginator.num_pages }}.
-            </span>
-
-            {% if revisions.has_next %}
-                <a href="?page={{ revisions.next_page_number }}">next</a>
-            {% endif %}
-        </span>
-    </div>
+	{% paginate %}
 
 {% endblock %}
