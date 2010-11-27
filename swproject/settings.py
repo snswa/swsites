@@ -81,6 +81,7 @@ MIDDLEWARE_CLASSES = (
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.user.CurrentUserMiddleware',
     'cms.middleware.media.PlaceholderMediaMiddleware',
+    'pagination.middleware.PaginationMiddleware',
     # 'django.middleware.cache.FetchFromCacheMiddleware',
 )
 
@@ -243,6 +244,9 @@ INSTALLED_APPS = (
     'djcelery',
     'gunicorn',
     'south',
+    #
+    # Used by multiple apps
+    'pagination',
     #
     # Sentry
     'indexer',
