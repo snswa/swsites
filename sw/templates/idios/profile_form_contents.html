@@ -1,0 +1,10 @@
+{% load uni_form_tags %}
+
+{% csrf_token %}
+<fieldset class="inlineLabels">
+    {{ profile_form|as_uni_form }}
+    <div class="form_block">
+        <input type="submit" value="update" />
+        or <a href="{% url profile_detail username=user.username %}">cancel</a>
+    </div>
+</fieldset>

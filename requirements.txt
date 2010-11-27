@@ -79,3 +79,5 @@ django-markup==0.3
 -e git+http://github.com/toastdriven/django-haystack.git@c5f8f1a5a063d3781009dd4b9cb993685805705a#egg=django-haystack
 pysolr==2.0.13
 
+# Idios
+-e git+http://github.com/snswa/idios.git@a7bff188b53388b47a204a7992d9a23907ae714a#egg=idios

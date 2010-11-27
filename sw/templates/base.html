@@ -60,6 +60,7 @@
 <div id="auth-info">
     {% if user.is_authenticated %}
         <span>Welcome, {{ user.username }}.</span>
+        <span><a href="{% url profile_detail user.username %}">Profile</a></span>
         <span><a href="{% url account_logout %}">Sign Out</a></span>
     {% else %}
         <span><a href="{% url account_signup %}">Sign Up</a></span>

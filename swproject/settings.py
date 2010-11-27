@@ -101,6 +101,9 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'zinnia.context_processors.version',
 )
 
+# ==================================================================
+# Static files
+
 if django.VERSION < (1, 3):
     TEMPLATE_CONTEXT_PROCESSORS += (
         'staticfiles.context_processors.static_url',
@@ -140,10 +143,19 @@ TEST_RUNNER = 'swproject.testing.CustomTestSuiteRunner'
 
 CACHE_BACKEND = 'locmem:///?max_entries=5000'
 
+# ==================================================================
+# url overrides
+
+ABSOLUTE_URL_OVERRIDES = {
+    'auth.user': lambda o: '/profiles/profile/%s/' % o.username,
+}
+
 # =================================================================
 # allauth
 
 ACCOUNT_EMAIL_REQUIRED = False
+
+LOGIN_REDIRECT_URL = '/'
 
 # =================================================================
 # django-cms
@@ -215,6 +227,11 @@ EMAILFWD_DEFAULT_DOMAIN = 'sensiblewashington.org'
 HAYSTACK_SITECONF = 'swproject.search_sites'
 HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10
 HAYSTACK_LIMIT_TO_REGISTERED_MODELS = False
+
+# ==================================================================
+# idios (profiles)
+
+AUTH_PROFILE_MODULE = 'sw.Profile'
 
 # ==================================================================
 

@@ -1,0 +1,59 @@
+{% extends "idios/base.html" %}
+
+{% load i18n %}
+{% load uni_form_tags %}
+
+{% block head_title %}{% trans "Profile for" %} {{ page_user.username }}{% endblock %}
+
+{% block body %}
+
+    <div class="vcard">
+        {# TODO: needs fn (full name) class on some element that contains full name #}
+
+        {% if is_me %}
+
+            <h1>{% trans "Your Profile" %}</h1>
+
+            <ul>
+                <li><a href="{% url profile_edit %}">{% trans "Edit profile" %}</a></li>
+                <li><a href="{% url account_email %}">{% trans "Manage email addresses" %}</a></li>
+                <li><a href="{% url socialaccount_connections %}">{% trans "Manage social network connections" %}</a></li>
+            </ul>
+
+            <div class="profile_info">
+                <p><b>{% trans "Username" %}</b>: {{ page_user.username }}</p>
+
+                {% with page_user.get_profile as p %}
+                    {% if p.first_name or p.last_name %}
+                        <p><b>{% trans "Name" %}</b>: {{ p.first_name }} {{p.last_name}}</p>
+                    {% endif %}
+
+                    {% if p.zip_code %}
+                        <p><b>{% trans "ZIP Code" %}</b>: {{ p.zip_code }}</p>
+                    {% endif %}
+
+                    {% if p.mailing_address %}
+                        <p><b>{% trans "Mailing Address" %}</b>:<br /><pre>{{ p.mailing_address }}</pre></p>
+                    {% endif %}
+
+                    {% if p.phone_number %}
+                        <p><b>{% trans "Phone Number" %}</b>: {{ p.phone_number }} {% if p.phone_notes %}({{ p.phone_notes }}){% endif %}</p>
+                    {% endif %}
+
+                    {% if p.bio %}
+                        <p><b>{% trans "Bio" %}</b>: {{ p.bio }}</p>
+                    {% endif %}
+                {% endwith %}
+            </div>
+
+        {% else %}
+
+            <h1>{% trans "Profile for" %} {{ page_user.username }}</h1>
+
+            <p>(Viewing others' profiles is not yet enabled.)</p>
+
+        {% endif %}
+
+    </div>
+
+{% endblock %}

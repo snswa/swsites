@@ -64,6 +64,9 @@ urlpatterns += patterns('',
     # haystack (search):
     url(r'^search/', include('swproject.urls_search')),
     #
+    # idios (profiles):
+    url(r'^profiles/', include('idios.urls')),
+    #
     # TODO: Legacy redirects from sensiblewashington.org site
     #
     # CMS: catch everything else.

@@ -1,3 +1,17 @@
 from django.db import models
 
-# Create your models here.
+from idios.models import ProfileBase
+
+
+class Profile(ProfileBase):
+
+    first_name = models.CharField(max_length=100, blank=True)
+    last_name = models.CharField(max_length=100, blank=True)
+
+    zip_code = models.CharField(max_length=5, blank=True)
+    mailing_address = models.TextField(blank=True)
+
+    phone_number = models.CharField(max_length=20, blank=True)
+    phone_notes = models.CharField(max_length=255, blank=True)
+
+    bio = models.TextField(blank=True)
