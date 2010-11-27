@@ -55,7 +55,7 @@
     </script>
     {# /Google #}
 </head>
-<body class="container_12">
+<body class="container_12 {% block body_class %}{% endblock %}">
 
 <div id="auth-info">
     {% if user.is_authenticated %}
