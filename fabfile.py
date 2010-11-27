@@ -50,9 +50,9 @@ def sync_and_migrate():
 def collectstatic():
     require('srcdir')
     if django.VERSION >= (1, 3):
-        run('{0} collectstatic --noinput --link'.format(_admin()))
+        run('{0} collectstatic --noinput'.format(_admin()))
     else:
-        run('{0} build_static --noinput --link'.format(_admin()))
+        run('{0} build_static --noinput'.format(_admin()))
 
 
 def restart_app_server():
