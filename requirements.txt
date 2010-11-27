@@ -1,7 +1,11 @@
+# Base django
 Django==1.2.3
 
+# Admin
 Fabric==0.9.2
 Paver==1.0.3
+
+# Bunched together (for now)
 SQLAlchemy==0.6.4
 South==0.7.2
 amqplib==0.6.1
@@ -32,20 +36,25 @@ wsgiref==0.1.2
 
 # used across apps
 django-pagination==1.0.7
+
+# Sentry
 django-sentry==1.3.13
 django-paging==0.2.2
 django-indexer==0.2
 django-templatetag-sugar==0.1
 
+# Django-CMS
 -e git+http://github.com/gldnspud/django-cms.git@master#egg=django-cms
 django-reversion==1.3.2
 PIL==1.1.7
 
+# Zinnia
 -e git+http://github.com/gldnspud/django-blog-zinnia.git@sw#egg=django-blog-zinnia
 -e git+http://github.com/gldnspud/django-xmlrpc.git@sw#egg=django-xmlrpc
 akismet==0.2.0
 BeautifulSoup==3.1.0.1
 
+# Allauth
 -e git+http://github.com/gldnspud/django-allauth.git@453273c187fe7f10039a4dcf1fc3f5605ce051a8#egg=django-allauth
 httplib2==0.6.0
 oauth2==1.2.0
@@ -54,16 +63,19 @@ django-email-confirmation==0.1.4
 django-uni-form==0.7.0
 -e git+http://github.com/facebook/python-sdk.git#egg=facebook-sdk
 
+# Postmark
 -e git+http://github.com/gldnspud/python-postmark.git@b8f4d8f717d71607d84f70dde544c36e392225f6#egg=python-postmark
 
 # Wakawaka
 -e git+http://github.com/snswa/django-wakawaka.git@d795781b3e5c9d0d685ebae45dcd0f7091841854#egg=django-wakawaka
 django-markup==0.3
 
+# Voice
 -e git+http://github.com/snswa/django-voice.git@303d54b2c1ef23c27a349ad1acd8b6e04a3c02bb#egg=django-voice
 -e svn+http://django-voting.googlecode.com/svn/trunk@73#egg=django-voting
 -e svn+http://django-gravatar.googlecode.com/svn/trunk@13#egg=django-gravatar
 
+# Haystack
 -e git+http://github.com/toastdriven/django-haystack.git@c5f8f1a5a063d3781009dd4b9cb993685805705a#egg=django-haystack
 pysolr==2.0.13
 
