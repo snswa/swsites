@@ -27,7 +27,7 @@ INTERNAL_IPS = glob_list([
     '*.*.*.*',
 ])
 
-SENTRY_TESTING = True
+SENTRY_TESTING = False
 
 MEDIA_PATH = 'uploaded_media/'
 
