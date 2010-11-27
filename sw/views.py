@@ -1,13 +1,13 @@
 from django.http import HttpResponse
 
-from swsite.tasks import report_ok
+from sw.tasks import report_ok
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 
 
 def newindex(request):
     return render_to_response(
-        'swsite/index.html',
+        'sw/index.html',
         {},
         RequestContext(request),
     )

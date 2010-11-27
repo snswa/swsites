@@ -41,7 +41,7 @@ urlpatterns += patterns('',
     (r'^sentry/', include('sentry.urls')),
     #
     # New index prototype.
-    (r'^newindex', 'swsite.views.newindex', {}, 'index'),
+    url(r'^newindex', 'sw.views.newindex', {}, 'index'),
     #
     # Blog:
     (r'^blog/', include('zinnia.urls')),

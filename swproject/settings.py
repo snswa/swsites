@@ -175,7 +175,7 @@ ZINNIA_MEDIA_URL = '/media/zinnia/'
 # ==================================================================
 # comments
 
-COMMENTS_APP = 'swsite.custom_comments'
+COMMENTS_APP = 'sw.custom_comments'
 
 # ==================================================================
 # wakawaka (wiki)
@@ -222,7 +222,7 @@ INSTALLED_APPS = (
     # ORDER MATTERS.
     #
     # Media, templates
-    'swsite',
+    'sw',
     #
     # Legacy URL redirection.
     'swlegacy',
@@ -289,13 +289,16 @@ INSTALLED_APPS = (
     'gravatar',
     #
     # Comment extensions
-    'swsite.custom_comments',
+    'sw.custom_comments',
     #
     # Haystack (search)
     'haystack',
     #
     # email forwarding
     'emailfwd',
+    #
+    # idios (profiles)
+    'idios',
 )
 
 import os

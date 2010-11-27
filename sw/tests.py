@@ -7,7 +7,7 @@ from django.test import TestCase
 
 class SiteTests(TestCase):
 
-    urls = 'swsite.urls'
+    urls = 'sw.urls'
 
     def test_report_ok(self):
         """
