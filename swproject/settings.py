@@ -221,11 +221,10 @@ INSTALLED_APPS = (
     #
     # ORDER MATTERS.
     #
-    # Custom
+    # Media, templates
     'swsite',
-    'roster',
-    'fundraiser',
-    'swimporter',
+    #
+    # Legacy URL redirection.
     'swlegacy',
     #
     # Included in Django
@@ -244,7 +243,6 @@ INSTALLED_APPS = (
     'djcelery',
     'gunicorn',
     'south',
-    'taggit',
     #
     # Sentry
     'indexer',
@@ -277,13 +275,8 @@ INSTALLED_APPS = (
     #
     # zinnia
     'tagging',
-    # 'mptt',
     'zinnia',
     'zinnia.plugins',
-    #
-    # teams
-    'teams',
-    'treebeard',
     #
     # wakawaka (wiki)
     'wakawaka',
