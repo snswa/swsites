@@ -7,6 +7,10 @@ a {
     color: #0D8751;
 }
 
+a:hover {
+    color: black;
+}
+
 body {
     position: relative;
     font-family: "Lucida Grande", "Verdana", "Arial", sans-serif;
@@ -30,11 +34,13 @@ td {
 /* @group auth */
 
 #auth-info {
+	background-color: #0D8751;
     text-align: right;
     font-size: 14px;
     border-bottom: 2px solid #0D8751;
     position: relative;
     height: 22px;
+    color: white;
 }
 
 #auth-info span {
@@ -42,13 +48,13 @@ td {
 }
 
 #auth-info a {
-    text-decoration: none;
     font-weight: bold;
     padding: 4px;
+    color: white;
 }
 
 #auth-info a:hover {
-    color: white;
+    color: yellow;
     background-color: #0D8751;
 }
 
