@@ -12,6 +12,12 @@ class Profile(ProfileBase):
     mailing_address = models.TextField(blank=True)
 
     phone_number = models.CharField(max_length=20, blank=True)
-    phone_notes = models.CharField(max_length=255, blank=True)
+
+    yahoo_messenger = models.CharField(max_length=100, blank=True)
+    aim = models.CharField(max_length=100, blank=True)
+    msn_messenger = models.CharField(max_length=100, blank=True)
+    skype = models.CharField(max_length=100, blank=True)
+
+    preferred_contact_methods = models.CharField(max_length=255, blank=True)
 
     bio = models.TextField(blank=True)

@@ -37,7 +37,27 @@
                     {% endif %}
 
                     {% if p.phone_number %}
-                        <p><b>{% trans "Phone Number" %}</b>: {{ p.phone_number }} {% if p.phone_notes %}({{ p.phone_notes }}){% endif %}</p>
+                        <p><b>{% trans "Phone Number" %}</b>: {{ p.phone_number }}</p>
+                    {% endif %}
+
+                    {% if p.yahoo_messenger %}
+                        <p><b>{% trans "Yahoo! Messenger" %}</b>: {{ p.yahoo_messenger }}</p>
+                    {% endif %}
+
+                    {% if p.aim %}
+                        <p><b>{% trans "AIM" %}</b>: {{ p.aim }}</p>
+                    {% endif %}
+
+                    {% if p.msn_messenger %}
+                        <p><b>{% trans "MSN Messenger" %}</b>: {{ p.msn_messenger }}</p>
+                    {% endif %}
+
+                    {% if p.skype %}
+                        <p><b>{% trans "Skype" %}</b>: {{ p.skype }}</p>
+                    {% endif %}
+
+                    {% if p.preferred_contact_methods %}
+                        <p><b>{% trans "Preferred Contact Methods" %}</b>: {{ p.preferred_contact_methods }}</p>
                     {% endif %}
 
                     {% if p.bio %}
