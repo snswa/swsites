@@ -323,6 +323,9 @@ INSTALLED_APPS = (
     #
     # teams
     'teams',
+    #
+    # dashboard
+    'dashboard',
 )
 
 import os

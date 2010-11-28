@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block page_title %}Your Sensible Washington{% endblock %}
+
+{% block content_body %}
+    <h1>Your Volunteer Dashboard</h1>
+
+    <ul class="stream">
+        <li class="event">
+            <span class="timestamp">5 minutes ago</span>
+            in
+            <span class="team"><a href="#">Some Team</a></span>:
+            <br />
+            <a href="#">
+                <span class="user">JoeUser</span>
+                <span class="description">joined the team</span>
+            </a>
+            <span class="activity">(membership)</span>
+        </li>
+
+        <li class="event">
+            <span class="timestamp">12 minutes ago</span>
+            in
+            <span class="team"><a href="#">Other Team</a></span>:
+            <br />
+            <a href="#">
+                <span class="user">Foobar</span>
+                <span class="description">left a comment</span>
+            </a>
+            <span class="activity">(discussion)</span>
+        </li>
+    </ul>
+
+{% endblock %}
+
+{% block sidebar_sections %}
+    <div class="section">
+        <h1>Teams</h1>
+
+        <p>You are a member of these teams:</p>
+
+        <ul>
+            <li><a href="#">Some Team</a></li>
+            <li><a href="#">Other Team</a></li>
+        </ul>
+
+        <p><a href="/">Manage teams »</a></p>
+    </div>
+{% endblock %}

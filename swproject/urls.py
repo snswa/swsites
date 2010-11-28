@@ -67,6 +67,9 @@ urlpatterns += patterns('',
     # idios (profiles):
     url(r'^profiles/', include('idios.urls')),
     #
+    # dashboard:
+    url(r'^dashboard/', include('dashboard.urls')),
+    #
     # TODO: Legacy redirects from sensiblewashington.org site
     #
     # CMS: catch everything else.

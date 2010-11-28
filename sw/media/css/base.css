@@ -326,6 +326,14 @@ form#join-campaign-form input[type="submit"] {
 
 /* @end */
 
+/* @group dashboard */
+
+ul.stream li.event {
+    padding-bottom: 1em;
+}
+
+/* @end */
+
 /* @group footer */
 
 div.footer {
