@@ -1,6 +1,7 @@
 {% extends "teams/base.html" %}
 
 {% load group_tags %}
+{% load pagination_tags %}
 
 {% block head_title %}{{ group.name }}{% endblock %}
 
@@ -15,6 +16,19 @@
             <li><a href="{% groupurl wakawaka_revision_list group %}">Recent changes</a></li>
             <li><a href="{% groupurl wakawaka_page_list group %}">List of all pages</a></li>
         </ul>
+
+        <h2>Members</h2>
+
+        {% with group.members.all as members %}
+            {% autopaginate members %}
+            <ul>
+                {% for user in group.members.all %}
+                    <li><a href="{{ user.get_absolute_url }}">{{ user.username }}</a></li>
+                {% endfor %}
+            </ul>
+        {% endwith %}
+
+        {% paginate %}
     {% endif %}
 {% endblock %}
 
