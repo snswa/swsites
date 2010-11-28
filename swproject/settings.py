@@ -320,6 +320,9 @@ INSTALLED_APPS = (
     #
     # idios (profiles)
     'idios',
+    #
+    # teams
+    'teams',
 )
 
 import os
