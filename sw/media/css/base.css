@@ -1,4 +1,7 @@
-/* @override http://localhost:8000/media/css/base.css */
+/* @override 
+	http://localhost:8000/media/css/base.css
+	http://swdev.local:8000/media/css/base.css
+*/
 
 a {
     color: #0D8751;
@@ -171,6 +174,14 @@ div#site-sections li:hover {
 
 /* @end */
 
+/* @group #content */
+
+div#content h1 {
+    margin-top: .75em;
+}
+
+/* @end */
+
 /* @group #sidebar */
 
 div#sidebar {
@@ -180,7 +191,7 @@ div#sidebar {
 }
 
 div#sidebar .section {
-    margin-top: 1em;
+    margin-top: 1.5em;
     margin-bottom: 2em;
     position: relative;
 }
@@ -198,7 +209,6 @@ div#sidebar h1 {
 
 div#sidebar a {
     color: black;
-    text-decoration: none;
 }
 
 div#sidebar a h1 {
@@ -211,6 +221,24 @@ div#sidebar a h1 {
 	margin-top: .5em;
     margin-bottom: 0px;
 }
+
+/* @group #site-messages */
+
+ul#site-messages {
+	list-style: none outside none;
+	margin-bottom: 0;
+}
+
+ul#site-messages li {
+    display: block;
+    margin-left: 0;
+    margin-top: 1em;
+    padding: 1em;
+    border: 1px solid black;
+    background-color: #90F1C6;
+}
+
+/* @end */
 
 /* @group checklist */
 
@@ -298,6 +326,8 @@ form#join-campaign-form input[type="submit"] {
 
 /* @end */
 
+/* @group footer */
+
 div.footer {
 	margin-top: 2em;
     border-top: 2px solid #0D8751;
@@ -306,3 +336,5 @@ div.footer {
 div.footer span {
     padding-right: 1em;
 }
+
+/* @end */

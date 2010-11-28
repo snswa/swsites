@@ -94,18 +94,9 @@
     {% endblock %}
 </div>
 
-{% block messages %}
-    {% if messages %}
-    	<ul id="site-messages">
-        	{% for message in messages %}
-        		<li>{{ message }}</li>
-        	{% endfor %}
-    	</ul>
-    {% endif %}
-{% endblock %}
-
 {% block content_wrapper %}
     <div id="content" class="alpha omega grid_8">
+        {% include "site_messages.html" %}
         {% block content_body %}
             Content sections here.
         {% endblock %}
