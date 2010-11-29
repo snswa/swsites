@@ -208,7 +208,7 @@ WAKAWAKA_SLUG_REGEX = r'(.*)'
 
 # The slug of the team to grab wiki content snippets from, or None
 # to use the global wiki.
-WAKACMSPLUGIN_TEAM_SLUG = None
+WAKACMSPLUGIN_TEAM_SLUG = 'webcontent'
 
 # ==================================================================
 # postmark, email
