@@ -19,7 +19,7 @@ SENTRY_CATCH_404_ERRORS = True
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': '',
         'USER': '',
         'PASSWORD': '',
@@ -265,7 +265,6 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.comments',
     'django.contrib.contenttypes',
-    'django.contrib.gis',
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
