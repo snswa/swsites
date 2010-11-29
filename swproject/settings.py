@@ -154,11 +154,15 @@ ABSOLUTE_URL_OVERRIDES = {
 }
 
 # =================================================================
-# allauth
+# auth
 
 ACCOUNT_EMAIL_REQUIRED = False
 
 LOGIN_REDIRECT_URL = '/'
+
+AUTO_JOIN_GROUPS = [
+    'wiki.editor',
+]
 
 # =================================================================
 # django-cms
