@@ -81,6 +81,7 @@ MIDDLEWARE_CLASSES = (
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.user.CurrentUserMiddleware',
     'cms.middleware.media.PlaceholderMediaMiddleware',
+    'groups.middleware.GroupAwareMiddleware',
     'pagination.middleware.PaginationMiddleware',
     # 'django.middleware.cache.FetchFromCacheMiddleware',
 )
@@ -96,6 +97,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'allauth.account.context_processors.account',
 
     'cms.context_processors.media',
+
+    'sw.context_processors.team_membership',
 
     'zinnia.context_processors.media',
     'zinnia.context_processors.version',
@@ -199,6 +202,13 @@ WAKAWAKA_EDITOR_COLUMNS = 70
 
 # This applies to URL matching only, not to parsing pages.
 WAKAWAKA_SLUG_REGEX = r'(.*)'
+
+# ==================================================================
+# waka cms plugin
+
+# The slug of the team to grab wiki content snippets from, or None
+# to use the global wiki.
+WAKACMSPLUGIN_TEAM_SLUG = None
 
 # ==================================================================
 # postmark, email
@@ -323,6 +333,7 @@ INSTALLED_APPS = (
     #
     # teams
     'teams',
+    'groups',
     #
     # dashboard
     'dashboard',

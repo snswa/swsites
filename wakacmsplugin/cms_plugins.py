@@ -6,6 +6,9 @@ from cms.plugin_pool import plugin_pool
 from wakawaka.models import Revision
 
 from wakacmsplugin.models import WikiPageSnippet
+from wakacmsplugin.settings import TEAM_SLUG
+
+from teams.models import Team
 
 
 class WikiPageSnippetPlugin(CMSPluginBase):
@@ -15,10 +18,15 @@ class WikiPageSnippetPlugin(CMSPluginBase):
     render_template = "wakacmsplugin/wikipagesnippet.html"
 
     def render(self, context, instance, placeholder):
+        try:
+            snippetgroup = Team.objects.get(slug=TEAM_SLUG)
+        except Team.DoesNotExist:
+            snippetgroup = None
         content = instance.content()
         context.update({
             'content': content,
             'placeholder': placeholder,
+            'snippetgroup': snippetgroup,
         })
         return context
 
