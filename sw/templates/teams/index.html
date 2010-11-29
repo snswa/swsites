@@ -2,12 +2,21 @@
 
 {% load pagination_tags %}
 
-{% block head_title %}All Teams{% endblock %}
+{% block head_title %}Teams{% endblock %}
 
 {% block body %}
-	<h1>All Teams</h1>
+	<h1>All-volunteer Teams</h1>
     <ul>
-        {% for team in teams %}
+        {% for team in public_teams %}
+            <li>
+                <a href="{% url teams_team slug=team.slug %}">{{ team.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h1>By-invitation Teams</h1>
+    <ul>
+        {% for team in private_teams %}
             <li>
                 <a href="{% url teams_team slug=team.slug %}">{{ team.name }}</a>
             </li>

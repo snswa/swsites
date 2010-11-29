@@ -83,5 +83,5 @@ pysolr==2.0.13
 -e git+http://github.com/snswa/idios.git@a7bff188b53388b47a204a7992d9a23907ae714a#egg=idios
 
 # Teams
--e git+http://github.com/snswa/django-teams.git@3c0a732#egg=django-teams
+-e git+http://github.com/snswa/django-teams.git@dfcdf20#egg=django-teams
 -e git+http://github.com/snswa/django-groups.git@c028e7d#egg=django-groups
