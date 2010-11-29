@@ -1,0 +1,13 @@
+<div class="section">
+    <h1>Your Teams</h1>
+
+    <ul>
+        {% for team in user.team_set.all %}
+            <li><a href="{% url teams_team slug=team.slug %}">{{ team.name }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <div class="more">
+        <a href="{% url teams_index %}">All teams »</a>
+    </div>
+</div>

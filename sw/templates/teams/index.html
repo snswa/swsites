@@ -1,0 +1,16 @@
+{% extends "teams/base.html" %}
+
+{% load pagination_tags %}
+
+{% block head_title %}All Teams{% endblock %}
+
+{% block body %}
+	<h1>All Teams</h1>
+    <ul>
+        {% for team in teams %}
+            <li>
+                <a href="{% url teams_team slug=team.slug %}">{{ team.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

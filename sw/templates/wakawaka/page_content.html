@@ -1,1 +1,1 @@
-{% load sw_tags %}{% load markup_tags %}{{ rev.content|wikify_creole_links|apply_markup:"creole" }}
+{% load sw_tags %}{% load markup_tags %}{{ rev.content|wikify_creole_links:group|apply_markup:"creole" }}

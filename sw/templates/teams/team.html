@@ -1,0 +1,19 @@
+{% extends "teams/base.html" %}
+
+{% load group_tags %}
+
+{% block head_title %}{{ group.name }}{% endblock %}
+
+{% block body %}
+    {% if group.is_private and not is_team_member %}
+        <p>This team is private.</p>
+    {% else %}
+        <h2>Wiki</h2>
+
+        <ul>
+            <li><a href="{% groupurl wakawaka_index group %}">Home Page</a></li>
+            <li><a href="{% groupurl wakawaka_page_list group %}">Recent changes</a></li>
+            <li><a href="{% groupurl wakawaka_revision_list group %}">List of all pages</a></li>
+        </ul>
+    {% endif %}
+{% endblock %}

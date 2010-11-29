@@ -1,8 +1,9 @@
 {% extends "wakawaka/base.html" %}
 
+{% load group_tags %}
+{% load i18n %}
 {% load wakawaka_tags %}
 {% load wakacms_tags %}
-{% load i18n %}
 
 {% block extrahead %}
 	{{ block.super }}
@@ -14,7 +15,7 @@
 
 	{# Add support for the Universal Edit Button #}
 	{% if perms.wakawaka.change_wikipage %}
-	<link rel="edit" title="{% trans "Edit this page" %}" href="{% url wakawaka_edit slug=page.slug %}" />
+	<link rel="edit" title="{% trans "Edit this page" %}" href="{% groupurl wakawaka_edit group slug=page.slug %}" />
 	{% endif %}
 {% endblock %}
 
@@ -23,60 +24,43 @@
 {% endblock %}
 
 {% block content %}
-	<h1><a name="top" href="{% url wakawaka_page slug=page.slug %}">{{ page.slug }}</a></h1>
+	<h1><a name="top" href="{% groupurl wakawaka_page group slug=page.slug %}">{{ page.slug }}</a></h1>
 
 	{% if rev.is_not_current %}
 	<p class="revert-warning">
 		{% trans "You are viewing an older revision!" %}
-		<a href="{% url wakawaka_page slug=page.slug %}">
+		<a href="{% groupurl wakawaka_page group slug=page.slug %}">
 		  {% trans "See the latest version" %}
 		</a>
 	</p>
 	{% endif %}
 
-	{% spaceless %}
-	<div class="info">
-	    <span>
-	        {% trans "Revision" %} {{ rev.id }}.
-        </span>
-    	<span>
-            {% trans "Recently modified by" %}
-            <a href="{{ page.current.creator.get_absolute_url }}">{{ page.current.creator }}</a>: {{ rev.modified|date:_("DATETIME_FORMAT") }}
-    		(<a href="{% url wakawaka_revision_list slug=page.slug %}">{% trans "History" %}</a>)
-    	</span>
-
-    	{% if perms.wakawaka.change_wikipage %}
-    	<span>
-    		<a href="{% url wakawaka_edit slug=page.slug %}">{% trans "Edit" %}</a>
-    	</span>
-    	{% endif %}
-	</div>
-	{% endspaceless %}
-
-	<hr/>
-
 	<div class="page">
         {% include "wakawaka/page_content.html" %}
 	</div>
 
-    <hr/>
+{% endblock %}
 
-    {% spaceless %}
-    <div class="info">
-        <span>
-            <a href="#top">Back to top</a>.
-        </span>
-    	{% if perms.wakawaka.change_wikipage %}
-    	<span>
-    		<a href="{% url wakawaka_edit slug=page.slug %}">{% trans "Edit" %}</a>
-    	</span>
-    	{% endif %}
+{% block sidebar_sections %}
+    <div class="section">
+        <h1>This Page</h1>
+
+        <ul>
+        	{% if perms.wakawaka.change_wikipage %}
+        		<li><strong><a href="{% groupurl wakawaka_edit group slug=page.slug %}">Edit this page</a></strong></li>
+        	{% endif %}
+            <li>Revision: {{ rev.id }}</li>
+            <li>Changed by: <a href="{{ page.current.creator.get_absolute_url }}">{{ page.current.creator }}</a></li>
+            <li>At: {{ rev.modified|date:_("DATETIME_FORMAT") }}</li>
+            <li><a href="{% groupurl wakawaka_revision_list group slug=page.slug %}">Change history</a></li>
+        </ul>
+
+    	{% spaceless %}
+    	<div class="related">
+    	    {% related_cms_pages %}
+    	</div>
+    	{% endspaceless %}
     </div>
-    {% endspaceless %}
 
-	{% spaceless %}
-	<div class="related">
-	    {% related_cms_pages %}
-	</div>
-	{% endspaceless %}
+    {% include "sidebars/wikicommon.html" %}
 {% endblock %}

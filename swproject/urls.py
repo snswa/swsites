@@ -9,18 +9,28 @@ if django.VERSION >= (1, 3):
 else:
     from staticfiles.urls import staticfiles_urlpatterns
 
+from groups.bridge import ContentBridge
+
+from teams.models import Team
+
 
 admin.autodiscover()
 
 
+# Site-wide error handlers.
 handler404 = 'swlegacy.views.legacy_or_404'
+## handler500 = ...
 
 
+# Begin with empty patterns.
 urlpatterns = patterns('')
 
-
+# Serve static files in debug mode.
 if settings.DEBUG:
     urlpatterns += staticfiles_urlpatterns()
+
+# Group bridges
+wiki_bridge = ContentBridge(Team, 'wakawaka')
 
 
 urlpatterns += patterns('',
@@ -49,12 +59,6 @@ urlpatterns += patterns('',
     # Comments:
     url(r'^comments/', include('django.contrib.comments.urls')),
     #
-    # # Wiki:
-    # (r'^wiki/', include('wiki.urls')),
-    #
-    # # Notifications:
-    # (r'^notification/', include('notification.urls')),
-    #
     # Wakawaka (wiki):
     url(r'^wiki/', include('swproject.urls_wiki')),
     #
@@ -70,8 +74,23 @@ urlpatterns += patterns('',
     # dashboard:
     url(r'^dashboard/', include('dashboard.urls')),
     #
-    # TODO: Legacy redirects from sensiblewashington.org site
+    # teams:
+    url(r'^teams/', include('teams.urls')),
+)
+
+
+# Bridged URLs.
+urlpatterns += wiki_bridge.include_urls(
+    'swproject.urls_team_wiki',
+    r'^teams/(?P<team_slug>[\w\._-]+)/wiki/',
+)
+
+
+# Legacy redirects and CMS at very end, to catch everything else.
+urlpatterns += patterns('',
     #
     # CMS: catch everything else.
     url(r'^', include('cms.urls')),
+    #
+    # TODO: Legacy redirects from sensiblewashington.org site
 )

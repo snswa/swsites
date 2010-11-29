@@ -12,6 +12,21 @@ body {
     font-family: "Lucida Grande", "Verdana", "Arial", sans-serif;
 }
 
+/* @group global */
+
+th {
+    padding-left: .5em;
+    padding-right: .5em;
+    padding-top: .5em;
+}
+
+td {
+    padding: .5em;
+    border: 1px solid black;
+}
+
+/* @end */
+
 /* @group auth */
 
 #auth-info {
@@ -176,7 +191,7 @@ div#site-sections li:hover {
 
 /* @group #content */
 
-div#content h1 {
+div#content {
     margin-top: .75em;
 }
 
@@ -188,6 +203,7 @@ div#sidebar {
     background-repeat: repeat-y;
     background-position: 43px;
     background-image: url("../images/bg/verticalbar.png");
+    font-size: smaller;
 }
 
 div#sidebar .section {
@@ -202,17 +218,17 @@ div#sidebar .sidebar-icon {
 }
 
 div#sidebar h1 {
-    color: #0D8751;
     font-size: 14pt;
+    margin-bottom: .5em;
+    border-bottom: 2px solid #0d8751;
+}
+
+div#sidebar ul {
     margin-bottom: .5em;
 }
 
-div#sidebar a {
-    color: black;
-}
-
-div#sidebar a h1 {
-    text-decoration: underline;
+div#sidebar div.more {
+    text-align: right;
 }
 
 /* @end */
@@ -239,6 +255,106 @@ ul#site-messages li {
 }
 
 /* @end */
+
+.section.intro {
+	margin-bottom: 2em;
+}
+
+.section.news .section h1 {
+    background-color: #0D8751;
+    color: white;
+    font-weight: normal;
+    text-align: center;
+    margin-bottom: .3em;
+}
+
+.section.news .date {
+    font-weight: bold;
+}
+
+/* @group join-campaign-form */
+
+form#join-campaign-form input {
+    display: block;
+    width: 215px;
+    height: 1.5em;
+    margin-bottom: .5em;
+}
+
+form#join-campaign-form input[type="submit"] {
+    width: 70px;
+    height: 2em;
+    margin-left: 150px;
+}
+
+/* @end */
+
+/* @group footer */
+
+div.footer {
+	margin-top: 2em;
+    border-top: 2px solid #0D8751;
+}
+
+div.footer span {
+    padding-right: 1em;
+}
+
+/* @end */
+
+/* @group apps */
+
+/* @group teams */
+
+#team-header {
+	position: static;
+    display: table;
+    top: 24px;
+    left: 5px;
+    height: 50px;
+    max-height: 50px;
+    margin-left: -5px;
+    margin-right: 0px;
+    width: 960px;
+    border-top: 2px solid #0D8751;
+    border-bottom: 2px solid #0D8751;
+    background-color: #0d8751;
+}
+
+#team-header a {
+    color: white;
+    text-decoration: none;
+}
+
+#team-header a:hover {
+    text-decoration: underline;
+}
+
+#team-header h1 {
+	text-align: center;
+	color: white;
+	margin-top: .1em;
+	margin-bottom: .1em;
+}
+
+#team-header #team-membership {
+}
+
+/* @end */
+
+/* @group dashboard */
+
+ul.stream li.event {
+    padding-bottom: 1em;
+}
+
+/* @end */
+
+
+
+/* @end */
+
+/* @group prototype */
 
 /* @group checklist */
 
@@ -293,56 +409,6 @@ ul.thumbnails .caption {
 
 /* @end */
 
-.section.intro {
-	margin-bottom: 2em;
-}
 
-.section.news .section h1 {
-    background-color: #0D8751;
-    color: white;
-    font-weight: normal;
-    text-align: center;
-    margin-bottom: .3em;
-}
-
-.section.news .date {
-    font-weight: bold;
-}
-
-/* @group join-campaign-form */
-
-form#join-campaign-form input {
-    display: block;
-    width: 215px;
-    height: 1.5em;
-    margin-bottom: .5em;
-}
-
-form#join-campaign-form input[type="submit"] {
-    width: 70px;
-    height: 2em;
-    margin-left: 150px;
-}
-
-/* @end */
-
-/* @group dashboard */
-
-ul.stream li.event {
-    padding-bottom: 1em;
-}
-
-/* @end */
-
-/* @group footer */
-
-div.footer {
-	margin-top: 2em;
-    border-top: 2px solid #0D8751;
-}
-
-div.footer span {
-    padding-right: 1em;
-}
 
 /* @end */

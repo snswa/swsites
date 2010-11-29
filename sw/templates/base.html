@@ -60,6 +60,7 @@
 <div id="auth-info">
     {% if user.is_authenticated %}
         <span>Welcome, {{ user.username }}.</span>
+        <span><a href="{% url teams_index %}">Teams</a></span>
         <span><a href="{% url profile_detail user.username %}">Profile</a></span>
         <span><a href="{% url account_logout %}">Sign Out</a></span>
     {% else %}
@@ -69,7 +70,7 @@
 </div>
 
 {% block header %}
-<div class="header large" class="grid_12">
+<div class="header large" class="grid_12 alpha omega">
     <h1><a href="/">SensibleWashington.org</a></h1>
     <h2>Legalize Cannabis<br/>in 2011</h2>
     <div id="site-search">
@@ -94,6 +95,12 @@
     {% endblock %}
 </div>
 
+{% if group %}
+    <div id="team-header" class="grid_12 alpha omega">
+        <h1><a href="{% url teams_team slug=group.slug %}">{{ group.name }}</a></h1>
+    </div>
+{% endif %}
+
 {% block content_wrapper %}
     <div id="content" class="alpha omega grid_8">
         {% include "site_messages.html" %}
@@ -105,6 +112,14 @@
 
 {% block sidebar %}
     <div id="sidebar" class="alpha grid_3 prefix_1">
+        <div class="section">
+            {% if is_team_member %}
+                <div id="team-membership">
+                    You are a member of this team.
+                </div>
+            {% endif %}
+        </div>
+
         {% block sidebar_sections %}
             <div class="section">
                 Sidebar sections here.
