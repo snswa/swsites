@@ -98,6 +98,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
     'cms.context_processors.media',
 
+    'sw.context_processors.team_actions',
     'sw.context_processors.team_membership',
 
     'zinnia.context_processors.media',
@@ -158,7 +159,7 @@ ABSOLUTE_URL_OVERRIDES = {
 
 ACCOUNT_EMAIL_REQUIRED = False
 
-LOGIN_REDIRECT_URL = '/teams/'
+LOGIN_REDIRECT_URL = '/dashboard/'
 
 AUTO_JOIN_GROUPS = [
     'wiki.editor',
@@ -337,6 +338,9 @@ INSTALLED_APPS = (
     # teams
     'teams',
     'groups',
+    #
+    # activity stream
+    'actstream',
     #
     # dashboard
     'dashboard',

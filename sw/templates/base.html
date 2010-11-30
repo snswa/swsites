@@ -60,7 +60,7 @@
 <div id="auth-info">
     {% if user.is_authenticated %}
         <span>Welcome, {{ user.username }}.</span>
-        <span><a href="{% url teams_index %}">Teams</a></span>
+        <span><a href="{% url dashboard_index %}">Dashboard</a></span>
         <span><a href="{% url profile_detail user.username %}">Profile</a></span>
         <span><a href="{% url account_logout %}">Sign Out</a></span>
     {% else %}
@@ -95,11 +95,13 @@
     {% endblock %}
 </div>
 
-{% if group %}
-    <div id="team-header" class="grid_12 alpha omega">
-        <h1><a href="{% url teams_team slug=group.slug %}">{{ group.name }}</a></h1>
-    </div>
-{% endif %}
+{% block team_header %}
+    {% if group %}
+        <div id="team-header" class="grid_12 alpha omega">
+            <h1><a href="{% url teams_team slug=group.slug %}">{{ group.name }}</a></h1>
+        </div>
+    {% endif %}
+{% endblock %}
 
 {% block content_wrapper %}
     <div id="content" class="alpha omega grid_8">

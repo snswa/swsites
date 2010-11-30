@@ -9,30 +9,40 @@
     {% if group.is_private and not is_team_member %}
         <p>This team is private.</p>
     {% else %}
-        <h2>Wiki</h2>
+        <h1>Recent Activity</h1>
 
-        <ul>
-            <li><a href="{% groupurl wakawaka_index group %}">Home Page</a></li>
-            <li><a href="{% groupurl wakawaka_revision_list group %}">Recent changes</a></li>
-            <li><a href="{% groupurl wakawaka_page_list group %}">List of all pages</a></li>
+        {% autopaginate team_actions %}
+
+        <ul class="stream">
+            {% for action in team_actions %}
+                <li class="event">
+                    {% include "activity/action.html" %}
+                </li>
+            {% endfor %}
         </ul>
-
-        <h2>Members</h2>
-
-        {% with group.members.all as members %}
-            {% autopaginate members %}
-            <ul>
-                {% for user in group.members.all %}
-                    <li><a href="{{ user.get_absolute_url }}">{{ user.username }}</a></li>
-                {% endfor %}
-            </ul>
-        {% endwith %}
 
         {% paginate %}
     {% endif %}
 {% endblock %}
 
 {% block sidebar_sections %}
-    {% include "sidebars/teamjoinleave.html" %}
-    {% include "sidebars/yourteams.html" %}
+    {% if is_team_member or not group.is_private  %}
+
+        {% include "sidebars/teamjoinleave.html" %}
+
+        {% include "sidebars/wikicommon.html" %}
+
+        <div class="section">
+            <h1>Members</h1>
+
+            {% with group.members.all as members %}
+                <ul>
+                    {% for user in members %}
+                        <li><a href="{{ user.get_absolute_url }}">{{ user.username }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% endwith %}
+        </div>
+
+    {% endif %}
 {% endblock %}

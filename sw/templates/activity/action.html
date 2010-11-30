@@ -1,0 +1,37 @@
+<span class="actor">
+    {% if action.actor.get_absolute_url %}
+        <a href="{{ action.actor.get_absolute_url }}">{{ action.actor }}</a>
+    {% else %}
+        <a href="{{ action.actor_url }}">{{ action.actor }}</a>
+    {% endif %}
+</span>
+
+<span class="verb">{{ action.verb }}</span>
+
+{% if action.action_object %}
+    <span class="action-object">
+        {% if action.action_object.get_absolute_url %}
+            <a href="{{ action.action_object.get_absolute_url }}">{{ action.action_object }}</a>
+        {% else %}
+            {{ action.action_object }}
+        {% endif %}
+    </span>
+{% endif %}
+
+<span class="timestamp">
+    {{ action.timestamp|timesince }} ago
+    {% if action.target %}
+        in
+        <span class="target">
+            {% if action.target.get_absolute_url %}
+                <a href="{{ action.target.get_absolute_url }}">{{ action.target }}</a>
+            {% else %}
+                {{ action.target }}
+            {% endif %}
+        </span>
+    {% endif %}
+</span>
+
+{% if action.description %}
+    <div class="description">{{ action.description }}</div>
+{% endif %}

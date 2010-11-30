@@ -233,6 +233,12 @@ div#sidebar ul {
     margin-bottom: .5em;
 }
 
+div#sidebar form {
+	display: inline;
+	margin: 0;
+	padding: 0;
+}
+
 div#sidebar div.more {
     text-align: right;
 }
@@ -352,6 +358,12 @@ div.footer span {
 
 ul.stream li.event {
     padding-bottom: 1em;
+}
+
+ul.stream li.event span.timestamp {
+    padding-left: 1.5em;
+    font-size: smaller;
+    color: silver;
 }
 
 /* @end */

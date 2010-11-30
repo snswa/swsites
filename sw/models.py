@@ -21,3 +21,13 @@ class Profile(ProfileBase):
     preferred_contact_methods = models.CharField(max_length=255, blank=True)
 
     bio = models.TextField(blank=True)
+
+
+# ========================================================================
+# Overrides and extensions
+
+from wakawaka.models import Revision
+
+def __unicode__(self):
+    return self.page.slug
+Revision.__unicode__ = __unicode__

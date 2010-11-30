@@ -1,19 +1,22 @@
 <div class="section">
-    {% if is_team_member %}
-        <div id="team-membership">
+    <div id="team-membership">
+        {% if is_team_member %}
             You are a member of this team.
-        </div>
 
-        <form action="{% url teams_membership slug=group.slug %}" method="post" accept-charset="utf-8">
-            {% csrf_token %}
-            <p><input type="submit" name="leave" value="Leave Team"></p>
-        </form>
-    {% else %}
-        {% if not group.is_private %}
             <form action="{% url teams_membership slug=group.slug %}" method="post" accept-charset="utf-8">
                 {% csrf_token %}
-                <p><input type="submit" name="join" value="Join Team"></p>
+                <br /><input type="submit" name="leave" value="Leave Team">
             </form>
+        {% else %}
+            {% if not group.is_private %}
+                <form action="{% url teams_membership slug=group.slug %}" method="post" accept-charset="utf-8">
+                    {% csrf_token %}
+                    <br /><input type="submit" name="join" value="Join Team">
+                </form>
+            {% endif %}
         {% endif %}
-    {% endif %}
+    </div>
+    <div class="more">
+        <a href="{% url dashboard_index %}">Dashboard »</a>
+    </div>
 </div>
