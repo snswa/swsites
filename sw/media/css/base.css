@@ -366,6 +366,15 @@ ul.stream li.event span.timestamp {
     color: silver;
 }
 
+ul.stream li.event div.description {
+    color: gray;
+    margin-left: 1em;
+    padding-left: 1em;
+    padding-top: .25em;
+    padding-bottom: .25em;
+    border-left: 2px solid silver;
+}
+
 /* @end */
 
 
