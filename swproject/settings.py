@@ -131,16 +131,6 @@ else:
 # =================================================================
 # Tests
 
-# These tests seem to cause problems on occasion.
-TEST_EXCLUDE = (
-    'actstream',
-    'allauth',
-    'ghettoq',
-    'reversion',
-    'sentry',
-    'zinnia',
-)
-
 TEST_RUNNER = 'swproject.testing.CustomTestSuiteRunner'
 
 # =================================================================
