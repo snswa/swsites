@@ -133,6 +133,7 @@ else:
 
 # These tests seem to cause problems on occasion.
 TEST_EXCLUDE = (
+    'actstream',
     'allauth',
     'ghettoq',
     'reversion',
