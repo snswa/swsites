@@ -317,6 +317,23 @@ div.footer span {
 
 /* @group apps */
 
+/* @group comments */
+
+div.comment {
+    margin-bottom: 1.5em;
+}
+
+div.comment .comment-body {
+    color: gray;
+    margin-left: 1em;
+    padding-left: 1em;
+    padding-top: .25em;
+    padding-bottom: .25em;
+    border-left: 2px solid silver;
+}
+
+/* @end */
+
 /* @group teams */
 
 #team-header {
@@ -355,7 +372,7 @@ div.footer span {
 
 /* @end */
 
-/* @group dashboard */
+/* @group activity stream */
 
 ul.stream li.event {
     padding-bottom: 1em;

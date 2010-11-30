@@ -1,5 +1,6 @@
 {% extends "wakawaka/base.html" %}
 
+{% load comments %}
 {% load group_tags %}
 {% load i18n %}
 {% load wakawaka_tags %}
@@ -38,6 +39,19 @@
 	<div class="page">
         {% include "wakawaka/page_content.html" %}
 	</div>
+
+    <h2>Comments</h2>
+
+    {% get_comment_count for rev.page as comment_count %}
+    {% if comment_count %}
+        {% render_comment_list for rev.page %}
+    {% else %}
+        <p>Be the first to comment on this page.</p>
+    {% endif %}
+
+    {% with rev.page.get_absolute_url as next %}
+        {% render_comment_form for rev.page %}
+    {% endwith %}
 
 {% endblock %}
 

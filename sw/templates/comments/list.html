@@ -1,0 +1,9 @@
+<div class="comment_start"></div>
+{% for comment in comment_list %}
+    <div class="comment">
+        From <a href="{{ comment.user.get_absolute_url }}">{{ comment.user }}</a>, {{ comment.submit_date|timesince }} ago
+        <div class="comment-body">
+            {{ comment.comment }}
+        </div>
+    </div>
+{% endfor %}

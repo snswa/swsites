@@ -1,13 +1,15 @@
 from django.conf import settings
 from django.db.models.signals import post_save, pre_delete
+from django.utils.text import truncate_words
 
 from django.contrib.auth.models import Group, User
+from django.contrib.comments.signals import comment_was_posted
 
 from actstream import action
 
 from teams.models import Member
 
-from wakawaka.models import Revision
+from wakawaka.models import Revision, WikiPage
 
 
 # ====================================================================
@@ -28,6 +30,21 @@ post_save.connect(auto_join_user_to_groups, sender=User)
 
 # ====================================================================
 # Activity stream
+
+def stream_wiki_comment(sender, comment, request, **kwargs):
+    obj = comment.content_object
+    if isinstance(obj, WikiPage):
+        action.send(
+            comment.user,
+            verb='commented on wiki page',
+            action_object=obj,
+            target=obj.group,
+            timestamp=comment.submit_date,
+            description=truncate_words(comment.comment, 25),
+        )
+
+comment_was_posted.connect(stream_wiki_comment)
+
 
 def stream_wiki_revision(sender, instance, created, **kwargs):
     if created:
