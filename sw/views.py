@@ -27,7 +27,7 @@ def temp_move_wiki_page(request):
     page.save()
     action.send(
         request.user,
-        verb='moved side-wide wiki page to team',
+        verb='moved site-wide wiki page to team',
         action_object=page,
         target=page.group,
     )
