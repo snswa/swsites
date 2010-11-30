@@ -155,7 +155,7 @@ ACCOUNT_EMAIL_REQUIRED = False
 LOGIN_REDIRECT_URL = '/dashboard/'
 
 AUTO_JOIN_GROUPS = [
-    'wiki.editor',
+    # 'wiki.editor',
 ]
 
 # =================================================================
