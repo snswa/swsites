@@ -5,12 +5,6 @@ from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 
 
-def newindex(request):
-    return render_to_response(
-        'sw/index.html',
-        {},
-        RequestContext(request),
-    )
 
 
 def report_ok_view(request):
