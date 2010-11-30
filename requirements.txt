@@ -85,3 +85,6 @@ pysolr==2.0.13
 # Teams
 -e git+http://github.com/snswa/django-teams.git@d23bd8f#egg=django-teams
 -e git+http://github.com/snswa/django-groups.git@c028e7d#egg=django-groups
+
+# Activity stream
+-e git+http://github.com/snswa/django-activity-stream.git@2f2b210#egg=django-activity-stream
