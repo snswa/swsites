@@ -20,7 +20,7 @@
 
 <span class="timestamp">
     {{ action.timestamp|timesince }} ago
-    {% if action.target %}
+    {% if action.target and not group %}
         in
         <span class="target">
             {% if action.target.get_absolute_url %}
