@@ -1,6 +1,7 @@
 /* @override 
 	http://localhost:8000/media/css/base.css
 	http://swdev.local:8000/media/css/base.css
+	https://snswa.org/media/css/base.css
 */
 
 a {
@@ -361,7 +362,7 @@ ul.stream li.event {
 }
 
 ul.stream li.event span.timestamp {
-    padding-left: 1.5em;
+    display: block;
     font-size: smaller;
     color: silver;
 }
