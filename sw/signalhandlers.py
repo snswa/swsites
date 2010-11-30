@@ -1,9 +1,11 @@
 from django.conf import settings
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, pre_delete
 
 from django.contrib.auth.models import Group, User
 
 from actstream import action
+
+from teams.models import Member
 
 from wakawaka.models import Revision
 
@@ -39,3 +41,24 @@ def stream_wiki_revision(sender, instance, created, **kwargs):
         )
 
 post_save.connect(stream_wiki_revision, sender=Revision)
+
+
+def stream_team_join(sender, instance, created, **kwargs):
+    if created:
+        action.send(
+            instance.user,
+            verb='joined team',
+            target=instance.team,
+        )
+
+post_save.connect(stream_team_join, sender=Member)
+
+
+def stream_team_leave(sender, instance, **kwargs):
+    action.send(
+        instance.user,
+        verb='left team',
+        target=instance.team,
+    )
+
+pre_delete.connect(stream_team_leave, sender=Member)
