@@ -1,11 +1,11 @@
-/* @override 
+/* @override
 	http://localhost:8000/media/css/base.css
 	http://swdev.local:8000/media/css/base.css
 	https://snswa.org/media/css/base.css
 */
 
 a {
-    color: #0D8751;
+    color: #009966;
 }
 
 a:hover {
@@ -35,10 +35,10 @@ td {
 /* @group auth */
 
 #auth-info {
-	background-color: #0D8751;
+	background-color: #009966;
     text-align: right;
     font-size: 14px;
-    border-bottom: 2px solid #0D8751;
+    border-bottom: 2px solid #009966;
     position: relative;
     height: 22px;
     color: white;
@@ -56,7 +56,7 @@ td {
 
 #auth-info a:hover {
     color: yellow;
-    background-color: #0D8751;
+    background-color: #009966;
 }
 
 /* @endgroup */
@@ -73,9 +73,9 @@ td {
 }
 
 .header.large {
-    background-image: url("../images/logos/revised-281x140.gif");
+    background-image: url("../images/logos/logo-246x140.gif");
     background-repeat: no-repeat;
-    background-size: 281px 140px;
+    background-size: 246px 140px;
     background-position: 5px;
     height: 140px;
     width: 960px;
@@ -141,8 +141,8 @@ div#site-sections {
     margin-left: -5px;
     margin-right: 0px;
     width: 960px;
-    border-top: 2px solid #0D8751;
-    border-bottom: 2px solid #0D8751;
+    border-top: 2px solid #009966;
+    border-bottom: 2px solid #009966;
 }
 
 div#site-sections ul {
@@ -156,7 +156,7 @@ div#site-sections li {
     display: table-cell;
     text-align: center;
     vertical-align: middle;
-	color: #0D8751;
+	color: #009966;
 }
 
 div#site-sections a {
@@ -191,7 +191,7 @@ div#site-sections .featured .section-title {
 
 div#site-sections li:hover {
     color: white;
-    background: #0D8751;
+    background: #009966;
 }
 
 /* @end */
@@ -227,7 +227,7 @@ div#sidebar .sidebar-icon {
 div#sidebar h1 {
     font-size: 14pt;
     margin-bottom: .5em;
-    border-bottom: 2px solid #0d8751;
+    border-bottom: 2px solid #009966;
 }
 
 div#sidebar ul {
@@ -264,7 +264,7 @@ ul#site-messages li {
     margin-top: 1em;
     padding: 1em;
     border: 1px solid black;
-    background-color: #90F1C6;
+    background-color: #00F2A2;
 }
 
 /* @end */
@@ -274,7 +274,7 @@ ul#site-messages li {
 }
 
 .section.news .section h1 {
-    background-color: #0D8751;
+    background-color: #009966;
     color: white;
     font-weight: normal;
     text-align: center;
@@ -306,7 +306,7 @@ form#join-campaign-form input[type="submit"] {
 
 div.footer {
 	margin-top: 2em;
-    border-top: 2px solid #0D8751;
+    border-top: 2px solid #009966;
 }
 
 div.footer span {
@@ -387,8 +387,8 @@ div.comment .comment-body {
     margin-left: -5px;
     margin-right: 0px;
     width: 960px;
-    border-top: 2px solid #0D8751;
-    border-bottom: 2px solid #0D8751;
+    border-top: 2px solid #009966;
+    border-bottom: 2px solid #009966;
     background-color: #0d8751;
 }
 
@@ -449,7 +449,7 @@ ul.checklist li {
     background-attachment: scroll;
     padding-left: 50px;
     font-size: 14pt;
-    color: #0D8751;
+    color: #009966;
     padding-top: 10px;
     padding-bottom: 10px;
     margin-left: 0;
