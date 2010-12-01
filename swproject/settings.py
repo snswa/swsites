@@ -339,6 +339,9 @@ INSTALLED_APPS = (
     #
     # dashboard
     'dashboard',
+    #
+    # file attachments
+    'attachments',
 )
 
 import os

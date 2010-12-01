@@ -73,6 +73,9 @@ urlpatterns += patterns('',
     #
     # teams:
     url(r'^teams/', include('teams.urls')),
+    #
+    # attachments:
+    url(r'^attachments/', include('attachments.urls')),
 )
 
 

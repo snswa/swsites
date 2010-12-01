@@ -7,6 +7,8 @@ from django.contrib.comments.signals import comment_was_posted
 
 from actstream import action
 
+from attachments.models import Attachment
+
 from teams.models import Member
 
 from wakawaka.models import Revision, WikiPage
@@ -30,6 +32,21 @@ post_save.connect(auto_join_user_to_groups, sender=User)
 
 # ====================================================================
 # Activity stream
+
+def stream_wiki_attachment(sender, instance, created, **kwargs):
+    if created:
+        obj = instance.content_object
+        if isinstance(obj, WikiPage):
+            action.send(
+                instance.creator,
+                verb='attached file {0} to wiki page'.format(instance.filename),
+                action_object=obj,
+                target=obj.group,
+                timestamp=instance.created,
+            )
+
+post_save.connect(stream_wiki_attachment, sender=Attachment)
+
 
 def stream_wiki_comment(sender, comment, request, **kwargs):
     obj = comment.content_object

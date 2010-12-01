@@ -1,5 +1,6 @@
 {% extends "wakawaka/base.html" %}
 
+{% load attachments_tags %}
 {% load comments %}
 {% load group_tags %}
 {% load i18n %}
@@ -39,6 +40,21 @@
 	<div class="page">
         {% include "wakawaka/page_content.html" %}
 	</div>
+
+    {% get_attachments_for rev.page %}
+    {% if attachments %}
+        <h2>Attachments</h2>
+        <ul>
+            {% for attachment in attachments %}
+                <li>
+                    <a href="{{ attachment.attachment_file.url }}">{{ attachment.filename }}</a>
+                    {% attachment_delete_link attachment %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% attachment_form rev.page %}
 
     <h2>Comments</h2>
 

@@ -88,3 +88,6 @@ pysolr==2.0.13
 
 # Activity stream
 -e git+http://github.com/snswa/django-activity-stream.git@2f2b210#egg=django-activity-stream
+
+# File attachments
+django-attachments==0.3.1
