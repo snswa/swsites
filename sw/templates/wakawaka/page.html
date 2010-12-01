@@ -44,11 +44,11 @@
     {% get_attachments_for rev.page %}
     {% if attachments %}
         <h2>Attachments</h2>
-        <ul>
+        <ul class="attachments">
             {% for attachment in attachments %}
                 <li>
-                    <a href="{{ attachment.attachment_file.url }}">{{ attachment.filename }}</a>
-                    {% attachment_delete_link attachment %}
+                    <a class="attachment" href="{{ attachment.attachment_file.url }}">{{ attachment.filename }}</a>
+                    <span class="object-command">{% attachment_delete_link attachment %}</span>
                 </li>
             {% endfor %}
         </ul>

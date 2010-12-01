@@ -317,6 +317,19 @@ div.footer span {
 
 /* @group apps */
 
+.object-command {
+    color: silver;
+    font-size: smaller;
+}
+
+/* @group attachments */
+
+ul.attachments li a.attachment {
+   	margin-right: 1.5em;
+}
+
+/* @end */
+
 /* @group comments */
 
 div.comment {
