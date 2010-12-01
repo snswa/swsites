@@ -11,7 +11,7 @@
 {% if action.action_object %}
     <span class="action-object">
         {% if action.action_object.get_absolute_url %}
-            <a href="{{ action.action_object.get_absolute_url }}">{{ action.action_object }}</a>
+            <a href="{{ action.action_object.get_absolute_url }}">{% if action.action_object.content_object %}{{ action.action_object.content_object }}{% else %}{{ action.action_object }}{% endif %}</a>
         {% else %}
             {{ action.action_object }}
         {% endif %}

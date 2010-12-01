@@ -54,7 +54,7 @@ def stream_wiki_comment(sender, comment, request, **kwargs):
         action.send(
             comment.user,
             verb='commented on wiki page',
-            action_object=obj,
+            action_object=comment,
             target=obj.group,
             timestamp=comment.submit_date,
             description=truncate_words(comment.comment, 25),
