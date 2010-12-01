@@ -351,6 +351,11 @@ ul.attachments li a.attachment {
    	margin-right: 1.5em;
 }
 
+form.add-attachment p {
+	margin-top: 1em;
+    margin-bottom: 0;
+}
+
 /* @end */
 
 /* @group comments */

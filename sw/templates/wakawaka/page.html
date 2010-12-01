@@ -41,21 +41,6 @@
         {% include "wakawaka/page_content.html" %}
 	</div>
 
-    {% get_attachments_for rev.page %}
-    {% if attachments %}
-        <h2>Attachments</h2>
-        <ul class="attachments">
-            {% for attachment in attachments %}
-                <li>
-                    <a class="attachment" href="{{ attachment.attachment_file.url }}">{{ attachment.filename }}</a>
-                    <span class="object-command">{% attachment_delete_link attachment %}</span>
-                </li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-
-    {% attachment_form rev.page %}
-
     <h2>Comments</h2>
 
     {% get_comment_count for rev.page as comment_count %}
@@ -107,6 +92,24 @@
     	    {% related_cms_pages %}
     	</div>
     	{% endspaceless %}
+    </div>
+
+    <div class="section">
+        <h1>File Attachments</h1>
+
+        {% get_attachments_for rev.page %}
+        {% if attachments %}
+            <ul class="attachments">
+                {% for attachment in attachments %}
+                    <li>
+                        <a class="attachment" href="{{ attachment.attachment_file.url }}">{{ attachment.filename }}</a>
+                        <span class="object-command">{% attachment_delete_link attachment %}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% attachment_form rev.page %}
     </div>
 
     {% include "sidebars/wikicommon.html" %}
