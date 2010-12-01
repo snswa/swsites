@@ -57,6 +57,11 @@
 </head>
 <body class="container_12 {% block body_class %}{% endblock %}">
 
+<div style="text-align: center; color: red; font-weight: bold">
+    This is a testing site.  Please visit <a href="http://sensiblewashington.org/">SensibleWashington.org</a>
+    for our official site.  Thanks!
+</div>
+
 <div id="auth-info">
     {% if user.is_authenticated %}
         <span>Welcome, {{ user.username }}.</span>
@@ -89,11 +94,18 @@
 </div>
 {% endblock %}
 
-<div id="site-sections" class="grid_12 alpha omega">
-    {% block site_sections %}
-        {% show_menu 0 100 0 100 "cms/site_sections_menu.html" %}
-    {% endblock %}
-</div>
+{% if not group and not team_actions %}
+    <div style="color: red">
+        <strong>These links are not part of any wiki.</strong>
+        They are intended to show what a general visitor would see:
+    </div>
+
+    <div id="site-sections" class="grid_12 alpha omega">
+        {% block site_sections %}
+            {% show_menu 0 100 0 100 "cms/site_sections_menu.html" %}
+        {% endblock %}
+    </div>
+{% endif %}
 
 {% block team_header %}
     {% if group %}
