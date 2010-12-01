@@ -1,9 +1,15 @@
 <div class="comment_start"></div>
 {% for comment in comment_list %}
-    <div class="comment">
-        From <a href="{{ comment.user.get_absolute_url }}">{{ comment.user }}</a>, {{ comment.submit_date|timesince }} ago
+    <div class="comment" id="c{{ comment.id }}">
+        <span>
+            From <a href="{{ comment.user.get_absolute_url }}">{{ comment.user }}</a>,
+            {{ comment.submit_date|timesince }} ago
+        </span>
+        <span class="comment-permalink">
+            <a href="#c{{ comment.id }}">#</a>
+        </span>
         <div class="comment-body">
-            {{ comment.comment }}
+            {{ comment.comment|linebreaks }}
         </div>
     </div>
 {% endfor %}
