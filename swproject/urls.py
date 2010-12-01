@@ -37,45 +37,21 @@ urlpatterns += patterns('',
     # Example:
     # (r'^swproject/', include('swproject.foo.urls')),
     #
-    # Deployment tests:
-    url(r'^_site/', include('sw.urls')),
-    #
-    # Accounts:
+    url(r'^_site/', include('sw.urls')),    # Deployment tests and temporary views.
     url(r'^accounts/', include('allauth.urls')),
-    #
-    # Admin:
-    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    #
-    # Sentry:
-    url(r'^sentry/', include('sentry.urls')),
-    #
-    # Blog:
-    url(r'^blog/', include('zinnia.urls')),
-    #
-    # Comments:
-    url(r'^comments/', include('django.contrib.comments.urls')),
-    #
-    # Wakawaka (wiki):
-    url(r'^wiki/', include('swproject.urls_wiki')),
-    #
-    # djangovoice (feedback):
-    url(r'^feedback/', include('djangovoice.urls')),
-    #
-    # haystack (search):
-    url(r'^search/', include('swproject.urls_search')),
-    #
-    # idios (profiles):
-    url(r'^profiles/', include('idios.urls')),
-    #
-    # dashboard:
-    url(r'^dashboard/', include('dashboard.urls')),
-    #
-    # teams:
-    url(r'^teams/', include('teams.urls')),
-    #
-    # attachments:
+    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^attachments/', include('attachments.urls')),
+    url(r'^blog/', include('zinnia.urls')),
+    url(r'^comments/', include('django.contrib.comments.urls')),
+    url(r'^dashboard/', include('dashboard.urls')),
+    url(r'^feedback/', include('djangovoice.urls')),
+    url(r'^profiles/', include('idios.urls')),
+    url(r'^search/', include('swproject.urls_search')),
+    url(r'^sentry/', include('sentry.urls')),
+    url(r'^teams/', include('teams.urls')),
+    url(r'^voting/', include('voting.urls')),
+    url(r'^wiki/', include('swproject.urls_wiki')),
 )
 
 
@@ -88,9 +64,6 @@ urlpatterns += wiki_bridge.include_urls(
 
 # Legacy redirects and CMS at very end, to catch everything else.
 urlpatterns += patterns('',
-    #
-    # CMS: catch everything else.
     url(r'^', include('cms.urls')),
-    #
-    # TODO: Legacy redirects from sensiblewashington.org site
+    # TODO: Legacy redirects for sensiblewashington.org URLs
 )
