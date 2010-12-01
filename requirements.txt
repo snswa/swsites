@@ -72,8 +72,8 @@ django-markup==0.3
 
 # Voice
 -e git+http://github.com/snswa/django-voice.git@303d54b2c1ef23c27a349ad1acd8b6e04a3c02bb#egg=django-voice
--e svn+http://django-voting.googlecode.com/svn/trunk@73#egg=django-voting
 -e svn+http://django-gravatar.googlecode.com/svn/trunk@13#egg=django-gravatar
+# also: django-voting
 
 # Haystack
 -e git+http://github.com/toastdriven/django-haystack.git@c5f8f1a5a063d3781009dd4b9cb993685805705a#egg=django-haystack
@@ -91,3 +91,6 @@ pysolr==2.0.13
 
 # File attachments
 django-attachments==0.3.1
+
+# Voting
+-e git+http://github.com/snswa/django-voting.git@5dcc830#egg=django-voting

@@ -1,6 +1,34 @@
+{% load voting_tags %}
+{% votes_by_user user on comment_list as vote_dict %}
+{% scores_for_objects comment_list as score_dict %}
 <div class="comment_start"></div>
 {% for comment in comment_list %}
+    {% dict_entry_for_item comment from vote_dict as vote %}
+    {% dict_entry_for_item comment from score_dict as score %}
     <div class="comment" id="c{{ comment.id }}">
+        <span class="votes">
+            <form
+                method="POST"
+                class="vote"
+                id="comment-up-{{ comment.id }}"
+                action="{% if vote and vote.is_upvote %}{% url voting_vote app_label="comments" model_name="comment" object_id=comment.id direction="clear" %}{% else %}{% url voting_vote app_label="comments" model_name="comment" object_id=comment.id direction="up" %}{% endif %}"
+                >
+                {% csrf_token %}
+                <input type="image" id="comment-up-arrow-{{ comment.id }}" src="{{ STATIC_URL }}voting/thumb_up{% if vote and vote.is_upvote %}_mod{% endif %}.png"></input>
+            </form>
+            <span class="score" id="comment-score-{{ comment.id }}" title="after {{ score.num_votes|default:0 }} vote{{ score.num_votes|default:0|pluralize }}">
+                {{ score.score|default:0 }}
+            </span>
+            <form
+                method="POST"
+                class="vote"
+                id="comment-down-{{ comment.id }}"
+                action="{% if vote and vote.is_downvote %}{% url voting_vote app_label="comments" model_name="comment" object_id=comment.id direction="clear" %}{% else %}{% url voting_vote app_label="comments" model_name="comment" object_id=comment.id direction="down" %}{% endif %}"
+                >
+                {% csrf_token %}
+                <input type="image" id="comment-down-arrow-{{ comment.id }}" src="{{ STATIC_URL }}voting/thumb_down{% if vote and vote.is_downvote %}_mod{% endif %}.png"></input>
+            </form>
+        </span>
         <span>
             From <a href="{{ comment.user.get_absolute_url }}">{{ comment.user }}</a>,
             {{ comment.submit_date|timesince }} ago

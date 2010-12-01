@@ -322,6 +322,29 @@ div.footer span {
     font-size: smaller;
 }
 
+/* @group activity stream */
+
+ul.stream li.event {
+    padding-bottom: 1em;
+}
+
+ul.stream li.event span.timestamp {
+    display: block;
+    font-size: smaller;
+    color: silver;
+}
+
+ul.stream li.event div.description {
+    color: gray;
+    margin-left: 1em;
+    padding-left: 1em;
+    padding-top: .25em;
+    padding-bottom: .25em;
+    border-left: 2px solid silver;
+}
+
+/* @end */
+
 /* @group attachments */
 
 ul.attachments li a.attachment {
@@ -385,25 +408,18 @@ div.comment .comment-body {
 
 /* @end */
 
-/* @group activity stream */
+/* @group voting */
 
-ul.stream li.event {
-    padding-bottom: 1em;
+.votes form {
+    display: inline;
 }
 
-ul.stream li.event span.timestamp {
-    display: block;
-    font-size: smaller;
-    color: silver;
+.votes .score {
+    font-weight: bold;
 }
 
-ul.stream li.event div.description {
-    color: gray;
-    margin-left: 1em;
-    padding-left: 1em;
-    padding-top: .25em;
-    padding-bottom: .25em;
-    border-left: 2px solid silver;
+.votes {
+    margin-right: 1em;
 }
 
 /* @end */
