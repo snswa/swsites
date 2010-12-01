@@ -10,23 +10,23 @@
             <form
                 method="POST"
                 class="vote"
-                id="comment-up-{{ comment.id }}"
+                id="voteup-comment-{{ comment.id }}"
                 action="{% if vote and vote.is_upvote %}{% url voting_vote app_label="comments" model_name="comment" object_id=comment.id direction="clear" %}{% else %}{% url voting_vote app_label="comments" model_name="comment" object_id=comment.id direction="up" %}{% endif %}"
                 >
                 {% csrf_token %}
-                <input type="image" id="comment-up-arrow-{{ comment.id }}" src="{{ STATIC_URL }}voting/thumb_up{% if vote and vote.is_upvote %}_mod{% endif %}.png"></input>
+                <input type="image" id="voteuparrow-comment-{{ comment.id }}" src="{{ STATIC_URL }}voting/thumb_up{% if vote and vote.is_upvote %}_voted{% else %}_plain{% endif %}.png"></input>
             </form>
-            <span class="score" id="comment-score-{{ comment.id }}" title="after {{ score.num_votes|default:0 }} vote{{ score.num_votes|default:0|pluralize }}">
+            <span class="score" id="votescore-comment-{{ comment.id }}" title="after {{ score.num_votes|default:0 }} vote{{ score.num_votes|default:0|pluralize }}">
                 {{ score.score|default:0 }}
             </span>
             <form
                 method="POST"
                 class="vote"
-                id="comment-down-{{ comment.id }}"
+                id="votedown-comment-{{ comment.id }}"
                 action="{% if vote and vote.is_downvote %}{% url voting_vote app_label="comments" model_name="comment" object_id=comment.id direction="clear" %}{% else %}{% url voting_vote app_label="comments" model_name="comment" object_id=comment.id direction="down" %}{% endif %}"
                 >
                 {% csrf_token %}
-                <input type="image" id="comment-down-arrow-{{ comment.id }}" src="{{ STATIC_URL }}voting/thumb_down{% if vote and vote.is_downvote %}_mod{% endif %}.png"></input>
+                <input type="image" id="votedownarrow-comment-{{ comment.id }}" src="{{ STATIC_URL }}voting/thumb_down{% if vote and vote.is_downvote %}_voted{% else %}_plain{% endif %}.png"></input>
             </form>
         </span>
         <span>
