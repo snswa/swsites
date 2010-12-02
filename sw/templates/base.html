@@ -40,7 +40,15 @@
 
     <script type="text/javascript" charset="utf-8">
         $(function () {
+            var commentRegexp = /\?c=(\d+)$/,
+                commentId;
+            // Create a watermark in the search box.
             $('#search_q').watermark('Search');
+            // Jump to comment if one was just posted.
+            if (commentRegexp.test(document.location.href)) {
+                commentId = commentRegexp.exec(document.location.href)[1];
+                document.location = document.location.href + '#c' + commentId;
+            }
         });
     </script>
 
