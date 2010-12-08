@@ -333,6 +333,7 @@ INSTALLED_APPS = (
     # teams
     'teams',
     'groups',
+    'taggit',
     #
     # activity stream
     'actstream',
