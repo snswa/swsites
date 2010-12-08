@@ -5,23 +5,15 @@
 {% block head_title %}Teams{% endblock %}
 
 {% block body %}
-	<h1>All-volunteer Teams</h1>
-    <ul>
-        {% for team in public_teams %}
-            <li>
-                <a href="{% url teams_team slug=team.slug %}">{{ team.name }}</a>
-            </li>
-        {% endfor %}
-    </ul>
+    {% for grouping in groupings %}
+        <h1>{{ grouping.name }}</h1>
 
-    <h1>By-invitation Teams</h1>
-    <ul>
-        {% for team in private_teams %}
-            <li>
-                <a href="{% url teams_team slug=team.slug %}">{{ team.name }}</a>
-            </li>
-        {% endfor %}
-    </ul>
+        <ul>
+            {% for team in grouping.teams.all %}
+                <li><a href="{% url teams_team slug=team.slug %}">{{ team.name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
 {% endblock %}
 
 {% block sidebar_sections %}
