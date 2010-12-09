@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load cms_tags %}
+{% load feature_tag %}
 {% load menu_tags %}
 
 {% block page_title %}{% page_attribute "page_title" %}{% endblock %}
@@ -13,6 +14,10 @@
     <div id="content" class="alpha omega grid_12">
         {% include "site_messages.html" %}
         <div class="section">
+            {% feature breadcrumbs %}{% disabled %}
+            <h1>{% page_attribute "page_title" %}</h1>
+            {% endfeature %}
+
             {% placeholder "content" %}
         </div>
     </div>
