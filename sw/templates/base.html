@@ -68,12 +68,7 @@
 </head>
 <body class="container_12 {% block body_class %}{% endblock %}">
 
-<div style="text-align: center; color: red; font-weight: bold">
-    This is a beta site for invited users only.  Please visit <a href="http://sensiblewashington.org/">SensibleWashington.org</a>
-    for our official site.  Thanks!
-</div>
-
-<div id="auth-info">
+<div id="auth-info" class="grid_12 alpha omega">
     {% if user.is_authenticated %}
         <span>Welcome, {{ user.username }}.</span>
         <span><a href="{% url dashboard_index %}">Dashboard</a></span>
@@ -86,7 +81,7 @@
 </div>
 
 {% block header %}
-<div class="header large" class="grid_12 alpha omega">
+<div class="header large grid_12 alpha omega">
     <h1><a href="/">SensibleWashington.org</a></h1>
     <h2>Legalize Cannabis<br/>in 2011</h2>
     <div id="site-search">
@@ -106,11 +101,6 @@
 {% endblock %}
 
 {% if not group and not team_actions %}
-    <div style="color: red">
-        <strong>These links are not part of any wiki.</strong>
-        They are intended to show what a general visitor would see:
-    </div>
-
     <div id="site-sections" class="grid_12 alpha omega">
         {% block site_sections %}
             {% show_menu 0 100 0 100 "cms/site_sections_menu.html" %}
@@ -157,7 +147,7 @@
 
 <div class="clear">&nbsp;</div>
 
-<div class="footer" class="clear grid_12">
+<div class="footer" class="clear grid_12 alpha omega">
     <span>Copyright &copy; 2010 Sensible Washington.</span>
     <span>Read our <a href="/privacy-policy/">privacy policy</a>.</span>
     <span>Leave <a href="/feedback/">feedback</a>.</span>

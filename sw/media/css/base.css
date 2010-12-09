@@ -526,18 +526,29 @@ ul.thumbnails .caption {
 
 /* @end */
 
-/* @group under construction */
+/* @group beta */
 
 div#underconstruction {
     margin-top: 6em;
     margin-bottom: 5em;
     background: lightyellow;
     padding: 3em;
-    border: 4px solid #009966;
+    border-width: 1px 1px 4px 1px;
+    border-color: #009966;
+    border-style: solid;
 }
 
 #underconstruction p:last-child {
     margin-bottom: 0;
+}
+
+div.beta-annotation p {
+    background: lightyellow;
+    margin: 1em;
+    padding: 1em;
+    border-width: 1px 1px 3px 1px;
+    border-color: #009966;
+    border-style: solid;
 }
 
 /* @end */
