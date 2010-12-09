@@ -69,7 +69,7 @@ td {
 }
 
 .header.large {
-    width: 960px;
+    width: 940px;
 }
 
 .header.large {
@@ -78,7 +78,7 @@ td {
     background-size: 246px 140px;
     background-position: 5px;
     height: 140px;
-    width: 960px;
+    width: 940px;
     padding: 0;
 }
 
@@ -90,7 +90,7 @@ td {
 
 .header.large h2 {
 	display: table-cell;
-    width: 960px;
+    width: 940px;
     text-align: center;
     position: absolute;
     height: 105px;
@@ -138,9 +138,8 @@ div#site-sections {
     left: 5px;
     height: 50px;
     max-height: 50px;
-    margin-left: -5px;
     margin-right: 0px;
-    width: 960px;
+    width: 940px;
     border-top: 2px solid #009966;
     border-bottom: 2px solid #009966;
 }
@@ -162,7 +161,7 @@ div#site-sections li {
 div#site-sections a {
 	display: block;
 	float: left;
-	width: 160px;
+	width: 150px;
 	text-decoration: none;
 	color: inherit;
 }
@@ -200,9 +199,7 @@ div#site-sections li:hover {
 
 div#breadcrumbs {
     border-bottom: #009966 solid 2px;
-    width: 955px;
-    margin-left: -5px;
-    padding-left: 5px;
+    width: 940px;
 }
 
 #breadcrumbs ul {
@@ -321,6 +318,7 @@ form#join-campaign-form input[type="submit"] {
 /* @group footer */
 
 div.footer {
+	width: 940px;
 	margin-top: 2em;
     border-top: 2px solid #009966;
 }
@@ -400,9 +398,8 @@ div.comment .comment-body {
     left: 5px;
     height: 50px;
     max-height: 50px;
-    margin-left: -5px;
     margin-right: 0px;
-    width: 960px;
+    width: 940px;
     border-top: 2px solid #009966;
     border-bottom: 2px solid #009966;
     background-color: #0d8751;
