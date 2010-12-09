@@ -196,6 +196,43 @@ div#site-sections li:hover {
 
 /* @end */
 
+/* @group breadcrumbs */
+
+div#breadcrumbs {
+    border-bottom: #009966 solid 2px;
+    width: 955px;
+    margin-left: -5px;
+    padding-left: 5px;
+}
+
+#breadcrumbs ul {
+    display: inline;
+    padding: 0;
+    margin: 0 0 0 1em;
+}
+
+#breadcrumbs ul li {
+    display: inline;
+    padding: 0;
+    margin-left: 0;
+}
+
+#breadcrumbs li + li:before {
+    content: " » ";
+}
+
+#breadcrumbs li:last-child {
+    font-weight: bold;
+    font-size: larger;
+}
+
+#breadcrumbs a {
+    text-decoration: none;
+}
+
+
+/* @end */
+
 /* @group #content */
 
 div#content {

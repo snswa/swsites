@@ -1,4 +1,4 @@
-{% load cms_tags menu_tags %}
+{% load cms_tags menu_tags feature_tag %}
 <!doctype html>
 <html>
 <head>
@@ -117,6 +117,16 @@
         {% endblock %}
     </div>
 {% endif %}
+
+{% feature breadcrumbs %}
+    <div id="breadcrumbs" class="grid_12 alpha omega">
+        You are here:
+        <ul>
+            {% block breadcrumbs %}
+            {% endblock %}
+        </ul>
+    </div>
+{% endfeature %}
 
 {% block team_header %}
     {% if group %}
