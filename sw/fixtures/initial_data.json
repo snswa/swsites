@@ -14,7 +14,16 @@
     "fields": {
       "enabled": false,
       "name": "breadcrumbs",
-      "description": "Navigational breadcrumbs"
+      "description": "When enabled, show breadcrumbs, a navigational tool to show position in the site map. When disabled, do not show breadcrumbs, but instead show a page title in a header tag."
+    }
+  },
+  {
+    "pk": 3,
+    "model": "featureflipper.feature",
+    "fields" : {
+      "enabled": false,
+      "name": "cms_content",
+      "description": "When enabled, show content management system pages.  When disabled, show a note indicating that the site is not ready to unveil to the public."
     }
   }
 ]
