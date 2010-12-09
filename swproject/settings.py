@@ -83,6 +83,7 @@ MIDDLEWARE_CLASSES = (
     'cms.middleware.media.PlaceholderMediaMiddleware',
     'groups.middleware.GroupAwareMiddleware',
     'pagination.middleware.PaginationMiddleware',
+    'featureflipper.middleware.FeaturesMiddleware',
     # 'django.middleware.cache.FetchFromCacheMiddleware',
 )
 
@@ -105,6 +106,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
     'zinnia.context_processors.media',
     'zinnia.context_processors.version',
+
+    'featureflipper.context_processors.features',
 )
 
 # ==================================================================
@@ -343,6 +346,9 @@ INSTALLED_APPS = (
     #
     # file attachments
     'attachments',
+    #
+    # feature flipping,
+    'featureflipper',
 )
 
 import os

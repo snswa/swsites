@@ -1,37 +1,46 @@
 {% extends "teams/base.html" %}
 
+{% load feature_tag %}
 {% load pagination_tags %}
 
 {% block head_title %}Teams{% endblock %}
 
 {% block body %}
-    {# {% for grouping in groupings %} #}
-    {#     <h1>{{ grouping.name }}</h1> #}
-    {#  #}
-    {#     <ul> #}
-    {#         {% for team in grouping.teams.all %} #}
-    {#             <li><a href="{% url teams_team slug=team.slug %}">{{ team.name }}</a></li> #}
-    {#         {% endfor %} #}
-    {#     </ul> #}
-    {# {% endfor %} #}
 
-	<h1>All-volunteer Teams</h1>
-    <ul>
-        {% for team in public_teams %}
-            <li>
-                <a href="{% url teams_team slug=team.slug %}">{{ team.name }}</a>
-            </li>
-        {% endfor %}
-    </ul>
+    {% feature team_groupings %}
 
-    <h1>By-invitation Teams</h1>
-    <ul>
-        {% for team in private_teams %}
-            <li>
-                <a href="{% url teams_team slug=team.slug %}">{{ team.name }}</a>
-            </li>
+        {% for grouping in groupings %}
+            <h1>{{ grouping.name }}</h1>
+
+            <ul>
+                {% for team in grouping.teams.all %}
+                    <li><a href="{% url teams_team slug=team.slug %}">{{ team.name }}</a></li>
+                {% endfor %}
+            </ul>
         {% endfor %}
-    </ul>
+
+    {% disabled %}
+
+    	<h1>All-volunteer Teams</h1>
+        <ul>
+            {% for team in public_teams %}
+                <li>
+                    <a href="{% url teams_team slug=team.slug %}">{{ team.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <h1>By-invitation Teams</h1>
+        <ul>
+            {% for team in private_teams %}
+                <li>
+                    <a href="{% url teams_team slug=team.slug %}">{{ team.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+
+    {% endfeature %}
+
 {% endblock %}
 
 {% block sidebar_sections %}

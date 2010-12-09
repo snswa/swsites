@@ -1,0 +1,11 @@
+[
+  {
+    "pk": 1,
+    "model": "featureflipper.feature",
+    "fields": {
+      "enabled": false,
+      "name": "team_groupings",
+      "description": ""
+    }
+  }
+]
