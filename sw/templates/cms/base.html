@@ -11,16 +11,20 @@
 {% endblock %}
 
 {% block content_wrapper %}
-    <div id="content" class="alpha omega grid_12">
-        {% include "site_messages.html" %}
-        <div class="section">
-            {% feature breadcrumbs %}{% disabled %}
-            <h1>{% page_attribute "page_title" %}</h1>
-            {% endfeature %}
+    {% feature cms_content %}
+        <div id="content" class="alpha omega grid_12">
+            {% include "site_messages.html" %}
+            <div class="section">
+                {% feature breadcrumbs %}{% disabled %}
+                <h1>{% page_attribute "page_title" %}</h1>
+                {% endfeature %}
 
-            {% placeholder "content" %}
+                {% placeholder "content" %}
+            </div>
         </div>
-    </div>
+    {% disabled %}
+        {% include "sw/underconstruction.html" %}
+    {% endfeature %}
 {% endblock %}
 
 {% block sidebar %}
