@@ -5,7 +5,16 @@
     "fields": {
       "enabled": false,
       "name": "team_groupings",
-      "description": ""
+      "description": "List teams in smaller conceptual groupings"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "featureflipper.feature",
+    "fields": {
+      "enabled": false,
+      "name": "breadcrumbs",
+      "description": "Navigational breadcrumbs"
     }
   }
 ]
