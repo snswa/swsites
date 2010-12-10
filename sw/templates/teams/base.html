@@ -1,4 +1,10 @@
-{% extends "site_base_sidebars.html" %}
+{% extends "base_hq_8_4.html" %}
 
-{% block body_class %}teams{% endblock %}
+{% block body_class %}{{ block.super }} teams{% endblock %}
 
+{% block page_title %}{% block head_title %}{% endblock %}{% endblock %}
+
+{% block content_body %}
+    {% block body %}
+    {% endblock %}
+{% endblock %}

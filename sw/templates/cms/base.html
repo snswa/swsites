@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_12.html" %}
 {% load cms_tags %}
 {% load feature_tag %}
 {% load menu_tags %}
@@ -10,7 +10,7 @@
     {% show_breadcrumb %}
 {% endblock %}
 
-{% block content_wrapper %}
+{% block page_content %}
     {% feature cms_content %}
         {% include "sw/cms_page_preamble.html" %}
         <div id="content" class="alpha omega grid_12">
@@ -26,7 +26,4 @@
     {% disabled %}
         {% include "sw/underconstruction.html" %}
     {% endfeature %}
-{% endblock %}
-
-{% block sidebar %}
 {% endblock %}

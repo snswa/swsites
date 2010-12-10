@@ -1,0 +1,9 @@
+{% extends "base_12.html" %}
+
+{% block body_class %}{{ block.super }} hq{% endblock %}
+
+{% block header_slogan %}Volunteer Headquarters{% endblock %}
+
+{% block site_sections %}
+    {% include "menu/site_sections_volunteer.html" %}
+{% endblock %}

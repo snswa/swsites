@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+    <div id="content" class="alpha omega grid_8">
+        {% include "site_messages.html" %}
+        {% block content_body %}
+            Content sections here.
+        {% endblock %}
+    </div>
+
+    {% block sidebar %}
+        <div id="sidebar" class="alpha grid_4">
+            {% block sidebar_sections %}
+                <div class="section">
+                    Sidebar sections here.
+                </div>
+            {% endblock %}
+        </div>
+    {% endblock %}
+{% endblock %}
