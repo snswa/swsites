@@ -1,10 +1,9 @@
 {% extends "account/base.html" %}
 
-{% load feature_tag %}
+{% load breadcrumbs feature_tag %}
 {% load i18n %}
 {% load uni_form_tags %}
 {% load account_tags %}
-{% load breadcrumbs %}
 
 {% block breadcrumbs %}
     {{ block.super }}
@@ -16,7 +15,7 @@
 {% block body %}
 
     {% feature breadcrumbs %}{% disabled %}
-    <h1>Sign In</h1>
+        <h1>Sign In</h1>
     {% endfeature %}
 
     {% if not user.is_authenticated %}
