@@ -1,1 +1,32 @@
-500 Internal Server Error
+{% extends "base_12.html" %}
+
+{% load breadcrumbs feature_tag %}
+
+{% block page_title %}Unexpected Error{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb_url pages-root 'Home' %}
+    {% breadcrumb 'Site Operation Error' %}
+{% endblock %}
+
+{% block page_content %}
+    <div class="grid_6 prefix_3 suffix_3">
+        <div id="underconstruction">
+            <p>
+                The computer software that runs this website experienced
+                an unexpected error.
+            </p>
+
+            <p>
+                The details of the error have been safely logged and a
+                site operator will look into the cause of the problem.
+            </p>
+
+            <p>
+                In the meantime, we've shielded you from the nature of
+                the problem to protect the security of you and other users.
+            </p>
+        </div>
+    </div>
+{% endblock %}

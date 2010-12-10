@@ -1,1 +1,22 @@
-404 Not Found
+{% extends "base_12.html" %}
+
+{% load breadcrumbs feature_tag %}
+
+{% block page_title %}Page Not Found{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb_url 'Home' pages-root %}
+    {% breadcrumb 'Page Not Found' %}
+{% endblock %}
+
+{% block page_content %}
+    <div class="grid_6 prefix_3 suffix_3">
+        <div id="underconstruction">
+            <p>
+                We couldn't find the page you requested.
+                Please use the links above to choose another destination.
+            </p>
+        </div>
+    </div>
+{% endblock %}

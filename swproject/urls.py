@@ -21,7 +21,7 @@ admin.autodiscover()
 
 # Site-wide error handlers.
 handler404 = 'swlegacy.views.legacy_or_404'
-## handler500 = ...
+handler500 = 'django.views.defaults.server_error'
 
 
 # Begin with empty patterns.
