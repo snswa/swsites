@@ -1,0 +1,24 @@
+{% extends "account/base.html" %}
+
+{% load breadcrumbs feature_tag %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Email Address Confirmation" %}{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb_url 'Email Addresses' account_email %}
+    {% breadcrumb 'Verify an Email Address' %}
+    {% breadcrumb 'Confirmation' %}
+{% endblock %}
+
+{% block body %}
+    {% feature breadcrumbs %}{% disabled %}
+        <h1>{% trans "Email Address Confirmation" %}</h1>
+    {% endfeature %}
+    {% if email_address %}
+        <p>{% blocktrans with email_address.email as email and email_address.user as user %}You have confirmed that <a href="mailto:{{email}}">{{ email }}</a> is an email address for user '{{ user }}'.{% endblocktrans %}</p>
+    {% else %}
+        <p>{% trans "Invalid confirmation key." %}</p>
+    {% endif %}
+{% endblock %}

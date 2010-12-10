@@ -59,9 +59,9 @@ BeautifulSoup==3.1.0.1
 httplib2==0.6.0
 oauth2==1.2.0
 python-openid==2.2.5
-django-email-confirmation==0.1.4
 django-uni-form==0.7.0
 -e git+http://github.com/facebook/python-sdk.git#egg=facebook-sdk
+-e git+http://github.com/snswa/django-email-confirmation.git@a7420f2#egg=django-email-confirmation
 
 # Postmark
 -e git+http://github.com/gldnspud/python-postmark.git@b8f4d8f717d71607d84f70dde544c36e392225f6#egg=python-postmark

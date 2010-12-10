@@ -1,5 +1,6 @@
 {% extends "wakawaka/base.html" %}
 
+{% load breadcrumbs feature_tag %}
 {% load group_tags %}
 {% load i18n %}
 
@@ -16,8 +17,16 @@
     {% blocktrans with page.slug as slug %}History for {{ slug }}{% endblocktrans %}
 {% endblock %}
 
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb page.slug '../' %}
+    {% breadcrumb 'Change History' %}
+{% endblock %}
+
 {% block content %}
-	<h1>{% blocktrans with page.slug as slug %}History for {{ slug }}{% endblocktrans %}</h1>
+	{% feature breadcrumbs %}{% disabled %}
+	    <h1>{% blocktrans with page.slug as slug %}History for {{ slug }}{% endblocktrans %}</h1>
+	{% endfeature %}
 
 	{% include "wakawaka/revision_table.html" %}
 {% endblock %}

@@ -1,16 +1,23 @@
 {% extends "socialaccount/base.html" %}
 
+{% load breadcrumbs feature_tag %}
 {% load i18n %}
 
 {% block head_title %}{% trans "Login Cancelled" %}{% endblock %}
 
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb 'Login Cancelled' %}
+{% endblock %}
+
 {% block body %}
-    
-<h1>{% trans "Login Cancelled" %}</h1>
+
+{% feature breadcrumbs %}{% disabled %}
+    <h1>{% trans "Login Cancelled" %}</h1>
+{% endfeature %}
 
 {% url socialaccount_login as login_url %}
 
 <p>{% blocktrans %}You decided to cancel logging in to our site using one of your exisiting accounts. If this was a mistake, please proceed to <a href="{{login_url}}">sign in</a>.{% endblocktrans %}</p>
 
 {% endblock %}
-

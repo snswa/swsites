@@ -7,7 +7,7 @@
 {% block breadcrumbs %}
     {{ block.super }}
     {% breadcrumb 'Accounts' %}
-    {% breadcrumb 'Social Networks' %}
+    {% breadcrumb_url 'Social Networks' socialaccount_connections %}
 {% endblock %}
 
 {% block content_body %}

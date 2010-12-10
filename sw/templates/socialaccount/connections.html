@@ -1,14 +1,24 @@
 {% extends "socialaccount/base.html" %}
 
+{% load breadcrumbs feature_tag %}
 {% load i18n %}
 
-{% block head_title %}{% trans "Account Connections" %}{% endblock %}
+{% block head_title %}{% trans "Third-party Connections" %}{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb 'Third-party Connections' %}
+{% endblock %}
 
 {% block body %}
-<h1>{% trans "Account Connections" %}</h1>
+{% feature breadcrumbs %}{% disabled %}
+    <h1>{% trans "Third-party Connections" %}</h1>
+{% endfeature %}
 
 {% if form.accounts %}
-<p>{% blocktrans %}You can sign in to your account using any of the following third party accounts:{% endblocktrans %}</p>
+<p>{% blocktrans %}You can sign in to your account using any of the following third party accounts.{% endblocktrans %}</p>
+
+<p>If you want to remove any of them, select the account and click "Remove".</p>
 
 
 <form class="uniForm" method="post">

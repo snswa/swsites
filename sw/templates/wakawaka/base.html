@@ -9,20 +9,8 @@
 
 {% block breadcrumbs %}
     {{ block.super }}
-    {% if group %}
-        {% breadcrumb_url 'Teams' teams_index %}
-        {% breadcrumb_url group.name teams_team slug=group.slug %}
-        {# @@@ How can we clean this up for groupurls? #}
-        {# The following doesn't work. #}
-        {# {% with groupurl wakawaka_index group as indexurl %} #}
-        {#     {% breadcrumb 'Wiki' indexurl %} #}
-        {# {% endwith %} #}
-        <li><a href="{% groupurl wakawaka_index group %}">Wiki</a></li>
-    {% else %}
-        {% breadcrumb_url 'Legacy Wiki' wakawaka_index %}
-    {% endif %}
+    {% include "wakawaka/base_breadcrumbs.html" %}
 {% endblock %}
-
 
 {% block css %}
 {{ block.super }}

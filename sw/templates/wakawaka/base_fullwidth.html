@@ -6,6 +6,11 @@
 {# Insert 'title' from wiki templates into 'page_title' in base #}
 {% block page_title %}{% block title %}{% endblock %}{% endblock %}
 
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% include "wakawaka/base_breadcrumbs.html" %}
+{% endblock %}
+
 {% block css %}
 <link href="{{ STATIC_URL }}css/wiki.css" rel="stylesheet">
 {% endblock %}

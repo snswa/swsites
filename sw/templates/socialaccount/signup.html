@@ -1,16 +1,24 @@
 {% extends "socialaccount/base.html" %}
 
+{% load breadcrumbs feature_tag %}
 {% load i18n %}
 {% load uni_form_tags %}
 
-{% block head_title %}{% trans "Signup" %}{% endblock %}
+{% block head_title %}{% trans "Sign Up" %}{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb 'Sign Up' %}
+{% endblock %}
 
 {% block body %}
-    <h1>{% trans "Sign Up" %}</h1>
+    {% feature breadcrumbs %}{% disabled %}
+        <h1>{% trans "Sign Up" %}</h1>
+    {% endfeature %}
 
-<p>You are about to use your {{account.get_provider.name}} account to login to 
+<p>You are about to use your {{account.get_provider.name}} account to login to
 {{site.name}}. As a final step, please complete the following form:</p>
-    
+
 <form class="signup uniForm" id="signup_form" method="post" action="{% url socialaccount_signup %}">
   {% csrf_token %}
   <fieldset class="inlineLabels">
@@ -23,7 +31,7 @@
     </div>
   </fieldset>
 </form>
-        
+
 
 {% endblock %}
 

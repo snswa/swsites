@@ -1,5 +1,6 @@
 {% extends "wakawaka/base.html" %}
 
+{% load breadcrumbs feature_tag %}
 {% load group_tags %}
 {% load i18n %}
 {% load wakawaka_tags %}
@@ -22,8 +23,23 @@
 	{% blocktrans with page.slug as slug %}Changes for {{ slug  }}{% endblocktrans %}
 {% endblock %}
 
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb page.slug '../' %}
+    {% breadcrumb 'Changes between revisions' %}
+{% endblock %}
+
 {% block content %}
-	<h1>{{ page.slug }}</h1>
+	{% feature breadcrumbs %}{% disabled %}
+	    <h1>{{ page.slug }}</h1>
+	{% endfeature %}
+
+	<p>
+	    The following changes occurred between revisions
+	    <a href="{% groupurl wakawaka_page group slug=page.slug rev_id=rev_a.id %}">{{ rev_a.id }}</a>
+	    and
+	    <a href="{% groupurl wakawaka_page group slug=page.slug rev_id=rev_b.id %}">{{ rev_b.id }}</a>.
+	</p>
 
 	<pre class="changes">{{ diff }}</pre>
 	{% include "wakawaka/revision_table.html" %}

@@ -1,10 +1,26 @@
-{% extends 'base_fullwidth.html' %}
+{% extends 'base_12.html' %}
+
+{% load breadcrumbs feature_tag %}
 {% load uni_form_tags %}
 
 {% block page_title %}Search{% endblock %}
 
-{% block content_body %}
-    <h2>Search</h2>
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb 'Search' %}
+{% endblock %}
 
-    <p>Sorry, site-wide search is currently unavailable.</p>
+{% block content_body %}
+    {% feature breadcrumbs %}{% disabled %}
+        <h2>Search</h2>
+    {% endfeature %}
+
+    <div class="grid_6 prefix_3 suffix_3">
+        <div id="underconstruction">
+            <p>
+                Sorry, site-wide search is under maintenance
+                and is not available.  Please check back soon.
+            </p>
+        </div>
+    </div>
 {% endblock %}
