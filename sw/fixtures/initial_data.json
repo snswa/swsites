@@ -12,7 +12,7 @@
     "pk": 2,
     "model": "featureflipper.feature",
     "fields": {
-      "enabled": false,
+      "enabled": true,
       "name": "breadcrumbs",
       "description": "When enabled, show breadcrumbs, a navigational tool to show position in the site map. When disabled, do not show breadcrumbs, but instead show a page title in a header tag."
     }
