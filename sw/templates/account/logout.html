@@ -1,11 +1,26 @@
-{% extends "site_base.html" %}
+{% extends "account/base.html" %}
 
+{% load breadcrumbs feature_tag %}
 {% load i18n %}
 
-{% block head_title %}{% trans "Signed Out" %}{% endblock %}
+{% block head_title %}{% trans "Sign Out" %}{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb 'Sign Out' %}
+{% endblock %}
 
 {% block body %}
-<h1>{% trans "Signed Out" %}</h1>
+    {% feature breadcrumbs %}{% disabled %}
+        <h1>{% trans "Sign Out" %}</h1>
+    {% endfeature %}
 
-<p>{% trans "You have signed out." %}</p>
+    <p>
+        Thank you for using the Sensible Washington volunteer headquarters.
+        Please visit again soon!
+    </p>
+
+    <p>
+        Sign out by accident?  <strong><a href="{% url account_login %}">Sign in again</a>.</strong>
+    </p>
 {% endblock %}

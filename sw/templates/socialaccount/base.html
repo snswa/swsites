@@ -1,6 +1,14 @@
-{% extends "base_12.html" %}
+{% extends "base_hq_12.html" %}
+
+{% load breadcrumbs feature_tag %}
 
 {% block page_title %}{% block head_title %}{% endblock %}{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb 'Accounts' %}
+    {% breadcrumb 'Social Networks' %}
+{% endblock %}
 
 {% block content_body %}
     {% block body %}

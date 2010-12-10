@@ -1,11 +1,20 @@
 {% extends "idios/base.html" %}
 
+{% load breadcrumbs feature_tag %}
 {% load i18n %}
 
 {% block head_title %}{% trans "All Profiles" %}{% endblock %}
 
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb 'All Profiles' %}
+{% endblock %}
+
+
 {% block body %}
-    <h1>{% trans "All Profiles" %}</h1>
+    {% feature breadcrumbs %}{% disabled %}
+        <h1>{% trans "All Profiles" %}</h1>
+    {% endfeature %}
 
     <p>{% trans "The full list of profiles is not available." %}</p>
 {% endblock %}

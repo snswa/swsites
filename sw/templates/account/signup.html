@@ -1,18 +1,26 @@
-{% extends "site_base.html" %}
+{% extends "account/base.html" %}
 
+{% load breadcrumbs feature_tag %}
 {% load i18n %}
 {% load uni_form_tags %}
 
-{% block head_title %}{% trans "Signup" %}{% endblock %}
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb 'Sign Up' %}
+{% endblock %}
+
+{% block head_title %}{% trans "Sign Up" %}{% endblock %}
 
 {% block body %}
-    <h1>{% trans "Sign Up" %}</h1>
-    
+    {% feature breadcrumbs %}{% disabled %}
+        <h1>{% trans "Sign Up" %}</h1>
+    {% endfeature %}
+
     {% if user.is_authenticated %}
 {% include "account/snippets/already_logged_in.html" %}
     {% else %}
         <p>{% trans "Already have an account?" %} <a href="{% url account_login %}">{% trans "Sign in" %}</a>.</p>
-        
+
         <form class="signup uniForm" id="signup_form" method="post" action="{% url account_signup %}">
             {% csrf_token %}
             <fieldset class="inlineLabels">
@@ -25,7 +33,7 @@
                 </div>
             </fieldset>
         </form>
-        
+
     {% endif %}
 {% endblock %}
 

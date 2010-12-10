@@ -1,18 +1,26 @@
 {% extends "socialaccount/base.html" %}
 
+{% load breadcrumbs feature_tag %}
 {% load i18n %}
 {% load uni_form_tags %}
 {% load account_tags %}
 
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
 
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb 'Sign In' %}
+{% endblock %}
+
 {% block body %}
-    
+
     {% if openid and not user.is_authenticated %}
         <p><span class="warning">It appears you have started to login using OpenID. Want to <a href="/openid/register/">finish logging in</a>?</span></p>
     {% endif %}
-    
-    <h1>{% trans "Sign In" %}</h1>
+
+    {% feature breadcrumbs %}{% disabled %}
+        <h1>{% trans "Sign In" %}</h1>
+    {% endfeature %}
 
 
 <p>Sign in using your account with:</p>
@@ -31,8 +39,8 @@
         {% url account_signup as signup_url %}
         <p>{% blocktrans %}Otherwise, <a href="{{ signup_url }}">sign up</a> for a new account.{% endblocktrans %}</p>
 {% endif %}
-    
-    
+
+
 
 {% endblock %}
 

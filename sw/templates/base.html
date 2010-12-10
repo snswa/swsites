@@ -70,7 +70,8 @@
 
 <div id="auth-info" class="grid_12 alpha omega">
     {% if user.is_authenticated %}
-        <span>Welcome, {{ user.username }}.</span>
+        <span>Signed in as {{ user.username }}.</span>
+        <span><a href="{% url profile_detail username=user.username %}">Your Profile</a></span>
         <span><a href="{% url account_logout %}">Sign Out</a></span>
     {% else %}
         <span><a href="{% url account_signup %}">Sign Up</a></span>

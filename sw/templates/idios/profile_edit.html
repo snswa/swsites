@@ -1,11 +1,19 @@
 {% extends "idios/base.html" %}
 
+{% load breadcrumbs feature_tag %}
 {% load i18n %}
 
-{% block head_title %}{% trans "Edit Profile" %}{% endblock %}
+{% block head_title %}{% trans "Edit Your Profile" %}{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb 'Edit Your Profile' %}
+{% endblock %}
 
 {% block body %}
-    <h1>{% trans "Edit Profile" %}</h1>
+    {% feature breadcrumbs %}{% disabled %}
+        <h1>{% trans "Edit Your Profile" %}</h1>
+    {% endfeature %}
 
     {% include "idios/profile_form.html" %}
 {% endblock %}

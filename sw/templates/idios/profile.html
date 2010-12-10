@@ -1,9 +1,19 @@
 {% extends "idios/base.html" %}
 
+{% load breadcrumbs feature_tag %}
 {% load i18n %}
 {% load uni_form_tags %}
 
 {% block head_title %}{% trans "Profile for" %} {{ page_user.username }}{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% if is_me %}
+        {% breadcrumb 'Your Profile' %}
+    {% else %}
+        {% breadcrumb page_user.username %}
+    {% endif %}
+{% endblock %}
 
 {% block body %}
 
@@ -12,7 +22,9 @@
 
         {% if is_me %}
 
-            <h1>{% trans "Your Profile" %}</h1>
+            {% feature breadcrumbs %}{% disabled %}
+                <h1>{% trans "Your Profile" %}</h1>
+            {% endfeature %}
 
             <ul>
                 <li><a href="{% url profile_edit %}">{% trans "Edit profile" %}</a></li>
@@ -68,7 +80,9 @@
 
         {% else %}
 
-            <h1>{% trans "Profile for" %} {{ page_user.username }}</h1>
+            {% feature breadcrumbs %}{% disabled %}
+                <h1>{% trans "Profile for" %} {{ page_user.username }}</h1>
+            {% endfeature %}
 
             <p>(Viewing others' profiles is not yet enabled.)</p>
 
