@@ -28,26 +28,25 @@ td {
 
 /* @end */
 /* @group auth */
-#auth-info {
+#auth-bar {
   background-color: #0b4f96;
-  text-align: right;
   font-size: 14px;
   border-bottom: 2px solid #57a3f3;
   position: relative;
   height: 22px;
   color: white; }
-
-#auth-info span {
-  padding-left: 1em; }
-
-#auth-info a {
-  font-weight: bold;
-  padding: 4px;
-  color: white;
-  text-decoration: none; }
-
-#auth-info a:hover {
-  text-decoration: underline; }
+  #auth-bar span + span {
+    padding-left: 1em; }
+  #auth-bar a {
+    font-weight: bold;
+    padding: 4px;
+    color: white;
+    text-decoration: none; }
+    #auth-bar a:hover {
+      text-decoration: underline; }
+  #auth-bar .right {
+    text-align: right;
+    float: right; }
 
 /* @endgroup */
 /* @group header */

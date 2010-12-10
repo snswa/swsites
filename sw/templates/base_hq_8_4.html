@@ -1,8 +1,19 @@
 {% extends "base_8_4.html" %}
 
+{% load breadcrumbs feature_tag %}
+
 {% block body_class %}{{ block.super }} hq{% endblock %}
 
 {% block header_slogan %}Volunteer Headquarters{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb_url 'HQ' dashboard_index %}
+{% endblock %}
+
+{% block auth_bar_left %}
+<a href="{% url pages-root %}">« Back to public website</a>
+{% endblock %}
 
 {% block site_sections %}
     {% include "menu/site_sections_volunteer.html" %}

@@ -45,29 +45,31 @@ td {
 
 /* @group auth */
 
-#auth-info {
+#auth-bar {
 	background-color: $color-s1;
-    text-align: right;
     font-size: 14px;
     border-bottom: 2px solid lighten($color-s1, 33%);
     position: relative;
     height: 22px;
     color: white;
-}
-
-#auth-info span {
-    padding-left: 1em;
-}
-
-#auth-info a {
-    font-weight: bold;
-    padding: 4px;
-    color: white;
-    text-decoration: none;
-}
-
-#auth-info a:hover {
-    text-decoration: underline;
+    span + span {
+        padding-left: 1em;
+    }
+    a {
+        font-weight: bold;
+        padding: 4px;
+        color: white;
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    .left {
+    }
+    .right {
+        text-align: right;
+        float: right;
+    }
 }
 
 /* @endgroup */
