@@ -86,7 +86,7 @@ td {
 }
 
 .header {
-    background-image: url("../images/logos/logo-246x140.gif");
+    background-image: url("/media/images/logos/logo-246x140.gif");
     background-repeat: no-repeat;
     background-size: 246px 140px;
     background-position: 5px;
@@ -96,7 +96,7 @@ td {
 }
 
 .hq .header {
-    background-image: url("../images/logos/logo-123x70.gif");
+    background-image: url("/media/images/logos/logo-123x70.gif");
     background-size: 123px 70px;
     height: 70px;
 }
@@ -540,7 +540,7 @@ ul.checklist {
 ul.checklist li {
     background-repeat: no-repeat;
     background-position: -10px -5px;
-    background-image: url("../images/icons/greencheck.png");
+    background-image: url("/media/images/icons/greencheck.png");
     background-color: transparent;
     background-attachment: scroll;
     padding-left: 50px;
