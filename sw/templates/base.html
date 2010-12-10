@@ -68,6 +68,10 @@
 </head>
 <body class="container_12 {% block body_class %}{% endblock %}">
 
+{% if debug %}
+    <h3 style="text-align:center;color:red;margin:0;">Development Server</h3>
+{% endif %}
+
 <div id="auth-bar" class="grid_12 alpha omega">
     <span class="left">{% spaceless %}
         {% block auth_bar_left %}
