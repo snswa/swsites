@@ -1,3 +1,5 @@
+import os
+
 import django
 from django.utils.translation import ugettext_lazy as _
 
@@ -245,6 +247,11 @@ HAYSTACK_LIMIT_TO_REGISTERED_MODELS = False
 # idios (profiles)
 
 AUTH_PROFILE_MODULE = 'sw.Profile'
+
+# ==================================================================
+# featureflipper
+
+FEATURES_FILE = os.path.join(os.path.dirname(__file__), 'features.json')
 
 # ==================================================================
 
