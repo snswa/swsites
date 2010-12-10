@@ -17,7 +17,7 @@
     <link href="{{ STATIC_URL }}uni_form/uni-form.css" rel="stylesheet">
 
     {# Base #}
-    <link href="{{ STATIC_URL }}css/base.css?2010120902" rel="stylesheet">
+    <link href="{{ STATIC_URL }}css/base.css?2010120903" rel="stylesheet">
 
     {% block css %}{% endblock %}
 
@@ -99,9 +99,11 @@
 {% endblock %}
 
 <div id="site-sections" class="grid_12 alpha omega">
-    {% block site_sections %}
-        {% include "menu/site_sections_visitor.html" %}
-    {% endblock %}
+    <ul>
+        {% block site_sections %}
+            {% include "menu/site_sections_visitor.html" %}
+        {% endblock %}
+    </ul>
 </div>
 
 {% feature breadcrumbs %}
@@ -115,11 +117,13 @@
 {% endfeature %}
 
 {% block team_header %}
-    {% if group %}
-        <div id="team-header" class="grid_12 alpha omega">
-            <h1><a href="{% url teams_team slug=group.slug %}">{{ group.name }}</a></h1>
-        </div>
-    {% endif %}
+    {% feature breadcrumbs %}{% disabled %}
+        {% if group %}
+            <div id="team-header" class="grid_12 alpha omega">
+                <h1><a href="{% url teams_team slug=group.slug %}">{{ group.name }}</a></h1>
+            </div>
+        {% endif %}
+    {% endfeature %}
 {% endblock %}
 
 {% block page_content %}

@@ -46,7 +46,7 @@ td {
 /* @group auth */
 
 #auth-info {
-	background-color: lighten($color-s1, 9%);
+	background-color: $color-s1;
     text-align: right;
     font-size: 14px;
     border-bottom: 2px solid lighten($color-s1, 33%);
@@ -169,83 +169,79 @@ td {
 /* @group #site-sections */
 
 div#site-sections {
-    display: table;
-    top: 24px;
-    left: 5px;
     height: 50px;
     max-height: 50px;
-    margin-right: 0px;
+    margin: 0px;
+    padding: 0px;
     width: 940px;
     border-bottom: 2px solid $color-p;
 	font-weight: bold;
+	ul {
+    	list-style-type: none;
+        display: block;
+        padding: 0;
+        margin: 0;
+        height: 50px;
+        max-height: 50px;
+	}
+	li {
+        display: block;
+        float: left;
+        text-align: center;
+        vertical-align: middle;
+    	margin: 0;
+    	padding: 0;
+    	width: 156px;
+    	padding: 0;
+    	&:last-child {
+    	    width: 160px;
+    	}
+	}
+	a {
+    	display: block;
+    	float: left;
+    	height: 35px;
+    	padding-top: 15px;
+    	width: 100%;
+    	text-decoration: none;
+    	color: darken($color-p, 9%);
+    	&:hover {
+            color: white;
+            background: $color-p;
+    	}
+    }
+    .section-title {
+        display: block;
+    }
+    .active .section-title {
+        font-weight: bold;
+    }
+    .featured {
+        color: black;
+    }
+    .featured .section-title {
+        text-decoration: underline;
+        font-weight: bold;
+    }
 }
 
 .hq div#site-sections {
-    border-color: lighten($color-s1, 33%);
+    border-color: $color-s1;
     height: 25px;
     max-height: 25px;
-}
-
-#site-sections ul {
-	list-style-type: none;
-    display: table;
-    margin-top: 10px;
-    height: 40px;
-}
-
-.hq #site-sections ul {
-    height: 20px;
-    margin-top: 2px;
-}
-
-div#site-sections li {
-    display: table-cell;
-    text-align: center;
-    vertical-align: middle;
-	color: darken($color-p, 9%);
-}
-
-.hq div#site-sections li {
-    color: darken($color-s1, 9%);
-}
-
-div#site-sections a {
-	display: block;
-	float: left;
-	width: 150px;
-	text-decoration: none;
-	color: inherit;
-}
-
-div#site-sections .section-title {
-    display: block;
-}
-
-div#site-sections .section-about {
-    display: block;
-    font-size: smaller;
-}
-
-div#site-sections .active .section-title {
-    font-weight: bold;
-}
-
-div#site-sections .featured {
-    color: black;
-}
-
-div#site-sections .featured .section-title {
-    text-decoration: underline;
-    font-weight: bold;
-}
-
-div#site-sections li:hover {
-    color: white;
-    background: $color-p;
-}
-
-.hq div#site-sections li:hover {
-    background: $color-s1;
+    ul {
+        height: 25px;
+        margin-top: 2px;
+    }
+    a {
+        height: 23px;
+        padding-top: 2px;
+        color: darken($color-s1, 9%);
+        &:hover {
+            color: white;
+            background: $color-s1;
+        }
+    }
 }
 
 /* @end */
@@ -254,11 +250,26 @@ div#site-sections li:hover {
 
 div#breadcrumbs {
     border-bottom: $color-p solid 2px;
-    width: 940px;
+    width: 930px;
+    padding-left: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    background-color: $color-p;
+    color: lighten($color-p, 45%);
 }
 
 .hq div#breadcrumbs {
-    border-color: $color-s1;
+	background-color: $color-s1;
+    border-color: lighten($color-s1, 33%);
+    color: lighten($color-s1, 45%);
+}
+
+#breadcrumbs a {
+    color: white;
+}
+
+#breadcrumbs a:hover {
+    text-decoration: underline;
 }
 
 #breadcrumbs ul {
@@ -271,6 +282,7 @@ div#breadcrumbs {
     display: inline;
     padding: 0;
     margin-left: 0;
+    color: white;
 }
 
 #breadcrumbs li + li:before {
@@ -467,7 +479,7 @@ div.comment {
 /* @group teams */
 
 .hq #team-header {
-	position: static;
+/*  position: static;*/
     display: table;
     top: 24px;
     left: 5px;

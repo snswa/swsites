@@ -1,8 +1,15 @@
 {% extends "base_hq_8_4.html" %}
 
+{% load breadcrumbs feature_tag %}
+
 {% block body_class %}{{ block.super }} teams{% endblock %}
 
 {% block page_title %}{% block head_title %}{% endblock %}{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb_url 'Teams' teams_index %}
+{% endblock %}
 
 {% block content_body %}
     {% block body %}

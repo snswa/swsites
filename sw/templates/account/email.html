@@ -1,16 +1,24 @@
 {% extends "account/base.html" %}
 
+{% load breadcrumbs feature_tag %}
 {% load i18n %}
 {% load uni_form_tags %}
 
 {% block head_title %}{% trans "Account" %}{% endblock %}
 
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb 'Email Addresses' %}
+{% endblock %}
+
 {% block body %}
-    <h1>{% trans "E-mail Addresses" %}</h1>
+    {% feature breadcrumbs %}{% disabled %}
+        <h1>{% trans "Email Addresses" %}</h1>
+    {% endfeature %}
 
 {% if user.emailaddress_set.all %}
-<p>{% trans 'The following e-mail addresses are associated to your account:' %}</p>
-    
+<p>{% trans 'The following email addresses are associated to your account:' %}</p>
+
 <form action="{% url account_email %}" class="email_list uniForm" method="post">
 {% csrf_token %}
 <fieldset class="blockLabels">
@@ -41,24 +49,24 @@
 </fieldset>
 </form>
 
-{% else %} 
-<p><strong>{% trans 'Warning:'%}</strong> {% trans "You currently do not have any e-mail address set up. You should really add an e-mail address so you can receive notifications, reset your password, etc." %}</p>
+{% else %}
+<p><strong>{% trans 'Warning:'%}</strong> {% trans "You currently do not have any email address set up. You should really add an email address so you can receive notifications, reset your password, etc." %}</p>
 
 {% endif %}
 
 
-    <h2>{% trans "Add E-mail Address" %}</h2>
-    
+    <h2>{% trans "Add Email Address" %}</h2>
+
     <form method="post" action="" class="add_email uniForm">
         {% csrf_token %}
         <fieldset class="inlineLabels">
             {{ add_email_form|as_uni_form }}
              <div class = "buttonHolder">
-                 <button name="action_add" type="submit">{% trans "Add E-mail" %}</button>
+                 <button name="action_add" type="submit">{% trans "Add Email" %}</button>
             </div>
         </fieldset>
     </form>
-    
+
 {% endblock %}
 
 
@@ -66,7 +74,7 @@
 <script type="text/javascript">
 $(function(){
 $("button[name='action_remove']").click(function(){
-if (confirm("{% trans 'Do you really want to remove the selected e-mail address?' %}")) {
+if (confirm("{% trans 'Do you really want to remove the selected email address?' %}")) {
 return true;
 }
 return false;

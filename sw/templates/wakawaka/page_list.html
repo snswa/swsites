@@ -1,14 +1,22 @@
 {% extends "wakawaka/base.html" %}
 
+{% load breadcrumbs feature_tag %}
 {% load group_tags %}
 {% load i18n %}
 
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb 'Alphabetical list of pages' %}
+{% endblock %}
+
 {% block title %}
-	{% trans "All wiki pages" %}
+	{% trans "Alphabetical List of Pages" %}
 {% endblock %}
 
 {% block content %}
-	<h1>{% trans "All wiki pages" %}</h1>
+    {% feature breadcrumbs %}{% disabled %}
+        <h1>{% trans "Alphabetical list of pages" %}</h1>
+    {% endfeature %}
 	<ul>
 	{% for page in page_list %}
 	<li><a href="{% groupurl wakawaka_page group slug=page.slug %}">{{ page.slug }}</a>

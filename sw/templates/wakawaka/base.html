@@ -1,12 +1,31 @@
 {% extends "base_hq_8_4.html" %}
 
+{% load breadcrumbs feature_tag %}
 {% load group_tags %}
 {% load i18n %}
 
 {# Insert 'title' from wiki templates into 'page_title' in base #}
 {% block page_title %}{% block title %}{% endblock %}{% endblock %}
 
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% if group %}
+        {% breadcrumb_url 'Teams' teams_index %}
+        {% breadcrumb_url group.name teams_team slug=group.slug %}
+        {# @@@ How can we clean this up for groupurls? #}
+        {# The following doesn't work. #}
+        {# {% with groupurl wakawaka_index group as indexurl %} #}
+        {#     {% breadcrumb 'Wiki' indexurl %} #}
+        {# {% endwith %} #}
+        <li><a href="{% groupurl wakawaka_index group %}">Wiki</a></li>
+    {% else %}
+        {% breadcrumb_url 'Legacy Wiki' wakawaka_index %}
+    {% endif %}
+{% endblock %}
+
+
 {% block css %}
+{{ block.super }}
 <link href="{{ STATIC_URL }}css/wiki.css" rel="stylesheet">
 {% endblock %}
 

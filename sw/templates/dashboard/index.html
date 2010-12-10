@@ -1,13 +1,22 @@
 {% extends "base_hq_8_4.html" %}
 
+{% load breadcrumbs feature_tag %}
 {% load pagination_tags %}
 
 {% block page_title %}Dashboard{% endblock %}
 
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb 'Dashboard' %}
+{% endblock %}
+
+
 {% block team_header %}
-    <div id="team-header" class="grid_12 alpha omega">
-        <h1>Dashboard</h1>
-    </div>
+    {% feature breadcrumbs %}{% disabled %}
+        <div id="team-header" class="grid_12 alpha omega">
+            <h1>Dashboard</h1>
+        </div>
+    {% endfeature %}
 {% endblock %}
 
 {% block content_body %}

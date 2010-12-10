@@ -1,11 +1,18 @@
 {% extends "wakawaka/base.html" %}
 
 {% load attachments_tags %}
+{% load breadcrumbs feature_tag %}
 {% load comments %}
 {% load group_tags %}
 {% load i18n %}
 {% load wakawaka_tags %}
 {% load wakacms_tags %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb page.slug "." %}
+{% endblock %}
+
 
 {% block extrahead %}
 	{{ block.super }}
@@ -26,7 +33,9 @@
 {% endblock %}
 
 {% block content %}
-	<h1><a name="top" href="{% groupurl wakawaka_page group slug=page.slug %}">{{ page.slug }}</a></h1>
+    {% feature breadcrumbs %}{% disabled %}
+	    <h1><a name="top" href="{% groupurl wakawaka_page group slug=page.slug %}">{{ page.slug }}</a></h1>
+    {% endfeature %}
 
 	{% if rev.is_not_current %}
 	<p class="revert-warning">
@@ -82,9 +91,9 @@
         		<li><strong><a href="{% groupurl wakawaka_edit group slug=page.slug %}">Edit this page</a></strong></li>
         	{% endif %}
             <li>Revision: {{ rev.id }}</li>
-            <li>Changed by: <a href="{{ page.current.creator.get_absolute_url }}">{{ page.current.creator }}</a></li>
-            <li>At: {{ rev.modified|date:_("DATETIME_FORMAT") }}</li>
-            <li><a href="{% groupurl wakawaka_revision_list group slug=page.slug %}">Change history</a></li>
+            <li>Last editor: <a href="{{ page.current.creator.get_absolute_url }}">{{ page.current.creator }}</a></li>
+            <li>Last change: {{ rev.modified|date:_("DATETIME_FORMAT") }}</li>
+            <li><a href="{% groupurl wakawaka_revision_list group slug=page.slug %}">This page's history</a></li>
         </ul>
 
     	{% spaceless %}
