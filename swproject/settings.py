@@ -104,8 +104,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'sw.context_processors.team_wiki_index_page',
     'sw.context_processors.temp_all_teams_list',
 
-    'zinnia.context_processors.media',
-    'zinnia.context_processors.version',
+    # 'zinnia.context_processors.media',
+    # 'zinnia.context_processors.version',
 
     'featureflipper.context_processors.features',
 )
@@ -176,18 +176,18 @@ LANGUAGE_CODE = 'en'
 
 APPEND_SLASH = True
 
-# ==================================================================
-# zinnia
-
-# TODO: Get a key for sensible washington.
-# AKISMET_SECRET_KEY_API = '...'
-
-ZINNIA_AKISMET_COMMENT = False
-
-# from zinnia.xmlrpc import ZINNIA_XMLRPC_METHODS
-# XMLRPC_METHODS = ZINNIA_XMLRPC_METHODS
-
-ZINNIA_MEDIA_URL = '/media/zinnia/'
+# # ==================================================================
+# # zinnia
+#
+# # TODO: Get a key for sensible washington.
+# # AKISMET_SECRET_KEY_API = '...'
+#
+# ZINNIA_AKISMET_COMMENT = False
+#
+# # from zinnia.xmlrpc import ZINNIA_XMLRPC_METHODS
+# # XMLRPC_METHODS = ZINNIA_XMLRPC_METHODS
+#
+# ZINNIA_MEDIA_URL = '/media/zinnia/'
 
 # ==================================================================
 # comments
@@ -308,8 +308,8 @@ INSTALLED_APPS = (
     #
     # zinnia
     'tagging',
-    'zinnia',
-    'zinnia.plugins',
+    # 'zinnia',
+    # 'zinnia.plugins',
     #
     # wakawaka (wiki)
     'wakawaka',
