@@ -2,9 +2,9 @@
 <li><a href="/why-legalize/">Why Legalize</a></li>
 <li><a href="/endorsements/">Endorsements</a></li>
 <li><a href="/ways-help/">Ways to Help</a></li>
-<li><a href="/donate/">Donate</a></li>
 {% if user.is_authenticated %}
     <li><a href="{% url dashboard_index %}">Volunteer HQ</a></li>
 {% else %}
-    <li><a href="{% url account_login %}">Volunteer HQ</a></li>
+    <li><a href="{% url account_login %}">Volunteer</a></li>
 {% endif %}
+<li><a href="/donate/">Donate</a></li>
