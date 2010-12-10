@@ -96,4 +96,7 @@ django-attachments==0.3.1
 -e git+http://github.com/snswa/django-voting.git@5dcc830#egg=django-voting
 
 # Feature Flipper
--e git+http://github.com/snswa/django-feature-flipper.git@0312bce#egg=django-feature-flipper
+-e git+http://github.com/snswa/django-feature-flipper.git@a8bf9ab#egg=django-feature-flipper
+
+# Feature Labs
+-e git+http://github.com/snswa/django-feature-labs.git@822c3ea#egg=django-feature-labs

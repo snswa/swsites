@@ -1,0 +1,33 @@
+{% extends "base_hq_12.html" %}
+
+{% load breadcrumbs feature_tag %}
+{% load group_tags %}
+{% load i18n %}
+
+{# Insert 'head_title' from wiki templates into 'page_title' in base #}
+{% block page_title %}{% block head_title %}{% endblock %}{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb_url 'Feature Labs' featurelabs_index %}
+{% endblock %}
+
+{% block content_body %}
+    {% feature labs %}
+        {% block content %}
+        {% endblock %}
+    {% disabled %}
+        <div class="grid_6 prefix_3 suffix_3">
+            <div id="underconstruction">
+                <p>
+                    You haven't enabled the feature labs for your browsing
+                    session.
+                </p>
+
+                <p>
+                    <a href="?session_enable_labs">Click here to enable feature labs.</a>
+                </p>
+            </div>
+        </div>
+    {% endfeature %}
+{% endblock %}

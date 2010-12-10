@@ -357,6 +357,7 @@ INSTALLED_APPS = (
     #
     # feature flipping,
     'featureflipper',
+    'featurelabs',
 )
 
 import os
