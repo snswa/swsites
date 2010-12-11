@@ -55,7 +55,7 @@ akismet==0.2.0
 BeautifulSoup==3.1.0.1
 
 # Allauth
--e git+http://github.com/gldnspud/django-allauth.git@453273c187fe7f10039a4dcf1fc3f5605ce051a8#egg=django-allauth
+-e git+http://github.com/snswa/django-allauth.git@453273c#egg=django-allauth
 httplib2==0.6.0
 oauth2==1.2.0
 python-openid==2.2.5
