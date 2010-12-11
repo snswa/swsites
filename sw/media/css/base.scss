@@ -264,7 +264,6 @@ div#breadcrumbs {
       display: inline;
       padding: 0;
       margin-left: 0;
-      color: white;
       & + li:before {
         content: " » ";
       }

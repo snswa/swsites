@@ -198,8 +198,7 @@ div#breadcrumbs {
     div#breadcrumbs ul li {
       display: inline;
       padding: 0;
-      margin-left: 0;
-      color: white; }
+      margin-left: 0; }
       div#breadcrumbs ul li + li:before {
         content: " » "; }
       div#breadcrumbs ul li:last-child {
