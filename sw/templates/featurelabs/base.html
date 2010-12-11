@@ -14,6 +14,16 @@
 
 {% block content_body %}
     {% feature labs %}
+        <p>
+            Read about the features below, and choose the ones that you'd
+            like to use.  Features selected below will remain in effect until
+            you log out.  Features turned on permanently will not appear below.
+        </p>
+        <p>
+            If you don't see your favorite feature listed here,
+            <a href="/teams/devops/wiki/FeatureRequests/">make a feature request</a>.
+        </p>
+
         {% block content %}
         {% endblock %}
     {% disabled %}
@@ -25,7 +35,20 @@
                 </p>
 
                 <p>
-                    <a href="?session_enable_labs">Click here to enable feature labs.</a>
+                    Feature labs are a way you can check out the latest
+                    features of the site while they're being built.
+                </p>
+
+                <p>
+                    When you enable feature labs, be aware that each feature
+                    is in a different stage.  Some are just getting started,
+                    and some are nearly "feature complete" and soon to be turned
+                    on permanently.
+                </p>
+
+                <p>
+                    If you understand the above and want to continue,
+                    <a href="?session_enable_labs">click here to enable feature labs</a>.
                 </p>
             </div>
         </div>
