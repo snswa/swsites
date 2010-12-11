@@ -37,7 +37,7 @@
             <a href="#c{{ comment.id }}">#</a>
         </span>
         <div class="comment-body">
-            {{ comment.comment|linebreaks }}
+            {{ comment.comment|urlize|linebreaks }}
         </div>
     </div>
 {% endfor %}
