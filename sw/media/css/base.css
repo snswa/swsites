@@ -29,6 +29,7 @@ td {
 #auth-bar {
   background-color: #0b4f96;
   font-size: 14px;
+  width: 960px;
   border-bottom: 2px solid #57a3f3;
   position: relative;
   height: 22px;
@@ -42,6 +43,9 @@ td {
     text-decoration: none; }
     #auth-bar a:hover {
       text-decoration: underline; }
+  #auth-bar .left {
+    position: absolute;
+    float: left; }
   #auth-bar .right {
     text-align: right;
     float: right; }
@@ -62,7 +66,7 @@ td {
   background-position: 5px;
   background-repeat: no-repeat;
   background-size: 246px 140px;
-  width: 940px;
+  width: 960px;
   height: 140px;
   margin-left: 0px;
   margin-top: 1em;
@@ -74,7 +78,7 @@ td {
     text-indent: -9999px; }
   .header h2 {
     display: table-cell;
-    width: 940px;
+    width: 960px;
     text-align: center;
     position: absolute;
     height: 105px;
@@ -124,7 +128,7 @@ div#site-sections {
   max-height: 50px;
   margin: 0px;
   padding: 0px;
-  width: 940px;
+  width: 960px;
   border-bottom: 2px solid #009966;
   font-weight: bold; }
   div#site-sections ul {
@@ -141,10 +145,8 @@ div#site-sections {
     vertical-align: middle;
     margin: 0;
     padding: 0;
-    width: 156px;
+    width: 160px;
     padding: 0; }
-    div#site-sections li:last-child {
-      width: 160px; }
   div#site-sections a {
     display: block;
     float: left;
@@ -185,7 +187,7 @@ div#site-sections {
 /* @group breadcrumbs */
 div#breadcrumbs {
   border-bottom: #009966 solid 2px;
-  width: 930px;
+  width: 950px;
   padding-left: 10px;
   padding-top: 2px;
   padding-bottom: 2px;
@@ -236,39 +238,29 @@ div#content.grid_8 {
 /* @group #sidebar */
 div#sidebar {
   font-size: smaller; }
-
-div#sidebar .section {
-  margin-top: 1.5em;
-  margin-bottom: 2em;
-  padding: 1em;
-  position: relative; }
+  div#sidebar .section {
+    margin-top: 1.5em;
+    margin-bottom: 2em;
+    padding: 1em;
+    position: relative; }
+  div#sidebar h1 {
+    font-size: 14pt;
+    margin-bottom: .5em;
+    border-bottom: 2px solid #009966; }
+  div#sidebar ul {
+    margin-bottom: .5em; }
+  div#sidebar form {
+    display: inline;
+    margin: 0;
+    padding: 0; }
+  div#sidebar div.more {
+    text-align: right; }
 
 .hq #sidebar .section {
   background: #ffebcc;
   border-left: 2px solid #b86e00; }
-
-div#sidebar .sidebar-icon {
-  position: absolute;
-  left: -50px; }
-
-div#sidebar h1 {
-  font-size: 14pt;
-  margin-bottom: .5em;
-  border-bottom: 2px solid #009966; }
-
-.hq div#sidebar h1 {
+.hq #sidebar h1 {
   border-color: #0b4f96; }
-
-div#sidebar ul {
-  margin-bottom: .5em; }
-
-div#sidebar form {
-  display: inline;
-  margin: 0;
-  padding: 0; }
-
-div#sidebar div.more {
-  text-align: right; }
 
 /* @end */
 /* @group #site-messages */
@@ -301,7 +293,7 @@ form#join-campaign-form input[type="submit"] {
 /* @end */
 /* @group footer */
 div.footer {
-  width: 940px;
+  width: 960px;
   margin-top: 2em;
   border-top: 2px solid #009966; }
 
@@ -366,7 +358,7 @@ div.comment {
   height: 50px;
   max-height: 50px;
   margin-right: 0px;
-  width: 940px;
+  width: 960px;
   border-bottom: 2px solid #57a3f3;
   background-color: #0b4f96; }
 

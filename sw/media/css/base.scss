@@ -1,5 +1,7 @@
 /* http://colorschemedesigner.com/#3741Tw0sRw0w0 */
 
+$site-width: 960px;
+
 $color-p: #009966;
 $color-s1: #0b4f96;
 $color-s2: #e68a00;
@@ -46,6 +48,7 @@ td {
 #auth-bar {
 	background-color: $color-s1;
     font-size: 14px;
+    width: $site-width;
     border-bottom: 2px solid lighten($color-s1, 33%);
     position: relative;
     height: 22px;
@@ -63,6 +66,8 @@ td {
         }
     }
     .left {
+      position: absolute;
+      float: left;
     }
     .right {
         text-align: right;
@@ -96,7 +101,7 @@ td {
     background-position: 5px;
     background-repeat: no-repeat;
     background-size: 246px 140px;
-    width: 940px;
+    width: $site-width;
     height: 140px;
     margin-left: 0px;
     margin-top: 1em;
@@ -109,7 +114,7 @@ td {
     }
     h2 {
     	display: table-cell;
-        width: 940px;
+        width: $site-width;
         text-align: center;
         position: absolute;
         height: 105px;
@@ -172,7 +177,7 @@ div#site-sections {
     max-height: 50px;
     margin: 0px;
     padding: 0px;
-    width: 940px;
+    width: $site-width;
     border-bottom: 2px solid $color-p;
 	font-weight: bold;
 	ul {
@@ -190,11 +195,8 @@ div#site-sections {
         vertical-align: middle;
     	margin: 0;
     	padding: 0;
-    	width: 156px;
+    	width: 160px;
     	padding: 0;
-    	&:last-child {
-    	    width: 160px;
-    	}
 	}
 	a {
     	display: block;
@@ -249,7 +251,7 @@ div#site-sections {
 
 div#breadcrumbs {
     border-bottom: $color-p solid 2px;
-    width: 930px;
+    width: $site-width - 10px;
     padding-left: 10px;
     padding-top: 2px;
     padding-bottom: 2px;
@@ -316,47 +318,38 @@ div#content.grid_8 {
 
 div#sidebar {
     font-size: smaller;
+    .section {
+        margin-top: 1.5em;
+        margin-bottom: 2em;
+        padding: 1em;
+        position: relative;
+    }
+    h1 {
+        font-size: 14pt;
+        margin-bottom: .5em;
+        border-bottom: 2px solid $color-p;
+    }
+    ul {
+        margin-bottom: .5em;
+    }
+    form {
+    	display: inline;
+    	margin: 0;
+    	padding: 0;
+    }
+    div.more {
+        text-align: right;
+    }
 }
 
-div#sidebar .section {
-    margin-top: 1.5em;
-    margin-bottom: 2em;
-    padding: 1em;
-    position: relative;
-}
-
-.hq #sidebar .section {
+.hq #sidebar {
+  .section {
     background: lighten($color-s2, 45%);
     border-left: 2px solid darken($color-s2, 9%);
-}
-
-div#sidebar .sidebar-icon {
-    position: absolute;
-    left: -50px;
-}
-
-div#sidebar h1 {
-    font-size: 14pt;
-    margin-bottom: .5em;
-    border-bottom: 2px solid $color-p;
-}
-
-.hq div#sidebar h1 {
-    border-color: $color-s1;
-}
-
-div#sidebar ul {
-    margin-bottom: .5em;
-}
-
-div#sidebar form {
-	display: inline;
-	margin: 0;
-	padding: 0;
-}
-
-div#sidebar div.more {
-    text-align: right;
+  }
+  h1 {
+      border-color: $color-s1;
+  }
 }
 
 /* @end */
@@ -400,7 +393,7 @@ form#join-campaign-form input[type="submit"] {
 /* @group footer */
 
 div.footer {
-	width: 940px;
+	width: $site-width;
 	margin-top: 2em;
     border-top: 2px solid $color-p;
 }
@@ -485,7 +478,7 @@ div.comment {
     height: 50px;
     max-height: 50px;
     margin-right: 0px;
-    width: 940px;
+    width: $site-width;
     border-bottom: 2px solid lighten($color-s1, 33%);
     background-color: $color-s1;
 }
