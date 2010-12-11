@@ -15,6 +15,7 @@
 {% block body_class %}{{ block.super }} login{% endblock %}
 
 {% block body %}
+    {% include "socialaccount/snippets/login_extra.html" %}
 
     {% feature breadcrumbs %}{% disabled %}
         <h1>Sign In</h1>
