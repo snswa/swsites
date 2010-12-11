@@ -4,14 +4,14 @@
 {% load i18n %}
 {% load uni_form_tags %}
 
-{% block head_title %}{% trans "Profile for" %} {{ page_user.username }}{% endblock %}
+{% block head_title %}{% trans "Profile for" %} {{ page_user.get_profile }}{% endblock %}
 
 {% block breadcrumbs %}
     {{ block.super }}
     {% if is_me %}
         {% breadcrumb 'Your Profile' %}
     {% else %}
-        {% breadcrumb page_user.username %}
+        {% breadcrumb page_user.get_profile %}
     {% endif %}
 {% endblock %}
 
@@ -36,8 +36,12 @@
                 <p><b>{% trans "Username" %}</b>: {{ page_user.username }}</p>
 
                 {% with page_user.get_profile as p %}
+                    {% if p.preferred_name %}
+                        <p><b>{% trans "Preferred Name" %}</b>: {{ p.preferred_name }}</p>
+                    {% endif %}
+
                     {% if p.first_name or p.last_name %}
-                        <p><b>{% trans "Name" %}</b>: {{ p.first_name }} {{p.last_name}}</p>
+                        <p><b>{% trans "Full Name" %}</b>: {{ p.first_name }} {{p.last_name}}</p>
                     {% endif %}
 
                     {% if p.zip_code %}
@@ -81,7 +85,7 @@
         {% else %}
 
             {% feature breadcrumbs %}{% disabled %}
-                <h1>{% trans "Profile for" %} {{ page_user.username }}</h1>
+                <h1>{% trans "Profile for" %} {{ page_user.get_profile }}</h1>
             {% endfeature %}
 
             <p>(Viewing others' profiles is not yet enabled.)</p>

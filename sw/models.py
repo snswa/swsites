@@ -1,4 +1,6 @@
+from django.core.urlresolvers import reverse
 from django.db import models
+from django.template.defaultfilters import slugify
 
 from idios.models import ProfileBase
 
@@ -23,6 +25,9 @@ class Profile(ProfileBase):
     preferred_contact_methods = models.CharField(max_length=255, blank=True)
 
     bio = models.TextField(blank=True)
+
+    def __unicode__(self):
+        return self.preferred_name or self.user.username
 
 
 # ========================================================================

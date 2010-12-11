@@ -1,5 +1,5 @@
 {% load feature_tag %}
-<span>Signed in as {{ user.username }}.</span>
+<span>Signed in as {{ user.get_profile }}.</span>
 {% feature labs %}
     <span id="labs-link" class="icon-link"><a href="{% url featurelabs_index %}"><span>Labs</span></a></span>
 {% endfeature %}

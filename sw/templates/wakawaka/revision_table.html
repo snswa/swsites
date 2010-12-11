@@ -35,7 +35,7 @@
 	</td>
 	<td class="modifed">{{ rev.modified|timesince }} ago</td>
 	<td class="message">{{ rev.message }}</td>
-	<td class="creator">{{ rev.creator.username }}</td>
+	<td class="creator">{{ rev.creator.get_profile }}</td>
 	<td class="options">
 		<a href="{% groupurl wakawaka_page group slug=page.slug, rev_id=rev.pk %}">{% trans "View" %}</a>
 		<a href="{% groupurl wakawaka_edit group slug=page.slug, rev_id=rev.pk %}">{% trans "Revert" %}</a>

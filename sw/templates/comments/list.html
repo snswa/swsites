@@ -30,7 +30,7 @@
             </form>
         </span>
         <span>
-            From <a href="{{ comment.user.get_absolute_url }}">{{ comment.user }}</a>,
+            From <a href="{{ comment.user.get_absolute_url }}">{{ comment.user.get_profile }}</a>,
             {{ comment.submit_date|timesince }} ago
         </span>
         <span class="comment-permalink">

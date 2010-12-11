@@ -27,7 +27,7 @@
 		<td><a href="{% groupurl wakawaka_page group slug=rev.page.slug, rev_id=rev.pk %}">{{ rev.page.slug }}</a></td>
 		<td class="modifed">{{ rev.modified|timesince }} ago</td>
 		<td class="message">{{ rev.message }}</td>
-		<td class="creator">{{ rev.creator.username }}</td>
+		<td class="creator">{{ rev.creator.get_profile }}</td>
 		<td class="options">
 			<a href="{% groupurl wakawaka_page group slug=rev.page.slug, rev_id=rev.pk %}">{% trans "View" %}</a>
 			{% if user.is_authenticated %}

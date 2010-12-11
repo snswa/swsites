@@ -1,36 +1,42 @@
-<span class="actor">
-    {% if action.actor.get_absolute_url %}
-        <a href="{{ action.actor.get_absolute_url }}">{{ action.actor }}</a>
-    {% else %}
-        <a href="{{ action.actor_url }}">{{ action.actor }}</a>
-    {% endif %}
-</span>
+{% with action.actor as actor %}
+    <span class="actor">
+        {% if actor.get_absolute_url %}
+            <a href="{{ actor.get_absolute_url }}">{{ actor.get_profile|default:actor }}</a>
+        {% else %}
+            <a href="{{ action.actor_url }}">{{ actor.get_profile|default:actor }}</a>
+        {% endif %}
+    </span>
+{% endwith %}
 
 <span class="verb">{{ action.verb }}</span>
 
-{% if action.action_object %}
-    <span class="action-object">
-        {% if action.action_object.get_absolute_url %}
-            <a href="{{ action.action_object.get_absolute_url }}">{% if action.action_object.content_object %}{{ action.action_object.content_object }}{% else %}{{ action.action_object }}{% endif %}</a>
-        {% else %}
-            {{ action.action_object }}
-        {% endif %}
-    </span>
-{% endif %}
-
-<span class="timestamp">
-    {{ action.timestamp|timesince }} ago
-    {% if action.target and not group %}
-        in
-        <span class="target">
-            {% if action.target.get_absolute_url %}
-                <a href="{{ action.target.get_absolute_url }}">{{ action.target }}</a>
+{% with action.action_object as obj %}
+    {% if obj %}
+        <span class="action-object">
+            {% if obj.get_absolute_url %}
+                <a href="{{ obj.get_absolute_url }}">{% if obj.content_object %}{{ obj.content_object }}{% else %}{{ obj }}{% endif %}</a>
             {% else %}
-                {{ action.target }}
+                {{ obj }}
             {% endif %}
         </span>
     {% endif %}
-</span>
+{% endwith %}
+
+{% with action.target as target %}
+    <span class="timestamp">
+        {{ action.timestamp|timesince }} ago
+        {% if target and not group %}
+            in
+            <span class="target">
+                {% if target.get_absolute_url %}
+                    <a href="{{ target.get_absolute_url }}">{{ target }}</a>
+                {% else %}
+                    {{ target }}
+                {% endif %}
+            </span>
+        {% endif %}
+    </span>
+{% endwith %}
 
 {% if action.description %}
     <div class="description">{{ action.description }}</div>

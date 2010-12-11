@@ -51,7 +51,7 @@
             {% with group.members.all as members %}
                 <ul>
                     {% for user in members %}
-                        <li><a href="{{ user.get_absolute_url }}">{{ user.username }}</a></li>
+                        <li><a href="{{ user.get_absolute_url }}">{{ user.get_profile }}</a></li>
                     {% endfor %}
                 </ul>
             {% endwith %}
