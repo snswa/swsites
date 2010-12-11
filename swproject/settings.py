@@ -104,7 +104,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'sw.context_processors.team_actions',
     'sw.context_processors.team_membership',
     'sw.context_processors.team_wiki_index_page',
-    'sw.context_processors.temp_all_teams_list',
 
     # 'zinnia.context_processors.media',
     # 'zinnia.context_processors.version',

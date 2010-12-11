@@ -36,9 +36,3 @@ def team_wiki_index_page(request):
         }
     else:
         return {}
-
-
-def temp_all_teams_list(request):
-    return {
-        'temp_all_teams_list': Team.objects.all(),
-    }

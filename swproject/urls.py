@@ -55,7 +55,6 @@ urlpatterns += patterns('',
     url(r'^sentry/', include('sentry.urls')),
     url(r'^teams/', include('teams.urls')),
     url(r'^voting/', include('voting.urls')),
-    url(r'^wiki/', include('swproject.urls_wiki')),
 )
 
 
@@ -66,8 +65,17 @@ urlpatterns += wiki_bridge.include_urls(
 )
 
 
-# Legacy redirects and CMS at very end, to catch everything else.
+# Redirects
+legacy_urls = (
+    ('^wiki/', '/dashboard/'),
+)
+for oldurl, newurl in legacy_urls:
+    urlpatterns += patterns('',
+        url(oldurl, 'django.views.generic.simple.redirect_to', {'url': newurl}),
+    )
+
+
+# CMS at very end, to catch everything else.
 urlpatterns += patterns('',
     url(r'^', include('cms.urls')),
-    # TODO: Legacy redirects for sensiblewashington.org URLs
 )

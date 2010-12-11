@@ -66,23 +66,6 @@
 {% endblock %}
 
 {% block sidebar_sections %}
-    {% if user.is_staff and not group %}
-        <div class="section">
-            <h1>Move Page To Team</h1>
-
-            <form action="{% url temp_move_wiki_page %}" method="POST">
-                {% csrf_token %}
-                <input type="hidden" name="page_slug" value="{{ page.slug }}">
-                <select name="team_slug" size="1">
-                    {% for team in temp_all_teams_list %}
-                        <option value="{{ team.slug }}">{{ team.name }}</option>
-                    {% endfor %}
-                </select>
-                <input type="submit" name="submit" value="Move Page">
-            </form>
-        </div>
-    {% endif %}
-
     <div class="section">
         <h1>This Wiki Page</h1>
 
