@@ -5,10 +5,12 @@ from idios.models import ProfileBase
 
 class Profile(ProfileBase):
 
+    preferred_name = models.CharField(max_length=50, blank=True)
+
     first_name = models.CharField(max_length=100, blank=True)
     last_name = models.CharField(max_length=100, blank=True)
 
-    zip_code = models.CharField(max_length=5, blank=True)
+    zip_code = models.CharField(max_length=30, blank=True)
     mailing_address = models.TextField(blank=True)
 
     phone_number = models.CharField(max_length=20, blank=True)
