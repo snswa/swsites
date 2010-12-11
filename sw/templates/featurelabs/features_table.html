@@ -2,27 +2,30 @@
     <thead>
         <tr>
             <th>Feature</th>
-            <th>Description</th>
             <th>Status</th>
+            <th>Description</th>
         </tr>
     </thead>
     <tbody>
         {% for feature, status in feature_list %}
-            <tr>
-                <td>{{ feature.name }}</td>
-                <td>{{ feature.description|safe }}</td>
-                <td>
-                    {% if status.site %}
-                        <strong>ON</strong>:&nbsp;site-wide
-                    {% else %}
-                        {% if status.session %}
-                            <strong>ON</strong>:&nbsp;this&nbsp;session&nbsp;only
+            {# Only show experimental features #}
+            {% if not status.site %}
+                <tr>
+                    <td>{{ feature.name }}</td>
+                    <td>
+                        {% if status.site %}
+                            <strong>ON</strong>:&nbsp;site-wide
                         {% else %}
-                            Off:&nbsp;<a href="?session_enable_{{ feature.name }}">enable now</a>
+                            {% if status.session %}
+                                <strong>ON</strong>:&nbsp;this&nbsp;session&nbsp;only
+                            {% else %}
+                                Off:&nbsp;<a href="?session_enable_{{ feature.name }}">enable now</a>
+                            {% endif %}
                         {% endif %}
-                    {% endif %}
-                </td>
-            </tr>
+                    </td>
+                    <td>{{ feature.description|safe }}</td>
+                </tr>
+            {% endif %}
         {% endfor %}
         <tr>
             <td colspan="2">&nbsp;</td>
