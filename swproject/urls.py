@@ -39,6 +39,8 @@ urlpatterns += patterns('',
     # Example:
     # (r'^swproject/', include('swproject.foo.urls')),
     #
+    # APPS
+    #
     url(r'^_site/', include('sw.urls')),    # Deployment tests and temporary views.
     url(r'^accounts/', include('allauth.urls')),
     url(r'^admin/', include(admin.site.urls)),
@@ -55,6 +57,10 @@ urlpatterns += patterns('',
     url(r'^sentry/', include('sentry.urls')),
     url(r'^teams/', include('teams.urls')),
     url(r'^voting/', include('voting.urls')),
+    #
+    # CUSTOM
+    #
+    url(r'^hq/', 'sw.views.hq', name='sw_hq'),
 )
 
 

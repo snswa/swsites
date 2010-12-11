@@ -1,13 +1,13 @@
-/* http://colorschemedesigner.com/#3741Tw0sRw0w0 */
-
 $site-width: 960px;
+$gutter-width: 10px;
+$accent-width: 2px;
+$shadow-width: 3px;
 
+/* http://colorschemedesigner.com/#3741Tw0sRw0w0 */
 $color-p: #009966;
 $color-s1: #0b4f96;
 $color-s2: #e68a00;
 $color-c: #e64d00;
-
-/* end colors */
 
 body {
     position: relative;
@@ -28,28 +28,23 @@ a {
     }
 }
 
-/* @group global */
-
-th {
-    padding-left: .5em;
-    padding-right: .5em;
-    padding-top: .5em;
+table {
+  th {
+      padding-left: .5em;
+      padding-right: .5em;
+      padding-top: .5em;
+  }
+  td {
+      padding: .5em;
+      border: 1px solid black;
+  }
 }
-
-td {
-    padding: .5em;
-    border: 1px solid black;
-}
-
-/* @end */
-
-/* @group auth */
 
 #auth-bar {
 	background-color: $color-s1;
     font-size: 14px;
     width: $site-width;
-    border-bottom: 2px solid lighten($color-s1, 33%);
+    border-bottom: $accent-width solid lighten($color-s1, 33%);
     position: relative;
     height: 22px;
     color: white;
@@ -91,10 +86,6 @@ td {
       background:transparent url('/media/featurelabs/lightning.png') left top no-repeat;
     }
 }
-
-/* @endgroup */
-
-/* @group header */
 
 .header {
     background-image: url("/media/images/logos/logo-246x140.gif");
@@ -168,17 +159,13 @@ td {
     display: none;
 }
 
-/* @end */
-
-/* @group #site-sections */
-
 div#site-sections {
     height: 50px;
     max-height: 50px;
     margin: 0px;
     padding: 0px;
     width: $site-width;
-    border-bottom: 2px solid $color-p;
+    border-bottom: $accent-width solid $color-p;
 	font-weight: bold;
 	ul {
     	list-style-type: none;
@@ -245,89 +232,66 @@ div#site-sections {
     }
 }
 
-/* @end */
-
-/* @group breadcrumbs */
-
 div#breadcrumbs {
-    border-bottom: $color-p solid 2px;
-    width: $site-width - 10px;
-    padding-left: 10px;
+    border-bottom: $color-p solid $accent-width;
+    width: $site-width - $gutter-width;
+    padding-left: $gutter-width;
     padding-top: 2px;
     padding-bottom: 2px;
     background-color: $color-p;
     color: lighten($color-p, 45%);
+    a {
+        color: white;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    ul {
+        display: inline;
+        padding: 0;
+        margin: 0 0 0 1em;
+        li {
+            display: inline;
+            padding: 0;
+            margin-left: 0;
+            color: white;
+            & + li:before {
+                content: " » ";
+            }
+            &:last-child {
+                font-weight: bold;
+                font-size: larger;
+            }
+        }
+        a {
+            text-decoration: none;
+        }
+    }
 }
 
 .hq div#breadcrumbs {
 	background-color: $color-s1;
-    border-color: lighten($color-s1, 33%);
-    color: lighten($color-s1, 45%);
+  border-color: lighten($color-s1, 33%);
+  color: lighten($color-s1, 45%);
 }
 
-#breadcrumbs a {
-    color: white;
-}
-
-#breadcrumbs a:hover {
-    text-decoration: underline;
-}
-
-#breadcrumbs ul {
-    display: inline;
-    padding: 0;
-    margin: 0 0 0 1em;
-}
-
-#breadcrumbs ul li {
-    display: inline;
-    padding: 0;
-    margin-left: 0;
-    color: white;
-}
-
-#breadcrumbs li + li:before {
-    content: " » ";
-}
-
-#breadcrumbs li:last-child {
-    font-weight: bold;
-    font-size: larger;
-}
-
-#breadcrumbs a {
-    text-decoration: none;
-}
-
-
-/* @end */
-
-/* @group #content */
 
 div#content {
-    margin-top: .75em;
+    margin-top: $gutter-width;
 }
-
-div#content.grid_8 {
-    padding-right: 1em;
-}
-
-/* @end */
-
-/* @group #sidebar */
 
 div#sidebar {
     font-size: smaller;
     .section {
-        margin-top: 1.5em;
-        margin-bottom: 2em;
-        padding: 1em;
+        margin-top: $gutter-width;
+        margin-bottom: $gutter-width;
+        padding: $gutter-width;
         position: relative;
     }
     h1 {
         font-size: 14pt;
         margin-bottom: .5em;
-        border-bottom: 2px solid $color-p;
+        border-bottom: $accent-width solid $color-p;
     }
     ul {
         margin-bottom: .5em;
@@ -345,96 +309,57 @@ div#sidebar {
 .hq #sidebar {
   .section {
     background: lighten($color-s2, 45%);
-    border-left: 2px solid darken($color-s2, 9%);
+    border-left: $accent-width solid darken($color-s2, 9%);
   }
   h1 {
       border-color: $color-s1;
   }
 }
 
-/* @end */
-
-/* @group #site-messages */
-
 ul#site-messages {
 	list-style: none outside none;
 	margin-bottom: 0;
+	li {
+      display: block;
+      background: lighten($color-s2, 50%);
+      margin: 0 $gutter-width ($gutter-width + 5px) $gutter-width;
+      padding: $gutter-width;
+      border-width: 1px 1px $shadow-width 1px;
+      border-color: $color-s2;
+      border-style: solid;
+  }
 }
-
-ul#site-messages li {
-    display: block;
-    background: lighten($color-s2, 50%);
-    margin: 1em;
-    padding: 1em;
-    border-width: 1px 1px 3px 1px;
-    border-color: $color-s2;
-    border-style: solid;
-}
-
-/* @end */
-
-/* @group join-campaign-form */
-
-form#join-campaign-form input {
-    display: block;
-    width: 215px;
-    height: 1.5em;
-    margin-bottom: .5em;
-}
-
-form#join-campaign-form input[type="submit"] {
-    width: 70px;
-    height: 2em;
-    margin-left: 150px;
-}
-
-/* @end */
-
-/* @group footer */
 
 div.footer {
 	width: $site-width;
 	margin-top: 2em;
-    border-top: 2px solid $color-p;
+  border-top: $accent-width solid $color-p;
+  span {
+      padding-right: 1em;
+  }
 }
-
-div.footer span {
-    padding-right: 1em;
-}
-
-/* @end */
-
-/* @group apps */
 
 .object-command {
     color: silver;
     font-size: smaller;
 }
 
-/* @group activity stream */
-
 ul.stream li.event {
     padding-bottom: 1em;
+    span.timestamp {
+        display: block;
+        font-size: smaller;
+        color: silver;
+    }
+    div.description {
+        color: gray;
+        margin-left: 1em;
+        padding-left: 1em;
+        padding-top: .25em;
+        padding-bottom: .25em;
+        border-left: $accent-width solid silver;
+    }
 }
-
-ul.stream li.event span.timestamp {
-    display: block;
-    font-size: smaller;
-    color: silver;
-}
-
-ul.stream li.event div.description {
-    color: gray;
-    margin-left: 1em;
-    padding-left: 1em;
-    padding-top: .25em;
-    padding-bottom: .25em;
-    border-left: 2px solid silver;
-}
-
-/* @end */
-
-/* @group attachments */
 
 ul.attachments li a.attachment {
    	margin-right: 1.5em;
@@ -445,33 +370,19 @@ form.add-attachment p {
     margin-bottom: 0;
 }
 
-/* @end */
-
-/* @group comments */
-
 div.comment {
     margin-bottom: 1.5em;
+    .comment-body {
+        color: gray;
+        margin-left: 1em;
+        padding-left: 1em;
+        padding-top: .25em;
+        padding-bottom: .25em;
+        border-left: $accent-width solid silver;
+    }
 }
-
-.comment .comment-body {
-    color: gray;
-    margin-left: 1em;
-    padding-left: 1em;
-    padding-top: .25em;
-    padding-bottom: .25em;
-    border-left: 2px solid silver;
-}
-
-.hq .comment .comment-body {
-    /* */
-}
-
-/* @end */
-
-/* @group teams */
 
 .hq #team-header {
-/*  position: static;*/
     display: table;
     top: 24px;
     left: 5px;
@@ -479,131 +390,36 @@ div.comment {
     max-height: 50px;
     margin-right: 0px;
     width: $site-width;
-    border-bottom: 2px solid lighten($color-s1, 33%);
+    border-bottom: $accent-width solid lighten($color-s1, 33%);
     background-color: $color-s1;
-}
-
-.hq #team-header a {
-    color: white;
-    text-decoration: none;
-}
-
-.hq #team-header a:hover {
-    text-decoration: underline;
-}
-
-.hq #team-header h1 {
-	text-align: center;
-	color: white;
-	margin-top: .1em;
-	margin-bottom: .1em;
-}
-
-/* @end */
-
-/* @group voting */
-
-.votes form {
-    display: inline;
-}
-
-.votes .score {
-    font-weight: bold;
+    a {
+        color: white;
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    h1 {
+    	text-align: center;
+    	color: white;
+    	margin-top: .1em;
+    	margin-bottom: .1em;
+    }
 }
 
 .votes {
     margin-right: 1em;
+    form {
+        display: inline;
+    }
+    .score {
+        font-weight: bold;
+    }
 }
 
-/* @end */
-
-
-
-/* @end */
-
-/* @group prototype */
-
-/* @group checklist */
-
-ul.checklist {
-    list-style: none outside none;
-}
-
-ul.checklist li {
-    background-repeat: no-repeat;
-    background-position: -10px -5px;
-    background-image: url("/media/images/icons/greencheck.png");
-    background-color: transparent;
-    background-attachment: scroll;
-    padding-left: 50px;
-    font-size: 14pt;
-    color: $color-p;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-left: 0;
-}
-
-/* @end */
-
-/* @group thumbnails */
-
-ul.thumbnails {
-    list-style: none outside none;
-
-}
-
-ul.thumbnails a {
-    text-decoration: none;
-}
-
-ul.thumbnails li {
-    position: relative;
-}
-
-ul.thumbnails .verb {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: black;
-    color: white;
-    padding-left: .5em;
-    padding-right: .5em;
-}
-
-ul.thumbnails .caption {
-    font-size: smaller;
-}
-
-/* @end */
-
-.section.intro h1 {
-	margin-top: .5em;
-    margin-bottom: 0px;
-}
-
-.section.intro {
-	margin-bottom: 2em;
-}
-
-.section.news .section h1 {
-    background-color: $color-p;
-    color: white;
-    font-weight: normal;
-    text-align: center;
-    margin-bottom: .3em;
-}
-
-.section.news .date {
-    font-weight: bold;
-}
-
-/* @end */
-
-/* @group beta */
-
-div#underconstruction {
-    margin-top: 6em;
-    margin-bottom: 5em;
+div#largepagepanel {
+    margin-top: $gutter-width * 3;
+    margin-bottom: $gutter-width * 2;
     background: lighten($color-s2, 50%);
     padding: 3em;
     border-width: 1px 1px 4px 1px;
@@ -612,24 +428,105 @@ div#underconstruction {
     p:last-child {
         margin-bottom: 0;
     }
+    h2 {
+      margin-top: $gutter-width * 1.5;
+      margin-bottom: $gutter-width;
+      &:first-child {
+        margin-top: 0;
+      };
+    }
+}
+
+.login #largepagepanel {
+  p, h2 {
+    text-align: center;
+  }
+  ul.socialaccount_providers {
+    text-align: center;
+  }
 }
 
 div.beta-annotation p {
     background: lighten($color-s2, 50%);
     margin: 1em;
     padding: 1em;
-    border-width: 1px 1px 3px 1px;
+    border-width: 1px 1px $shadow-width 1px;
     border-color: $color-s2;
     border-style: solid;
 }
-
-/* @end */
-
-/* @group uniform */
 
 .uniForm .focused {
     background: lighten($color-s2, 50%);
 }
 
-/* @end */
+.hq-signup {
+  #content {
+    margin-top: $gutter-width * 2;
+    & > div {
+      div.section {
+        $border-color: $color-s1;
+        $header-bg-color: white;
+        $header-color: lighten(black, 9%);
+        width: $site-width / 2 - $gutter-width * 4 - 4;
+        margin-bottom: $gutter-width * 2;
+        padding: {
+          top: 1px;
+          bottom: $gutter-width;
+        };
+        background-color: lighten($color-s1, 63%);
+        border: {
+          color: $border-color;
+          style: solid;
+          radius: 0px;
+          width: 1px 1px $shadow-width 1px;
+        };
+        padding: {
+          left: $gutter-width;
+          right: $gutter-width;
+        }
+        h1 {
+          display: block;
+          text-align: center;
+          background-color: $header-bg-color;
+          color: $header-color;
+          margin-top: $gutter-width;
+        }
+      }
+    }
+  }
+  ul.socialaccount_providers {
+    text-align: center;
+  }
+}
 
+ul.socialaccount_providers {
+  display: block;
+  list-decoration: none;
+  li {
+    margin: 0;
+    display: inline;
+    a.socialaccount_provider {
+      width: 48px;
+      height: 48px;
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: middle;
+      text-indent: -9000px;
+      &.local {
+        background:transparent url('/media/socialaccount/sw.png') left top no-repeat;
+      }
+      &.google {
+        background:transparent url('/media/socialaccount/google.png') left top no-repeat;
+      }
+      &.twitter {
+        background:transparent url('/media/socialaccount/twitter.png') left top no-repeat;
+      }
+      &.facebook {
+        background:transparent url('/media/socialaccount/facebook.png') left top no-repeat;
+      }
+      &.yahoo {
+        background:transparent url('/media/socialaccount/yahoo.png') left top no-repeat;
+      }
+    }
+  }
+}

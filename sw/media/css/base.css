@@ -1,5 +1,4 @@
 /* http://colorschemedesigner.com/#3741Tw0sRw0w0 */
-/* end colors */
 body {
   position: relative;
   font-family: "Lucida Grande", "Verdana", "Arial", sans-serif; }
@@ -14,18 +13,14 @@ a {
   .hq a:hover {
     color: #0b4f96; }
 
-/* @group global */
-th {
+table th {
   padding-left: .5em;
   padding-right: .5em;
   padding-top: .5em; }
-
-td {
+table td {
   padding: .5em;
   border: 1px solid black; }
 
-/* @end */
-/* @group auth */
 #auth-bar {
   background-color: #0b4f96;
   font-size: 14px;
@@ -59,8 +54,6 @@ td {
   #auth-bar #labs-link {
     background: transparent url("/media/featurelabs/lightning.png") left top no-repeat; }
 
-/* @endgroup */
-/* @group header */
 .header {
   background-image: url("/media/images/logos/logo-246x140.gif");
   background-position: 5px;
@@ -121,8 +114,6 @@ td {
 .hq #follow-campaign {
   display: none; }
 
-/* @end */
-/* @group #site-sections */
 div#site-sections {
   height: 50px;
   max-height: 50px;
@@ -183,8 +174,6 @@ div#site-sections {
       color: white;
       background: #0b4f96; }
 
-/* @end */
-/* @group breadcrumbs */
 div#breadcrumbs {
   border-bottom: #009966 solid 2px;
   width: 950px;
@@ -193,55 +182,41 @@ div#breadcrumbs {
   padding-bottom: 2px;
   background-color: #009966;
   color: #80ffd4; }
+  div#breadcrumbs a {
+    color: white; }
+    div#breadcrumbs a:hover {
+      text-decoration: underline; }
+  div#breadcrumbs ul {
+    display: inline;
+    padding: 0;
+    margin: 0 0 0 1em; }
+    div#breadcrumbs ul li {
+      display: inline;
+      padding: 0;
+      margin-left: 0;
+      color: white; }
+      div#breadcrumbs ul li + li:before {
+        content: " » "; }
+      div#breadcrumbs ul li:last-child {
+        font-weight: bold;
+        font-size: larger; }
+    div#breadcrumbs ul a {
+      text-decoration: none; }
 
 .hq div#breadcrumbs {
   background-color: #0b4f96;
   border-color: #57a3f3;
   color: #90c2f7; }
 
-#breadcrumbs a {
-  color: white; }
-
-#breadcrumbs a:hover {
-  text-decoration: underline; }
-
-#breadcrumbs ul {
-  display: inline;
-  padding: 0;
-  margin: 0 0 0 1em; }
-
-#breadcrumbs ul li {
-  display: inline;
-  padding: 0;
-  margin-left: 0;
-  color: white; }
-
-#breadcrumbs li + li:before {
-  content: " » "; }
-
-#breadcrumbs li:last-child {
-  font-weight: bold;
-  font-size: larger; }
-
-#breadcrumbs a {
-  text-decoration: none; }
-
-/* @end */
-/* @group #content */
 div#content {
-  margin-top: .75em; }
+  margin-top: 10px; }
 
-div#content.grid_8 {
-  padding-right: 1em; }
-
-/* @end */
-/* @group #sidebar */
 div#sidebar {
   font-size: smaller; }
   div#sidebar .section {
-    margin-top: 1.5em;
-    margin-bottom: 2em;
-    padding: 1em;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
     position: relative; }
   div#sidebar h1 {
     font-size: 14pt;
@@ -262,69 +237,43 @@ div#sidebar {
 .hq #sidebar h1 {
   border-color: #0b4f96; }
 
-/* @end */
-/* @group #site-messages */
 ul#site-messages {
   list-style: none outside none;
   margin-bottom: 0; }
+  ul#site-messages li {
+    display: block;
+    background: #fff5e6;
+    margin: 0 10px 15px 10px;
+    padding: 10px;
+    border-width: 1px 1px 3px 1px;
+    border-color: #e68a00;
+    border-style: solid; }
 
-ul#site-messages li {
-  display: block;
-  background: #fff5e6;
-  margin: 1em;
-  padding: 1em;
-  border-width: 1px 1px 3px 1px;
-  border-color: #e68a00;
-  border-style: solid; }
-
-/* @end */
-/* @group join-campaign-form */
-form#join-campaign-form input {
-  display: block;
-  width: 215px;
-  height: 1.5em;
-  margin-bottom: .5em; }
-
-form#join-campaign-form input[type="submit"] {
-  width: 70px;
-  height: 2em;
-  margin-left: 150px; }
-
-/* @end */
-/* @group footer */
 div.footer {
   width: 960px;
   margin-top: 2em;
   border-top: 2px solid #009966; }
+  div.footer span {
+    padding-right: 1em; }
 
-div.footer span {
-  padding-right: 1em; }
-
-/* @end */
-/* @group apps */
 .object-command {
   color: silver;
   font-size: smaller; }
 
-/* @group activity stream */
 ul.stream li.event {
   padding-bottom: 1em; }
+  ul.stream li.event span.timestamp {
+    display: block;
+    font-size: smaller;
+    color: silver; }
+  ul.stream li.event div.description {
+    color: gray;
+    margin-left: 1em;
+    padding-left: 1em;
+    padding-top: .25em;
+    padding-bottom: .25em;
+    border-left: 2px solid silver; }
 
-ul.stream li.event span.timestamp {
-  display: block;
-  font-size: smaller;
-  color: silver; }
-
-ul.stream li.event div.description {
-  color: gray;
-  margin-left: 1em;
-  padding-left: 1em;
-  padding-top: .25em;
-  padding-bottom: .25em;
-  border-left: 2px solid silver; }
-
-/* @end */
-/* @group attachments */
 ul.attachments li a.attachment {
   margin-right: 1.5em; }
 
@@ -332,26 +281,17 @@ form.add-attachment p {
   margin-top: 1em;
   margin-bottom: 0; }
 
-/* @end */
-/* @group comments */
 div.comment {
   margin-bottom: 1.5em; }
+  div.comment .comment-body {
+    color: gray;
+    margin-left: 1em;
+    padding-left: 1em;
+    padding-top: .25em;
+    padding-bottom: .25em;
+    border-left: 2px solid silver; }
 
-.comment .comment-body {
-  color: gray;
-  margin-left: 1em;
-  padding-left: 1em;
-  padding-top: .25em;
-  padding-bottom: .25em;
-  border-left: 2px solid silver; }
-
-.hq .comment .comment-body {
-  /* */ }
-
-/* @end */
-/* @group teams */
 .hq #team-header {
-  /*  position: static;*/
   display: table;
   top: 24px;
   left: 5px;
@@ -361,104 +301,44 @@ div.comment {
   width: 960px;
   border-bottom: 2px solid #57a3f3;
   background-color: #0b4f96; }
-
-.hq #team-header a {
-  color: white;
-  text-decoration: none; }
-
-.hq #team-header a:hover {
-  text-decoration: underline; }
-
-.hq #team-header h1 {
-  text-align: center;
-  color: white;
-  margin-top: .1em;
-  margin-bottom: .1em; }
-
-/* @end */
-/* @group voting */
-.votes form {
-  display: inline; }
-
-.votes .score {
-  font-weight: bold; }
+  .hq #team-header a {
+    color: white;
+    text-decoration: none; }
+    .hq #team-header a:hover {
+      text-decoration: underline; }
+  .hq #team-header h1 {
+    text-align: center;
+    color: white;
+    margin-top: .1em;
+    margin-bottom: .1em; }
 
 .votes {
   margin-right: 1em; }
+  .votes form {
+    display: inline; }
+  .votes .score {
+    font-weight: bold; }
 
-/* @end */
-/* @end */
-/* @group prototype */
-/* @group checklist */
-ul.checklist {
-  list-style: none outside none; }
-
-ul.checklist li {
-  background-repeat: no-repeat;
-  background-position: -10px -5px;
-  background-image: url("/media/images/icons/greencheck.png");
-  background-color: transparent;
-  background-attachment: scroll;
-  padding-left: 50px;
-  font-size: 14pt;
-  color: #009966;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-left: 0; }
-
-/* @end */
-/* @group thumbnails */
-ul.thumbnails {
-  list-style: none outside none; }
-
-ul.thumbnails a {
-  text-decoration: none; }
-
-ul.thumbnails li {
-  position: relative; }
-
-ul.thumbnails .verb {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: black;
-  color: white;
-  padding-left: .5em;
-  padding-right: .5em; }
-
-ul.thumbnails .caption {
-  font-size: smaller; }
-
-/* @end */
-.section.intro h1 {
-  margin-top: .5em;
-  margin-bottom: 0px; }
-
-.section.intro {
-  margin-bottom: 2em; }
-
-.section.news .section h1 {
-  background-color: #009966;
-  color: white;
-  font-weight: normal;
-  text-align: center;
-  margin-bottom: .3em; }
-
-.section.news .date {
-  font-weight: bold; }
-
-/* @end */
-/* @group beta */
-div#underconstruction {
-  margin-top: 6em;
-  margin-bottom: 5em;
+div#largepagepanel {
+  margin-top: 30px;
+  margin-bottom: 20px;
   background: #fff5e6;
   padding: 3em;
   border-width: 1px 1px 4px 1px;
   border-color: #e68a00;
   border-style: solid; }
-  div#underconstruction p:last-child {
+  div#largepagepanel p:last-child {
     margin-bottom: 0; }
+  div#largepagepanel h2 {
+    margin-top: 15px;
+    margin-bottom: 10px; }
+    div#largepagepanel h2:first-child {
+      margin-top: 0; }
+
+.login #largepagepanel p, .login #largepagepanel h2 {
+  text-align: center; }
+.login #largepagepanel ul.socialaccount_providers {
+  text-align: center; }
 
 div.beta-annotation p {
   background: #fff5e6;
@@ -468,9 +348,52 @@ div.beta-annotation p {
   border-color: #e68a00;
   border-style: solid; }
 
-/* @end */
-/* @group uniform */
 .uniForm .focused {
   background: #fff5e6; }
 
-/* @end */
+.hq-signup #content {
+  margin-top: 20px; }
+  .hq-signup #content > div div.section {
+    width: 436px;
+    margin-bottom: 20px;
+    padding-top: 1px;
+    padding-bottom: 10px;
+    background-color: #e5f1fd;
+    border-color: #0b4f96;
+    border-style: solid;
+    border-radius: 0px;
+    border-width: 1px 1px 3px 1px;
+    padding-left: 10px;
+    padding-right: 10px; }
+    .hq-signup #content > div div.section h1 {
+      display: block;
+      text-align: center;
+      background-color: white;
+      color: #171717;
+      margin-top: 10px; }
+.hq-signup ul.socialaccount_providers {
+  text-align: center; }
+
+ul.socialaccount_providers {
+  display: block;
+  list-decoration: none; }
+  ul.socialaccount_providers li {
+    margin: 0;
+    display: inline; }
+    ul.socialaccount_providers li a.socialaccount_provider {
+      width: 48px;
+      height: 48px;
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: middle;
+      text-indent: -9000px; }
+      ul.socialaccount_providers li a.socialaccount_provider.local {
+        background: transparent url("/media/socialaccount/sw.png") left top no-repeat; }
+      ul.socialaccount_providers li a.socialaccount_provider.google {
+        background: transparent url("/media/socialaccount/google.png") left top no-repeat; }
+      ul.socialaccount_providers li a.socialaccount_provider.twitter {
+        background: transparent url("/media/socialaccount/twitter.png") left top no-repeat; }
+      ul.socialaccount_providers li a.socialaccount_provider.facebook {
+        background: transparent url("/media/socialaccount/facebook.png") left top no-repeat; }
+      ul.socialaccount_providers li a.socialaccount_provider.yahoo {
+        background: transparent url("/media/socialaccount/yahoo.png") left top no-repeat; }

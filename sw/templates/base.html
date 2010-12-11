@@ -17,7 +17,7 @@
     <link href="{{ STATIC_URL }}uni_form/uni-form.css" rel="stylesheet">
 
     {# Base #}
-    <link href="{{ STATIC_URL }}css/base.css?2010121002" rel="stylesheet">
+    <link href="{{ STATIC_URL }}css/base.css?2010121004" rel="stylesheet">
 
     {% block css %}{% endblock %}
 
@@ -49,6 +49,10 @@
                 commentId = commentRegexp.exec(document.location.href)[1];
                 document.location = document.location.href + '#c' + commentId;
             }
+            // Hide message box(es) after seven seconds of waiting.
+            setTimeout(function() {
+                $('#site-messages').slideUp(1000);
+            }, 7 * 1000);
         });
     </script>
 

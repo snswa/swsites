@@ -12,37 +12,36 @@
 
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
 
+{% block body_class %}{{ block.super }} login{% endblock %}
+
 {% block body %}
 
     {% feature breadcrumbs %}{% disabled %}
         <h1>Sign In</h1>
     {% endfeature %}
 
-    {% if not user.is_authenticated %}
-        {% url account_signup as signup_url %}
-        {% url socialaccount_login as social_login_url %}
-        <p>{% blocktrans %}No account? <a href="{{ signup_url }}">Sign up</a> for an new account, or sign in using an existing <a href="{{social_login_url }}">3rd party account</a>.{% endblocktrans %}</p>
-    {% endif %}
-
-    <form class="login uniForm" method="POST" action="{% url account_login %}">
-        {% csrf_token %}
-        <fieldset class="inlineLabels">
-            {{ form|as_uni_form }}
-            {% if redirect_field_value %}
-                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    <div class="grid_6 prefix_3 suffix_3">
+        <div id="largepagepanel">
+            <h2>Returning Volunteers</h2>
+            {% if not user.is_authenticated %}
+                {% url sw_hq as signup_url %}
+                {% url socialaccount_login as social_login_url %}
+                <p>{% blocktrans %}No account? <a href="{{ signup_url }}">Sign up</a> for an new account.{% endblocktrans %}</p>
             {% endif %}
-            <div class="buttonHolder">
-                <a class="button secondaryAction" href="{% url account_reset_password %}">{% trans "Forgot Password?" %}</a>
 
-                <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
-            </div>
-        </fieldset>
-    </form>
+            {% include "account/login_form.html" %}
 
-    {% if user.is_authenticated %}
-    {% include "account/snippets/already_logged_in.html" %}
-    {% endif %}
-
+            {% if user.is_authenticated %}
+                {% include "account/snippets/already_logged_in.html" %}
+            {% else %}
+                <h2>Use a Third-Party Service</h2>
+                <p>Sign up or sign in by clicking below. Be sure to use the same service you used to sign up.</p>
+                <ul class="socialaccount_providers">
+                    {% include "socialaccount/snippets/provider_list.html" %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
 
 {% endblock %}
 

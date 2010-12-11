@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block page_content %}
-    <div id="content" class="alpha grid_8">
+    <div id="content" class="grid_8">
         {% include "site_messages.html" %}
         {% block content_body %}
             Content sections here.
@@ -9,7 +9,7 @@
     </div>
 
     {% block sidebar %}
-        <div id="sidebar" class="grid_4 omega">
+        <div id="sidebar" class="grid_4">
             {% block sidebar_sections %}
                 <div class="section">
                     Sidebar sections here.

@@ -1,7 +1,7 @@
 {% load group_tags %}
-<li><a href="{% url dashboard_index %}">HQ</a></li>
+<li><a href="{% if user.is_authenticated %}{% url dashboard_index %}{% else %}{% url sw_hq %}{% endif %}">HQ</a></li>
+<li><a href="/teams/webcontent/wiki/YourLocalSW">Your Local SW</a></li>
 <li><a href="{% url teams_team slug='welcoming' %}">Get Started</a></li>
 <li><a href="/teams/webcontent/wiki/VolunteerSupport/">Support</a></li>
-<li><a href="/teams/webcontent/wiki/YourLocalSW">Your Local SW</a></li>
 <li><a href="/teams/devops/wiki/FriendsFeature/">Friends</a></li>
 <li><a href="/teams/webcontent/wiki/AdminOnly/">Coordinators</a></li>

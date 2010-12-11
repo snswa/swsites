@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+    <div id="content" class="grid_12">
+        {% include "site_messages.html" %}
+        <div id="content-left" class="grid_6 alpha">
+            {% block content_left %}
+            {% endblock %}
+        </div>
+        <div id="content-right" class="grid_6 omega">
+            {% block content_right %}
+            {% endblock %}
+        </div>
+    </div>
+
+{% endblock %}

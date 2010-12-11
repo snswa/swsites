@@ -154,7 +154,8 @@ ABSOLUTE_URL_OVERRIDES = {
 # =================================================================
 # auth
 
-ACCOUNT_EMAIL_REQUIRED = False
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = True
 
 LOGIN_REDIRECT_URL = '/dashboard/'
 

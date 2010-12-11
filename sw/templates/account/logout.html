@@ -15,12 +15,17 @@
         <h1>{% trans "Sign Out" %}</h1>
     {% endfeature %}
 
-    <p>
-        Thank you for using the Sensible Washington volunteer headquarters.
-        Please visit again soon!
-    </p>
+    <div class="grid_6 prefix_3 suffix_3">
+        <div id="largepagepanel">
+            <p>
+                Thank you for using the Sensible Washington volunteer headquarters.
+                Please visit again soon!
+            </p>
 
-    <p>
-        Sign out by accident?  <strong><a href="{% url account_login %}">Sign in again</a>.</strong>
-    </p>
+            <p>
+                Sign out by accident? <strong><a href="{% url account_login %}">Sign in again</a>.</strong>
+            </p>
+        </div>
+    </div>
+
 {% endblock %}
