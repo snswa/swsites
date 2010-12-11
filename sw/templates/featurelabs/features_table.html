@@ -1,0 +1,32 @@
+<table>
+    <thead>
+        <tr>
+            <th>Feature</th>
+            <th>Description</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for feature, status in feature_list %}
+            <tr>
+                <td>{{ feature.name }}</td>
+                <td>{{ feature.description|safe }}</td>
+                <td>
+                    {% if status.site %}
+                        Enabled site-wide
+                    {% else %}
+                        {% if status.session %}
+                            Enabled this session only
+                        {% else %}
+                            Disabled: <a href="?session_enable_{{ feature.name }}">turn on for this session</a>
+                        {% endif %}
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="2">&nbsp;</td>
+            <td><a href="?session_clear_features">Turn off session-only features</a></td>
+        </tr>
+    </tbody>
+</table>
