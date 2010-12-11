@@ -160,119 +160,137 @@ table {
 }
 
 div#site-sections {
-    height: 50px;
-    max-height: 50px;
-    margin: 0px;
-    padding: 0px;
-    width: $site-width;
-    border-bottom: $accent-width solid $color-p;
+  $height: 50px;
+  height: $height;
+  max-height: $height;
+  margin: 0px;
+  padding: 0px;
+  width: $site-width;
+  border-bottom: $accent-width solid $color-p;
 	font-weight: bold;
+  font-size: larger;
 	ul {
-    	list-style-type: none;
-        display: block;
-        padding: 0;
-        margin: 0;
-        height: 50px;
-        max-height: 50px;
+  	list-style-type: none;
+    display: block;
+    padding: 0;
+    margin: 0;
+    height: $height;
+    max-height: $height;
 	}
 	li {
-        display: block;
-        float: left;
-        text-align: center;
-        vertical-align: middle;
-    	margin: 0;
-    	padding: 0;
-    	width: 160px;
-    	padding: 0;
+    display: block;
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+  	margin: 0;
+  	padding: 0;
+  	width: $site-width / 6;
+  	padding: 0;
 	}
 	a {
-    	display: block;
-    	float: left;
-    	height: 35px;
-    	padding-top: 15px;
-    	width: 100%;
-    	text-decoration: none;
-    	color: darken($color-p, 9%);
-    	&:hover {
-            color: white;
-            background: $color-p;
-    	}
-    }
-    .section-title {
-        display: block;
-    }
-    .active .section-title {
-        font-weight: bold;
-    }
-    .featured {
-        color: black;
-    }
-    .featured .section-title {
-        text-decoration: underline;
-        font-weight: bold;
-    }
+	  $padding: 12px;
+  	display: block;
+  	float: left;
+  	height: $height - $padding;
+  	padding-top: $padding;
+  	width: 100%;
+  	text-decoration: none;
+  	color: darken($color-p, 9%);
+  	&:hover {
+      color: white;
+      background: $color-p;
+  	}
+  }
+  .section-title {
+    display: block;
+  }
+  .active .section-title {
+    font-weight: bold;
+  }
+  .featured {
+    color: black;
+  }
+  .featured .section-title {
+    text-decoration: underline;
+    font-weight: bold;
+  }
 }
 
 .hq div#site-sections {
-    border-color: $color-s1;
-    height: 25px;
-    max-height: 25px;
-    ul {
-        height: 25px;
-        margin-top: 2px;
+  $height: 35px;
+  border-color: $color-s1;
+  height: $height;
+  max-height: $height;
+  ul {
+    height: $height;
+    margin-top: 2px;
+  }
+  a {
+    height: $height - 5px;
+    padding-top: 5px;
+    color: darken($color-s1, 9%);
+    &:hover {
+      color: white;
+      background: $color-s1;
     }
-    a {
-        height: 23px;
-        padding-top: 2px;
-        color: darken($color-s1, 9%);
-        &:hover {
-            color: white;
-            background: $color-s1;
-        }
-    }
+  }
+}
+
+$hq-active-color: $color-s1;
+.hq-section div#site-sections a#hq-link {
+  background: $hq-active-color;
+  color: white;
 }
 
 div#breadcrumbs {
-    border-bottom: $color-p solid $accent-width;
-    width: $site-width - $gutter-width;
-    padding-left: $gutter-width;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    background-color: $color-p;
-    color: lighten($color-p, 45%);
-    a {
+  border-bottom: $color-p solid $accent-width;
+  width: $site-width - $gutter-width;
+  padding-left: $gutter-width;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  background-color: $color-p;
+  color: lighten($color-p, 33%);
+  a {
+    color: lighten($color-p, 33%);
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  ul {
+    display: inline;
+    padding: 0;
+    margin: 0 0 0 1em;
+    li {
+      display: inline;
+      padding: 0;
+      margin-left: 0;
+      color: white;
+      & + li:before {
+        content: " » ";
+      }
+      &:last-child {
+        font-weight: bold;
         color: white;
-        &:hover {
-            text-decoration: underline;
-        }
+      }
     }
-    ul {
-        display: inline;
-        padding: 0;
-        margin: 0 0 0 1em;
-        li {
-            display: inline;
-            padding: 0;
-            margin-left: 0;
-            color: white;
-            & + li:before {
-                content: " » ";
-            }
-            &:last-child {
-                font-weight: bold;
-                font-size: larger;
-            }
-        }
-        a {
-            text-decoration: none;
-        }
+    a {
+      text-decoration: none;
     }
+  }
 }
 
 .hq div#breadcrumbs {
 	background-color: $color-s1;
   border-color: lighten($color-s1, 33%);
   color: lighten($color-s1, 45%);
+  a {
+    color: lighten($color-s1, 45%);
+  }
+  ul {
+    li:last-child a {
+      color: white;
+    }
+  }
 }
 
 
