@@ -13,12 +13,12 @@
                 <td>{{ feature.description|safe }}</td>
                 <td>
                     {% if status.site %}
-                        Enabled site-wide
+                        <strong>ON</strong>:&nbsp;site-wide
                     {% else %}
                         {% if status.session %}
-                            Enabled this session only
+                            <strong>ON</strong>:&nbsp;this&nbsp;session&nbsp;only
                         {% else %}
-                            Disabled: <a href="?session_enable_{{ feature.name }}">turn on for this session</a>
+                            Off:&nbsp;<a href="?session_enable_{{ feature.name }}">enable now</a>
                         {% endif %}
                     {% endif %}
                 </td>
@@ -26,7 +26,10 @@
         {% endfor %}
         <tr>
             <td colspan="2">&nbsp;</td>
-            <td><a href="?session_clear_features">Turn off session-only features</a></td>
+            <td>
+                Want&nbsp;to&nbsp;start&nbsp;over?
+                <a href="?session_clear_features">Turn&nbsp;all&nbsp;features&nbsp;off</a>
+            </td>
         </tr>
     </tbody>
 </table>
