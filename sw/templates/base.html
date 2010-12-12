@@ -149,7 +149,9 @@
 <div class="footer" class="clear grid_12 alpha omega">
     <span>Copyright &copy; 2010 Sensible Washington.</span>
     <span>Read our <a href="/privacy-policy/">privacy policy</a>.</span>
-    <span>Leave <a href="/feedback/">feedback</a>.</span>
+    {% if user.is_authenticated %}
+        <span>Leave <a href="/teams/devops/wiki/FeatureRequests/">feedback</a>.</span>
+    {% endif %}
 </div>
 
 {% block bodyscripts %}{% endblock %}
