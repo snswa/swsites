@@ -1,7 +1,7 @@
 {% load group_tags %}
 <li><a id="hq-link" href="{% if user.is_authenticated %}{% url dashboard_index %}{% else %}{% url sw_hq %}{% endif %}">HQ</a></li>
-<li><a id="your-local-sw-link" href="/teams/webcontent/wiki/YourLocalSW">Your Local SW</a></li>
-<li><a id="get-started-link" href="{% url teams_team slug='welcoming' %}">Get Started</a></li>
+<li><a id="local-link" href="/teams/webcontent/wiki/YourLocalSW">Local</a></li>
+<li><a id="statewide-link" href="{% url teams_team slug='statewide' %}">Statewide</a></li>
 <li><a id="support-link" href="/teams/webcontent/wiki/VolunteerSupport/">Support</a></li>
 <li><a id="friends-link" href="/teams/devops/wiki/FriendsFeature/">Friends</a></li>
 <li><a id="coordinators-link" href="/teams/webcontent/wiki/AdminOnly/">Coordinators</a></li>
