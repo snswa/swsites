@@ -358,6 +358,8 @@ INSTALLED_APPS = (
     # feature flipping,
     'featureflipper',
     'featurelabs',
+    #
+    'zipcodes',
 )
 
 import os
