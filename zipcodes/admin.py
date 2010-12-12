@@ -3,7 +3,7 @@ from django.contrib import admin
 from teams.admin import TeamAdmin
 from teams.models import Team
 
-from zipcodes.models import County, ZipCode, CountyTeam, ZipCodeTeam
+from zipcodes.models import County, ZipCode, TeamCounty, TeamZipCode
 
 
 # -- inlines --
@@ -11,13 +11,13 @@ from zipcodes.models import County, ZipCode, CountyTeam, ZipCodeTeam
 
 class CountyInline(admin.TabularInline):
 
-    model = CountyTeam
+    model = TeamCounty
     extra = 1
 
 
 class ZipCodeInline(admin.TabularInline):
 
-    model = ZipCodeTeam
+    model = TeamZipCode
     extra = 1
 
 

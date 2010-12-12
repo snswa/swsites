@@ -12,7 +12,7 @@ class ZipCode(models.Model):
     state = models.CharField(max_length=2, db_index=True)
     lat = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
     long = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
-    teams = models.ManyToManyField('teams.Team', related_name='zip_codes', through='ZipCodeTeam')
+    teams = models.ManyToManyField('teams.Team', related_name='zip_codes', through='TeamZipCode')
 
     class Meta:
         ordering = ('county', 'city', 'zip_code')
@@ -38,7 +38,7 @@ class ZipCode(models.Model):
 class County(models.Model):
 
     name = models.CharField(max_length=40, unique=True)
-    teams = models.ManyToManyField('teams.Team', related_name='counties', through='CountyTeam')
+    teams = models.ManyToManyField('teams.Team', related_name='counties', through='TeamCounty')
 
     class Meta:
         ordering = ('name',)
@@ -54,7 +54,7 @@ class County(models.Model):
         return ZipCode.objects.filter(county=self.name)
 
 
-class ZipCodeTeam(models.Model):
+class TeamZipCode(models.Model):
 
     zip_code = models.ForeignKey(ZipCode)
     team = models.ForeignKey(Team)
@@ -65,7 +65,7 @@ class ZipCodeTeam(models.Model):
         )
 
 
-class CountyTeam(models.Model):
+class TeamCounty(models.Model):
 
     county = models.ForeignKey(County)
     team = models.ForeignKey(Team)
