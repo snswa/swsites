@@ -405,3 +405,11 @@ ul.socialaccount_providers {
         background: transparent url("/media/socialaccount/facebook.png") left top no-repeat; }
       ul.socialaccount_providers li a.socialaccount_provider.yahoo {
         background: transparent url("/media/socialaccount/yahoo.png") left top no-repeat; }
+
+.wakacms-highlighted {
+  background: #badafa; }
+
+.wakacms-links {
+  background: #ffebcc; }
+  .wakacms-links:hover {
+    background: #ffc671; }

@@ -21,6 +21,16 @@ class WikiPageSnippet(CMSPlugin):
             return 'WARNING: NO CONTENT - {0}@{1}'.format(self.slug, self.rev)
 
     def content(self):
+        revision = self.revision()
+        if revision is None:
+            return u''
+        else:
+            content = revision.content
+            content = content.split('-BEGINSNIPPET-')[1]
+            content = content.split('-ENDSNIPPET-')[0]
+            return content
+
+    def revision(self):
         try:
             if TEAM_SLUG is None:
                 queryset = Revision.objects.filter(
@@ -34,9 +44,6 @@ class WikiPageSnippet(CMSPlugin):
                 pk=self.rev,
                 page__slug=self.slug,
             )
-            content = revision.content
-            content = content.split('-BEGINSNIPPET-')[1]
-            content = content.split('-ENDSNIPPET-')[0]
-            return content
+            return revision
         except (IndexError, Revision.DoesNotExist):
-            return u''
+            return None

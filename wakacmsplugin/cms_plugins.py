@@ -24,7 +24,7 @@ class WikiPageSnippetPlugin(CMSPluginBase):
             snippetgroup = None
         content = instance.content()
         context.update({
-            'content': content,
+            'snippet': instance,
             'placeholder': placeholder,
             'snippetgroup': snippetgroup,
         })

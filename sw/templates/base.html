@@ -17,7 +17,7 @@
     <link href="{{ STATIC_URL }}uni_form/uni-form.css" rel="stylesheet">
 
     {# Base #}
-    <link href="{{ STATIC_URL }}css/base.css?2010121004" rel="stylesheet">
+    <link href="{{ STATIC_URL }}css/base.css?2010121201" rel="stylesheet">
 
     {% block css %}{% endblock %}
 
@@ -38,23 +38,7 @@
 
     {% block headscripts %}{% endblock %}
 
-    <script type="text/javascript" charset="utf-8">
-        $(function () {
-            var commentRegexp = /\?c=(\d+)$/,
-                commentId;
-            // Create a watermark in the search box.
-            $('#search_q').watermark('Search');
-            // Jump to comment if one was just posted.
-            if (commentRegexp.test(document.location.href)) {
-                commentId = commentRegexp.exec(document.location.href)[1];
-                document.location = document.location.href + '#c' + commentId;
-            }
-            // Hide message box(es) after seven seconds of waiting.
-            setTimeout(function() {
-                $('#site-messages').slideUp(1000);
-            }, 7 * 1000);
-        });
-    </script>
+    <script src="{{ STATIC_URL }}sw/onload.all.js" type="text/javascript" charset="utf-8"></script>
 
     {# Google Analytics tracking #}
     <script type="text/javascript">

@@ -547,3 +547,13 @@ ul.socialaccount_providers {
     }
   }
 }
+
+.wakacms-highlighted {
+  background: lighten($color-s1, 54%);
+}
+.wakacms-links {
+  background: lighten($color-s2, 45%);
+  &:hover {
+    background: lighten($color-s2, 27%);
+  };
+}

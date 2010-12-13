@@ -1,1 +1,10 @@
-{% load sw_tags %}{% load markup_tags %}{{ content|wikify_creole_links:snippetgroup|apply_markup:"creole" }}
+{% load sw_tags %}{% load markup_tags %}{% load group_tags %}
+<div id="wakacms-snippet-{{ snippet.slug|slugify }}-{{ snippet.rev }}">{{ snippet.content|wikify_creole_links:snippetgroup|apply_markup:"creole" }}</div>
+{% if is_wakacms_team_member %}
+    <p class="wakacms-links" id="wakacms-links-{{ snippet.slug|slugify }}-{{ snippet.rev }}">
+        (Wiki:
+        <a href="{% groupurl wakawaka_page snippetgroup slug=snippet.slug rev_id=snippet.rev %}">This Rev</a>
+        |
+        <a href="{% groupurl wakawaka_page snippetgroup slug=snippet.slug %}">Latest</a>)
+    </p>
+{% endif %}
