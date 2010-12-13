@@ -39,7 +39,7 @@ def stream_wiki_attachment(sender, instance, created, **kwargs):
         if isinstance(obj, WikiPage):
             action.send(
                 instance.creator,
-                verb='attached file {0} to wiki page'.format(instance.filename),
+                verb='attached the file {0} to'.format(instance.filename),
                 action_object=obj,
                 target=obj.group,
                 timestamp=instance.created,
@@ -53,7 +53,7 @@ def stream_wiki_comment(sender, comment, request, **kwargs):
     if isinstance(obj, WikiPage):
         action.send(
             comment.user,
-            verb='commented on wiki page',
+            verb='commented on the page',
             action_object=comment,
             target=obj.group,
             timestamp=comment.submit_date,
@@ -67,7 +67,7 @@ def stream_wiki_revision(sender, instance, created, **kwargs):
     if created:
         action.send(
             instance.creator,
-            verb='changed wiki page',
+            verb='changed the page',
             action_object=instance,
             target=instance.page.group,
             timestamp=instance.modified,
@@ -81,7 +81,7 @@ def stream_team_join(sender, instance, created, **kwargs):
     if created:
         action.send(
             instance.user,
-            verb='joined team',
+            verb='joined',
             target=instance.team,
         )
 
@@ -91,7 +91,7 @@ post_save.connect(stream_team_join, sender=Member)
 def stream_team_leave(sender, instance, **kwargs):
     action.send(
         instance.user,
-        verb='left team',
+        verb='left',
         target=instance.team,
     )
 
