@@ -2,7 +2,10 @@
 {% load group_tags %}
 
 {% if group %}
-    {% breadcrumb_url 'Teams' teams_index %}
+
+    {# {% for parent in group.parents %} #}
+    {#     {% breadcrumb_url parent.name teams_team slug=parent.slug %} #}
+    {# {% endfor %} #}
     {% breadcrumb_url group.name teams_team slug=group.slug %}
     {# @@@ How can we clean this up for groupurls? #}
     {# The following doesn't work. #}
