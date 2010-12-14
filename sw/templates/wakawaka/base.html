@@ -21,9 +21,6 @@
 <link href="{{ STATIC_URL }}css/wiki.css" rel="stylesheet">
 {% endblock %}
 
-{# Insert 'extrahead' from wiki templates into 'headscripts' in base #}
-{% block headscripts %}{% block extrahead %}{% endblock %}{% endblock %}
-
 {% block content_body %}
     {% block content %}
     {% endblock %}

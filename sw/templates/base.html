@@ -21,38 +21,23 @@
 
     {% block css %}{% endblock %}
 
-    {# jQuery first #}
-    <script src="{{ STATIC_URL }}js/jquery-1.4.4.min.js" type="text/javascript" charset="utf-8"></script>
-
-    {# Add some HTML5 capabilities to older browsers #}
-    <script src="{{ STATIC_URL }}js/html5.js" type="text/javascript" charset="UTF-8"></script>
-
-    {# jQuery plugins #}
-    <script src="{{ STATIC_URL }}js/jquery.watermark.min.js" type="text/javascript" charset="utf-8"></script>
-
-    {# Uni-form #}
-    <script src="{{ STATIC_URL }}uni_form/uni-form.jquery.js" type="text/javascript" charset="utf-8"></script>
-
-    {# site-wide #}
-    <script src="{{ STATIC_URL }}voting/voting.js" type="text/javascript" charset="utf-8"></script>
-
-    {% block headscripts %}{% endblock %}
-
-    <script src="{{ STATIC_URL }}sw/onload.all.js" type="text/javascript" charset="utf-8"></script>
-
-    {# Google Analytics tracking #}
-    <script type="text/javascript">
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-15636009-1']);
-        _gaq.push(['_trackPageview']);
-
-        (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
+    {# Immediately load JavaScript.  Onload comes just before /body #}
+    <script src="{{ STATIC_URL }}js/head.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+        var headJsComplete = function () {};
+        // Kick off analytics ASAP.
+        head.js('{{ STATIC_URL }}sw/analytics.js');
+        head.js(
+            '{{ STATIC_URL }}js/jquery-1.4.4.min.js',
+            '{{ STATIC_URL }}js/jquery.watermark.min.js',
+            '{{ STATIC_URL }}uni_form/uni-form.jquery.js',
+            '{{ STATIC_URL }}voting/voting.js',
+            '{{ STATIC_URL }}sw/onload.all.js',
+            headJsComplete
+        );
     </script>
-    {# /Google #}
+
+    {% block extrahead %}{% endblock %}
 </head>
 <body class="container_12 {% block body_class %}{% endblock %}">
 
@@ -141,17 +126,6 @@
 {% block bodyscripts %}{% endblock %}
 
 {# Clicky analytics #}
-<script type="text/javascript">
-var clicky = { log: function(){ return; }, goal: function(){ return; }};
-var clicky_site_id = 66349596;
-(function() {
-  var s = document.createElement('script');
-  s.type = 'text/javascript';
-  s.async = true;
-  s.src = ( document.location.protocol == 'https:' ? 'https://static.getclicky.com/js' : 'http://static.getclicky.com/js' );
-  ( document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] ).appendChild( s );
-})();
-</script>
 <a title="Real Time Web Analytics" href="http://getclicky.com/66349596"></a>
 <noscript><p><img alt="Clicky" width="1" height="1" src="http://in.getclicky.com/66349596ns.gif" /></p></noscript>
 {# /Clicky #}
