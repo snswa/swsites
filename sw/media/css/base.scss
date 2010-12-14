@@ -40,51 +40,56 @@ table {
   }
 }
 
+/* Don't place extra whitespace at bottom of lists-inside-lists */
+li > ul {
+  margin-bottom: 0;
+}
+
 #auth-bar {
 	background-color: $color-s1;
-    font-size: 14px;
-    width: $site-width;
-    border-bottom: $accent-width solid lighten($color-s1, 33%);
-    position: relative;
-    height: 22px;
+  font-size: 14px;
+  width: $site-width;
+  border-bottom: $accent-width solid lighten($color-s1, 33%);
+  position: relative;
+  height: 22px;
+  color: white;
+  span + span {
+    margin-left: 1em;
+  }
+  a {
+    font-weight: bold;
+    padding: 4px;
     color: white;
-    span + span {
-        margin-left: 1em;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
     }
+  }
+  .left {
+    position: absolute;
+    float: left;
+  }
+  .right {
+    text-align: right;
+    float: right;
+  }
+  .icon-link {
     a {
-        font-weight: bold;
-        padding: 4px;
-        color: white;
+      &:hover {
         text-decoration: none;
-        &:hover {
-            text-decoration: underline;
-        }
-    }
-    .left {
-      position: absolute;
-      float: left;
-    }
-    .right {
-        text-align: right;
-        float: right;
-    }
-    .icon-link {
-      a {
-        &:hover {
-          text-decoration: none;
-          span {
-            text-decoration: underline;
-            padding-left: 16px;
-          }
-        };
         span {
+          text-decoration: underline;
           padding-left: 16px;
         }
+      };
+      span {
+        padding-left: 16px;
       }
     }
-    #labs-link {
-      background:transparent url('/media/featurelabs/lightning.png') left top no-repeat;
-    }
+  }
+  #labs-link {
+    background:transparent url('/media/featurelabs/lightning.png') left top no-repeat;
+  }
 }
 
 .header {

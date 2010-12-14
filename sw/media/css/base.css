@@ -21,6 +21,10 @@ table td {
   padding: .5em;
   border: 1px solid black; }
 
+/* Don't place extra whitespace at bottom of lists-inside-lists */
+li > ul {
+  margin-bottom: 0; }
+
 #auth-bar {
   background-color: #0b4f96;
   font-size: 14px;
