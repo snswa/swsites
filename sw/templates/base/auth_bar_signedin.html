@@ -1,6 +1,6 @@
 {% load feature_tag %}
 <span>Signed in as {{ user.get_profile }}.</span>
-<span id="labs-link" class="icon-link"><a href="{% url featurelabs_index %}"><span>Labs</span></a></span>
+<span class="icon-link lightning-link"><a href="{% url featurelabs_index %}"><span>Labs</span></a></span>
 {% if user.is_staff %}
     <span><a href="/admin/"><span>Django Admin</span></a></span>
 {% endif %}

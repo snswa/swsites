@@ -1,4 +1,38 @@
 /* http://colorschemedesigner.com/#3741Tw0sRw0w0 */
+.icon-link {
+  display: inline-block;
+  height: 16px; }
+  .icon-link a {
+    margin: none;
+    text-decoration: none !important; }
+    .icon-link a span {
+      text-decoration: none; }
+    .icon-link a:hover {
+      text-decoration: none !important; }
+      .icon-link a:hover span {
+        text-decoration: underline !important;
+        padding-left: 16px !important; }
+  .icon-link span {
+    padding-left: 16px !important; }
+
+.folder-link {
+  background: transparent url("/media/icons/folder.png") left center no-repeat; }
+
+.group-link {
+  background: transparent url("/media/icons/group.png") left center no-repeat; }
+
+.lightning-link {
+  background: transparent url("/media/icons/lightning.png") left center no-repeat; }
+
+.page-link {
+  background: transparent url("/media/icons/page.png") left center no-repeat; }
+
+.pencil-link {
+  background: transparent url("/media/icons/pencil.png") left center no-repeat; }
+
+.sw-link {
+  background: transparent url("/media/icons/sw.png") left center no-repeat; }
+
 body {
   position: relative;
   font-family: "Lucida Grande", "Verdana", "Arial", sans-serif; }
@@ -7,6 +41,8 @@ a {
   color: #0b4f96; }
   a:hover {
     color: black; }
+  a span {
+    text-decoration: underline; }
 
 .hq a {
   color: #8a5300; }
@@ -37,26 +73,20 @@ li > ul {
     margin-left: 1em; }
   #auth-bar a {
     font-weight: bold;
-    padding: 4px;
     color: white;
     text-decoration: none; }
+    #auth-bar a span {
+      text-decoration: none; }
     #auth-bar a:hover {
       text-decoration: underline; }
   #auth-bar .left {
     position: absolute;
-    float: left; }
+    float: left;
+    padding-left: 10px; }
   #auth-bar .right {
     text-align: right;
-    float: right; }
-  #auth-bar .icon-link a:hover {
-    text-decoration: none; }
-    #auth-bar .icon-link a:hover span {
-      text-decoration: underline;
-      padding-left: 16px; }
-  #auth-bar .icon-link a span {
-    padding-left: 16px; }
-  #auth-bar #labs-link {
-    background: transparent url("/media/featurelabs/lightning.png") left top no-repeat; }
+    float: right;
+    padding-right: 10px; }
 
 .header {
   background-image: url("/media/images/logos/logo-246x140.gif");
@@ -80,7 +110,8 @@ li > ul {
     position: absolute;
     height: 105px;
     top: 35px;
-    margin: 0; }
+    margin: 0;
+    z-index: -1; }
 
 .hq .header {
   margin-top: .5em;
@@ -151,6 +182,8 @@ div#site-sections {
     width: 100%;
     text-decoration: none;
     color: #006b47; }
+    div#site-sections a span {
+      text-decoration: none; }
     div#site-sections a:hover {
       color: white;
       background: #00b377; }
@@ -249,6 +282,8 @@ div#breadcrumbs {
         color: white; }
     div#breadcrumbs ul a {
       text-decoration: none; }
+      div#breadcrumbs ul a span {
+        text-decoration: none; }
 
 .hq div#breadcrumbs {
   background-color: #0b4f96;
@@ -341,27 +376,6 @@ div.comment {
     padding-top: .25em;
     padding-bottom: .25em;
     border-left: 2px solid silver; }
-
-.hq #team-header {
-  display: table;
-  top: 24px;
-  left: 5px;
-  height: 50px;
-  max-height: 50px;
-  margin-right: 0px;
-  width: 960px;
-  border-bottom: 2px solid #57a3f3;
-  background-color: #0b4f96; }
-  .hq #team-header a {
-    color: white;
-    text-decoration: none; }
-    .hq #team-header a:hover {
-      text-decoration: underline; }
-  .hq #team-header h1 {
-    text-align: center;
-    color: white;
-    margin-top: .1em;
-    margin-bottom: .1em; }
 
 .votes {
   margin-right: 1em; }

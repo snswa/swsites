@@ -24,11 +24,11 @@
 
 {% block breadcrumbs %}
     {{ block.super }}
-    {% breadcrumb page.slug '../' %}
+    {% breadcrumb_css "icon-link page-link" page.slug "../" %}
     {% if page.is_initial %}
-        {% breadcrumb 'Add' %}
+        {% breadcrumb_css "icon-link pencil-link" 'Add' %}
     {% else %}
-        {% breadcrumb 'Edit' %}
+        {% breadcrumb_css "icon-link pencil-link" 'Edit' %}
     {% endif %}
 {% endblock %}
 

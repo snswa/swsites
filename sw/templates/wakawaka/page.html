@@ -10,7 +10,7 @@
 
 {% block breadcrumbs %}
     {{ block.super }}
-    {% breadcrumb page.slug "." %}
+    {% breadcrumb_css "icon-link page-link" page.slug "." %}
 {% endblock %}
 
 
@@ -71,7 +71,7 @@
 
         <ul>
         	{% if perms.wakawaka.change_wikipage %}
-        		<li><strong><a href="{% groupurl wakawaka_edit group slug=page.slug %}">Edit this page</a></strong></li>
+        		<li><span class="icon-link pencil-link"><strong><a href="{% groupurl wakawaka_edit group slug=page.slug %}"><span>Edit this page</span></a></strong></span></li>
         	{% endif %}
             <li>Revision: {{ rev.id }}</li>
             <li>Last editor: <a href="{{ page.current.creator.get_absolute_url }}">{{ page.current.creator }}</a></li>

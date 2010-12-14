@@ -9,34 +9,70 @@ $color-s1: #0b4f96;
 $color-s2: #e68a00;
 $color-c: #e64d00;
 
+.icon-link {
+  display: inline-block;
+  height: 16px;
+  a {
+    margin: none;
+    text-decoration: none !important;
+    span {
+      text-decoration: none;
+    }
+    &:hover {
+      text-decoration: none !important;
+      span {
+        text-decoration: underline !important;
+        padding-left: 16px !important;
+      }
+    };
+  }
+  span {
+    padding-left: 16px !important;
+  }
+}
+@mixin icon-link-image($icon-name) {
+  .#{$icon-name}-link {
+    background: transparent url('/media/icons/#{$icon-name}.png') left center no-repeat;
+  }
+}
+@include icon-link-image("folder");
+@include icon-link-image("group");
+@include icon-link-image("lightning");
+@include icon-link-image("page");
+@include icon-link-image("pencil");
+@include icon-link-image("sw");
+
 body {
-    position: relative;
-    font-family: "Lucida Grande", "Verdana", "Arial", sans-serif;
+  position: relative;
+  font-family: "Lucida Grande", "Verdana", "Arial", sans-serif;
 }
 
 a {
-    color: $color-s1;
-    &:hover {
-        color: black;
-    }
+  color: $color-s1;
+  &:hover {
+    color: black;
+  }
+  span {
+    text-decoration: underline;
+  }
 }
 
 .hq a {
-    color: darken($color-s2, 18%);
-    &:hover {
-        color: $color-s1;
-    }
+  color: darken($color-s2, 18%);
+  &:hover {
+    color: $color-s1;
+  }
 }
 
 table {
   th {
-      padding-left: .5em;
-      padding-right: .5em;
-      padding-top: .5em;
+    padding-left: .5em;
+    padding-right: .5em;
+    padding-top: .5em;
   }
   td {
-      padding: .5em;
-      border: 1px solid black;
+    padding: .5em;
+    border: 1px solid black;
   }
 }
 
@@ -58,9 +94,11 @@ li > ul {
   }
   a {
     font-weight: bold;
-    padding: 4px;
     color: white;
     text-decoration: none;
+    span {
+      text-decoration: none;
+    }
     &:hover {
       text-decoration: underline;
     }
@@ -68,69 +106,55 @@ li > ul {
   .left {
     position: absolute;
     float: left;
+    padding-left: $gutter-width;
   }
   .right {
     text-align: right;
     float: right;
-  }
-  .icon-link {
-    a {
-      &:hover {
-        text-decoration: none;
-        span {
-          text-decoration: underline;
-          padding-left: 16px;
-        }
-      };
-      span {
-        padding-left: 16px;
-      }
-    }
-  }
-  #labs-link {
-    background:transparent url('/media/featurelabs/lightning.png') left top no-repeat;
+    padding-right: $gutter-width;
   }
 }
 
 .header {
-    background-image: url("/media/images/logos/logo-246x140.gif");
-    background-position: 5px;
-    background-repeat: no-repeat;
-    background-size: 246px 140px;
+  background-image: url("/media/images/logos/logo-246x140.gif");
+  background-position: 5px;
+  background-repeat: no-repeat;
+  background-size: 246px 140px;
+  width: $site-width;
+  height: 140px;
+  margin-left: 0px;
+  margin-top: 1em;
+  padding: 0;
+  position: relative;
+  h1 a {
+  	display: block;
+  	height: 140px;
+  	text-indent: -9999px;
+  }
+  h2 {
+  	display: table-cell;
     width: $site-width;
-    height: 140px;
-    margin-left: 0px;
-    margin-top: 1em;
-    padding: 0;
-    position: relative;
-    h1 a {
-    	display: block;
-    	height: 140px;
-    	text-indent: -9999px;
-    }
-    h2 {
-    	display: table-cell;
-        width: $site-width;
-        text-align: center;
-        position: absolute;
-        height: 105px;
-        top: 35px;
-    	margin: 0;
-    }
+    text-align: center;
+    position: absolute;
+    height: 105px;
+    top: 35px;
+  	margin: 0;
+  	z-index: -1;
+  }
 }
 
 .hq .header {
-    margin-top: .5em;
-    background-image: url("/media/images/logos/logo-123x70.gif");
-    background-size: 123px 70px;
+  margin-top: .5em;
+  background-image: url("/media/images/logos/logo-123x70.gif");
+  background-size: 123px 70px;
+  height: 70px;
+  h1 a {
     height: 70px;
-    h1 a {
-        height: 70px;
-    }
-    h2 {
-        top: 15px;
-        height: 40px;
-    }
+  }
+  h2 {
+    top: 15px;
+    height: 40px;
+  }
 }
 
 #site-search {
@@ -138,30 +162,30 @@ li > ul {
 	top: 1.5em;
 	right: 1.5em;
 	input {
-      width: 200px;
-      height: 1.5em;
+    width: 200px;
+    height: 1.5em;
   }
 }
 
 .hq #site-search {
-    top: 20px;
+  top: 20px;
 }
 
 #follow-campaign {
-    position: absolute;
-    top: 55px;
-    right: 20px;
-    width: 200px;
-    text-align: center;
-    font-weight: bold;
-    li {
-      display: inline;
-    	margin-left: 0;
-    }
+  position: absolute;
+  top: 55px;
+  right: 20px;
+  width: 200px;
+  text-align: center;
+  font-weight: bold;
+  li {
+    display: inline;
+  	margin-left: 0;
+  }
 }
 
 .hq #follow-campaign {
-    display: none;
+  display: none;
 }
 
 div#site-sections {
@@ -200,6 +224,9 @@ div#site-sections {
   	padding-top: $padding;
   	width: 100%;
   	text-decoration: none;
+  	span {
+  	  text-decoration: none;
+  	}
   	color: darken($color-p, 9%);
   	&:hover {
       color: white;
@@ -300,6 +327,9 @@ div#breadcrumbs {
     }
     a {
       text-decoration: none;
+      span {
+        text-decoration: none;
+      }
     }
   }
 }
@@ -318,35 +348,34 @@ div#breadcrumbs {
   }
 }
 
-
 div#content {
     margin-top: $gutter-width;
 }
 
 div#sidebar {
-    font-size: smaller;
-    .section {
-        margin-top: $gutter-width;
-        margin-bottom: $gutter-width;
-        padding: $gutter-width;
-        position: relative;
-    }
-    h1 {
-        font-size: 14pt;
-        margin-bottom: .5em;
-        border-bottom: $accent-width solid $color-p;
-    }
-    ul {
-        margin-bottom: .5em;
-    }
-    form {
-    	display: inline;
-    	margin: 0;
-    	padding: 0;
-    }
-    div.more {
-        text-align: right;
-    }
+  font-size: smaller;
+  .section {
+    margin-top: $gutter-width;
+    margin-bottom: $gutter-width;
+    padding: $gutter-width;
+    position: relative;
+  }
+  h1 {
+    font-size: 14pt;
+    margin-bottom: .5em;
+    border-bottom: $accent-width solid $color-p;
+  }
+  ul {
+    margin-bottom: .5em;
+  }
+  form {
+  	display: inline;
+  	margin: 0;
+  	padding: 0;
+  }
+  div.more {
+    text-align: right;
+  }
 }
 
 .hq #sidebar {
@@ -363,13 +392,13 @@ ul#site-messages {
 	list-style: none outside none;
 	margin-bottom: 0;
 	li {
-      display: block;
-      background: lighten($color-s2, 50%);
-      margin: 0 $gutter-width ($gutter-width + 5px) $gutter-width;
-      padding: $gutter-width;
-      border-width: 1px 1px $shadow-width 1px;
-      border-color: $color-s2;
-      border-style: solid;
+    display: block;
+    background: lighten($color-s2, 50%);
+    margin: 0 $gutter-width ($gutter-width + 5px) $gutter-width;
+    padding: $gutter-width;
+    border-width: 1px 1px $shadow-width 1px;
+    border-color: $color-s2;
+    border-style: solid;
   }
 }
 
@@ -378,106 +407,81 @@ div.footer {
 	margin-top: 2em;
   border-top: $accent-width solid $color-p;
   span {
-      padding-right: 1em;
+    padding-right: 1em;
   }
 }
 
 .object-command {
-    color: silver;
-    font-size: smaller;
+  color: silver;
+  font-size: smaller;
 }
 
 ul.stream li.event {
-    padding-bottom: 1em;
-    span.timestamp {
-        display: block;
-        font-size: smaller;
-        color: silver;
-    }
-    div.description {
-        color: gray;
-        margin-left: 1em;
-        padding-left: 1em;
-        padding-top: .25em;
-        padding-bottom: .25em;
-        border-left: $accent-width solid silver;
-    }
+  padding-bottom: 1em;
+  span.timestamp {
+    display: block;
+    font-size: smaller;
+    color: silver;
+  }
+  div.description {
+    color: gray;
+    margin-left: 1em;
+    padding-left: 1em;
+    padding-top: .25em;
+    padding-bottom: .25em;
+    border-left: $accent-width solid silver;
+  }
 }
 
 ul.attachments li a.attachment {
-   	margin-right: 1.5em;
+ 	margin-right: 1.5em;
 }
 
 form.add-attachment p {
 	margin-top: 1em;
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 div.comment {
-    margin-bottom: 1.5em;
-    .comment-body {
-        color: gray;
-        margin-left: 1em;
-        padding-left: 1em;
-        padding-top: .25em;
-        padding-bottom: .25em;
-        border-left: $accent-width solid silver;
-    }
-}
-
-.hq #team-header {
-    display: table;
-    top: 24px;
-    left: 5px;
-    height: 50px;
-    max-height: 50px;
-    margin-right: 0px;
-    width: $site-width;
-    border-bottom: $accent-width solid lighten($color-s1, 33%);
-    background-color: $color-s1;
-    a {
-        color: white;
-        text-decoration: none;
-        &:hover {
-            text-decoration: underline;
-        }
-    }
-    h1 {
-    	text-align: center;
-    	color: white;
-    	margin-top: .1em;
-    	margin-bottom: .1em;
-    }
+  margin-bottom: 1.5em;
+  .comment-body {
+    color: gray;
+    margin-left: 1em;
+    padding-left: 1em;
+    padding-top: .25em;
+    padding-bottom: .25em;
+    border-left: $accent-width solid silver;
+  }
 }
 
 .votes {
-    margin-right: 1em;
-    form {
-        display: inline;
-    }
-    .score {
-        font-weight: bold;
-    }
+  margin-right: 1em;
+  form {
+    display: inline;
+  }
+  .score {
+    font-weight: bold;
+  }
 }
 
 div#largepagepanel {
-    margin-top: $gutter-width * 3;
-    margin-bottom: $gutter-width * 2;
-    background: lighten($color-s2, 50%);
-    padding: 3em;
-    border-width: 1px 1px 4px 1px;
-    border-color: $color-s2;
-    border-style: solid;
-    p:last-child {
-        margin-bottom: 0;
-    }
-    h2 {
-      margin-top: $gutter-width * 1.5;
-      margin-bottom: $gutter-width;
-      &:first-child {
-        margin-top: 0;
-      };
-    }
+  margin-top: $gutter-width * 3;
+  margin-bottom: $gutter-width * 2;
+  background: lighten($color-s2, 50%);
+  padding: 3em;
+  border-width: 1px 1px 4px 1px;
+  border-color: $color-s2;
+  border-style: solid;
+  p:last-child {
+    margin-bottom: 0;
+  }
+  h2 {
+    margin-top: $gutter-width * 1.5;
+    margin-bottom: $gutter-width;
+    &:first-child {
+      margin-top: 0;
+    };
+  }
 }
 
 .login #largepagepanel {
@@ -490,16 +494,16 @@ div#largepagepanel {
 }
 
 div.beta-annotation p {
-    background: lighten($color-s2, 50%);
-    margin: 1em;
-    padding: 1em;
-    border-width: 1px 1px $shadow-width 1px;
-    border-color: $color-s2;
-    border-style: solid;
+  background: lighten($color-s2, 50%);
+  margin: 1em;
+  padding: 1em;
+  border-width: 1px 1px $shadow-width 1px;
+  border-color: $color-s2;
+  border-style: solid;
 }
 
 .uniForm .focused {
-    background: lighten($color-s2, 50%);
+  background: lighten($color-s2, 50%);
 }
 
 .hq-signup {

@@ -25,7 +25,7 @@
 
 {% block breadcrumbs %}
     {{ block.super }}
-    {% breadcrumb page.slug '../' %}
+    {% breadcrumb_css "icon-link page-link" page.slug '../' %}
     {% breadcrumb 'Changes between revisions' %}
 {% endblock %}
 
