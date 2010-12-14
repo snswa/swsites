@@ -48,24 +48,19 @@
 
         {% include "sidebars/teamjoinleave.html" %}
 
-        {% with group.children as children %}
-            <div class="section">
-                <h1>More Teams</h1>
+        <div class="section">
+            <h1>More Teams</h1>
 
-                <ul>
-                    {% if group.parent %}
-                        <li><a href="{% url teams_team slug=group.parent.slug %}">« {{ group.parent.name }}</a></li>
-                    {% else %}
-                        <li><a href="{% url teams_index %}">« All Teams</a></li>
-                    {% endif %}
-                    {% if children %}
-                        {% for child in children %}
-                            <li><a href="{% url teams_team slug=child.slug %}">{{ child.name }} »</a></li>
-                        {% endfor %}
-                    {% endif %}
-                </ul>
-            </div>
-        {% endwith %}
+            <ul>
+                <li><a href="{% url teams_index %}">« All Teams</a></li>
+                {% for parent in group.parents %}
+                    <li><a href="{% url teams_team slug=parent.slug %}">« {{ parent.name }}</a></li>
+                {% endfor %}
+                {% for child in group.children %}
+                    <li><a href="{% url teams_team slug=child.slug %}">{{ child.name }} »</a></li>
+                {% endfor %}
+            </ul>
+        </div>
 
         {% include "sidebars/wikicommon.html" %}
 
