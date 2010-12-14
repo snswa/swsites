@@ -9,15 +9,17 @@
 
     {% feature team_groupings %}
 
-        {% for grouping in groupings %}
-            <h1>{{ grouping.name }}</h1>
-
-            <ul>
-                {% for team in grouping.teams.all %}
-                    <li><a href="{% url teams_team slug=team.slug %}">{{ team.name }}</a></li>
-                {% endfor %}
-            </ul>
-        {% endfor %}
+        <div class="team-tree">
+            {% for tree_item in team_tree %}
+                {% if tree_item == 'li' %}<li>{% endif %}
+                {% if tree_item == '/li' %}</li>{% endif %}
+                {% if tree_item == 'ul' %}<ul>{% endif %}
+                {% if tree_item == '/ul' %}</ul>{% endif %}
+                {% if tree_item.slug %}
+                    <a href="{% url teams_team slug=tree_item.slug %}">{{ tree_item.name }}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
 
     {% disabled %}
 

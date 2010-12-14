@@ -433,3 +433,13 @@ ul.socialaccount_providers {
   background: #ffebcc; }
   .wakacms-links:hover {
     background: #ffc671; }
+
+.team-tree > ul > li {
+  list-style: none;
+  margin-left: 0;
+  margin-bottom: 10px;
+  font-size: 130%; }
+  .team-tree > ul > li > ul > li {
+    font-size: 70%; }
+.team-tree ul {
+  margin-bottom: 0; }

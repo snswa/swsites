@@ -569,3 +569,20 @@ ul.socialaccount_providers {
     background: lighten($color-s2, 27%);
   };
 }
+
+.team-tree {
+  > ul {
+    > li {
+      list-style: none;
+      margin-left: 0;
+      margin-bottom: $gutter-width;
+      font-size: 130%;
+      > ul > li {
+        font-size: 70%;
+      }
+    }
+  }
+  ul {
+    margin-bottom: 0;
+  }
+}
