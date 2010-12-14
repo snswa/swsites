@@ -243,16 +243,26 @@ div#site-sections {
   }
 }
 
-@mixin active-section($name) {
+@mixin active-hq-section($name) {
   @include active-site-section($name, $color-s1, white);
 }
 
-.hq.hq-section            { @include active-section('hq'); }
-.hq.local-section         { @include active-section('local'); }
-.hq.state-section         { @include active-section('state'); }
-.hq.support-section       { @include active-section('support'); }
-.hq.friends-section       { @include active-section('friends'); }
-.hq.coordinators-section  { @include active-section('coordinators'); }
+.hq.hq-section            { @include active-hq-section('hq'); }
+.hq.local-section         { @include active-hq-section('local'); }
+.hq.state-section         { @include active-hq-section('state'); }
+.hq.support-section       { @include active-hq-section('support'); }
+.hq.friends-section       { @include active-hq-section('friends'); }
+.hq.coordinators-section  { @include active-hq-section('coordinators'); }
+
+@mixin active-public-section($name) {
+  @include active-site-section($name, $color-p, white);
+}
+
+.public.home-section          { @include active-public-section('home'); }
+.public.why-legalize-section  { @include active-public-section('why-legalize'); }
+.public.endorsements-section  { @include active-public-section('endorsements'); }
+.public.ways-help-section     { @include active-public-section('ways-help'); }
+.public.donate-section        { @include active-public-section('donate'); }
 
 div#breadcrumbs {
   border-bottom: $color-p solid $accent-width;

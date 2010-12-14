@@ -199,6 +199,26 @@ div#site-sections {
   background: #0b4f96;
   color: white; }
 
+.public.home-section div#site-sections a#home-link {
+  background: #009966;
+  color: white; }
+
+.public.why-legalize-section div#site-sections a#why-legalize-link {
+  background: #009966;
+  color: white; }
+
+.public.endorsements-section div#site-sections a#endorsements-link {
+  background: #009966;
+  color: white; }
+
+.public.ways-help-section div#site-sections a#ways-help-link {
+  background: #009966;
+  color: white; }
+
+.public.donate-section div#site-sections a#donate-link {
+  background: #009966;
+  color: white; }
+
 div#breadcrumbs {
   border-bottom: #009966 solid 2px;
   width: 950px;

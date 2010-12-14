@@ -5,6 +5,8 @@
 
 {% block page_title %}{% page_attribute "page_title" %}{% endblock %}
 
+{% block body_class %}{{ block.super }} public {{ current_page.get_path|slugify }}-section{% endblock %}
+
 {% block breadcrumbs %}
     {{ block.super }}
     {% show_breadcrumb %}

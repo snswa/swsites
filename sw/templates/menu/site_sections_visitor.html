@@ -1,10 +1,10 @@
-<li><a href="/">Home</a></li>
-<li><a href="/why-legalize/">Why Legalize</a></li>
-<li><a href="/endorsements/">Endorsements</a></li>
-<li><a href="/ways-help/">Ways to Help</a></li>
+<li><a id="home-link" href="/">Home</a></li>
+<li><a id="why-legalize-link" href="/why-legalize/">Why Legalize</a></li>
+<li><a id="endorsements-link" href="/endorsements/">Endorsements</a></li>
+<li><a id="ways-help-link" href="/ways-help/">Ways to Help</a></li>
 {% if user.is_authenticated %}
     <li><a href="{% url dashboard_index %}">Volunteer HQ</a></li>
 {% else %}
     <li><a href="{% url sw_hq %}">Volunteer HQ</a></li>
 {% endif %}
-<li><a href="/donate/">Donate</a></li>
+<li><a id="donate-link" href="/donate/">Donate</a></li>
