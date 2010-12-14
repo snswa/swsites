@@ -6,6 +6,8 @@
 
 {% block head_title %}{{ group.name }}{% endblock %}
 
+{% block body_class %}{{ block.super }} team-{{ group.slug }}{% endblock %}
+
 {% block breadcrumbs %}
     {{ block.super }}
     {% breadcrumb group.name %}

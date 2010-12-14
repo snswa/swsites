@@ -6,6 +6,10 @@
 {# Insert 'title' from wiki templates into 'page_title' in base #}
 {% block page_title %}{% block title %}{% endblock %}{% endblock %}
 
+{% if group %}
+    {% block body_class %}{{ block.super }} team-{{ group.slug }}{% endblock %}
+{% endif %}
+
 {% block breadcrumbs %}
     {{ block.super }}
     {% include "wakawaka/base_breadcrumbs.html" %}
