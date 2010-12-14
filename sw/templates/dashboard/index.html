@@ -1,6 +1,7 @@
 {% extends "base_hq_8_4.html" %}
 
 {% load breadcrumbs feature_tag %}
+{% load group_tags %}
 {% load pagination_tags %}
 
 {% block page_title %}HQ{% endblock %}
@@ -21,7 +22,15 @@
 
 {% block content_body %}
 
-    <p>Welcome to the Sensible Washington volunteer website. We're glad you're here!</p>
+    {% if wakacms_snippets.DashboardPreamble.latest %}
+        {% with wakacms_snippets.DashboardPreamble.latest as snippet %}
+            {% include "wakacmsplugin/wikipagesnippet.html" %}
+        {% endwith %}
+    {% else %}
+        {% if is_wakacms_team_member %}
+            <p>WARNING: No <a href="{% groupurl wakawaka_page wakacms_snippetgroup slug='DashboardPreamble' %}">wiki page</a>.</p>
+        {% endif %}
+    {% endif %}
 
     <h1>Recent Activity in Your Teams</h1>
 
