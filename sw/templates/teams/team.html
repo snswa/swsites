@@ -10,7 +10,10 @@
 
 {% block breadcrumbs %}
     {{ block.super }}
-    {% breadcrumb group.name %}
+    {% for parent in group.parents %}
+        {% breadcrumb_url parent.name teams_team slug=parent.slug %}
+    {% endfor %}
+    {% breadcrumb group.name "./" %}
 {% endblock %}
 
 
