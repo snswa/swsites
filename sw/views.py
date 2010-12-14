@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.decorators import user_passes_test, login_required
 from django.core.urlresolvers import reverse
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response
@@ -64,6 +64,7 @@ def hq(request, *args, **kw):
 # -- placeholders --
 
 
+@login_required
 def placeholder(request, slug, *args, **kw):
     template_name = 'sw/placeholders/{0}.html'.format(slug)
     template_context = {
