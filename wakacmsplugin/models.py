@@ -1,11 +1,9 @@
 from django.db import models
 
 from cms.models import CMSPlugin
-
 from teams.models import Team
-
 from wakawaka.models import Revision
-
+from wakacmsplugin import api
 from wakacmsplugin.settings import TEAM_SLUG
 
 
@@ -21,29 +19,7 @@ class WikiPageSnippet(CMSPlugin):
             return 'WARNING: NO CONTENT - {0}@{1}'.format(self.slug, self.rev)
 
     def content(self):
-        revision = self.revision()
-        if revision is None:
-            return u''
-        else:
-            content = revision.content
-            content = content.split('-BEGINSNIPPET-')[1]
-            content = content.split('-ENDSNIPPET-')[0]
-            return content
+        return api.snippet_content(self.slug, self.rev)
 
     def revision(self):
-        try:
-            if TEAM_SLUG is None:
-                queryset = Revision.objects.filter(
-                    page__content_type=None,
-                    page__object_id=None,
-                )
-            else:
-                team = Team.objects.get(slug=TEAM_SLUG)
-                queryset = team.content_objects(Revision, join='page')
-            revision = queryset.get(
-                pk=self.rev,
-                page__slug=self.slug,
-            )
-            return revision
-        except (IndexError, Revision.DoesNotExist):
-            return None
+        return api.snippet_revision(self.slug, self.rev)
