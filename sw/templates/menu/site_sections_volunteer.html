@@ -1,7 +1,7 @@
 {% load group_tags %}
 <li><a id="hq-link" href="{% if user.is_authenticated %}{% url dashboard_index %}{% else %}{% url sw_hq %}{% endif %}">HQ</a></li>
 <li><a id="local-link" href="{% url sw_placeholder slug='local' %}">Local</a></li>
-<li><a id="statewide-link" href="{% url teams_team slug='state' %}">Statewide</a></li>
+<li><a id="statewide-link" href="{% url sw_placeholder slug='state' %}">Statewide</a></li>
 <li><a id="support-link" href="{% url sw_placeholder slug='support' %}">Support</a></li>
 <li><a id="friends-link" href="{% url sw_placeholder slug='friends' %}">Friends</a></li>
 <li><a id="coordinators-link" href="{% url sw_placeholder slug='coordinators' %}">Coordinators</a></li>
