@@ -1,9 +1,10 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import user_passes_test
 from django.core.urlresolvers import reverse
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template.context import RequestContext
+from django.template import TemplateDoesNotExist, TemplateSyntaxError
 
 from actstream import action
 
@@ -58,3 +59,20 @@ def hq(request, *args, **kw):
         template_context,
         RequestContext(request),
     )
+
+
+# -- placeholders --
+
+
+def placeholder(request, slug, *args, **kw):
+    template_name = 'sw/placeholders/{0}.html'.format(slug)
+    template_context = {
+    }
+    try:
+        return render_to_response(
+            template_name,
+            template_context,
+            RequestContext(request),
+        )
+    except TemplateDoesNotExist:
+        raise Http404()

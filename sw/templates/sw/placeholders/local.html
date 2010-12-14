@@ -1,0 +1,23 @@
+{% extends "sw/placeholders/base.html" %}
+
+{% load breadcrumbs %}
+{% load group_tags %}
+
+{% block body_class %}{{ block.super }} local-section{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb 'Local' %}
+{% endblock %}
+
+{% block body %}
+    {% if wakacms_snippets.YourLocalSW.latest %}
+        {% with wakacms_snippets.YourLocalSW.latest as snippet %}
+            {% include "wakacmsplugin/wikipagesnippet.html" %}
+        {% endwith %}
+    {% else %}
+        {% if is_wakacms_team_member %}
+            <p>WARNING: No <a href="{% groupurl wakawaka_page wakacms_snippetgroup slug='YourLocalSW' %}">wiki page</a>.</p>
+        {% endif %}
+    {% endif %}
+{% endblock %}

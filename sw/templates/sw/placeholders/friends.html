@@ -1,0 +1,23 @@
+{% extends "sw/placeholders/base.html" %}
+
+{% load breadcrumbs feature_tag %}
+{% load group_tags %}
+
+{% block body_class %}{{ block.super }} friends-section{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb 'Friends' %}
+{% endblock %}
+
+{% block body %}
+    {% if wakacms_snippets.HqFriendsPlaceholder.latest %}
+        {% with wakacms_snippets.HqFriendsPlaceholder.latest as snippet %}
+            {% include "wakacmsplugin/wikipagesnippet.html" %}
+        {% endwith %}
+    {% else %}
+        {% if is_wakacms_team_member %}
+            <p>WARNING: No <a href="{% groupurl wakawaka_page wakacms_snippetgroup slug='HqFriendsPlaceholder' %}">wiki page</a>.</p>
+        {% endif %}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "sw/placeholders/base.html" %}
+
+{% load breadcrumbs %}
+{% load group_tags %}
+
+{% block body_class %}{{ block.super }} coordinators-section{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb 'Coordinators' %}
+{% endblock %}
+
+{% block body %}
+    {% if wakacms_snippets.AdminOnly.latest %}
+        {% with wakacms_snippets.AdminOnly.latest as snippet %}
+            {% include "wakacmsplugin/wikipagesnippet.html" %}
+        {% endwith %}
+    {% else %}
+        {% if is_wakacms_team_member %}
+            <p>WARNING: No <a href="{% groupurl wakawaka_page wakacms_snippetgroup slug='AdminOnly' %}">wiki page</a>.</p>
+        {% endif %}
+    {% endif %}
+{% endblock %}

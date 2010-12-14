@@ -236,11 +236,23 @@ div#site-sections {
   }
 }
 
-$hq-active-color: $color-s1;
-.hq-section div#site-sections a#hq-link {
-  background: $hq-active-color;
-  color: white;
+@mixin active-site-section($name, $background, $color) {
+  div#site-sections a##{$name}-link {
+    background: $background;
+    color: $color;
+  }
 }
+
+@mixin active-section($name) {
+  @include active-site-section($name, $color-s1, white);
+}
+
+.hq.hq-section            { @include active-section('hq'); }
+.hq.local-section         { @include active-section('local'); }
+.hq.statewide-section     { @include active-section('statewide'); }
+.hq.support-section       { @include active-section('support'); }
+.hq.friends-section       { @include active-section('friends'); }
+.hq.coordinators-section  { @include active-section('coordinators'); }
 
 div#breadcrumbs {
   border-bottom: $color-p solid $accent-width;

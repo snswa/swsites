@@ -58,9 +58,10 @@ urlpatterns += patterns('',
     url(r'^teams/', include('teams.urls')),
     url(r'^voting/', include('voting.urls')),
     #
-    # CUSTOM
+    # AD HOC
     #
     url(r'^hq/', 'sw.views.hq', name='sw_hq'),
+    url(r'^placeholder/', include('swproject.urls_placeholders')),
 )
 
 
