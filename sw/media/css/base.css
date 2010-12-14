@@ -117,7 +117,7 @@ table td {
 div#site-sections {
   height: 50px;
   max-height: 50px;
-  margin: 0px;
+  margin: 10px 0px 0px 0px;
   padding: 0px;
   width: 960px;
   border-bottom: 2px solid #009966;
@@ -149,7 +149,7 @@ div#site-sections {
     color: #006b47; }
     div#site-sections a:hover {
       color: white;
-      background: #009966; }
+      background: #00b377; }
   div#site-sections .section-title {
     display: block; }
   div#site-sections .active .section-title {
@@ -165,15 +165,14 @@ div#site-sections {
   height: 35px;
   max-height: 35px; }
   .hq div#site-sections ul {
-    height: 35px;
-    margin-top: 2px; }
+    height: 35px; }
   .hq div#site-sections a {
     height: 30px;
     padding-top: 5px;
     color: #08386b; }
     .hq div#site-sections a:hover {
-      color: white;
-      background: #0b4f96; }
+      /*      color: white;*/
+      background: #badafa; }
 
 .hq.hq-section div#site-sections a#hq-link {
   background: #0b4f96;

@@ -163,7 +163,7 @@ div#site-sections {
   $height: 50px;
   height: $height;
   max-height: $height;
-  margin: 0px;
+  margin: $gutter-width 0px 0px 0px;
   padding: 0px;
   width: $site-width;
   border-bottom: $accent-width solid $color-p;
@@ -198,7 +198,7 @@ div#site-sections {
   	color: darken($color-p, 9%);
   	&:hover {
       color: white;
-      background: $color-p;
+      background: lighten($color-p, 5%);
   	}
   }
   .section-title {
@@ -223,15 +223,14 @@ div#site-sections {
   max-height: $height;
   ul {
     height: $height;
-    margin-top: 2px;
   }
   a {
     height: $height - 5px;
     padding-top: 5px;
     color: darken($color-s1, 9%);
     &:hover {
-      color: white;
-      background: $color-s1;
+/*      color: white;*/
+      background: lighten($color-s1, 54%);
     }
   }
 }
