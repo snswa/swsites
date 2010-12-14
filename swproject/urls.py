@@ -75,6 +75,11 @@ urlpatterns += wiki_bridge.include_urls(
 # Redirects
 legacy_urls = (
     ('^wiki/', '/dashboard/'),
+    ('^local/$', '/placeholder/local/'),
+    ('^state/$', '/placeholder/state/'),
+    ('^support/$', '/placeholder/support/'),
+    ('^friends/$', '/placeholder/friends/'),
+    ('^coordinators/$', '/placeholder/coordinators/'),
 )
 for oldurl, newurl in legacy_urls:
     urlpatterns += patterns('',
