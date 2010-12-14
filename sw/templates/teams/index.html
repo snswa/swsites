@@ -1,9 +1,17 @@
 {% extends "teams/base.html" %}
 
+{% load breadcrumbs feature_tag %}
 {% load feature_tag %}
 {% load pagination_tags %}
 
 {% block head_title %}Teams{% endblock %}
+
+{% block body_class %}{{ block.super }} hq-section{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb 'Teams' './' %}
+{% endblock %}
 
 {% block body %}
 
