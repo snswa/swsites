@@ -249,7 +249,7 @@ div#site-sections {
 
 .hq.hq-section            { @include active-section('hq'); }
 .hq.local-section         { @include active-section('local'); }
-.hq.team-state            { @include active-section('statewide'); }
+.hq.state-section         { @include active-section('state'); }
 .hq.support-section       { @include active-section('support'); }
 .hq.friends-section       { @include active-section('friends'); }
 .hq.coordinators-section  { @include active-section('coordinators'); }
