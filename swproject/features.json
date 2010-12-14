@@ -1,7 +1,7 @@
 [
   {
     "name": "team_groupings",
-    "enabled": false,
+    "enabled": true,
     "description": "List teams in smaller conceptual groupings. <a href=\"/teams/devops/wiki/TeamGroupingsFeature/\">More info.</a>"
   },
   {
