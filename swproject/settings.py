@@ -327,8 +327,6 @@ INSTALLED_APPS = (
     'django_markup',
     'wakacmsplugin',
     #
-    # django-voice (feedback)
-    'djangovoice',
     'voting',
     'gravatar',
     #
