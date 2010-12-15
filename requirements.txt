@@ -67,7 +67,7 @@ django-uni-form==0.7.0
 -e git+http://github.com/gldnspud/python-postmark.git@b8f4d8f717d71607d84f70dde544c36e392225f6#egg=python-postmark
 
 # Wakawaka
--e git+http://github.com/snswa/django-wakawaka.git@d725262#egg=django-wakawaka
+-e git+http://github.com/snswa/django-wakawaka.git@450ba1d#egg=django-wakawaka
 django-markup==0.3
 
 # Voice

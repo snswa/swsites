@@ -35,40 +35,43 @@ if settings.DEBUG:
 wiki_bridge = ContentBridge(Team, 'wakawaka')
 
 
+FULL_VOLUNTEER = {
+    'login_required': True,
+    'email_required': True,
+    'profile_required': True,
+}
+
+
 urlpatterns += patterns('',
-    # Example:
-    # (r'^swproject/', include('swproject.foo.urls')),
-    #
-    # APPS
-    #
     url(r'^_site/', include('sw.urls')),    # Deployment tests and temporary views.
-    url(r'^accounts/', include('allauth.urls')),
+
     url(r'^admin/', include(admin.site.urls)),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-    url(r'^attachments/', include('attachments.urls')),
+    url(r'^sentry/', include('sentry.urls')),
+
+    # Figure out how to mesh these two together.
+    url(r'^accounts/', include('allauth.urls')),
+    url(r'^hq/', 'sw.views.hq', name='sw_hq'),
+    url(r'^profiles/', include('idios.urls')),
+    url(r'^teams/', include('teams.urls')),
+
+    url(r'^attachments/', include('attachments.urls'), kwargs=FULL_VOLUNTEER),
+    url(r'^comments/', include('django.contrib.comments.urls'), kwargs=FULL_VOLUNTEER),
+    url(r'^dashboard/', include('dashboard.urls'), kwargs=FULL_VOLUNTEER),
+    url(r'^features/', include('featurelabs.urls'), kwargs=FULL_VOLUNTEER),
+    url(r'^placeholder/', include('swproject.urls_placeholders'), kwargs=FULL_VOLUNTEER),
+    url(r'^search/', include('swproject.urls_search'), kwargs=FULL_VOLUNTEER),
+    url(r'^voting/', include('voting.urls'), kwargs=FULL_VOLUNTEER),
+
     # @@@ disabled, kept here to remind ourselves to remove zinnia
     # url(r'^blog/', include('zinnia.urls')),
-    url(r'^comments/', include('django.contrib.comments.urls')),
-    url(r'^dashboard/', include('dashboard.urls')),
-    url(r'^features/', include('featurelabs.urls')),
-    url(r'^profiles/', include('idios.urls')),
-    url(r'^search/', include('swproject.urls_search')),
-    url(r'^sentry/', include('sentry.urls')),
-    url(r'^teams/', include('teams.urls')),
-    url(r'^voting/', include('voting.urls')),
-    #
-    # AD HOC
-    #
-    url(r'^hq/', 'sw.views.hq', name='sw_hq'),
-    url(r'^placeholder/', include('swproject.urls_placeholders'), kwargs={'login_required': True}),
 )
 
 
 # Bridged URLs.
-urlpatterns += wiki_bridge.include_urls(
-    'wakawaka.urls',
+urlpatterns += wiki_bridge.include_urls('wakawaka.urls',
     r'^teams/(?P<team_slug>[\w\._-]+)/wiki/',
-    kwargs={'login_required': True},
+    kwargs=FULL_VOLUNTEER,
 )
 
 
