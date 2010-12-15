@@ -1,4 +1,4 @@
-{% load uni_form_tags %}
+{% load uni_form_tags i18n %}
 <form class="login uniForm" method="POST" action="{% url account_login %}">
     {% csrf_token %}
     <fieldset class="inlineLabels">
