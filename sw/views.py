@@ -64,7 +64,6 @@ def hq(request, *args, **kw):
 # -- placeholders --
 
 
-@login_required
 def placeholder(request, slug, *args, **kw):
     template_name = 'sw/placeholders/{0}.html'.format(slug)
     template_context = {

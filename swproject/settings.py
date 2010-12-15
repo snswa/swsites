@@ -86,6 +86,7 @@ MIDDLEWARE_CLASSES = (
     'groups.middleware.GroupAwareMiddleware',
     'pagination.middleware.PaginationMiddleware',
     'featureflipper.middleware.FeaturesMiddleware',
+    'sw.middleware.HqPredicateMiddleware',
     # 'django.middleware.cache.FetchFromCacheMiddleware',
 )
 

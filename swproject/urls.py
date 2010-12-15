@@ -61,14 +61,15 @@ urlpatterns += patterns('',
     # AD HOC
     #
     url(r'^hq/', 'sw.views.hq', name='sw_hq'),
-    url(r'^placeholder/', include('swproject.urls_placeholders')),
+    url(r'^placeholder/', include('swproject.urls_placeholders'), kwargs={'login_required': True}),
 )
 
 
 # Bridged URLs.
 urlpatterns += wiki_bridge.include_urls(
-    'swproject.urls_team_wiki',
+    'wakawaka.urls',
     r'^teams/(?P<team_slug>[\w\._-]+)/wiki/',
+    kwargs={'login_required': True},
 )
 
 
