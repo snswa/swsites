@@ -9,6 +9,7 @@ class HqPredicateMiddleware(object):
         login_required = view_kwargs.pop('login_required', False)
         email_required = view_kwargs.pop('email_required', False)
         profile_required = view_kwargs.pop('profile_required', False)
+        request.missing_info = {}
         #
         # Check for login necessity first.
         if login_required:
@@ -17,9 +18,19 @@ class HqPredicateMiddleware(object):
                     reverse('account_login')
                     + '?next={0}'.format(request.META['PATH_INFO'])
                 )
+            #
             # Check for private team membership.
             if (request.group is not None
                 and getattr(request.group, 'is_private', False)
                 and not request.group.user_is_member(request.user)
                 ):
                 return HttpResponseForbidden("You don't have permission to view this page.")
+            #
+            # Check for validated email address.
+            request.missing_info = {}
+            request.missing_info['email'] = (request.user.emailaddress_set.filter(verified=True).count() == 0)
+            #
+            # Check for profile details.
+            profile = request.user.get_profile()
+            request.missing_info['preferred_name'] = not profile.preferred_name
+            request.missing_info['zip_code'] = not profile.zip_code

@@ -480,3 +480,12 @@ ul.socialaccount_providers {
     font-size: 70%; }
 .team-tree ul {
   margin-bottom: 0; }
+
+#nags p {
+  background: #ffff8a url("/media/icons/exclamation.png") left center no-repeat;
+  background-position-x: 10px;
+  border-width: 1px 1px 3px 1px;
+  border-color: #757500;
+  border-style: solid;
+  padding: 10px 0px 10px 36px;
+  margin: 10px 0 0 0; }

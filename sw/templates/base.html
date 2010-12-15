@@ -17,7 +17,7 @@
     <link href="{{ STATIC_URL }}uni_form/uni-form.css" rel="stylesheet">
 
     {# Base #}
-    <link href="{{ STATIC_URL }}css/base.css?2010121402" rel="stylesheet">
+    <link href="{{ STATIC_URL }}css/base.css?2010121403" rel="stylesheet">
 
     {% block css %}{% endblock %}
 
@@ -99,6 +99,10 @@
         </ul>
     </div>
 {% endfeature %}
+
+<div id="nags" class="grid_12">
+    {% include "base/nags.html" %}
+</div>
 
 {% block team_header %}
     {% feature breadcrumbs %}{% disabled %}

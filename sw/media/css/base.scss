@@ -604,3 +604,17 @@ ul.socialaccount_providers {
     margin-bottom: 0;
   }
 }
+
+#nags {
+  p {
+    background: lighten(yellow, 27%) url('/media/icons/exclamation.png') left center no-repeat;
+    background-position-x: $gutter-width;
+    border: {
+      width: 1px 1px $shadow-width 1px;
+      color: darken(yellow, 27%);
+      style: solid;
+    };
+    padding: $gutter-width 0px $gutter-width 16px+$gutter-width*2;
+    margin: $gutter-width 0 0 0;
+  }
+}

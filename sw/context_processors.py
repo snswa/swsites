@@ -8,6 +8,10 @@ from wakawaka.models import WikiPage
 from wakawaka.settings import DEFAULT_INDEX
 
 
+def missing_info(request):
+    return {'missing_info': request.missing_info}
+
+
 def team_actions(request):
     """Add a `team_actions` queryset for the current context's team."""
     if isinstance(request.group, Team):

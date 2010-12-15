@@ -1,0 +1,19 @@
+{% if missing_info.email %}
+    <p>
+        Please <a href="{% url account_email %}">add and validate an email address</a>.
+    </p>
+{% endif %}
+
+{% if missing_info.preferred_name %}
+    <p>
+        Please <a href="{% url profile_edit %}">edit your profile</a> and
+        provide a preferred name.
+    </p>
+{% endif %}
+
+{% if missing_info.zip_code %}
+    <p>
+        Please <a href="{% url profile_edit %}">edit your profile</a> and
+        provide a ZIP code.
+    </p>
+{% endif %}

@@ -102,6 +102,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
     'cms.context_processors.media',
 
+    'sw.context_processors.missing_info',
     'sw.context_processors.team_actions',
     'sw.context_processors.team_membership',
     'sw.context_processors.team_wakacms_membership',
