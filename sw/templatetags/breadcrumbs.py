@@ -70,7 +70,6 @@ def breadcrumb_url_css(parser, token):
     """Same as breadcrumb_url, except specify a CSS class in front."""
     bits = token.split_contents()
     css_class = bits.pop(1)
-    print 'css_class', css_class, 'bits', bits
     token.contents = ' '.join(bits)
     return breadcrumb_url(parser, token, css_class)
 
