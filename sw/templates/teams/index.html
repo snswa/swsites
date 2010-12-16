@@ -3,6 +3,7 @@
 {% load breadcrumbs feature_tag %}
 {% load feature_tag %}
 {% load pagination_tags %}
+{% load wakacms_tags %}
 
 {% block head_title %}Teams{% endblock %}
 
@@ -14,6 +15,8 @@
 {% endblock %}
 
 {% block body %}
+
+    {% wikipagesnippet AllTeamsListPreamble latest %}
 
     {% feature team_groupings %}
 
