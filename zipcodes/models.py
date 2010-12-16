@@ -64,6 +64,9 @@ class TeamZipCode(models.Model):
             ('zip_code', 'team'),
         )
 
+    def __unicode__(self):
+        return u'{0} -> {1}'.format(self.zip_code, self.team)
+
 
 class TeamCounty(models.Model):
 
@@ -74,3 +77,6 @@ class TeamCounty(models.Model):
         unique_together = (
             ('county', 'team'),
         )
+
+    def __unicode__(self):
+        return u'{0} -> {1}'.format(self.county, self.team)
