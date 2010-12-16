@@ -1,5 +1,5 @@
 <div class="section">
-    <h1>Your Teams</h1>
+    <h1>Teams you've joined</h1>
 
     <ul>
         {% for team in user.team_set.all %}
@@ -7,7 +7,10 @@
         {% endfor %}
     </ul>
 
-    <div class="more">
-        <a href="{% url teams_index %}">All teams »</a>
-    </div>
+    {% if group %}
+        {# Only show this if we're in a team right now.  Redundant if we're on the teams index. #}
+        <div class="more">
+            <a href="{% url teams_index %}">All teams »</a>
+        </div>
+    {% endif %}
 </div>

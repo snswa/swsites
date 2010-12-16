@@ -21,13 +21,15 @@
     {% if group.is_private and not is_team_member %}
         <p>This team is private.</p>
     {% else %}
+        <h1>About the <strong>{{ group.name }}</strong> team</h1>
+
         {% if team_wiki_index_page %}
             {% with team_wiki_index_page.current as rev %}
                 {% include "wakawaka/page_content.html" %}
             {% endwith %}
         {% endif %}
 
-        <h1>Recent Activity</h1>
+        <h1>Recent activity</h1>
 
         {% autopaginate team_actions %}
 

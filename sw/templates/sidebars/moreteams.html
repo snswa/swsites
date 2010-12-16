@@ -1,8 +1,8 @@
 <div class="section">
-    <h1>More Teams</h1>
+    <h1>More teams</h1>
 
     <ul>
-        <li><a href="{% url teams_index %}">« All Teams</a></li>
+        <li><a href="{% url teams_index %}">« All teams</a></li>
         {% for parent in group.parents %}
             <li><a href="{% url teams_team slug=parent.slug %}">« {{ parent.name }}</a></li>
         {% endfor %}
