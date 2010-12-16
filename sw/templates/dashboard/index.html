@@ -3,6 +3,7 @@
 {% load breadcrumbs feature_tag %}
 {% load group_tags %}
 {% load pagination_tags %}
+{% load wakacms_tags %}
 
 {% block page_title %}HQ{% endblock %}
 
@@ -22,15 +23,7 @@
 
 {% block content_body %}
 
-    {% if wakacms_snippets.DashboardPreamble.latest %}
-        {% with wakacms_snippets.DashboardPreamble.latest as snippet %}
-            {% include "wakacmsplugin/wikipagesnippet.html" %}
-        {% endwith %}
-    {% else %}
-        {% if is_wakacms_team_member %}
-            <p>WARNING: No <a href="{% groupurl wakawaka_page wakacms_snippetgroup slug='DashboardPreamble' %}">wiki page</a>.</p>
-        {% endif %}
-    {% endif %}
+    {% wikipagesnippet DashboardPreamble latest %}
 
     <h1>Recent activity in teams you've joined</h1>
 

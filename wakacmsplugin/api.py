@@ -9,7 +9,11 @@ SNIPPET_RE = re.compile(r'.*-BEGINSNIPPET-\W+(.*)\W+-ENDSNIPPET-.*', re.DOTALL)
 
 
 def latest_rev_id(slug):
-    return snippet_revision(slug, None).id
+    revision = snippet_revision(slug, None)
+    if revision:
+        return revision.id
+    else:
+        return None
 
 
 def snippet_content(slug, rev_id):

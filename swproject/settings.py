@@ -112,7 +112,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     # 'zinnia.context_processors.version',
 
     'featureflipper.context_processors.features',
-    'wakacmsplugin.context_processors.wakacms_snippets',
 )
 
 # ==================================================================

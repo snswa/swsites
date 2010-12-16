@@ -1,12 +1,19 @@
 {% load sw_tags %}{% load markup_tags %}{% load group_tags %}
-<div id="wakacms-snippet-{{ snippet.slug|slugify }}-{{ snippet.rev }}">{{ snippet.content|wikify_creole_links:wakacms_snippetgroup|apply_markup:"creole" }}</div>
-{% if is_wakacms_team_member %}
-    <p class="wakacms-links" id="wakacms-links-{{ snippet.slug|slugify }}-{{ snippet.rev }}">
-        (Wiki snippet:
-        {{ snippet.slug }}
-        |
-        <a href="{% groupurl wakawaka_page wakacms_snippetgroup slug=snippet.slug rev_id=snippet.rev %}">This Rev</a>
-        |
-        <a href="{% groupurl wakawaka_page wakacms_snippetgroup slug=snippet.slug %}">Latest</a>)
-    </p>
+{% if snippet.revision %}
+    <div id="wakacms-snippet-{{ snippet.slug|slugify }}-{{ snippet.rev }}">{{ snippet.content|wikify_creole_links:wakacms_snippetgroup|apply_markup:"creole" }}</div>
+    {% if is_wakacms_team_member %}
+        <p class="wakacms-links" id="wakacms-links-{{ snippet.slug|slugify }}-{{ snippet.rev }}">
+            (Page snippet:
+            {% if rev_id %}
+                <a href="{% groupurl wakawaka_page wakacms_snippetgroup slug=snippet.slug rev_id=snippet.rev %}">{{ slug }}@{{ rev_id }}</a>
+                <a href="{% groupurl wakawaka_page wakacms_snippetgroup slug=snippet.slug %}">@latest</a>)
+            {% else %}
+                <a href="{% groupurl wakawaka_page wakacms_snippetgroup slug=snippet.slug %}">{{ slug }}@latest</a>)
+            {% endif %}
+        </p>
+    {% endif %}
+{% else %}
+    {% if is_wakacms_team_member %}
+        <p>WARNING: No snippet page; <a href="{% groupurl wakawaka_page wakacms_snippetgroup slug=snippet.slug %}">create <strong>{{ snippet.slug }}</strong> now</a>.</p>
+    {% endif %}
 {% endif %}

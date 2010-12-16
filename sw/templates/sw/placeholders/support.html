@@ -2,6 +2,7 @@
 
 {% load breadcrumbs %}
 {% load group_tags %}
+{% load wakacms_tags %}
 
 {% block body_class %}{{ block.super }} support-section{% endblock %}
 
@@ -11,13 +12,5 @@
 {% endblock %}
 
 {% block body %}
-    {% if wakacms_snippets.VolunteerSupport.latest %}
-        {% with wakacms_snippets.VolunteerSupport.latest as snippet %}
-            {% include "wakacmsplugin/wikipagesnippet.html" %}
-        {% endwith %}
-    {% else %}
-        {% if is_wakacms_team_member %}
-            <p>WARNING: No <a href="{% groupurl wakawaka_page wakacms_snippetgroup slug='VolunteerSupport' %}">wiki page</a>.</p>
-        {% endif %}
-    {% endif %}
+    {% wikipagesnippet VolunteerSupport latest %}
 {% endblock %}
