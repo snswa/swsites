@@ -349,7 +349,31 @@ div#breadcrumbs {
 }
 
 div#content {
-    margin-top: $gutter-width;
+  $fgcolor: darken($color-s1, 15%);
+  margin-top: $gutter-width;
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    color: $fgcolor;
+  }
+  h1 {
+    border-bottom: $accent-width solid $fgcolor;
+    padding: 0 $gutter-width 0 $gutter-width;
+  }
+}
+
+.hq div#content {
+  $fgcolor: darken($color-p, 20%);
+  $bgcolor: lighten($color-s1, 55%);
+  h1, h2, h3, h4, h5, h6 {
+    color: $fgcolor;
+  }
+  h1 {
+    border-bottom: {
+      color: darken($bgcolor, 55%);
+      width: $shadow-width;
+    };
+    background-color: $bgcolor;
+  }
 }
 
 div#sidebar {

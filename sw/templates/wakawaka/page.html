@@ -50,7 +50,7 @@
         {% include "wakawaka/page_content.html" %}
 	</div>
 
-    <h2>Comments</h2>
+    <h1>Comments</h1>
 
     {% get_comment_count for rev.page as comment_count %}
     {% if comment_count %}
@@ -67,7 +67,7 @@
 
 {% block sidebar_sections %}
     <div class="section">
-        <h1>This Wiki Page</h1>
+        <h1>This page</h1>
 
         <ul>
         	{% if perms.wakawaka.change_wikipage %}
@@ -87,7 +87,7 @@
     </div>
 
     <div class="section">
-        <h1>File Attachments</h1>
+        <h1>File attachments</h1>
 
         {% get_attachments_for rev.page %}
         {% if attachments %}
