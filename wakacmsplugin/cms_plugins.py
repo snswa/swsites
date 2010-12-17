@@ -27,6 +27,8 @@ class WikiPageSnippetPlugin(CMSPluginBase):
             'snippet': instance,
             'placeholder': placeholder,
             'wakacms_snippetgroup': snippetgroup,
+            'slug': instance.slug,
+            'rev_id': instance.rev,
         })
         return context
 
