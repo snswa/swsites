@@ -18,10 +18,15 @@ class WikiPageSnippetPlugin(CMSPluginBase):
     render_template = "wakacmsplugin/wikipagesnippet.html"
 
     def render(self, context, instance, placeholder):
+        try:
+            snippetgroup = Team.objects.get(slug=TEAM_SLUG)
+        except Team.DoesNotExist:
+            snippetgroup = None
         content = instance.content()
         context.update({
             'snippet': instance,
             'placeholder': placeholder,
+            'wakacms_snippetgroup': snippetgroup,
         })
         return context
 
