@@ -9,7 +9,8 @@ DATABASES['default']['USER'] = 'user'
 DATABASES['default']['PASSWORD'] = 'password'
 DATABASES['default']['HOST'] = '/var/run/postgresql'
 
-SKIP_SOUTH_TEST = True
+SKIP_SOUTH_TESTS = True
+SOUTH_TESTS_MIGRATE = False
 
 CELERY_ALWAYS_EAGER = True
 
