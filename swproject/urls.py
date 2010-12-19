@@ -52,7 +52,10 @@ urlpatterns += patterns('',
     # Figure out how to mesh these two together.
     url(r'^accounts/', include('allauth.urls')),
     url(r'^hq/', 'sw.views.hq', name='sw_hq'),
-    url(r'^profiles/', include('idios.urls'), kwargs={'form_class': ProfileForm}),
+    url(r'^profiles/', include('idios.urls'), kwargs={
+        'form_class': ProfileForm,
+        'login_required': True,
+    }),
     url(r'^teams/', include('teams.urls')),
 
     url(r'^attachments/', include('attachments.urls'), kwargs=FULL_VOLUNTEER),
