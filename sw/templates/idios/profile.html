@@ -4,6 +4,7 @@
 {% load i18n %}
 {% load sw_tags %}
 {% load uni_form_tags %}
+{% load zip_code_tags %}
 
 {% block head_title %}{% trans "Profile for" %} {{ page_user.get_profile }}{% endblock %}
 
@@ -74,7 +75,13 @@
                     {% endif %}
 
                     {% if can_view_zip_code and p.zip_code %}
-                        <p><b>{% trans "ZIP Code" %}</b>{% if zip_code_restricted %}*{% endif %}: {{ p.zip_code }}</p>
+                        <p><b>{% trans "ZIP Code" %}</b>{% if zip_code_restricted %}*{% endif %}:
+                            {{ p.zip_code }}
+                            {% zip_code_object p.zip_code as zip_code_obj %}
+                            {% if zip_code_obj %}
+                                ({{ zip_code_obj.city|title }}, {{ zip_code_obj.state }})
+                            {% endif %}
+                        </p>
                     {% endif %}
 
                     {% if can_view_mailing_address and p.mailing_address %}
