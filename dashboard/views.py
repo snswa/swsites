@@ -21,7 +21,10 @@ def index(request):
             q = subq
         else:
             q |= subq
-    team_actions = Action.objects.filter(q).order_by('-timestamp')
+    if q is not None:
+        team_actions = Action.objects.filter(q).order_by('-timestamp')
+    else:
+        team_actions = []
     template_context = {
         'team_actions': team_actions,
     }
