@@ -362,24 +362,3 @@ INSTALLED_APPS = (
     #
     'zipcodes',
 )
-
-import os
-if os.environ.get('QUICK') == '1':
-    # Disable schema-heavy apps for quicker test db setup.
-    INSTALLED_APPS = list(INSTALLED_APPS)
-    for app in [
-        'cms',
-        'cms.plugins.text',
-        'cms.plugins.picture',
-        'cms.plugins.link',
-        'cms.plugins.file',
-        'cms.plugins.snippet',
-        'cms.plugins.googlemap',
-        'sentry',
-        'sentry.client',
-        'wakacmsplugin',
-        'zinnia',
-        'zinnia.plugins',
-        ]:
-        INSTALLED_APPS.remove(app)
-    INSTALLED_APPS = tuple(INSTALLED_APPS)
