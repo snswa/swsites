@@ -448,7 +448,10 @@ div.beta-annotation p {
       text-align: center;
       background-color: white;
       color: #171717;
-      margin-top: 10px; }
+      margin-top: 10px;
+      border-width: 1px 1px 3px 1px;
+      border-style: solid;
+      border-color: #0b4f96; }
 .hq-signup ul.socialaccount_providers {
   text-align: center; }
 

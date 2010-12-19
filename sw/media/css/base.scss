@@ -526,8 +526,10 @@ div.beta-annotation p {
   border-style: solid;
 }
 
-.uniForm .focused {
-  background: lighten($color-s2, 50%);
+.uniForm {
+  .focused {
+    background: lighten($color-s2, 50%);
+  }
 }
 
 .hq-signup {
@@ -561,6 +563,9 @@ div.beta-annotation p {
           background-color: $header-bg-color;
           color: $header-color;
           margin-top: $gutter-width;
+          border-width: 1px 1px $shadow-width 1px;
+          border-style: solid;
+          border-color: $border-color;
         }
       }
     }
