@@ -4,5 +4,6 @@
 {% if user.is_staff %}
     <span><a href="/admin/"><span>Django Admin</span></a></span>
 {% endif %}
+<span><a href="/friends/">Friends</a></span>
 <span><a href="{% url profile_detail username=user.username %}">Your Profile</a></span>
 <span><a href="{% url account_logout %}">Sign Out</a></span>

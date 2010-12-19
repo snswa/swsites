@@ -282,7 +282,7 @@ div#site-sections {
 .hq.local-section         { @include active-hq-section('local'); }
 .hq.state-section         { @include active-hq-section('state'); }
 .hq.support-section       { @include active-hq-section('support'); }
-.hq.friends-section       { @include active-hq-section('friends'); }
+.hq.library-section       { @include active-hq-section('library'); }
 .hq.coordinators-section  { @include active-hq-section('coordinators'); }
 
 @mixin active-public-section($name) {

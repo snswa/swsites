@@ -1,0 +1,16 @@
+{% extends "sw/placeholders/base.html" %}
+
+{% load breadcrumbs feature_tag %}
+{% load group_tags %}
+{% load wakacms_tags %}
+
+{% block body_class %}{{ block.super }} library-section{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb 'Library' %}
+{% endblock %}
+
+{% block body %}
+    {% wikipagesnippet Library latest %}
+{% endblock %}

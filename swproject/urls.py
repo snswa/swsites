@@ -78,11 +78,13 @@ urlpatterns += wiki_bridge.include_urls('wakawaka.urls',
 # Redirects
 legacy_urls = (
     ('^wiki/', '/dashboard/'),
+
     ('^local/$', '/placeholder/local/'),
     ('^state/$', '/placeholder/state/'),
     ('^support/$', '/placeholder/support/'),
-    ('^friends/$', '/placeholder/friends/'),
+    ('^library/$', '/placeholder/library/'),
     ('^coordinators/$', '/placeholder/coordinators/'),
+    ('^friends/$', '/placeholder/friends/'),
 )
 for oldurl, newurl in legacy_urls:
     urlpatterns += patterns('',
