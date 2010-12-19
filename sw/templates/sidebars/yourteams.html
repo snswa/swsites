@@ -5,12 +5,12 @@
         {% for team in user.team_set.all %}
             <li><a href="{% url teams_team slug=team.slug %}">{{ team.name }}</a></li>
         {% endfor %}
+        {% if not team_tree %}
+            {# Only show this if we're in a team right now.  Redundant if we're on the teams index. #}
+            <li><a href="{% url teams_index %}"><strong>All teams »</strong></a></li>
+        {% endif %}
     </ul>
 
     {% if not team_tree %}
-        {# Only show this if we're in a team right now.  Redundant if we're on the teams index. #}
-        <div class="more">
-            <a href="{% url teams_index %}">All teams »</a>
-        </div>
     {% endif %}
 </div>
