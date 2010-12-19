@@ -49,21 +49,21 @@ urlpatterns += patterns('',
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^sentry/', include('sentry.urls')),
 
-    # Figure out how to mesh these two together.
+    # Figure out how to mesh these two together for login.
     url(r'^accounts/', include('allauth.urls')),
     url(r'^hq/', 'sw.views.hq', name='sw_hq'),
-    url(r'^profiles/', include('idios.urls'), kwargs={
-        'form_class': ProfileForm,
-        'login_required': True,
-    }),
-    url(r'^teams/', include('teams.urls')),
 
     url(r'^attachments/', include('attachments.urls'), kwargs=FULL_VOLUNTEER),
     url(r'^comments/', include('django.contrib.comments.urls'), kwargs=FULL_VOLUNTEER),
     url(r'^dashboard/', include('dashboard.urls'), kwargs=FULL_VOLUNTEER),
     url(r'^features/', include('featurelabs.urls'), kwargs=FULL_VOLUNTEER),
     url(r'^placeholder/', include('swproject.urls_placeholders'), kwargs=FULL_VOLUNTEER),
+    url(r'^profiles/', include('idios.urls'), kwargs={
+        'form_class': ProfileForm,
+        'login_required': True,
+    }),
     url(r'^search/', include('swproject.urls_search'), kwargs=FULL_VOLUNTEER),
+    url(r'^teams/', include('teams.urls'), kwargs=FULL_VOLUNTEER),
     url(r'^voting/', include('voting.urls'), kwargs=FULL_VOLUNTEER),
 
     # @@@ disabled, kept here to remind ourselves to remove zinnia
