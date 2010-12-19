@@ -21,7 +21,7 @@ class Profile(ProfileBase):
     ]
 
     preferred_name = models.CharField(max_length=50, blank=True,
-        help_text='How your name will appear to all volunters.')
+        help_text='How your name will appear to all volunteers.')
 
     first_name = models.CharField(max_length=100, blank=True)
     last_name = models.CharField(max_length=100, blank=True)
