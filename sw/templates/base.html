@@ -41,11 +41,11 @@
 </head>
 <body class="container_12 {% block body_class %}{% endblock %}">
 
+<div id="auth-bar" class="grid_12 alpha omega"
 {% if debug %}
-    <h3 style="text-align:center;color:red;margin:0;">Development Server</h3>
+    style="background-color:darkred;border-bottom-color:red"
 {% endif %}
-
-<div id="auth-bar" class="grid_12 alpha omega">
+>
     <span class="left">{% spaceless %}
         {% block auth_bar_left %}
             {% if user.is_authenticated %}
