@@ -13,13 +13,16 @@
 {% endblock %}
 
 {% block body %}
-    <div class="prefix_2 grid_8 suffix_2">
+    <div>
         {% feature breadcrumbs %}{% disabled %}
             <h1>{% trans "Edit Your Profile" %}</h1>
         {% endfeature %}
 
         {% wikipagesnippet EditProfilePreamble latest %}
 
-        {% include "idios/profile_form.html" %}
+        <div class="grid_8 suffix_4">
+            <a name="edit"></a>
+            {% include "idios/profile_form.html" %}
+        </div>
     </div>
 {% endblock %}
