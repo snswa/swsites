@@ -123,7 +123,7 @@
                     <p><b>{% trans "Preferred Contact Methods" %}</b>{% if preferred_contact_methods_restricted %}*{% endif %}: {{ p.preferred_contact_methods }}</p>
                 {% endif %}
 
-                {% if can_view_vio and p.bio %}
+                {% if can_view_bio and p.bio %}
                     <p><b>{% trans "Bio" %}</b>{% if bio_restricted %}*{% endif %}: {{ p.bio }}</p>
                 {% endif %}
             {% endwith %}
