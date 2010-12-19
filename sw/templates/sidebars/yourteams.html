@@ -18,10 +18,11 @@
                     {% endif %}
                 </li>
             {% endfor %}
-            {% if not team_tree %}
-                {# Only show this if we're in a team right now.  Redundant if we're on the teams index. #}
-                <li><a href="{% url teams_index %}"><strong>All teams »</strong></a></li>
-            {% endif %}
         </ul>
+
+        {% if not team_tree %}
+            {# Only show this if we're in a team right now.  Redundant if we're on the teams index. #}
+            <ul><li><a href="{% url teams_index %}"><strong>All teams »</strong></a></li></ul>
+        {% endif %}
     {% endwith %}
 </div>
