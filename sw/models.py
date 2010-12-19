@@ -54,6 +54,11 @@ class Profile(ProfileBase):
     bio = models.TextField(blank=True)
     bio_privacy = models.CharField(max_length=1, choices=PRIVACY_CHOICES_CFA, default='C')
 
+    occupation = models.CharField(max_length=100, blank=True)
+    occupation_privacy = models.CharField(max_length=1, choices=PRIVACY_CHOICES_PCFA, default='C')
+    employer = models.CharField(max_length=100, blank=True)
+    employer_privacy = models.CharField(max_length=1, choices=PRIVACY_CHOICES_PCFA, default='C')
+
     def __unicode__(self):
         return self.preferred_name or self.user.username
 
