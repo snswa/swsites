@@ -2,8 +2,13 @@
     <h1>Teams you've joined</h1>
 
     <ul>
-        {% for team in user.team_set.all %}
-            <li><a href="{% url teams_team slug=team.slug %}">{{ team.name }}</a></li>
+        {% for membership in user.member_set.all %}
+            <li>
+                <a href="{% url teams_team slug=membership.team.slug %}">{{ membership.team.name }}</a>
+                {% if membership.is_coordinator %}
+                    <span class="coordinator">(coordinator)</span>
+                {% endif %}
+            </li>
         {% endfor %}
         {% if not team_tree %}
             {# Only show this if we're in a team right now.  Redundant if we're on the teams index. #}
