@@ -60,3 +60,61 @@ def wikify_creole_links(value, group):
         exists_template=r'[[{url:>s}|{text:>s}]]',
         missing_template=r'[[{url:>s}|{text:>s}?]]',
         )
+
+
+@register.tag
+def profile_privacy(parser, token):
+    """Determine profile visibility based on the the profile's privacy settings
+    and the current user's relationship to the profile's user.
+
+    Example::
+
+        <% load sw_tags %>
+        <% profile_privacy %>
+
+    Assumes the context contains 'user' and 'profile'.
+    """
+    return ProfilePrivacyNode()
+
+
+class ProfilePrivacyNode(Node):
+
+    def render(self, context):
+        # Determine if user is a coordinator of one of other's teams.
+        user = context['user']
+        profile = context['profile']
+        other = profile.user
+        is_me = context['is_me']
+        coordinator_teams = set(m.team for m in user.member_set.filter(is_coordinator=True))
+        other_teams = set(other.team_set.all())
+        if other_teams.intersection(coordinator_teams):
+            is_coordinator = True
+        else:
+            is_coordinator = False
+        # TODO: Find out
+        # Now determine privacy settings for each section.
+        privacy_map = {
+            # privacy-code: lookup-fn,
+            'P': False,
+            'C': is_coordinator,
+            'F': is_coordinator,
+            'A': True,
+        }
+        for section in [
+            'name',
+            'zip_code',
+            'mailing_address',
+            'email',
+            'phone_number',
+            'messaging',
+            'preferred_contact_methods',
+            'bio',
+            'occupation',
+            'employer',
+            ]:
+            privacy_name = '{0}_privacy'.format(section)
+            privacy_code = getattr(profile, privacy_name)
+            context['can_view_{0}'.format(section)] = is_me or privacy_map[privacy_code]
+            if privacy_code != 'A':
+                context['{0}_restricted'.format(section)] = True
+        return u''

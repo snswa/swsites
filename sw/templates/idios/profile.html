@@ -2,6 +2,7 @@
 
 {% load breadcrumbs feature_tag %}
 {% load i18n %}
+{% load sw_tags %}
 {% load uni_form_tags %}
 
 {% block head_title %}{% trans "Profile for" %} {{ page_user.get_profile }}{% endblock %}
@@ -20,78 +21,97 @@
         <div class="vcard">
             {# TODO: needs fn (full name) class on some element that contains full name #}
 
+            {% feature breadcrumbs %}{% disabled %}
+                <h1>{% trans "Your Profile" %}</h1>
+            {% endfeature %}
+
+            {% profile_privacy %}
+
             {% if is_me %}
-
-                {% feature breadcrumbs %}{% disabled %}
-                    <h1>{% trans "Your Profile" %}</h1>
-                {% endfeature %}
-
                 <ul>
                     <li><a href="{% url profile_edit %}">{% trans "Edit profile" %}</a></li>
                     <li><a href="{% url account_email %}">{% trans "Manage email addresses" %}</a></li>
                     <li><a href="{% url socialaccount_connections %}">{% trans "Manage third-party logins" %}</a></li>
                 </ul>
+            {% endif %}
 
-                <div class="profile_info">
-                    <p><b>{% trans "Username" %}</b>: {{ page_user.username }}</p>
+            <div class="profile_info">
+                <p>
+                    * Indicates information
+                    {% if not is_me %}shared with you, but{% endif %}
+                    not shared with all volunteers.
+                    {% if not is_me %}Please respect this user's privacy settings.{% endif %}
+                </p>
 
-                    {% with page_user.get_profile as p %}
-                        {% if p.preferred_name %}
-                            <p><b>{% trans "Preferred Name" %}</b>: {{ p.preferred_name }}</p>
-                        {% endif %}
+                {% with page_user.get_profile as p %}
+                    {% if p.preferred_name %}
+                        <p><b>{% trans "Preferred Name" %}</b>: {{ p.preferred_name }}</p>
+                    {% endif %}
 
+                    {% if can_view_name %}
                         {% if p.first_name or p.last_name %}
-                            <p><b>{% trans "Full Name" %}</b>: {{ p.first_name }} {{p.last_name}}</p>
+                            <p><b>{% trans "Full Name" %}</b>{% if name_restricted %}*{% endif %}: {{ p.first_name }} {{p.last_name}}</p>
                         {% endif %}
+                    {% endif %}
 
-                        {% if p.zip_code %}
-                            <p><b>{% trans "ZIP Code" %}</b>: {{ p.zip_code }}</p>
+                    {% if can_view_occupation and can_view_employer %}
+                        {% if p.occupation and not p.employer %}
+                            <p><b>Occupation</b>{% if occupation_restricted %}*{% endif %}: {{ p.occupation }}</p>
                         {% endif %}
-
-                        {% if p.mailing_address %}
-                            <p><b>{% trans "Mailing Address" %}</b>:<br /><pre>{{ p.mailing_address }}</pre></p>
+                        {% if p.occupation and p.employer %}
+                            <p><b>Occupation</b>{% if occupation_restricted or employer_restricted %}*{% endif %}: {{ p.occupation }} at {{ p.employer }}</p>
                         {% endif %}
-
-                        {% if p.phone_number %}
-                            <p><b>{% trans "Phone Number" %}</b>: {{ p.phone_number }}</p>
+                        {% if not p.occupation and p.employer %}
+                            <p><b>Employer</b>{% if employer_restricted %}*{% endif %}: {{ p.employer }}</p>
                         {% endif %}
+                    {% else %}
+                        {% if can_view_occupation and p.occupation %}
+                            <p><b>Occupation</b>{% if occupation_restricted %}*{% endif %}: {{ p.occupation }}</p>
+                        {% endif %}
+                        {% if can_view_employer and p.employer %}
+                            <p><b>Employer</b>{% if employer_restricted %}*{% endif %}: {{ p.employer }}</p>
+                        {% endif %}
+                    {% endif %}
 
+                    {% if can_view_zip_code and p.zip_code %}
+                        <p><b>{% trans "ZIP Code" %}</b>{% if zip_code_restricted %}*{% endif %}: {{ p.zip_code }}</p>
+                    {% endif %}
+
+                    {% if can_view_mailing_address and p.mailing_address %}
+                        <p><b>{% trans "Mailing Address" %}</b>{% if mailing_address_restricted %}*{% endif %}:<br /><pre>{{ p.mailing_address }}</pre></p>
+                    {% endif %}
+
+                    {% if can_view_phone_number and p.phone_number %}
+                        <p><b>{% trans "Phone Number" %}</b>{% if phone_number_restricted %}*{% endif %}: {{ p.phone_number }}</p>
+                    {% endif %}
+
+                    {% if can_view_messaging %}
                         {% if p.yahoo_messenger %}
-                            <p><b>{% trans "Yahoo! Messenger" %}</b>: {{ p.yahoo_messenger }}</p>
+                            <p><b>{% trans "Yahoo! Messenger" %}</b>{% if messaging_restricted %}*{% endif %}: {{ p.yahoo_messenger }}</p>
                         {% endif %}
 
                         {% if p.aim %}
-                            <p><b>{% trans "AIM" %}</b>: {{ p.aim }}</p>
+                            <p><b>{% trans "AIM" %}</b>{% if messaging_restricted %}*{% endif %}: {{ p.aim }}</p>
                         {% endif %}
 
                         {% if p.msn_messenger %}
-                            <p><b>{% trans "MSN Messenger" %}</b>: {{ p.msn_messenger }}</p>
+                            <p><b>{% trans "MSN Messenger" %}</b>{% if messaging_restricted %}*{% endif %}: {{ p.msn_messenger }}</p>
                         {% endif %}
 
                         {% if p.skype %}
-                            <p><b>{% trans "Skype" %}</b>: {{ p.skype }}</p>
+                            <p><b>{% trans "Skype" %}</b>{% if messaging_restricted %}*{% endif %}: {{ p.skype }}</p>
                         {% endif %}
+                    {% endif %}
 
-                        {% if p.preferred_contact_methods %}
-                            <p><b>{% trans "Preferred Contact Methods" %}</b>: {{ p.preferred_contact_methods }}</p>
-                        {% endif %}
+                    {% if can_view_preferred_contact_methods and p.preferred_contact_methods %}
+                        <p><b>{% trans "Preferred Contact Methods" %}</b>{% if preferred_contact_methods_restricted %}*{% endif %}: {{ p.preferred_contact_methods }}</p>
+                    {% endif %}
 
-                        {% if p.bio %}
-                            <p><b>{% trans "Bio" %}</b>: {{ p.bio }}</p>
-                        {% endif %}
-                    {% endwith %}
-                </div>
-
-            {% else %}
-
-                {% feature breadcrumbs %}{% disabled %}
-                    <h1>{% trans "Profile for" %} {{ page_user.get_profile }}</h1>
-                {% endfeature %}
-
-                <p>(Viewing others' profiles is not yet enabled.)</p>
-
-            {% endif %}
-
+                    {% if can_view_vio and p.bio %}
+                        <p><b>{% trans "Bio" %}</b>{% if bio_restricted %}*{% endif %}: {{ p.bio }}</p>
+                    {% endif %}
+                {% endwith %}
+            </div>
         </div>
     </div>
 {% endblock %}
