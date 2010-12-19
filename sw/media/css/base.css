@@ -87,6 +87,12 @@
 .sw-link-hover:hover {
   background: transparent url("/media/icons/sw.png") left center no-repeat; }
 
+.user_go-link {
+  background: transparent url("/media/icons/user_go.png") left center no-repeat; }
+
+.user_go-link-hover:hover {
+  background: transparent url("/media/icons/user_go.png") left center no-repeat; }
+
 .user_green-link {
   background: transparent url("/media/icons/user_green.png") left center no-repeat; }
 
@@ -121,29 +127,31 @@ table td {
 li > ul {
   margin-bottom: 0; }
 
-#auth-bar {
-  background-color: #0b4f96;
-  font-size: 14px;
-  width: 960px;
-  border-bottom: 2px solid #57a3f3;
-  position: relative;
+div#auth-bar {
+  position: fixed;
+  top: 0px;
   height: 22px;
-  color: white; }
-  #auth-bar span + span {
+  width: 960px;
+  z-index: 1000;
+  font-size: 14px;
+  color: white;
+  background-color: #0b4f96;
+  border-bottom: 2px solid #57a3f3; }
+  div#auth-bar span + span {
     margin-left: 1em; }
-  #auth-bar a {
+  div#auth-bar a {
     font-weight: bold;
     color: white;
     text-decoration: none; }
-    #auth-bar a span {
+    div#auth-bar a span {
       text-decoration: none; }
-    #auth-bar a:hover {
+    div#auth-bar a:hover {
       text-decoration: underline; }
-  #auth-bar .left {
+  div#auth-bar .left {
     position: absolute;
     float: left;
     padding-left: 10px; }
-  #auth-bar .right {
+  div#auth-bar .right {
     text-align: right;
     float: right;
     padding-right: 10px; }
@@ -153,12 +161,12 @@ li > ul {
   background-position: 5px;
   background-repeat: no-repeat;
   background-size: 246px 140px;
-  width: 960px;
+  position: relative;
   height: 140px;
+  width: 960px;
   margin-left: 0px;
-  margin-top: 1em;
-  padding: 0;
-  position: relative; }
+  margin-top: 32px;
+  padding: 0px; }
   .header h1 a {
     display: block;
     height: 140px;
@@ -174,10 +182,10 @@ li > ul {
     z-index: -1; }
 
 .hq .header {
-  margin-top: .5em;
   background-image: url("/media/images/logos/logo-123x70.gif");
   background-size: 123px 70px;
-  height: 70px; }
+  height: 70px;
+  margin-top: 32px; }
   .hq .header h1 a {
     height: 70px; }
   .hq .header h2 {
@@ -509,7 +517,7 @@ div.beta-annotation p {
       background-color: white;
       color: #171717;
       margin-top: 10px;
-      border-width: 1px 1px 3px 1px;
+      border-width: 1px 1px 2px 1px;
       border-style: solid;
       border-color: #0b4f96; }
 .hq-signup ul.socialaccount_providers {

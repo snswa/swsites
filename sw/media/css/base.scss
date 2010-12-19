@@ -2,6 +2,7 @@ $site-width: 960px;
 $gutter-width: 10px;
 $accent-width: 2px;
 $shadow-width: 3px;
+$auth-bar-height: 22px;
 
 /* http://colorschemedesigner.com/#3741Tw0sRw0w0 */
 $color-p: #009966;
@@ -50,6 +51,7 @@ $color-c: #e64d00;
 @include icon-link-image("page");
 @include icon-link-image("pencil");
 @include icon-link-image("sw");
+@include icon-link-image("user_go");
 @include icon-link-image("user_green");
 
 body {
@@ -91,14 +93,16 @@ li > ul {
   margin-bottom: 0;
 }
 
-#auth-bar {
-	background-color: $color-s1;
-  font-size: 14px;
+div#auth-bar {
+  position: fixed;
+  top: 0px;
+  height: $auth-bar-height;
   width: $site-width;
-  border-bottom: $accent-width solid lighten($color-s1, 33%);
-  position: relative;
-  height: 22px;
+  z-index: 1000;
+  font-size: 14px;
   color: white;
+	background-color: $color-s1;
+  border-bottom: $accent-width solid lighten($color-s1, 33%);
   span + span {
     margin-left: 1em;
   }
@@ -130,12 +134,12 @@ li > ul {
   background-position: 5px;
   background-repeat: no-repeat;
   background-size: 246px 140px;
-  width: $site-width;
-  height: 140px;
-  margin-left: 0px;
-  margin-top: 1em;
-  padding: 0;
   position: relative;
+  height: 140px;
+  width: $site-width;
+  margin-left: 0px;
+  margin-top: $auth-bar-height + $gutter-width;
+  padding: 0px;
   h1 a {
   	display: block;
   	height: 140px;
@@ -154,10 +158,10 @@ li > ul {
 }
 
 .hq .header {
-  margin-top: .5em;
   background-image: url("/media/images/logos/logo-123x70.gif");
   background-size: 123px 70px;
   height: 70px;
+  margin-top: $auth-bar-height + $gutter-width;
   h1 a {
     height: 70px;
   }
@@ -573,7 +577,7 @@ div.beta-annotation p {
           background-color: $header-bg-color;
           color: $header-color;
           margin-top: $gutter-width;
-          border-width: 1px 1px $shadow-width 1px;
+          border-width: 1px 1px $accent-width 1px;
           border-style: solid;
           border-color: $border-color;
         }
