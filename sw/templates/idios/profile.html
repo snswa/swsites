@@ -37,7 +37,7 @@
 
             <div class="profile_info">
                 <p>
-                    * Indicates information
+                    * Asterisks indicate information
                     {% if not is_me %}shared with you, but{% endif %}
                     not shared with all volunteers.
                     {% if not is_me %}Please respect this user's privacy settings.{% endif %}
@@ -85,21 +85,29 @@
                         <p><b>{% trans "Phone Number" %}</b>{% if phone_number_restricted %}*{% endif %}: {{ p.phone_number }}</p>
                     {% endif %}
 
+                    {% if can_view_email %}
+                        <p><b>{% trans "Email Addresses" %}</b>{% if email_restricted %}*{% endif %}:
+                            {% for emailaddress in user.emailaddress_set.all %}
+                                <a href="mailto:{{ emailaddress.email }}">{{ emailaddress.email }}</a>{% if not forloop.last %},{% endif %}
+                            {% endfor %}
+                        </p>
+                    {% endif %}
+
                     {% if can_view_messaging %}
                         {% if p.yahoo_messenger %}
-                            <p><b>{% trans "Yahoo! Messenger" %}</b>{% if messaging_restricted %}*{% endif %}: {{ p.yahoo_messenger }}</p>
+                            <p><b>{% trans "Yahoo! Messenger" %}</b>{% if messaging_restricted %}*{% endif %}: <a href="ymsgr:sendIM?{{ p.yahoo_messenger }}">{{ p.yahoo_messenger }}</a></p>
                         {% endif %}
 
                         {% if p.aim %}
-                            <p><b>{% trans "AIM" %}</b>{% if messaging_restricted %}*{% endif %}: {{ p.aim }}</p>
+                            <p><b>{% trans "AIM" %}</b>{% if messaging_restricted %}*{% endif %}: <a href="aim:goim?screenname={{ p.aim }}">{{ p.aim }}</a></p>
                         {% endif %}
 
                         {% if p.msn_messenger %}
-                            <p><b>{% trans "MSN Messenger" %}</b>{% if messaging_restricted %}*{% endif %}: {{ p.msn_messenger }}</p>
+                            <p><b>{% trans "MSN Messenger" %}</b>{% if messaging_restricted %}*{% endif %}: <a href="msnim:chat?contact={{ p.msn_messenger }}">{{ p.msn_messenger }}</a></p>
                         {% endif %}
 
                         {% if p.skype %}
-                            <p><b>{% trans "Skype" %}</b>{% if messaging_restricted %}*{% endif %}: {{ p.skype }}</p>
+                            <p><b>{% trans "Skype" %}</b>{% if messaging_restricted %}*{% endif %}: <a href="skype:{{ p.skype }}">{{ p.skype }}</a></p>
                         {% endif %}
                     {% endif %}
 
