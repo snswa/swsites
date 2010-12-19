@@ -76,7 +76,7 @@
 
 {% block header %}
 <div class="header grid_12 alpha omega">
-    <h1><a href="/">SensibleWashington.org</a></h1>
+    <h1><a href="{% block logo_url %}/{% endblock %}">sensiblewashington.org</a></h1>
     <h2>{% block header_slogan %}Legalize Cannabis<br/>in 2011{% endblock %}</h2>
     <div id="site-search">
         <form action="/search/" method="get">
