@@ -23,11 +23,9 @@ class Profile(ProfileBase):
     preferred_name = models.CharField(max_length=50, blank=True,
         help_text='How your name will appear to all volunters.')
 
-    first_name = models.CharField(max_length=100, blank=True,
-        help_text='Your real first and last name.')
+    first_name = models.CharField(max_length=100, blank=True)
     last_name = models.CharField(max_length=100, blank=True)
-    name_privacy = models.CharField(max_length=1, choices=PRIVACY_CHOICES_PCFA, default='C',
-        help_text='Applies to first and last names; Preferred name is visible by all volunteers.')
+    name_privacy = models.CharField(max_length=1, choices=PRIVACY_CHOICES_PCFA, default='C')
 
     zip_code = models.CharField(max_length=30, blank=True)
     zip_code_privacy = models.CharField(max_length=1, choices=PRIVACY_CHOICES_CFA, default='C')

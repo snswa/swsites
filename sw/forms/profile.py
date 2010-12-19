@@ -10,8 +10,10 @@ class ProfileForm(BaseProfileForm):
     helper = FormHelper()
 
     layout = Layout(
-        Fieldset('Name',
+        Fieldset('Online Name/Nickname',
             'preferred_name',
+        ),
+        Fieldset('Real Name',
             Row('first_name', 'last_name'),
             'name_privacy',
         ),
