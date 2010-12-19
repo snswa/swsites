@@ -2,18 +2,24 @@
 
 {% load breadcrumbs feature_tag %}
 {% load i18n %}
+{% load wakacms_tags %}
 
 {% block head_title %}{% trans "Edit Your Profile" %}{% endblock %}
 
 {% block breadcrumbs %}
     {{ block.super }}
-    {% breadcrumb 'Edit Your Profile' %}
+    {% breadcrumb_url 'Your Profile' profile_detail username=user.username %}
+    {% breadcrumb_css 'icon-link pencil-link' 'Edit' %}
 {% endblock %}
 
 {% block body %}
-    {% feature breadcrumbs %}{% disabled %}
-        <h1>{% trans "Edit Your Profile" %}</h1>
-    {% endfeature %}
+    <div class="prefix_2 grid_8 suffix_2">
+        {% feature breadcrumbs %}{% disabled %}
+            <h1>{% trans "Edit Your Profile" %}</h1>
+        {% endfeature %}
 
-    {% include "idios/profile_form.html" %}
+        {% wikipagesnippet EditProfilePreamble latest %}
+
+        {% include "idios/profile_form.html" %}
+    </div>
 {% endblock %}

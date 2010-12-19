@@ -11,24 +11,31 @@ class HqSignupForm(SignupForm):
 
     preferred_name = forms.CharField(
         label=_("Preferred Name"),
-        help_text=_('This is how your name will appear to other volunteers.'),
+        help_text=_('How your name will appear to all volunters.'),
         max_length=50,
         widget=forms.TextInput(),
     )
     zip_code = forms.CharField(
         label=_("ZIP Code"),
         max_length=30,
-        help_text=_('If you are outside the U.S., please enter the name of your location instead.')
+        help_text=_('Outside the U.S.? Please name your location instead.')
     )
     email = forms.EmailField(
         widget=forms.TextInput(),
-        help_text=_('We keep your contact information private. You can change privacy settings after signing up.'),
+        help_text=_('Used to verify the account and receive email updates.'),
+    )
+    phone_number = forms.CharField(
+        label=_("Phone Number"),
+        help_text=_('Strongly preferred.'),
+        max_length=20,
+        widget=forms.TextInput(),
+        required=False,
     )
     # Needs to be new_ prefixed so as to not collide with a login form on
     # the same page.
     new_username = forms.CharField(
         label=_("Username"),
-        help_text=_('The account name you use to log into the website.'),
+        help_text=_('The account name you will use to log into the website.'),
         max_length=30,
         widget=forms.TextInput(),
     )
@@ -48,6 +55,7 @@ class HqSignupForm(SignupForm):
             'preferred_name',
             'zip_code',
             'email',
+            'phone_number',
             'new_username',
             'password1',
             'password2',
@@ -63,4 +71,5 @@ class HqSignupForm(SignupForm):
         profile = user.get_profile()
         profile.preferred_name = self.cleaned_data['preferred_name']
         profile.zip_code = self.cleaned_data['zip_code']
+        profile.phone_number = self.cleaned_data['phone_number']
         profile.save()
