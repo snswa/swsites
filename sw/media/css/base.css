@@ -127,7 +127,7 @@ table td {
 li > ul {
   margin-bottom: 0; }
 
-div#auth-bar {
+div#user-bar {
   position: fixed;
   top: 0px;
   height: 22px;
@@ -137,21 +137,21 @@ div#auth-bar {
   color: white;
   background-color: #0b4f96;
   border-bottom: 2px solid #57a3f3; }
-  div#auth-bar span + span {
+  div#user-bar span + span {
     margin-left: 1em; }
-  div#auth-bar a {
+  div#user-bar a {
     font-weight: bold;
     color: white;
     text-decoration: none; }
-    div#auth-bar a span {
+    div#user-bar a span {
       text-decoration: none; }
-    div#auth-bar a:hover {
+    div#user-bar a:hover {
       text-decoration: underline; }
-  div#auth-bar .left {
+  div#user-bar .left {
     position: absolute;
     float: left;
     padding-left: 10px; }
-  div#auth-bar .right {
+  div#user-bar .right {
     text-align: right;
     float: right;
     padding-right: 10px; }

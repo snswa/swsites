@@ -2,7 +2,7 @@ $site-width: 960px;
 $gutter-width: 10px;
 $accent-width: 2px;
 $shadow-width: 3px;
-$auth-bar-height: 22px;
+$user-bar-height: 22px;
 
 /* http://colorschemedesigner.com/#3741Tw0sRw0w0 */
 $color-p: #009966;
@@ -93,10 +93,10 @@ li > ul {
   margin-bottom: 0;
 }
 
-div#auth-bar {
+div#user-bar {
   position: fixed;
   top: 0px;
-  height: $auth-bar-height;
+  height: $user-bar-height;
   width: $site-width;
   z-index: 1000;
   font-size: 14px;
@@ -138,7 +138,7 @@ div#auth-bar {
   height: 140px;
   width: $site-width;
   margin-left: 0px;
-  margin-top: $auth-bar-height + $gutter-width;
+  margin-top: $user-bar-height + $gutter-width;
   padding: 0px;
   h1 a {
   	display: block;
@@ -161,7 +161,7 @@ div#auth-bar {
   background-image: url("/media/images/logos/logo-123x70.gif");
   background-size: 123px 70px;
   height: 70px;
-  margin-top: $auth-bar-height + $gutter-width;
+  margin-top: $user-bar-height + $gutter-width;
   h1 a {
     height: 70px;
   }
