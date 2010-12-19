@@ -5,7 +5,11 @@ from django.utils.safestring import mark_safe
 from django.core.urlresolvers import reverse
 from wakawaka.models import WikiPage
 
+
 register = Library()
+
+
+# --- WIKI LINKS ---
 
 
 CREOLE_WIKILINK_REGEX = r'\[\[([^\]]*)\]\]'
@@ -60,6 +64,9 @@ def wikify_creole_links(value, group):
         exists_template=r'[[{url:>s}|{text:>s}]]',
         missing_template=r'[[{url:>s}|{text:>s}?]]',
         )
+
+
+# --- PROFILE PRIVACY ---
 
 
 @register.tag
