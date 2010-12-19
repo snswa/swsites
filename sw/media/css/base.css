@@ -15,23 +15,83 @@
   .icon-link span {
     padding-left: 16px !important; }
 
+.bullet_blue-link {
+  background: transparent url("/media/icons/bullet_blue.png") left center no-repeat; }
+
+.bullet_blue-link-hover:hover {
+  background: transparent url("/media/icons/bullet_blue.png") left center no-repeat; }
+
+.bullet_go-link {
+  background: transparent url("/media/icons/bullet_go.png") left center no-repeat; }
+
+.bullet_go-link-hover:hover {
+  background: transparent url("/media/icons/bullet_go.png") left center no-repeat; }
+
+.bullet_yellow-link {
+  background: transparent url("/media/icons/bullet_yellow.png") left center no-repeat; }
+
+.bullet_yellow-link-hover:hover {
+  background: transparent url("/media/icons/bullet_yellow.png") left center no-repeat; }
+
+.door_in-link {
+  background: transparent url("/media/icons/door_in.png") left center no-repeat; }
+
+.door_in-link-hover:hover {
+  background: transparent url("/media/icons/door_in.png") left center no-repeat; }
+
+.eye-link {
+  background: transparent url("/media/icons/eye.png") left center no-repeat; }
+
+.eye-link-hover:hover {
+  background: transparent url("/media/icons/eye.png") left center no-repeat; }
+
 .folder-link {
+  background: transparent url("/media/icons/folder.png") left center no-repeat; }
+
+.folder-link-hover:hover {
   background: transparent url("/media/icons/folder.png") left center no-repeat; }
 
 .group-link {
   background: transparent url("/media/icons/group.png") left center no-repeat; }
 
+.group-link-hover:hover {
+  background: transparent url("/media/icons/group.png") left center no-repeat; }
+
+.group_link-link {
+  background: transparent url("/media/icons/group_link.png") left center no-repeat; }
+
+.group_link-link-hover:hover {
+  background: transparent url("/media/icons/group_link.png") left center no-repeat; }
+
 .lightning-link {
+  background: transparent url("/media/icons/lightning.png") left center no-repeat; }
+
+.lightning-link-hover:hover {
   background: transparent url("/media/icons/lightning.png") left center no-repeat; }
 
 .page-link {
   background: transparent url("/media/icons/page.png") left center no-repeat; }
 
+.page-link-hover:hover {
+  background: transparent url("/media/icons/page.png") left center no-repeat; }
+
 .pencil-link {
+  background: transparent url("/media/icons/pencil.png") left center no-repeat; }
+
+.pencil-link-hover:hover {
   background: transparent url("/media/icons/pencil.png") left center no-repeat; }
 
 .sw-link {
   background: transparent url("/media/icons/sw.png") left center no-repeat; }
+
+.sw-link-hover:hover {
+  background: transparent url("/media/icons/sw.png") left center no-repeat; }
+
+.user_green-link {
+  background: transparent url("/media/icons/user_green.png") left center no-repeat; }
+
+.user_green-link-hover:hover {
+  background: transparent url("/media/icons/user_green.png") left center no-repeat; }
 
 body {
   position: relative;

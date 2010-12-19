@@ -12,7 +12,7 @@
 {% endblock %}
 
 {% block auth_bar_left %}
-<a href="{% url pages-root %}">« Back to public website</a>
+{% include "base/hq_auth_bar_left.html" %}
 {% endblock %}
 
 {% block site_sections %}

@@ -34,13 +34,23 @@ $color-c: #e64d00;
   .#{$icon-name}-link {
     background: transparent url('/media/icons/#{$icon-name}.png') left center no-repeat;
   }
+  .#{$icon-name}-link-hover:hover {
+    background: transparent url('/media/icons/#{$icon-name}.png') left center no-repeat;
+  }
 }
+@include icon-link-image("bullet_blue");
+@include icon-link-image("bullet_go");
+@include icon-link-image("bullet_yellow");
+@include icon-link-image("door_in");
+@include icon-link-image("eye");
 @include icon-link-image("folder");
 @include icon-link-image("group");
+@include icon-link-image("group_link");
 @include icon-link-image("lightning");
 @include icon-link-image("page");
 @include icon-link-image("pencil");
 @include icon-link-image("sw");
+@include icon-link-image("user_green");
 
 body {
   position: relative;
