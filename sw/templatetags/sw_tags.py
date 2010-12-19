@@ -60,25 +60,3 @@ def wikify_creole_links(value, group):
         exists_template=r'[[{url:>s}|{text:>s}]]',
         missing_template=r'[[{url:>s}|{text:>s}?]]',
         )
-#
-#
-# class WikifyCreoleContentNode(Node):
-#
-#     def __init__(self, content_expr, group_var):
-#         self.content_expr = content_expr
-#         self.group_var = Variable(group_var)
-#
-#     def render(self, context):
-#         content = self.content_expr.resolve(context)
-#         group = self.group_var.resolve(context)
-#         return replace_wikilinks(content, group)
-#
-#
-# @register.tag
-# def wikify_creole_content(parser, token):
-#     bits = token.split_contents()
-#     try:
-#         group_var = bits[2]
-#     except IndexError:
-#         group_var = None
-#     return WikifyCreoleContentNode(parser.compile_filter(bits[1]), group_var)
