@@ -17,7 +17,18 @@
     <link href="{{ STATIC_URL }}uni_form/uni-form.css" rel="stylesheet">
 
     {# Base #}
+    <!--[if !IE 6]><!-->
     <link href="{{ STATIC_URL }}css/base.css?2010121805" rel="stylesheet">
+    <!--<![endif]-->
+
+    <!--[if IE 7]>
+        <link href="{{ STATIC_URL }}css/base-ie7.css?2010121805" rel="stylesheet">
+    <![endif]-->
+
+    {# http://forabeautifulweb.com/blog/about/universal_internet_explorer_6_css #}
+    <!--[if lte IE 6]>
+        <link rel="stylesheet" type="text/css" media="screen, projection" href="http://universal-ie6-css.googlecode.com/files/ie6.0.3.css" />
+    <![endif]-->
 
     {% block css %}{% endblock %}
 
