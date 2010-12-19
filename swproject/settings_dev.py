@@ -9,6 +9,8 @@ DATABASES['default']['USER'] = 'user'
 DATABASES['default']['PASSWORD'] = 'password'
 DATABASES['default']['HOST'] = '/var/run/postgresql'
 
+SKIP_SOUTH_TEST = True
+
 CELERY_ALWAYS_EAGER = True
 
 if django.VERSION >= (1, 3):
