@@ -1,21 +1,27 @@
 <div class="section">
     <h1>Teams you've joined</h1>
 
-    <ul>
-        {% for membership in user.member_set.all %}
-            <li>
-                <a href="{% url teams_team slug=membership.team.slug %}">{{ membership.team.name }}</a>
-                {% if membership.is_coordinator %}
-                    <span class="coordinator">(coordinator)</span>
-                {% endif %}
-            </li>
-        {% endfor %}
-        {% if not team_tree %}
-            {# Only show this if we're in a team right now.  Redundant if we're on the teams index. #}
-            <li><a href="{% url teams_index %}"><strong>All teams »</strong></a></li>
+    {% with user.member_set.all as memberships %}
+        {% if memberships.count == 0 %}
+            <p>
+                You are not a member of any teams.  Click below to view
+                the list of teams and join the ones you're interested in.
+            </p>
         {% endif %}
-    </ul>
 
-    {% if not team_tree %}
-    {% endif %}
+        <ul>
+            {% for membership in memberships %}
+                <li>
+                    <a href="{% url teams_team slug=membership.team.slug %}">{{ membership.team.name }}</a>
+                    {% if membership.is_coordinator %}
+                        <span class="coordinator">(coordinator)</span>
+                    {% endif %}
+                </li>
+            {% endfor %}
+            {% if not team_tree %}
+                {# Only show this if we're in a team right now.  Redundant if we're on the teams index. #}
+                <li><a href="{% url teams_index %}"><strong>All teams »</strong></a></li>
+            {% endif %}
+        </ul>
+    {% endwith %}
 </div>

@@ -57,10 +57,15 @@
         <div class="section">
             <h1>Members</h1>
 
-            {% with group.members.all as members %}
+            {% with group.member_set.all as memberships %}
                 <ul>
-                    {% for user in members %}
-                        <li><a href="{{ user.get_absolute_url }}">{{ user.get_profile }}</a></li>
+                    {% for membership in memberships %}
+                        <li>
+                            <a href="{{ membership.user.get_absolute_url }}">{{ membership.user.get_profile }}</a>
+                            {% if membership.is_coordinator %}
+                                <span class="coordinator">(coordinator)</span>
+                            {% endif %}
+                        </li>
                     {% endfor %}
                 </ul>
             {% endwith %}

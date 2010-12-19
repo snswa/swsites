@@ -25,19 +25,21 @@
 
     {% wikipagesnippet DashboardPreamble latest %}
 
-    <h1>Recent activity in teams you've joined</h1>
+    {% if team_actions %}
+        <h1>Recent activity in teams you've joined</h1>
 
-    {% autopaginate team_actions %}
+        {% autopaginate team_actions %}
 
-    <ul class="stream">
-        {% for action in team_actions %}
-            <li class="event">
-                {% include "activity/action.html" %}
-            </li>
-        {% endfor %}
-    </ul>
+        <ul class="stream">
+            {% for action in team_actions %}
+                <li class="event">
+                    {% include "activity/action.html" %}
+                </li>
+            {% endfor %}
+        </ul>
 
-    {% paginate %}
+        {% paginate %}
+    {% endif %}
 
 {% endblock %}
 
