@@ -11,7 +11,7 @@ class HqSignupForm(SignupForm):
 
     preferred_name = forms.CharField(
         label=_("Preferred Name"),
-        help_text=_('How your name will appear to all volunters.'),
+        help_text=_('How your name will appear to other volunteers. Example: Your first name, or a personal nickname.'),
         max_length=50,
         widget=forms.TextInput(),
     )
