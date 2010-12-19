@@ -124,7 +124,7 @@
                 {% endif %}
 
                 {% if can_view_bio and p.bio %}
-                    <p><b>{% trans "Bio" %}</b>{% if bio_restricted %}*{% endif %}: {{ p.bio }}</p>
+                    <p><b>{% trans "Bio" %}</b>{% if bio_restricted %}*{% endif %}: {{ p.bio|linebreaks }}</p>
                 {% endif %}
             {% endwith %}
         </div>
