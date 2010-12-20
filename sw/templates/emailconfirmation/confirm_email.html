@@ -7,7 +7,7 @@
 
 {% block breadcrumbs %}
     {{ block.super }}
-    {% breadcrumb_url 'Email Addresses' account_email %}
+    {% breadcrumb_url_css 'icon-link email_edit-link' 'Email Addresses' account_email %}
     {% breadcrumb 'Verify an Email Address' %}
     {% breadcrumb 'Confirmation' %}
 {% endblock %}

@@ -29,7 +29,7 @@ def replace_wikilinks(value, group, exists_template, missing_template):
             slug, text = parts
         slug = slug.strip()
         text = text.strip()
-        if ':' in slug or slug.startswith('.') or slug.startswith('/'):
+        if ':' in slug or '#' in slug or slug.startswith('.') or slug.startswith('/'):
             # slug is an URL.
             return exists_template.format(url=slug, text=text)
         kwargs = dict(slug=slug)

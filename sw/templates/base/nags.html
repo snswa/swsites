@@ -1,19 +1,44 @@
-{% if missing_info.email %}
-    <p>
-        Please <a href="{% url account_email %}">add and verify an email address</a>.
-    </p>
-{% endif %}
+{% if user.is_authenticated %}
+    {% with request.missing_info as missing %}
+        {% if missing.email and not request.GET.gather_profile and not email_address %}
+            <div>
+                {% if request.GET.gather_email %}
+                    <p>Please add and verify an email address to continue.</p>
 
-{% if missing_info.preferred_name %}
-    <p>
-        Please <a href="{% url profile_edit %}">edit your profile</a> and
-        provide a preferred name.
-    </p>
-{% endif %}
+                    <p>If you've already added an email address and are still seeing
+                    this message, please check your email and click on the
+                    verification link we emailed you.</p>
 
-{% if missing_info.zip_code %}
-    <p>
-        Please <a href="{% url profile_edit %}">edit your profile</a> and
-        provide a ZIP code.
-    </p>
+                    <p>You may need to check your "Spam" or "Junk" folder if you
+                    don't receive an email. You can re-send a confirmation below.</p>
+                {% else %}
+                    <p>Please <a href="{% url account_email %}">add and verify an email address</a>.
+                    (If you've already added an email address and are still seeing this message,
+                    be sure to verify it by clicking on the link we emailed you.)</p>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        {% if missing.preferred_name and not request.GET.gather_email %}
+            <div>
+                {% if request.GET.gather_profile %}
+                    <p>Please provide a preferred name below, then save your profile to continue.</p>
+                {% else %}
+                    <p>Please <a href="{% url profile_edit %}">edit your profile</a> and
+                    provide a preferred name.</p>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        {% if missing.zip_code and not request.GET.gather_email %}
+            <div>
+                {% if request.GET.gather_profile %}
+                    <p>Please provide your ZIP code or location below, then save your profile to continue.</p>
+                {% else %}
+                    <p>Please <a href="{% url profile_edit %}">edit your profile</a> and
+                    provide a ZIP code.</p>
+                {% endif %}
+            </div>
+        {% endif %}
+    {% endwith %}
 {% endif %}

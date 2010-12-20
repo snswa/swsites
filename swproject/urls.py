@@ -50,7 +50,10 @@ urlpatterns += patterns('',
     url(r'^sentry/', include('sentry.urls')),
 
     # Figure out how to mesh these two together for login.
-    url(r'^accounts/', include('allauth.urls')),
+    url(r'^accounts/', include('allauth.urls'), kwargs={
+        'email_preferred': True,
+        'profile_preferred': True,
+    }),
     url(r'^hq/', 'sw.views.hq', name='sw_hq'),
 
     url(r'^attachments/', include('attachments.urls'), kwargs=FULL_VOLUNTEER),
@@ -61,6 +64,8 @@ urlpatterns += patterns('',
     url(r'^profiles/', include('idios.urls'), kwargs={
         'form_class': ProfileForm,
         'login_required': True,
+        'email_preferred': True,
+        'profile_preferred': True,
     }),
     url(r'^search/', include('swproject.urls_search'), kwargs=FULL_VOLUNTEER),
     url(r'^teams/', include('teams.urls'), kwargs=FULL_VOLUNTEER),

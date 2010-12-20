@@ -656,7 +656,7 @@ ul.socialaccount_providers {
 }
 
 #nags {
-  p {
+  div {
     background: lighten(yellow, 27%) url('/media/icons/exclamation.png') left center no-repeat;
     background-position-x: $gutter-width;
     border: {
@@ -666,5 +666,11 @@ ul.socialaccount_providers {
     };
     padding: $gutter-width 0px $gutter-width 16px+$gutter-width*2;
     margin: $gutter-width 0 0 0;
+    p {
+      margin-bottom: $gutter-width;
+      &:last-child {
+        margin-bottom: 0px;
+      };
+    }
   }
 }

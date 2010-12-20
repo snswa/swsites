@@ -603,7 +603,7 @@ ul.socialaccount_providers {
 .team-tree ul {
   margin-bottom: 0; }
 
-#nags p {
+#nags div {
   background: #ffff8a url("/media/icons/exclamation.png") left center no-repeat;
   background-position-x: 10px;
   border-width: 1px 1px 3px 1px;
@@ -611,3 +611,7 @@ ul.socialaccount_providers {
   border-style: solid;
   padding: 10px 0px 10px 36px;
   margin: 10px 0 0 0; }
+  #nags div p {
+    margin-bottom: 10px; }
+    #nags div p:last-child {
+      margin-bottom: 0px; }

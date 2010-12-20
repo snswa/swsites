@@ -5,7 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 
 # Bump this to force reloading of static media tagged with
 # ?{{ MEDIA_SERIAL_NUMBER }} on next deploy.
-MEDIA_SERIAL_NUMBER = '2010121905'
+MEDIA_SERIAL_NUMBER = '2010121906'
 
 DEBUG = False
 TEMPLATE_DEBUG = True
@@ -106,7 +106,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'cms.context_processors.media',
 
     'sw.context_processors.media_serial_number',
-    'sw.context_processors.missing_info',
     'sw.context_processors.team_actions',
     'sw.context_processors.team_membership',
     'sw.context_processors.team_wakacms_membership',
