@@ -27,7 +27,7 @@ class HqPredicateMiddleware(object):
         #
         # Check for other requirements.
         user = request.user
-        if user.is_authenticated:
+        if user.is_authenticated():
             profile = user.get_profile()
             has_verified_email = user.emailaddress_set.filter(verified=True).count() == 1
             has_preferred_name = profile.preferred_name and profile.preferred_name.strip()
@@ -59,7 +59,7 @@ class HqPredicateMiddleware(object):
                 )
         #
         # Check for private team membership.
-        if (not user.is_authenticated or
+        if (not user.is_authenticated() or
             (request.group is not None
              and getattr(request.group, 'is_private', False)
              and not request.group.user_is_member(request.user))
