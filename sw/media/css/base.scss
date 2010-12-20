@@ -43,6 +43,7 @@ $color-c: #e64d00;
 @include icon-link-image("bullet_go");
 @include icon-link-image("bullet_yellow");
 @include icon-link-image("door_in");
+@include icon-link-image("email_edit");
 @include icon-link-image("eye");
 @include icon-link-image("folder");
 @include icon-link-image("group");
@@ -53,6 +54,8 @@ $color-c: #e64d00;
 @include icon-link-image("sw");
 @include icon-link-image("user_go");
 @include icon-link-image("user_green");
+@include icon-link-image("vcard");
+@include icon-link-image("vcard_edit");
 
 body {
   position: relative;

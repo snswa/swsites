@@ -39,6 +39,12 @@
 .door_in-link-hover:hover {
   background: transparent url("/media/icons/door_in.png") left center no-repeat; }
 
+.email_edit-link {
+  background: transparent url("/media/icons/email_edit.png") left center no-repeat; }
+
+.email_edit-link-hover:hover {
+  background: transparent url("/media/icons/email_edit.png") left center no-repeat; }
+
 .eye-link {
   background: transparent url("/media/icons/eye.png") left center no-repeat; }
 
@@ -98,6 +104,18 @@
 
 .user_green-link-hover:hover {
   background: transparent url("/media/icons/user_green.png") left center no-repeat; }
+
+.vcard-link {
+  background: transparent url("/media/icons/vcard.png") left center no-repeat; }
+
+.vcard-link-hover:hover {
+  background: transparent url("/media/icons/vcard.png") left center no-repeat; }
+
+.vcard_edit-link {
+  background: transparent url("/media/icons/vcard_edit.png") left center no-repeat; }
+
+.vcard_edit-link-hover:hover {
+  background: transparent url("/media/icons/vcard_edit.png") left center no-repeat; }
 
 body {
   position: relative;

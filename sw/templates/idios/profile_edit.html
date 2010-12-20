@@ -8,7 +8,7 @@
 
 {% block breadcrumbs %}
     {{ block.super }}
-    {% breadcrumb_url 'Your Profile' profile_detail username=user.username %}
+    {% breadcrumb_url_css 'icon-link vcard-link' user.get_profile profile_detail username=user.username %}
     {% breadcrumb_css 'icon-link pencil-link' 'Edit' %}
 {% endblock %}
 

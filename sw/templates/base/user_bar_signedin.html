@@ -1,5 +1,5 @@
 {% load feature_tag %}
-<span class="icon-link user_green-link"><a href="{% url profile_detail username=user.username %}"><span>{{ user.get_profile }}</span></a></span>
+<span class="icon-link vcard-link"><a href="{% url profile_detail username=user.username %}"><span>{{ user.get_profile }}</span></a></span>
 <span class="icon-link group_link-link "><a href="/friends/"><span>Friends</span></a></span>
 <span class="icon-link lightning-link"><a href="{% url featurelabs_index %}"><span>Labs</span></a></span>
 {% if user.is_staff %}

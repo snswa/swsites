@@ -10,11 +10,7 @@
 
 {% block breadcrumbs %}
     {{ block.super }}
-    {% if is_me %}
-        {% breadcrumb 'Your Profile' %}
-    {% else %}
-        {% breadcrumb page_user.get_profile %}
-    {% endif %}
+    {% breadcrumb_css 'icon-link vcard-link' page_user.get_profile './' %}
 {% endblock %}
 
 {% block content_cols %}8{% endblock %}
@@ -23,9 +19,7 @@
     <div class="vcard">
         {# TODO: needs fn (full name) class on some element that contains full name #}
 
-        {% feature breadcrumbs %}{% disabled %}
-            <h1>{% trans "Your Profile" %}</h1>
-        {% endfeature %}
+        <h1><strong>{{ page_user.get_profile }}</strong>'s profile{% if is_me %} (your profile){% endif %}</h1>
 
         {% profile_privacy %}
 
@@ -46,10 +40,6 @@
             </p>
 
             {% with page_user.get_profile as p %}
-                {% if p.preferred_name %}
-                    <p><b>{% trans "Preferred Name" %}</b>: {{ p.preferred_name }}</p>
-                {% endif %}
-
                 {% if can_view_name %}
                     {% if p.first_name or p.last_name %}
                         <p><b>{% trans "Full Name" %}</b>{% if name_restricted %}*{% endif %}: {{ p.first_name }} {{p.last_name}}</p>
