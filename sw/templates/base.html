@@ -58,7 +58,7 @@
 {% endif %}
 >
     <span class="left">{% spaceless %}
-        {% block auth_bar_left %}
+        {% block user_bar_left %}
             {% if user.is_authenticated %}
                 <span class="icon-link bullet_yellow-link"><a href="/"><span>Public Website</span></a></span>
                 <span class="icon-link bullet_go-link-hover"><a href="{% url dashboard_index %}"><span>Volunteer HQ</span></a></span>
@@ -67,9 +67,9 @@
     {% endspaceless %}</span>
     <span class="right">{% spaceless %}
         {% if user.is_authenticated %}
-            {% include "base/auth_bar_signedin.html" %}
+            {% include "base/user_bar_signedin.html" %}
         {% else %}
-            {% include "base/auth_bar_signedout.html" %}
+            {% include "base/user_bar_signedout.html" %}
         {% endif %}
     {% endspaceless %}</span>
 </div>
