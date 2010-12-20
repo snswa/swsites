@@ -59,10 +59,9 @@ class HqPredicateMiddleware(object):
                 )
         #
         # Check for private team membership.
-        if (not user.is_authenticated() or
-            (request.group is not None
-             and getattr(request.group, 'is_private', False)
-             and not request.group.user_is_member(request.user))
+        if (request.group is not None
+            and getattr(request.group, 'is_private', False)
+            and not request.group.user_is_member(request.user)
             ):
             return HttpResponseForbidden("You don't have permission to view this page.")
         #
