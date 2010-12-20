@@ -69,6 +69,12 @@
 .group_link-link-hover:hover {
   background: transparent url("/media/icons/group_link.png") left center no-repeat; }
 
+.key-link {
+  background: transparent url("/media/icons/key.png") left center no-repeat; }
+
+.key-link-hover:hover {
+  background: transparent url("/media/icons/key.png") left center no-repeat; }
+
 .lightning-link {
   background: transparent url("/media/icons/lightning.png") left center no-repeat; }
 
@@ -86,6 +92,18 @@
 
 .pencil-link-hover:hover {
   background: transparent url("/media/icons/pencil.png") left center no-repeat; }
+
+.plugin-link {
+  background: transparent url("/media/icons/plugin.png") left center no-repeat; }
+
+.plugin-link-hover:hover {
+  background: transparent url("/media/icons/plugin.png") left center no-repeat; }
+
+.plugin_edit-link {
+  background: transparent url("/media/icons/plugin_edit.png") left center no-repeat; }
+
+.plugin_edit-link-hover:hover {
+  background: transparent url("/media/icons/plugin_edit.png") left center no-repeat; }
 
 .sw-link {
   background: transparent url("/media/icons/sw.png") left center no-repeat; }

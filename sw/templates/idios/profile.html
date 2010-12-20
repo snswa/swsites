@@ -25,9 +25,10 @@
 
         {% if is_me %}
             <ul>
-                <li><a href="{% url profile_edit %}">{% trans "Edit profile" %}</a></li>
-                <li><a href="{% url account_email %}">{% trans "Manage email addresses" %}</a></li>
-                <li><a href="{% url socialaccount_connections %}">{% trans "Manage third-party logins" %}</a></li>
+                <li><span class="icon-link pencil-link"><a href="{% url profile_edit %}"><span>{% trans "Edit profile" %}</span></a></span></li>
+                <li><span class="icon-link email_edit-link"><a href="{% url account_email %}"><span>{% trans "Manage email addresses" %}</span></a></span></li>
+                <li><span class="icon-link plugin_edit-link"><a href="{% url socialaccount_connections %}"><span>{% trans "Manage third-party logins" %}</span></a></span></li>
+                <li><span class="icon-link key-link"><a href="{% url account_change_password %}"><span>Change password</span></a></span></li>
             </ul>
         {% endif %}
 

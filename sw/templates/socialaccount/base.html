@@ -6,8 +6,7 @@
 
 {% block breadcrumbs %}
     {{ block.super }}
-    {% breadcrumb 'Accounts' %}
-    {% breadcrumb_url 'Social Networks' socialaccount_connections %}
+    {% breadcrumb_url_css "icon-link vcard-link" user.get_profile profile_detail username=user.username %}
 {% endblock %}
 
 {% block content_body %}
