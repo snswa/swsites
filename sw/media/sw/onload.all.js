@@ -21,10 +21,15 @@ $(function () {
   })();
 
   (function () {
-    // Hide message box(es) after seven seconds of waiting.
-    setTimeout(function() {
-        $('#site-messages').slideUp(SLIDE_SECONDS * 1000);
-    }, WAIT_SECONDS * 1000);
+    // Hide message box(es) after waiting, or on click.
+    var
+      $siteMessages = $('#site-messages'),
+      fadeOut = function () {
+        $siteMessages.fadeOut(SLIDE_SECONDS * 1000);
+      }
+    ;
+    setTimeout(fadeOut, WAIT_SECONDS * 1000);
+    $siteMessages.click(fadeOut);
   })();
 
   (function () {

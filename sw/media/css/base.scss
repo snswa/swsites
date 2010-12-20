@@ -430,7 +430,11 @@ div#sidebar {
 }
 
 ul#site-messages {
+  display: block;
 	list-style: none outside none;
+	position: fixed;
+	z-index: 9999;
+	top: $gutter-width;
 	margin-bottom: 0;
 	li {
     display: block;

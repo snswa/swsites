@@ -439,7 +439,11 @@ div#sidebar {
   border-color: #0b4f96; }
 
 ul#site-messages {
+  display: block;
   list-style: none outside none;
+  position: fixed;
+  z-index: 9999;
+  top: 10px;
   margin-bottom: 0; }
   ul#site-messages li {
     display: block;
