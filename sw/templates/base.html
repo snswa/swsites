@@ -18,11 +18,11 @@
 
     {# Base #}
     <!--[if !IE 6]><!-->
-    <link href="{{ STATIC_URL }}css/base.css?2010121904" rel="stylesheet">
+    <link href="{{ STATIC_URL }}css/base.css?{{ MEDIA_SERIAL_NUMBER }}" rel="stylesheet">
     <!--<![endif]-->
 
     <!--[if IE 7]>
-        <link href="{{ STATIC_URL }}css/base-ie7.css?2010121805" rel="stylesheet">
+        <link href="{{ STATIC_URL }}css/base-ie7.css?{{ MEDIA_SERIAL_NUMBER }}" rel="stylesheet">
     <![endif]-->
 
     {# http://forabeautifulweb.com/blog/about/universal_internet_explorer_6_css #}
@@ -37,13 +37,13 @@
     <script type="text/javascript" charset="utf-8">
         var headJsComplete = function () {};
         // Kick off analytics ASAP.
-        head.js('{{ STATIC_URL }}sw/analytics.js');
+        head.js('{{ STATIC_URL }}sw/analytics.js?{{ MEDIA_SERIAL_NUMBER }}');
         head.js(
-            '{{ STATIC_URL }}js/jquery-1.4.4.min.js',
-            '{{ STATIC_URL }}js/jquery.watermark.min.js',
-            '{{ STATIC_URL }}uni_form/uni-form.jquery.js',
-            '{{ STATIC_URL }}voting/voting.js',
-            '{{ STATIC_URL }}sw/onload.all.js',
+            '{{ STATIC_URL }}js/jquery-1.4.4.min.js?{{ MEDIA_SERIAL_NUMBER }}',
+            '{{ STATIC_URL }}js/jquery.watermark.min.js?{{ MEDIA_SERIAL_NUMBER }}',
+            '{{ STATIC_URL }}uni_form/uni-form.jquery.js?{{ MEDIA_SERIAL_NUMBER }}',
+            '{{ STATIC_URL }}voting/voting.js?{{ MEDIA_SERIAL_NUMBER }}',
+            '{{ STATIC_URL }}sw/onload.all.js?{{ MEDIA_SERIAL_NUMBER }}',
             headJsComplete
         );
     </script>

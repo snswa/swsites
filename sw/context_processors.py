@@ -1,15 +1,24 @@
+from datetime import datetime
+
+from django.conf import settings
+
 from actstream.models import Action
-
 from teams.models import Team
-
 from wakacmsplugin.settings import TEAM_SLUG
-
 from wakawaka.models import WikiPage
 from wakawaka.settings import DEFAULT_INDEX
 
 
+def media_serial_number(request):
+    return {
+        'MEDIA_SERIAL_NUMBER': settings.MEDIA_SERIAL_NUMBER,
+    }
+
+
 def missing_info(request):
-    return {'missing_info': request.missing_info}
+    return {
+        'missing_info': request.missing_info,
+    }
 
 
 def team_actions(request):
