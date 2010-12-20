@@ -27,6 +27,7 @@ def team_membership(request):
     if isinstance(request.group, Team):
         return {
             'is_team_member': request.group.user_is_member(request.user),
+            'team_membership': request.group.member_set.filter(user=request.user),
         }
     else:
         return {}

@@ -1,13 +1,17 @@
 <div class="section">
     <div id="team-membership">
         {% if is_team_member %}
-            You are a member of this team.
-
-            <form action="{% url teams_membership slug=group.slug %}" method="post" accept-charset="utf-8">
-                {% csrf_token %}
-                <br /><input type="submit" name="leave" value="Leave Team">
-            </form>
+            {% if team_membership.get.is_coordinator %}
+                <span class="coordinator">You are a coordinator of this team.</span>
+            {% else %}
+                You are a member of this team.
+                <form action="{% url teams_membership slug=group.slug %}" method="post" accept-charset="utf-8">
+                    {% csrf_token %}
+                    <br /><input type="submit" name="leave" value="Leave Team">
+                </form>
+            {% endif %}
         {% else %}
+            Join to stay up-to-date with activity in this team.
             {% if not group.is_private %}
                 <form action="{% url teams_membership slug=group.slug %}" method="post" accept-charset="utf-8">
                     {% csrf_token %}
