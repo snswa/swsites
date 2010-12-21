@@ -2,6 +2,10 @@ div#user-bar {
   position: static;
 }
 
+ul#site-messages {
+  position: static;
+}
+
 .header {
   margin-top: 10px;
 }
