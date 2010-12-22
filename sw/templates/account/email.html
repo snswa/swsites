@@ -12,9 +12,6 @@
 {% endblock %}
 
 {% block body %}
-    {% feature breadcrumbs %}{% disabled %}
-        <h1>{% trans "Email Addresses" %}</h1>
-    {% endfeature %}
 
 {% if user.emailaddress_set.all %}
 <p>{% trans 'The following email addresses are associated to your account:' %}</p>
