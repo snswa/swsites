@@ -32,21 +32,7 @@
 
     {% block css %}{% endblock %}
 
-    {# Immediately load JavaScript.  Onload comes just before /body #}
-    <script src="{{ STATIC_URL }}js/head.js" type="text/javascript" charset="utf-8"></script>
-    <script type="text/javascript" charset="utf-8">
-        var headJsComplete = function () {};
-        // Kick off analytics ASAP.
-        head.js('{{ STATIC_URL }}sw/analytics.js?{{ MEDIA_SERIAL_NUMBER }}');
-        head.js(
-            '{{ STATIC_URL }}js/jquery-1.4.4.min.js?{{ MEDIA_SERIAL_NUMBER }}',
-            '{{ STATIC_URL }}js/jquery.watermark.min.js?{{ MEDIA_SERIAL_NUMBER }}',
-            '{{ STATIC_URL }}uni_form/uni-form.jquery.js?{{ MEDIA_SERIAL_NUMBER }}',
-            '{{ STATIC_URL }}voting/voting.js?{{ MEDIA_SERIAL_NUMBER }}',
-            '{{ STATIC_URL }}sw/onload.all.js?{{ MEDIA_SERIAL_NUMBER }}',
-            headJsComplete
-        );
-    </script>
+    {% include "base/js.html" %}
 
     {% block extrahead %}{% endblock %}
 </head>
