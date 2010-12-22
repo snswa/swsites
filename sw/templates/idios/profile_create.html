@@ -11,10 +11,6 @@
 {% endblock %}
 
 {% block body %}
-    {% feature breadcrumbs %}{% disabled %}
-        <h1>{% trans "Create Profile" %}</h1>
-    {% endfeature %}
-
     <form class="uniForm" method="POST" action="{% url profile_create %}">
         {% include "idios/profile_form_contents.html" %}
     </form>

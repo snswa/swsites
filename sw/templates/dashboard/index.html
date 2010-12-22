@@ -13,14 +13,6 @@
     {{ block.super }}
 {% endblock %}
 
-{% block team_header %}
-    {% feature breadcrumbs %}{% disabled %}
-        <div id="team-header" class="grid_12 alpha omega">
-            <h1>HQ</h1>
-        </div>
-    {% endfeature %}
-{% endblock %}
-
 {% block content_body %}
 
     {% wikipagesnippet DashboardPreamble latest %}

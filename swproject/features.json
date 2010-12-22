@@ -1,10 +1,5 @@
 [
   {
-    "name": "breadcrumbs",
-    "enabled": true,
-    "description": "When enabled, show breadcrumbs, a navigational tool to show position in the site map. When disabled, do not show breadcrumbs, but instead show a page title in a header tag. <a href=\"/teams/devops/wiki/BreadcrumbsFeature/\">More info.</a>"
-  },
-  {
     "name": "cms_content",
     "enabled": false,
     "description": "When enabled, show content management system pages.  When disabled, show a note indicating that the site is not ready to unveil to the public. <a href=\"/teams/devops/wiki/CMSContentFeature/\">More info.</a>"

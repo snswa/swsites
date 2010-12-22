@@ -33,10 +33,6 @@
 {% endblock %}
 
 {% block content %}
-    {% feature breadcrumbs %}{% disabled %}
-	    <h1><a name="top" href="{% groupurl wakawaka_page group slug=page.slug %}">{{ page.slug }}</a></h1>
-    {% endfeature %}
-
 	{% if rev.is_not_current %}
 	<p class="revert-warning">
 		{% trans "You are viewing an older revision!" %}

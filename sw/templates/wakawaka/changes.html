@@ -30,10 +30,6 @@
 {% endblock %}
 
 {% block content %}
-	{% feature breadcrumbs %}{% disabled %}
-	    <h1>{{ page.slug }}</h1>
-	{% endfeature %}
-
 	<p>
 	    The following changes occurred between revisions
 	    <a href="{% groupurl wakawaka_page group slug=page.slug rev_id=rev_a.id %}">{{ rev_a.id }}</a>

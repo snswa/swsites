@@ -24,9 +24,5 @@
 {% endblock %}
 
 {% block content %}
-	{% feature breadcrumbs %}{% disabled %}
-	    <h1>{% blocktrans with page.slug as slug %}History for {{ slug }}{% endblocktrans %}</h1>
-	{% endfeature %}
-
 	{% include "wakawaka/revision_table.html" %}
 {% endblock %}

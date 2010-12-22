@@ -12,12 +12,8 @@
 {% block head_title %}{% trans "Sign Up" %}{% endblock %}
 
 {% block body %}
-    {% feature breadcrumbs %}{% disabled %}
-        <h1>{% trans "Sign Up" %}</h1>
-    {% endfeature %}
-
     {% if user.is_authenticated %}
-{% include "account/snippets/already_logged_in.html" %}
+        {% include "account/snippets/already_logged_in.html" %}
     {% else %}
         <p>{% trans "Already have an account?" %} <a href="{% url account_login %}">{% trans "Sign in" %}</a>.</p>
 

@@ -90,29 +90,17 @@
     </ul>
 </div>
 
-{% feature breadcrumbs %}
-    <div id="breadcrumbs" class="grid_12 alpha omega">
-        You are here:
-        <ul>
-            {% block breadcrumbs %}
-            {% endblock %}
-        </ul>
-    </div>
-{% endfeature %}
+<div id="breadcrumbs" class="grid_12 alpha omega">
+    You are here:
+    <ul>
+        {% block breadcrumbs %}
+        {% endblock %}
+    </ul>
+</div>
 
 <div id="nags" class="grid_12">
     {% include "base/nags.html" %}
 </div>
-
-{% block team_header %}
-    {% feature breadcrumbs %}{% disabled %}
-        {% if group %}
-            <div id="team-header" class="grid_12 alpha omega">
-                <h1><a href="{% url teams_team_index slug=group.slug %}">{{ group.name }}</a></h1>
-            </div>
-        {% endif %}
-    {% endfeature %}
-{% endblock %}
 
 {% block page_content %}
 {% endblock %}
