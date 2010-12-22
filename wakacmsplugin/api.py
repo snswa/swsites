@@ -5,7 +5,7 @@ from wakawaka.models import Revision
 from wakacmsplugin.settings import TEAM_SLUG
 
 
-SNIPPET_RE = re.compile(r'.*-BEGINSNIPPET-\W+(.*)\W+-ENDSNIPPET-.*', re.DOTALL)
+SNIPPET_RE = re.compile(r'.*-BEGINSNIPPET-\s*\n(.*\s*\n)-ENDSNIPPET-.*', re.DOTALL)
 
 
 def latest_rev_id(slug):
