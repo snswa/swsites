@@ -18,41 +18,17 @@
 
     {% wikipagesnippet AllTeamsListPreamble latest %}
 
-    {% feature team_groupings %}
-
-        <div class="team-tree">
-            {% for tree_item in team_tree %}
-                {% if tree_item == 'li' %}<li>{% endif %}
-                {% if tree_item == '/li' %}</li>{% endif %}
-                {% if tree_item == 'ul' %}<ul>{% endif %}
-                {% if tree_item == '/ul' %}</ul>{% endif %}
-                {% if tree_item.slug %}
-                    <a href="{% url teams_team slug=tree_item.slug %}">{{ tree_item.name }}</a>
-                {% endif %}
-            {% endfor %}
-        </div>
-
-    {% disabled %}
-
-    	<h1>All-volunteer Teams</h1>
-        <ul>
-            {% for team in public_teams %}
-                <li>
-                    <a href="{% url teams_team slug=team.slug %}">{{ team.name }}</a>
-                </li>
-            {% endfor %}
-        </ul>
-
-        <h1>By-invitation Teams</h1>
-        <ul>
-            {% for team in private_teams %}
-                <li>
-                    <a href="{% url teams_team slug=team.slug %}">{{ team.name }}</a>
-                </li>
-            {% endfor %}
-        </ul>
-
-    {% endfeature %}
+    <div class="team-tree">
+        {% for tree_item in team_tree %}
+            {% if tree_item == 'li' %}<li>{% endif %}
+            {% if tree_item == '/li' %}</li>{% endif %}
+            {% if tree_item == 'ul' %}<ul>{% endif %}
+            {% if tree_item == '/ul' %}</ul>{% endif %}
+            {% if tree_item.slug %}
+                <a href="{% url teams_team slug=tree_item.slug %}">{{ tree_item.name }}</a>
+            {% endif %}
+        {% endfor %}
+    </div>
 
 {% endblock %}
 

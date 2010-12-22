@@ -1,10 +1,5 @@
 [
   {
-    "name": "team_groupings",
-    "enabled": true,
-    "description": "List teams in smaller conceptual groupings. <a href=\"/teams/devops/wiki/TeamGroupingsFeature/\">More info.</a>"
-  },
-  {
     "name": "breadcrumbs",
     "enabled": true,
     "description": "When enabled, show breadcrumbs, a navigational tool to show position in the site map. When disabled, do not show breadcrumbs, but instead show a page title in a header tag. <a href=\"/teams/devops/wiki/BreadcrumbsFeature/\">More info.</a>"
