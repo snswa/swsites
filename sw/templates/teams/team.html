@@ -11,7 +11,7 @@
 {% block breadcrumbs %}
     {{ block.super }}
     {% for parent in group.parents %}
-        {% breadcrumb_url_css "icon-link group-link" parent.name teams_team slug=parent.slug %}
+        {% breadcrumb_url_css "icon-link group-link" parent.name teams_team_index slug=parent.slug %}
     {% endfor %}
     {% breadcrumb_css "icon-link group-link" group.name "./" %}
 {% endblock %}

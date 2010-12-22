@@ -4,11 +4,11 @@
     <ul>
         <li><a href="{% url teams_index %}">« All teams</a></li>
         {% for parent in group.parents %}
-            <li><a href="{% url teams_team slug=parent.slug %}">« {{ parent.name }}</a></li>
+            <li><a href="{% url teams_team_index slug=parent.slug %}">« {{ parent.name }}</a></li>
         {% endfor %}
         <li><strong>{{ group.name }}</strong></li>
         {% for child in group.children %}
-            <li><a href="{% url teams_team slug=child.slug %}">{{ child.name }} »</a></li>
+            <li><a href="{% url teams_team_index slug=child.slug %}">{{ child.name }} »</a></li>
         {% endfor %}
     </ul>
 </div>

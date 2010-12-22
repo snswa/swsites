@@ -108,7 +108,7 @@
     {% feature breadcrumbs %}{% disabled %}
         {% if group %}
             <div id="team-header" class="grid_12 alpha omega">
-                <h1><a href="{% url teams_team slug=group.slug %}">{{ group.name }}</a></h1>
+                <h1><a href="{% url teams_team_index slug=group.slug %}">{{ group.name }}</a></h1>
             </div>
         {% endif %}
     {% endfeature %}

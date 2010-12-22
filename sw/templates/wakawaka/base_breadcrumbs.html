@@ -4,9 +4,9 @@
 {% if group %}
 
     {% for parent in group.parents %}
-        {% breadcrumb_url_css "icon-link group-link" parent.name teams_team slug=parent.slug %}
+        {% breadcrumb_url_css "icon-link group-link" parent.name teams_team_index slug=parent.slug %}
     {% endfor %}
-    {% breadcrumb_url_css "icon-link group-link" group.name teams_team slug=group.slug %}
+    {% breadcrumb_url_css "icon-link group-link" group.name teams_team_index slug=group.slug %}
 
     {# @@@ How can we clean this up for groupurls? #}
     {# The following doesn't work. #}

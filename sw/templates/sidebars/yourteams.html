@@ -12,7 +12,7 @@
         <ul>
             {% for membership in memberships %}
                 <li>
-                    <a href="{% url teams_team slug=membership.team.slug %}">{{ membership.team.name }}</a>
+                    <a href="{% url teams_team_index slug=membership.team.slug %}">{{ membership.team.name }}</a>
                     {% if membership.is_coordinator %}
                         <span class="coordinator">(coordinator)</span>
                     {% endif %}
