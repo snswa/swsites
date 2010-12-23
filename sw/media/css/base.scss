@@ -467,6 +467,9 @@ ul.stream li.event {
     display: block;
     font-size: smaller;
     color: silver;
+    a {
+      color: silver;
+    }
   }
   div.description {
     color: gray;

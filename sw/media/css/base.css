@@ -471,6 +471,8 @@ ul.stream li.event {
     display: block;
     font-size: smaller;
     color: silver; }
+    ul.stream li.event span.timestamp a {
+      color: silver; }
   ul.stream li.event div.description {
     color: gray;
     margin-left: 1em;
