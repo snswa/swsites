@@ -269,9 +269,6 @@ INSTALLED_APPS = (
     # Media, templates
     'sw',
     #
-    # Legacy URL redirection.
-    'swlegacy',
-    #
     # Included in Django
     'django.contrib.admin',
     'django.contrib.admindocs',

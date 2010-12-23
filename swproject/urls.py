@@ -20,7 +20,7 @@ admin.autodiscover()
 
 
 # Site-wide error handlers.
-handler404 = 'swlegacy.views.legacy_or_404'
+handler404 = 'django.views.defaults.page_not_found'
 handler500 = 'django.views.defaults.server_error'
 
 
