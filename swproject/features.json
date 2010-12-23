@@ -13,5 +13,10 @@
     "name": "labs",
     "enabled": false,
     "description": "When enabled, show a new 'labs' link in the top strip, allowing people to turn experimental features on and off in a central location.  When disabled, features must be enabled by using URLs only. <a href=\"/teams/devops/wiki/LabsFeature/\">More info.</a>"
+  },
+  {
+    "name": "local",
+    "enabled": false,
+    "description": "When enabled, show dynamic content in the 'local' tab in Volunteer HQ."
   }
 ]
