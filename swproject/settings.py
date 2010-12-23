@@ -266,8 +266,9 @@ INSTALLED_APPS = (
     #
     # ORDER MATTERS.
     #
-    # Media, templates
+    # Project.
     'sw',
+    'swlocal',
     #
     # Included in Django
     'django.contrib.admin',
