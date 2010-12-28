@@ -1,9 +1,11 @@
-Goal:  open source, action oriented, social networking and document tracking
-for Sensible Washington, a volunteer-driven grassroots citizen's initiative
-campaign.
+Web service for upcoming version of https://sensiblewashington.org/
 
-Deadline:  everything built, well-tested, and ready for action in
-mid-January 2011.
+An incubator for ActWithUs.  ActWithUs is an open source, action-oriented,
+social networking and document tracking tool purpose built for volunteer-
+driven grassroots citizen's initiative campaigns.
+
+Deadline:  most services built, well-tested, and ready for action in
+mid-January 2011.  Document tracking in place for February 2011.
 
 We need help in the following areas:
 
@@ -13,7 +15,7 @@ We need help in the following areas:
 - HTML5 mobile experts
 
 Email webmaster@sensiblewashington.org to receive information on how to
-access the staging server and tips for contributing.
+access the early-adopter service and tips for contributing.
 
 See INSTALL.txt for installation instructions.
 
