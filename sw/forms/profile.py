@@ -3,8 +3,13 @@ from idios.utils import get_profile_form
 from uni_form.helpers import FormHelper, Submit, Reset
 from uni_form.helpers import Layout, Fieldset, Row, HTML
 
+from sw.decorators import autostrip
+
 
 BaseProfileForm = get_profile_form()
+
+
+@autostrip
 class ProfileForm(BaseProfileForm):
 
     helper = FormHelper()

@@ -6,7 +6,10 @@ from django.utils.translation import ugettext_lazy as _, ugettext
 
 from allauth.account.forms import SignupForm
 
+from sw.decorators import autostrip
 
+
+@autostrip
 class HqSignupForm(SignupForm):
 
     preferred_name = forms.CharField(
