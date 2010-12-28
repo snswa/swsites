@@ -54,6 +54,15 @@ HAYSTACK_SOLR_URL = 'http://127.0.0.1:8080/solr'
 ### Suggested additions to your localsettings.py ###
 
 # ----
+# concurrent server
+#
+# $ pip install -e git+git://github.com/ashchristopher/django-concurrent-server.git#egg=django-concurrent-server
+#
+# INSTALLED_APPS += (
+#     'concurrent_server',
+# )
+#
+# ----
 # Devserver
 #
 # $ pip install git+git://github.com/dcramer/django-devserver#egg=django-devserver
