@@ -35,12 +35,11 @@ if settings.DEBUG:
 wiki_bridge = ContentBridge(Team, 'wakawaka')
 
 
-FULL_VOLUNTEER = {
+VERIFIED_VOLUNTEER = {
     'login_required': True,
     'email_required': True,
     'profile_required': True,
 }
-
 
 urlpatterns += patterns('',
     url(r'^_site/', include('sw.urls')),    # Deployment tests and temporary views.
@@ -56,20 +55,25 @@ urlpatterns += patterns('',
     }),
     url(r'^hq/', 'sw.views.hq', name='sw_hq'),
 
-    url(r'^attachments/', include('attachments.urls'), kwargs=FULL_VOLUNTEER),
-    url(r'^comments/', include('django.contrib.comments.urls'), kwargs=FULL_VOLUNTEER),
-    url(r'^dashboard/', include('dashboard.urls'), kwargs=FULL_VOLUNTEER),
-    url(r'^features/', include('featurelabs.urls'), kwargs=FULL_VOLUNTEER),
-    url(r'^placeholder/', include('swproject.urls_placeholders'), kwargs=FULL_VOLUNTEER),
+    url(r'^attachments/', include('attachments.urls'), kwargs=VERIFIED_VOLUNTEER),
+    url(r'^comments/', include('django.contrib.comments.urls'), kwargs=VERIFIED_VOLUNTEER),
+    url(r'^dashboard/', include('dashboard.urls'), kwargs=VERIFIED_VOLUNTEER),
+    url(r'^features/', include('featurelabs.urls'), kwargs=VERIFIED_VOLUNTEER),
+    url(r'^local/', include('swlocal.urls'), kwargs={
+        'login_required': True,
+        'email_preferred': True,
+        'profile_preferred': True,
+    }),
+    url(r'^placeholder/', include('swproject.urls_placeholders'), kwargs=VERIFIED_VOLUNTEER),
     url(r'^profiles/', include('idios.urls'), kwargs={
         'form_class': ProfileForm,
         'login_required': True,
         'email_preferred': True,
         'profile_preferred': True,
     }),
-    url(r'^search/', include('swproject.urls_search'), kwargs=FULL_VOLUNTEER),
-    url(r'^teams/', include('teams.urls'), kwargs=FULL_VOLUNTEER),
-    url(r'^voting/', include('voting.urls'), kwargs=FULL_VOLUNTEER),
+    url(r'^search/', include('swproject.urls_search'), kwargs=VERIFIED_VOLUNTEER),
+    url(r'^teams/', include('teams.urls'), kwargs=VERIFIED_VOLUNTEER),
+    url(r'^voting/', include('voting.urls'), kwargs=VERIFIED_VOLUNTEER),
 
     # @@@ disabled, kept here to remind ourselves to remove zinnia
     # url(r'^blog/', include('zinnia.urls')),
@@ -79,7 +83,7 @@ urlpatterns += patterns('',
 # Bridged URLs.
 urlpatterns += wiki_bridge.include_urls('wakawaka.urls',
     r'^teams/(?P<team_slug>[\w\._-]+)/wiki/',
-    kwargs=FULL_VOLUNTEER,
+    kwargs=VERIFIED_VOLUNTEER,
 )
 
 

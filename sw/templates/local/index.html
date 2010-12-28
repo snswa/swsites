@@ -1,0 +1,63 @@
+{% extends "base_hq_6_6.html" %}
+
+{% load breadcrumbs feature_tag %}
+{% load teams_tags %}
+{% load wakacms_tags %}
+
+{% block body_class %}{{ block.super }} local-section{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb_url 'Local' swlocal_index %}
+{% endblock %}
+
+{% block content_left %}
+
+    <h1>Your local and regional teams</h1>
+
+    {% if regional_teams %}
+        <p>These teams are based on your ZIP code, <strong>{{ user.get_profile.zip_code }}</strong>.</p>
+
+        {% for team in regional_teams %}
+            <h2>{{ team.name }}</h2>
+
+            <p>
+                <a href="{% url teams_team_index slug=team.slug %}">Visit this team's home page</a>.
+                {% teammember team %}
+                    You are a member of this team.
+                {% nonmember %}
+                    You may join this team there.
+                {% endteammember %}
+            </p>
+
+            {% with team.coordinators as coordinators %}
+                {% if coordinators %}
+                    <p>
+                        Coordinators:
+
+                        {% for coordinator in coordinators %}
+                            <a href="{% url profile_detail username=coordinator.username %}">{{ coordinator.get_profile }}</a>{% if not forloop.last %},{% endif %}
+                        {% endfor %}
+                    </p>
+                {% else %}
+                    <p>No coordinators have been designated for this region.</p>
+                {% endif %}
+            {% endwith %}
+        {% endfor %}
+    {% else %}
+        {% with user.get_profile.zip_code as zip_code %}
+            {% if zip_code %}
+                <p>We couldn't find any teams based on your ZIP code or location, "{{ user.get_profile.zip_code }}".</p>
+
+                <p><a href="{% url teams_index %}">View the list of all teams</a> and choose teams you're interested in.</p>
+            {% else %}
+                <p>You have not yet provided your ZIP code or location.</p>
+            {% endif %}
+        {% endwith %}
+    {% endif %}
+
+{% endblock %}
+
+{% block content_right %}
+    {% wikipagesnippet YourLocalSW latest %}
+{% endblock %}
