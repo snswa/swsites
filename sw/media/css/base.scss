@@ -447,12 +447,27 @@ ul#site-messages {
   }
 }
 
-div.footer {
-	width: $site-width;
+#footer {
 	margin-top: 2em;
   border-top: $accent-width solid $color-p;
-  span {
-    padding-right: 1em;
+  #footer-left {
+    float: left;
+    span {
+      padding-right: 1em;
+    }
+  }
+  #footer-right {
+    float: right;
+    span {
+      padding-left: 1em;
+    }
+  }
+  #actwithus-link {
+    display: inline-block;
+    background: transparent url('/media/images/logos/actwithus.png') left bottom no-repeat;
+    background-size: 63px 16px;
+    width: 63px;
+    text-indent: -9999px;
   }
 }
 

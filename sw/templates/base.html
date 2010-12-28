@@ -107,12 +107,17 @@
 
 <div class="clear">&nbsp;</div>
 
-<div class="footer" class="clear grid_12 alpha omega">
-    <span>Copyright &copy; 2010 Sensible Washington.</span>
-    <span>Read our <a href="/privacy-policy/">privacy policy</a>.</span>
-    {% if user.is_authenticated %}
-        <span>Leave <a href="/teams/devops/wiki/FeatureRequests/">feedback</a>.</span>
-    {% endif %}
+<div id="footer" class="grid_12 alpha omega">
+    <div id="footer-left">
+        <span>Copyright &copy; 2010 Sensible Washington.</span>
+        <span>Read our <a href="/privacy-policy/">privacy policy</a>.</span>
+        {% if user.is_authenticated %}
+            <span>Leave <a href="/teams/devops/wiki/FeatureRequests/">feedback</a>.</span>
+        {% endif %}
+    </div>
+    <div id="footer-right">
+        <span>Powered by <a id="actwithus-link" href="http://actwithus.com/">ActWithUs</a>.</span>
+    </div>
 </div>
 
 {% block bodyscripts %}{% endblock %}

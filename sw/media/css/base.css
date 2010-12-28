@@ -454,12 +454,23 @@ ul#site-messages {
     border-color: #e68a00;
     border-style: solid; }
 
-div.footer {
-  width: 960px;
+#footer {
   margin-top: 2em;
   border-top: 2px solid #009966; }
-  div.footer span {
-    padding-right: 1em; }
+  #footer #footer-left {
+    float: left; }
+    #footer #footer-left span {
+      padding-right: 1em; }
+  #footer #footer-right {
+    float: right; }
+    #footer #footer-right span {
+      padding-left: 1em; }
+  #footer #actwithus-link {
+    display: inline-block;
+    background: transparent url("/media/images/logos/actwithus.png") left bottom no-repeat;
+    background-size: 63px 16px;
+    width: 63px;
+    text-indent: -9999px; }
 
 .object-command {
   color: silver;
