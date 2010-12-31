@@ -261,6 +261,11 @@ AUTH_PROFILE_MODULE = 'sw.Profile'
 FEATURES_FILE = os.path.join(os.path.dirname(__file__), 'features.json')
 
 # ==================================================================
+# planet
+
+USER_AGENT = 'django-planet/0.1'
+
+# ==================================================================
 
 INSTALLED_APPS = (
     #
@@ -357,9 +362,13 @@ INSTALLED_APPS = (
     # file attachments
     'attachments',
     #
-    # feature flipping,
+    # feature flipping
     'featureflipper',
     'featurelabs',
     #
     'zipcodes',
+    #
+    # rss feed aggregation / display
+    'atompub',
+    'planet',
 )

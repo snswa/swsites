@@ -100,3 +100,8 @@ django-attachments==0.3.1
 
 # Feature Labs
 -e git+http://github.com/snswa/django-feature-labs.git@822c3ea#egg=django-feature-labs
+
+# Planet
+-e git+https://github.com/snswa/django-planet.git@a15828e#egg=django-planet
+-e git+https://github.com/brosner/django-atompub.git@23efd7e#egg=django-atompub
+feedparser==4.1
