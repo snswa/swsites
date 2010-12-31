@@ -1,0 +1,22 @@
+{% extends "cms/base.html" %}
+{% load cms_tags %}
+
+{% block cms_content %}
+    <div id="content">
+        <div class="grid_4">
+            <div class="section">
+                {% placeholder "content" %}
+            </div>
+        </div>
+        <div class="grid_4">
+            <div class="section">
+                {% placeholder "contentcenter" %}
+            </div>
+        </div>
+        <div class="grid_4">
+            <div class="section">
+                {% placeholder "contentright" %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

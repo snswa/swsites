@@ -177,6 +177,7 @@ AUTO_JOIN_GROUPS = [
 CMS_TEMPLATES = (
     ('cms/c12.html', _('content 12')),
     ('cms/s4_c8.html', _('sidebar 4, content 8')),
+    ('cms/c4_c4_c4.html', _('content 4, content 4, content 4')),
     ('cms/c6_c6.html', _('content 6, content 6')),
     ('cms/c8_s4.html', _('content 8, sidebar 4')),
     ('cms/l12_s4_c8.html', _('lead-in 12 / sidebar 4, content 8')),
