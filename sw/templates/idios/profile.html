@@ -1,7 +1,9 @@
 {% extends "idios/base.html" %}
 
-{% load breadcrumbs feature_tag %}
+{% load breadcrumbs %}
+{% load feature_tag %}
 {% load i18n %}
+{% load relationship_tags %}
 {% load sw_tags %}
 {% load uni_form_tags %}
 {% load zip_code_tags %}
@@ -16,31 +18,31 @@
 {% block content_cols %}8{% endblock %}
 
 {% block body %}
-    <div class="vcard">
-        {# TODO: needs fn (full name) class on some element that contains full name #}
+    {% with page_user.get_profile as p %}
+        <div class="vcard">
+            {# TODO: needs fn (full name) class on some element that contains full name #}
 
-        <h1><strong>{{ page_user.get_profile }}</strong>'s profile{% if is_me %} (your profile){% endif %}</h1>
+            <h1><strong>{{ page_user.get_profile }}</strong>'s profile{% if is_me %} (your profile){% endif %}</h1>
 
-        {% profile_privacy %}
+            {% profile_privacy %}
 
-        {% if is_me %}
-            <ul>
-                <li><span class="icon-link pencil-link"><a href="{% url profile_edit %}"><span>{% trans "Edit profile" %}</span></a></span></li>
-                <li><span class="icon-link email_edit-link"><a href="{% url account_email %}"><span>{% trans "Manage email addresses" %}</span></a></span></li>
-                <li><span class="icon-link plugin_edit-link"><a href="{% url socialaccount_connections %}"><span>{% trans "Manage third-party logins" %}</span></a></span></li>
-                <li><span class="icon-link key-link"><a href="{% url account_change_password %}"><span>Change password</span></a></span></li>
-            </ul>
-        {% endif %}
+            {% if is_me %}
+                <ul>
+                    <li><span class="icon-link pencil-link"><a href="{% url profile_edit %}"><span>{% trans "Edit profile" %}</span></a></span></li>
+                    <li><span class="icon-link email_edit-link"><a href="{% url account_email %}"><span>{% trans "Manage email addresses" %}</span></a></span></li>
+                    <li><span class="icon-link plugin_edit-link"><a href="{% url socialaccount_connections %}"><span>{% trans "Manage third-party logins" %}</span></a></span></li>
+                    <li><span class="icon-link key-link"><a href="{% url account_change_password %}"><span>Change password</span></a></span></li>
+                </ul>
+            {% endif %}
 
-        <div class="profile_info">
-            <p>
-                * Asterisks indicate information
-                {% if not is_me %}shared with you, but{% endif %}
-                not shared with all volunteers.
-                {% if not is_me %}Please respect this user's privacy settings.{% endif %}
-            </p>
+            <div class="profile_info">
+                <p>
+                    * Asterisks indicate information
+                    {% if not is_me %}shared with you, but{% endif %}
+                    not shared with all volunteers.
+                    {% if not is_me %}Please respect this user's privacy settings.{% endif %}
+                </p>
 
-            {% with page_user.get_profile as p %}
                 {% if can_view_name %}
                     {% if p.first_name or p.last_name %}
                         <p><b>{% trans "Full Name" %}</b>{% if name_restricted %}*{% endif %}: {{ p.first_name }} {{p.last_name}}</p>
@@ -117,28 +119,123 @@
                 {% if can_view_bio and p.bio %}
                     <p><b>{% trans "Bio" %}</b>{% if bio_restricted %}*{% endif %}: {{ p.bio|linebreaks }}</p>
                 {% endif %}
-            {% endwith %}
+            </div>
         </div>
-    </div>
+    {% endwith %}
 {% endblock %}
 
 {% block sidebar %}
-    <div id="sidebar" class="grid_4">
-        <div class="section">
-            <h1>Team memberships</h1>
+    {% with page_user.get_profile as p %}
+        <div id="sidebar" class="grid_4">
+            {% feature friends %}
+                {% with page_user.relationships.friends as friends %}
+                {% with page_user.relationships.following as following %}
+                {% with page_user.relationships.followers as followers %}
+                    {% if friends or following or followers or not is_me %}
+                        <div class="section friends">
+                            <h1>{% trans "Friends" %}</h1>
 
-            <p>This volunteer is a member of the following teams:</p>
+                            {% if not is_me %}
+                                <div class="follow-status">
+                                    {% ifrelationship user page_user "friends" %}
+                                        {% trans "You are friends with" %} {{ p }}.
+                                        <form action="{{ page_user|remove_relationship_url:'following' }}" method="post">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="next" value="{% url profile_detail username=page_user.username %}">
+                                            <input type="submit" value="{% trans 'Stop following' %}">
+                                        </form>
+                                    {% else %}
+                                        {% ifrelationship user page_user "following" %}
+                                            {% trans "You follow" %} {{ p }}.
+                                            <form action="{{ page_user|remove_relationship_url:'following' }}" method="post">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="next" value="{% url profile_detail username=page_user.username %}">
+                                                <input type="submit" value="{% trans 'Stop following' %}">
+                                            </form>
+                                        {% else %}
+                                            {% ifrelationship user page_user "followers" %}
+                                                {{ p }} {% trans "follows you" %}.
+                                            {% endifrelationship %}
+                                            <form action="{{ page_user|add_relationship_url:'following' }}" method="post">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="next" value="{% url profile_detail username=page_user.username %}">
+                                                <input type="submit" value="{% trans 'Follow' %}">
+                                            </form>
+                                        {% endifrelationship %}
+                                    {% endifrelationship %}
+                                </div>
+                            {% endif %}
 
-            <ul>
-                {% for membership in profile.user.member_set.all %}
-                    <li>
-                        <a href="{{ membership.team.get_absolute_url }}">{{ membership.team }}</a>
-                        {% if membership.is_coordinator %}
-                            <span class="coordinator">(coordinator)</span>
-                        {% endif %}
-                    </li>
-                {% endfor %}
-            </ul>
+                            {% if friends %}
+                                <h2>{% spaceless %}
+                                    {% if is_me %}
+                                        {% trans "Your mutual friends" %}
+                                    {% else %}
+                                        {% trans "Mutual friends" %}
+                                    {% endif %}
+                                {% endspaceless %}</h2>
+
+                                <ul>
+                                    {% for other_user in friends %}
+                                        <li><a href="{% url profile_detail username=other_user.username %}">{{ other_user.get_profile }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+
+                            {% if following %}
+                                <h2>{% spaceless %}
+                                    {% if is_me %}
+                                        {% trans "People you are following" %}
+                                    {% else %}
+                                        {% trans "Following these people" %}
+                                    {% endif %}
+                                {% endspaceless %}</h2>
+
+                                <ul>
+                                    {% for other_user in following %}
+                                        <li><a href="{% url profile_detail username=other_user.username %}">{{ other_user.get_profile }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+
+                            {% if followers %}
+                                <h2>{% spaceless %}
+                                    {% if is_me %}
+                                        {% trans "People following you" %}
+                                    {% else %}
+                                        {% trans "Followed by these people" %}
+                                    {% endif %}
+                                {% endspaceless %}</h2>
+
+                                <ul>
+                                    {% for other_user in followers %}
+                                        <li><a href="{% url profile_detail username=other_user.username %}">{{ other_user.get_profile }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+                {% endwith %}
+                {% endwith %}
+            {% endfeature %}
+
+            <div class="section">
+                <h1>Team memberships</h1>
+
+                <p>This volunteer is a member of the following teams:</p>
+
+                <ul>
+                    {% for membership in profile.user.member_set.all %}
+                        <li>
+                            <a href="{{ membership.team.get_absolute_url }}">{{ membership.team }}</a>
+                            {% if membership.is_coordinator %}
+                                <span class="coordinator">(coordinator)</span>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
-    </div>
+    {% endwith %}
 {% endblock %}

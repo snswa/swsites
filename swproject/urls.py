@@ -71,6 +71,11 @@ urlpatterns += patterns('',
         'email_preferred': True,
         'profile_preferred': True,
     }),
+    url(r'^relationships/', include('relationships.urls'), kwargs={
+        'login_required': True,
+        'email_preferred': True,
+        'profile_preferred': True,
+    }),
     url(r'^search/', include('swproject.urls_search'), kwargs=VERIFIED_VOLUNTEER),
     url(r'^teams/', include('teams.urls'), kwargs=VERIFIED_VOLUNTEER),
     url(r'^voting/', include('voting.urls'), kwargs=VERIFIED_VOLUNTEER),
@@ -93,7 +98,6 @@ legacy_urls = (
     ('^support/$', '/placeholder/support/'),
     ('^library/$', '/placeholder/library/'),
     ('^coordinators/$', '/placeholder/coordinators/'),
-    ('^friends/$', '/placeholder/friends/'),
 )
 for oldurl, newurl in legacy_urls:
     urlpatterns += patterns('',

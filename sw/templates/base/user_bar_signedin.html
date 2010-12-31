@@ -1,8 +1,9 @@
 {% load feature_tag %}
-<span class="icon-link vcard-link"><a href="{% url profile_detail username=user.username %}"><span>{{ user.get_profile }}</span></a></span>
-<span class="icon-link group_link-link "><a href="/friends/"><span>Friends</span></a></span>
-<span class="icon-link lightning-link"><a href="{% url featurelabs_index %}"><span>Labs</span></a></span>
+{% load i18n %}
+<span>{{ user.get_profile }}</span>
+<span class="icon-link vcard-link"><a href="{% url profile_detail username=user.username %}"><span>{% trans "Profile" %}</span></a></span>
+<span class="icon-link lightning-link"><a href="{% url featurelabs_index %}"><span>{% trans "Labs" %}</span></a></span>
 {% if user.is_staff %}
-    <span class="icon-link eye-link"><a href="/admin/"><span>Admin</span></a></span>
+    <span class="icon-link eye-link"><a href="/admin/"><span>{% trans "Admin" %}</span></a></span>
 {% endif %}
-<span class="icon-link door_in-link"><a href="{% url account_logout %}"><span>Sign Out</span></a></span>
+<span class="icon-link door_in-link"><a href="{% url account_logout %}"><span>{% trans "Sign out" %}</span></a></span>

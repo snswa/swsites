@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 
 # Bump this to force reloading of static media tagged with
 # ?{{ MEDIA_SERIAL_NUMBER }} on next deploy.
-MEDIA_SERIAL_NUMBER = '2010122701'
+MEDIA_SERIAL_NUMBER = '2010123101'
 
 DEBUG = False
 TEMPLATE_DEBUG = True
@@ -375,4 +375,6 @@ INSTALLED_APPS = (
     'atompub',
     'planet',
     'planetcms',
+    #
+    'relationships',
 )

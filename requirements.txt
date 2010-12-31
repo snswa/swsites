@@ -99,3 +99,6 @@ django-attachments==0.3.1
 -e git+https://github.com/snswa/django-planet.git@e6c2685#egg=django-planet
 -e git+https://github.com/brosner/django-atompub.git@23efd7e#egg=django-atompub
 feedparser==4.1
+
+# Friends
+-e git+https://github.com/snswa/django-relationships.git@d29a0ba#egg=django-relationships

@@ -406,8 +406,13 @@ div#sidebar {
   }
   h1 {
     font-size: 14pt;
+    font-weight: normal;
     margin-bottom: .5em;
     border-bottom: $accent-width solid $color-p;
+  }
+  h2 {
+    font-size: 12pt;
+    margin-bottom: .5em;
   }
   ul {
     margin-bottom: .5em;
@@ -426,6 +431,11 @@ div#sidebar {
   }
   h1 {
       border-color: $color-s1;
+  }
+  .friends {
+    div.follow-status {
+      margin-bottom: 1em;
+    }
   }
 }
 
@@ -692,3 +702,4 @@ ul.socialaccount_providers {
     }
   }
 }
+

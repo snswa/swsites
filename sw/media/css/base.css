@@ -423,8 +423,12 @@ div#sidebar {
     position: relative; }
   div#sidebar h1 {
     font-size: 14pt;
+    font-weight: normal;
     margin-bottom: .5em;
     border-bottom: 2px solid #009966; }
+  div#sidebar h2 {
+    font-size: 12pt;
+    margin-bottom: .5em; }
   div#sidebar ul {
     margin-bottom: .5em; }
   div#sidebar form {
@@ -437,6 +441,8 @@ div#sidebar {
   border-left: 2px solid #b86e00; }
 .hq #sidebar h1 {
   border-color: #0b4f96; }
+.hq #sidebar .friends div.follow-status {
+  margin-bottom: 1em; }
 
 ul#site-messages {
   display: block;

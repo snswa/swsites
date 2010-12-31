@@ -6,12 +6,12 @@
   },
   {
     "name": "friends",
-    "enabled": false,
+    "enabled": true,
     "description": "When enabled, allow users to make another user their friend, and allow a user's friends to see their contact info. <a href=\"/teams/devops/wiki/FriendsFeature/\">More info.</a>"
   },
   {
     "name": "labs",
-    "enabled": false,
+    "enabled": true,
     "description": "When enabled, show a new 'labs' link in the top strip, allowing people to turn experimental features on and off in a central location.  When disabled, features must be enabled by using URLs only. <a href=\"/teams/devops/wiki/LabsFeature/\">More info.</a>"
   },
   {

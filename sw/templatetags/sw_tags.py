@@ -1,8 +1,11 @@
 import re
+
 from django.core.exceptions import ObjectDoesNotExist
 from django.template import Library, Node, Variable
 from django.utils.safestring import mark_safe
 from django.core.urlresolvers import reverse
+
+from relationships.utils import relationship_exists
 from wakawaka.models import WikiPage
 
 
@@ -91,20 +94,26 @@ class ProfilePrivacyNode(Node):
         user = context['user']
         profile = context['profile']
         other = profile.user
+        #
         is_me = context['is_me']
+        #
+        # Determine if current user is a coordinator of a team that the other user is a member of.
         coordinator_teams = set(m.team for m in user.member_set.filter(is_coordinator=True))
         other_teams = set(other.team_set.all())
         if other_teams.intersection(coordinator_teams):
             is_coordinator = True
         else:
             is_coordinator = False
-        # TODO: Find out
+        #
+        # Determine if the other user follows the current user.
+        is_friend = relationship_exists(other, user, 'following')
+        #
         # Now determine privacy settings for each section.
         privacy_map = {
             # privacy-code: lookup-fn,
             'P': False,
             'C': is_coordinator,
-            'F': is_coordinator,
+            'F': is_coordinator or is_friend,
             'A': True,
         }
         for section in [
