@@ -25,11 +25,11 @@ importlib==1.0.2
 ipython==0.10
 meld3==0.6.7
 odict==1.3.2
--e git+http://github.com/gldnspud/paramiko.git@sw#egg=paramiko
+-e git+https://github.com/gldnspud/paramiko.git@sw#egg=paramiko
 psycopg2==2.2.2
 pycrypto==2.0.1
 pyparsing==1.5.5
--e git+http://github.com/snswa/python-dateutil.git@93f2157fc38500dc73d4#egg=python-dateutil
+-e git+https://github.com/snswa/python-dateutil.git@93f2157fc38500dc73d4#egg=python-dateutil
 supervisor==3.0a9
 twill==0.9
 wsgiref==0.1.2
@@ -44,62 +44,62 @@ django-indexer==0.2
 django-templatetag-sugar==0.1
 
 # Django-CMS
--e git+http://github.com/snswa/django-cms.git@2.1.0.rc1#egg=django-cms
+-e git+https://github.com/snswa/django-cms.git@2.1.0.rc1#egg=django-cms
 django-reversion==1.3.2
 PIL==1.1.7
 
 # Zinnia
--e git+http://github.com/gldnspud/django-blog-zinnia.git@sw#egg=django-blog-zinnia
--e git+http://github.com/gldnspud/django-xmlrpc.git@sw#egg=django-xmlrpc
+-e git+https://github.com/gldnspud/django-blog-zinnia.git@sw#egg=django-blog-zinnia
+-e git+https://github.com/gldnspud/django-xmlrpc.git@sw#egg=django-xmlrpc
 akismet==0.2.0
 BeautifulSoup==3.1.0.1
 
 # Allauth
--e git+http://github.com/snswa/django-allauth.git@453273c#egg=django-allauth
+-e git+https://github.com/snswa/django-allauth.git@453273c#egg=django-allauth
 httplib2==0.6.0
 oauth2==1.2.0
 python-openid==2.2.5
 django-uni-form==0.7.0
--e git+http://github.com/facebook/python-sdk.git#egg=facebook-sdk
--e git+http://github.com/snswa/django-email-confirmation.git@a7420f2#egg=django-email-confirmation
+-e git+https://github.com/facebook/python-sdk.git#egg=facebook-sdk
+-e git+https://github.com/snswa/django-email-confirmation.git@a7420f2#egg=django-email-confirmation
 
 # Postmark
--e git+http://github.com/gldnspud/python-postmark.git@b8f4d8f717d71607d84f70dde544c36e392225f6#egg=python-postmark
+-e git+https://github.com/gldnspud/python-postmark.git@b8f4d8f717d71607d84f70dde544c36e392225f6#egg=python-postmark
 
 # Wakawaka
--e git+http://github.com/snswa/django-wakawaka.git@450ba1d#egg=django-wakawaka
+-e git+https://github.com/snswa/django-wakawaka.git@450ba1d#egg=django-wakawaka
 django-markup==0.3
 
 # Voice
--e git+http://github.com/snswa/django-voice.git@303d54b2c1ef23c27a349ad1acd8b6e04a3c02bb#egg=django-voice
+-e git+https://github.com/snswa/django-voice.git@303d54b2c1ef23c27a349ad1acd8b6e04a3c02bb#egg=django-voice
 -e svn+http://django-gravatar.googlecode.com/svn/trunk@13#egg=django-gravatar
 # also: django-voting
 
 # Haystack
--e git+http://github.com/toastdriven/django-haystack.git@c5f8f1a5a063d3781009dd4b9cb993685805705a#egg=django-haystack
+-e git+https://github.com/toastdriven/django-haystack.git@c5f8f1a5a063d3781009dd4b9cb993685805705a#egg=django-haystack
 pysolr==2.0.13
 
 # Idios
--e git+http://github.com/snswa/idios.git@a7bff188b53388b47a204a7992d9a23907ae714a#egg=idios
+-e git+https://github.com/snswa/idios.git@a7bff188b53388b47a204a7992d9a23907ae714a#egg=idios
 
 # Teams
--e git+http://github.com/snswa/django-teams.git@3666a00#egg=django-teams
--e git+http://github.com/snswa/django-groups.git@c028e7d#egg=django-groups
+-e git+https://github.com/snswa/django-teams.git@3666a00#egg=django-teams
+-e git+https://github.com/snswa/django-groups.git@c028e7d#egg=django-groups
 
 # Activity stream
--e git+http://github.com/snswa/django-activity-stream.git@2f2b210#egg=django-activity-stream
+-e git+https://github.com/snswa/django-activity-stream.git@2f2b210#egg=django-activity-stream
 
 # File attachments
 django-attachments==0.3.1
 
 # Voting
--e git+http://github.com/snswa/django-voting.git@5dcc830#egg=django-voting
+-e git+https://github.com/snswa/django-voting.git@5dcc830#egg=django-voting
 
 # Feature Flipper
--e git+http://github.com/snswa/django-feature-flipper.git@a8bf9ab#egg=django-feature-flipper
+-e git+https://github.com/snswa/django-feature-flipper.git@a8bf9ab#egg=django-feature-flipper
 
 # Feature Labs
--e git+http://github.com/snswa/django-feature-labs.git@822c3ea#egg=django-feature-labs
+-e git+https://github.com/snswa/django-feature-labs.git@822c3ea#egg=django-feature-labs
 
 # Planet
 -e git+https://github.com/snswa/django-planet.git@e6c2685#egg=django-planet
