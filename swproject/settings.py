@@ -387,4 +387,5 @@ INSTALLED_APPS = (
     # rss feed aggregation / display
     'atompub',
     'planet',
+    'planetcms',
 )
