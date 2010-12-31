@@ -2,8 +2,12 @@
 <script src="{{ STATIC_URL }}js/head{% if not debug %}.min{% endif %}.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" charset="utf-8">
     var headJsComplete = function () {};
-    // Kick off analytics ASAP, no other dependencies.
-    head.js('{{ STATIC_URL }}sw/analytics.js?{{ MEDIA_SERIAL_NUMBER }}');
+
+    {% if not debug %}
+        // Kick off analytics ASAP, no other dependencies.
+        head.js('{{ STATIC_URL }}sw/analytics.js?{{ MEDIA_SERIAL_NUMBER }}');
+    {% endif %}
+
     head.js(
         // Libs
         '{{ STATIC_URL }}js/jquery-1.4.4{% if not debug %}.min{% endif %}.js?{{ MEDIA_SERIAL_NUMBER }}',
