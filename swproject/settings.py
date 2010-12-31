@@ -1,4 +1,5 @@
 import os
+from datetime import timedelta
 
 import django
 from django.utils.translation import ugettext_lazy as _
@@ -264,6 +265,21 @@ FEATURES_FILE = os.path.join(os.path.dirname(__file__), 'features.json')
 # planet
 
 USER_AGENT = 'django-planet/0.1'
+
+# ==================================================================
+# celery
+
+CELERYBEAT_SCHEDULE = {
+    'Update all feeds every 2 hours': {
+        'task': 'sw.tasks.update_all_planet_feeds',
+        'schedule': timedelta(seconds=2 * 60 * 60),
+    },
+    'Update SW blog every minute': {
+        'task': 'sw.tasks.update_planet_feed',
+        'args': ('https://sensiblewashington.org/blog/feed/',),
+        'schedule': timedelta(seconds=60),
+    },
+}
 
 # ==================================================================
 
