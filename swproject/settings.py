@@ -175,7 +175,13 @@ AUTO_JOIN_GROUPS = [
 # django-cms
 
 CMS_TEMPLATES = (
-    ('cms/base.html', _('Default')),
+    ('cms/c12.html', _('content 12')),
+    ('cms/s4_c8.html', _('sidebar 4, content 8')),
+    ('cms/c6_c6.html', _('content 6, content 6')),
+    ('cms/c8_s4.html', _('content 8, sidebar 4')),
+    ('cms/l12_s4_c8.html', _('lead-in 12 / sidebar 4, content 8')),
+    ('cms/l12_c6_c6.html', _('lead-in 12 / content 6, content 6')),
+    ('cms/l12_c8_s4.html', _('lead-in 12 / content 8, sidebar 4')),
 )
 
 LANGUAGES = (

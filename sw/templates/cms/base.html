@@ -15,11 +15,7 @@
 {% block page_content %}
     {% if request.features.cms_content %}
         {% include "sw/cms_page_preamble.html" %}
-        <div id="content" class="grid_12">
-            <div class="section">
-                {% placeholder "content" %}
-            </div>
-        </div>
+        {% block cms_content %}{% endblock %}
     {% else %}
         {% include "sw/underconstruction.html" %}
     {% endif %}
