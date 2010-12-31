@@ -13,14 +13,14 @@
 {% endblock %}
 
 {% block page_content %}
-    {% feature cms_content %}
+    {% if request.features.cms_content %}
         {% include "sw/cms_page_preamble.html" %}
         <div id="content" class="grid_12">
             <div class="section">
                 {% placeholder "content" %}
             </div>
         </div>
-    {% disabled %}
+    {% else %}
         {% include "sw/underconstruction.html" %}
-    {% endfeature %}
+    {% endif %}
 {% endblock %}
