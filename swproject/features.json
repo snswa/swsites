@@ -16,7 +16,7 @@
   },
   {
     "name": "local",
-    "enabled": false,
+    "enabled": true,
     "description": "When enabled, show dynamic content in the 'local' tab in Volunteer HQ."
   }
 ]
