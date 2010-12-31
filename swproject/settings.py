@@ -280,10 +280,10 @@ CELERYBEAT_SCHEDULE = {
         'task': 'sw.tasks.update_all_planet_feeds',
         'schedule': timedelta(seconds=2 * 60 * 60),
     },
-    'Update SW blog every minute': {
+    'Update SW blog every 15 minutes': {
         'task': 'sw.tasks.update_planet_feed',
         'args': ('https://sensiblewashington.org/blog/feed/',),
-        'schedule': timedelta(seconds=60),
+        'schedule': timedelta(seconds=15 * 60),
     },
 }
 
