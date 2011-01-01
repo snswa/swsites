@@ -57,6 +57,8 @@
                             <li>{% include "dregni/event_summary.html" %}</li>
                         {% endfor %}
                     </ul>
+                {% else %}
+                    <p>No upcoming events in the next four weeks.</p>
                 {% endif %}
             {% endwith %}
         </div>
