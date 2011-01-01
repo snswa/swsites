@@ -1,6 +1,8 @@
 {% extends "teams/base.html" %}
 
-{% load breadcrumbs feature_tag %}
+{% load breadcrumbs %}
+{% load events %}
+{% load feature_tag %}
 {% load group_tags %}
 {% load pagination_tags %}
 
@@ -29,19 +31,35 @@
             {% endwith %}
         {% endif %}
 
-        <h1>Recent activity</h1>
+        <div class="grid_4 alpha">
+            <h1>Recent activity</h1>
 
-        {% autopaginate team_actions %}
+            {% autopaginate team_actions %}
 
-        <ul class="stream">
-            {% for action in team_actions %}
-                <li class="event">
-                    {% include "activity/action.html" %}
-                </li>
-            {% endfor %}
-        </ul>
+            <ul class="stream">
+                {% for action in team_actions %}
+                    <li class="event">
+                        {% include "activity/action.html" %}
+                    </li>
+                {% endfor %}
+            </ul>
 
-        {% paginate %}
+            {% paginate %}
+        </div>
+
+        <div class="grid_4 omega">
+            <h1>Upcoming events</h1>
+
+            {% with group|upcomingevents as events %}
+                {% if events %}
+                    <ul>
+                        {% for event in events %}
+                            <li>{% include "dregni/event_summary.html" %}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+        </div>
     {% endif %}
 {% endblock %}
 

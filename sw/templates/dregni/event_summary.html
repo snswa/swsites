@@ -1,0 +1,21 @@
+<div class="event summary">
+    <div class="time">
+        {{ event.start_date }}
+        {% if event.start_time %}
+            @ {{ event.start_time }}
+        {% endif %}
+        {% if event.end_date or event.end_time %}
+            to
+            {% if event.end_date %}
+                {{ event.end_date }}
+                {% if event.end_time %}
+                    @
+                {% endif %}
+            {% endif %}
+            {% if event.end_time %}
+                {{ event.end_time }}
+            {% endif %}
+        {% endif %}
+    </span>
+    <div class="title"><a href="{{ event.get_absolute_url }}">{{ event.title }}</a></span>
+</div>

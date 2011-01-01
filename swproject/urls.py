@@ -87,6 +87,10 @@ urlpatterns += wiki_bridge.include_urls('wakawaka.urls',
     r'^teams/(?P<team_slug>[\w\._-]+)/wiki/',
     kwargs=VERIFIED_VOLUNTEER,
 )
+urlpatterns += wiki_bridge.include_urls('dregni.urls',
+    r'^teams/(?P<team_slug>[\w\._-]+)/events/',
+    kwargs=VERIFIED_VOLUNTEER,
+)
 
 
 # Redirects

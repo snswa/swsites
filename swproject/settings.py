@@ -377,4 +377,6 @@ INSTALLED_APPS = (
     'planetcms',
     #
     'relationships',
+    #
+    'dregni',
 )
