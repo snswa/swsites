@@ -2,7 +2,6 @@ from datetime import datetime
 
 from django.conf import settings
 
-from actstream.models import Action
 from teams.models import Team
 from wakacmsplugin.settings import TEAM_SLUG
 from wakawaka.models import WikiPage
@@ -13,16 +12,6 @@ def media_serial_number(request):
     return {
         'MEDIA_SERIAL_NUMBER': settings.MEDIA_SERIAL_NUMBER,
     }
-
-
-def team_actions(request):
-    """Add a `team_actions` queryset for the current context's team."""
-    if isinstance(request.group, Team):
-        return {
-            'team_actions': request.group.content_objects(Action, gfk_field='target').order_by('-timestamp'),
-        }
-    else:
-        return {}
 
 
 def team_wakacms_membership(request):

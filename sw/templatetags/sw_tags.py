@@ -5,6 +5,7 @@ from django.template import Library, Node, Variable
 from django.utils.safestring import mark_safe
 from django.core.urlresolvers import reverse
 
+from actstream.models import Action
 from relationships.utils import relationship_exists
 from wakawaka.models import WikiPage
 
@@ -175,3 +176,13 @@ class ProfilePrivacyNode(Node):
             if privacy_code != 'A':
                 context['{0}_restricted'.format(section)] = True
         return u''
+
+
+# --- ACTIONS ---
+
+@register.filter
+def teamactions(team, limit=None):
+    queryset = team.content_objects(Action, gfk_field='target').order_by('-timestamp')
+    if limit is not None:
+        queryset = queryset[:limit]
+    return queryset
