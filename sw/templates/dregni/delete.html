@@ -1,0 +1,33 @@
+{% extends "dregni/base.html" %}
+
+{% load breadcrumbs %}
+{% load group_tags %}
+{% load i18n %}
+{% load wakacms_tags %}
+
+{% block title %}Delete "{{ event.title }}"? - {{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+
+    {% groupurl dregni_event group event_id=event.id as event_url %}
+    {% breadcrumb event.title event.url %}
+
+    {% breadcrumb 'Delete' './' %}
+{% endblock %}
+
+{% block body %}
+
+    <h1>Delete "{{ event.title }}" in <strong>{{ group.name }}</strong>?</h1>
+
+    <form class="uniForm" method="POST" action="{% groupurl dregni_event_delete group event_id=event.id %}">
+        {% csrf_token %}
+        <input type="hidden" name="delete" value="1">
+        <p>Are you sure you want to delete this event?</p>
+        <div class="buttonHolder">
+            <a class="button secondaryAction" href="{{ event.get_absolute_url }}">Cancel</a>
+            <button class="primaryAction" type="submit">{% trans "Delete" %}</button>
+        </div>
+    </form>
+
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "dregni/base.html" %}
+
+{% load breadcrumbs %}
+{% load group_tags %}
+{% load team_tags %}
+
+{% block title %}{{ event.title }} - {{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb event.title './' %}
+{% endblock %}
+
+{% block body %}
+
+    <h1>{% spaceless %}
+        <strong>{{ event.title }}</strong>
+        <br>
+        <span class="time">
+            {{ event.start_date }}
+            {% if event.start_time %}
+                @ {{ event.start_time }}
+            {% endif %}
+            {% if event.end_date or event.end_time %}
+                to
+                {% if event.end_date %}
+                    {{ event.end_date }}
+                    {% if event.end_time %}
+                        @
+                    {% endif %}
+                {% endif %}
+                {% if event.end_time %}
+                    {{ event.end_time }}
+                {% endif %}
+            {% endif %}
+        </span>
+    {% endspaceless %}</h1>
+
+    {% if event.description %}
+        <div class="description">
+            {{ event.description }}
+        </div>
+    {% endif %}
+
+{% endblock %}
+
+
+{% block sidebar_sections %}
+    {% if group and user|iscoordinatorofteam:group %}
+        <div class="section">
+            <h1>Coordinators</h1>
+
+            <ul>
+                <li><a href="{% groupurl dregni_event_edit group event_id=event.id %}">Edit this event</a></li>
+                <li><a href="{% groupurl dregni_event_delete group event_id=event.id %}">Delete this event</a></li>
+            </ul>
+
+            <ul>
+                <li><a href="{% groupurl dregni_event_create group %}">Create a new event</a></li>
+            </ul>
+        </div>
+    {% endif %}
+
+    {{ block.super }}
+{% endblock %}

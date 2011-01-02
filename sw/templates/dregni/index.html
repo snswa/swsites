@@ -1,0 +1,36 @@
+{% extends "dregni/base.html" %}
+
+{% load group_tags %}
+{% load team_tags %}
+
+{% block title %}Calendar - {{block.super}}{% endblock %}
+
+{% block body %}
+
+    <h1>Calendar for <strong>{{ group.name }}</strong></h1>
+
+    {% if event_list %}
+        <ul>
+            {% for event in event_list %}
+                <li>{% include "dregni/event_summary.html" %}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No events.</p>
+    {% endif %}
+
+{% endblock %}
+
+{% block sidebar_sections %}
+    {% if group and user|iscoordinatorofteam:group %}
+        <div class="section">
+            <h1>Coordinators</h1>
+
+            <ul>
+                <li><a href="{% groupurl dregni_event_create group %}">Create a new event</a></li>
+            </ul>
+        </div>
+    {% endif %}
+
+    {{ block.super }}
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "dregni/base.html" %}
+
+{% load breadcrumbs %}
+{% load group_tags %}
+{% load wakacms_tags %}
+
+{% block title %}New event - {{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb 'New event' './' %}
+{% endblock %}
+
+{% block body %}
+
+    <h1>New event in <strong>{{ group.name }}</strong></h1>
+
+    {% wikipagesnippet EditEventPreamble latest %}
+
+    {% include "dregni/event_form_create.html" %}
+
+{% endblock %}

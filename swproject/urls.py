@@ -11,8 +11,9 @@ if django.VERSION >= (1, 3):
 else:
     from staticfiles.urls import staticfiles_urlpatterns
 
-from sw.forms import ProfileForm
 from groups.bridge import ContentBridge
+from sw.forms import ProfileForm
+from swproject import predicates
 from teams.models import Team
 
 
@@ -35,11 +36,18 @@ if settings.DEBUG:
 wiki_bridge = ContentBridge(Team, 'wakawaka')
 
 
+NEW_VOLUNTEER = {
+    'login_required': True,
+    'email_preferred': True,
+    'profile_preferred': True,
+}
+
 VERIFIED_VOLUNTEER = {
     'login_required': True,
     'email_required': True,
     'profile_required': True,
 }
+
 
 urlpatterns += patterns('',
     url(r'^_site/', include('sw.urls')),    # Deployment tests and temporary views.
@@ -49,33 +57,23 @@ urlpatterns += patterns('',
     url(r'^sentry/', include('sentry.urls')),
 
     # Figure out how to mesh these two together for login.
-    url(r'^accounts/', include('allauth.urls'), kwargs={
-        'email_preferred': True,
-        'profile_preferred': True,
-    }),
+    url(r'^accounts/', include('allauth.urls'), kwargs=dict(
+        email_preferred=True,
+        profile_preferred=True,
+    )),
     url(r'^hq/', 'sw.views.hq', name='sw_hq'),
 
     url(r'^attachments/', include('attachments.urls'), kwargs=VERIFIED_VOLUNTEER),
     url(r'^comments/', include('django.contrib.comments.urls'), kwargs=VERIFIED_VOLUNTEER),
     url(r'^dashboard/', include('dashboard.urls'), kwargs=VERIFIED_VOLUNTEER),
     url(r'^features/', include('featurelabs.urls'), kwargs=VERIFIED_VOLUNTEER),
-    url(r'^local/', include('swlocal.urls'), kwargs={
-        'login_required': True,
-        'email_preferred': True,
-        'profile_preferred': True,
-    }),
+    url(r'^local/', include('swlocal.urls'), kwargs=NEW_VOLUNTEER),
     url(r'^placeholder/', include('swproject.urls_placeholders'), kwargs=VERIFIED_VOLUNTEER),
-    url(r'^profiles/', include('idios.urls'), kwargs={
-        'form_class': ProfileForm,
-        'login_required': True,
-        'email_preferred': True,
-        'profile_preferred': True,
-    }),
-    url(r'^relationships/', include('relationships.urls'), kwargs={
-        'login_required': True,
-        'email_preferred': True,
-        'profile_preferred': True,
-    }),
+    url(r'^profiles/', include('idios.urls'), kwargs=dict(
+        NEW_VOLUNTEER,
+        form_class=ProfileForm,
+    )),
+    url(r'^relationships/', include('relationships.urls'), kwargs=NEW_VOLUNTEER),
     url(r'^search/', include('swproject.urls_search'), kwargs=VERIFIED_VOLUNTEER),
     url(r'^teams/', include('teams.urls'), kwargs=VERIFIED_VOLUNTEER),
     url(r'^voting/', include('voting.urls'), kwargs=VERIFIED_VOLUNTEER),
@@ -89,7 +87,11 @@ urlpatterns += wiki_bridge.include_urls('wakawaka.urls',
 )
 urlpatterns += wiki_bridge.include_urls('dregni.urls',
     r'^teams/(?P<team_slug>[\w\._-]+)/events/',
-    kwargs=VERIFIED_VOLUNTEER,
+    kwargs=dict(
+        VERIFIED_VOLUNTEER,
+        event_delete_predicate=predicates.event_delete,
+        event_edit_predicate=predicates.event_edit,
+    ),
 )
 
 

@@ -5,6 +5,7 @@
 {% load feature_tag %}
 {% load group_tags %}
 {% load pagination_tags %}
+{% load team_tags %}
 
 {% block head_title %}{{ group.name }}{% endblock %}
 
@@ -50,7 +51,8 @@
         <div class="grid_4 omega">
             <h1>Upcoming events</h1>
 
-            {% with group|upcomingevents as events %}
+            {% content_objects group "dregni.Event" as events %}
+            {% with events|upcomingevents:28 as events %}
                 {% if events %}
                     <ul>
                         {% for event in events %}
@@ -61,6 +63,14 @@
                     <p>No upcoming events in the next four weeks.</p>
                 {% endif %}
             {% endwith %}
+
+            <ul>
+                <li><a href="{% groupurl dregni_index group %}">View this team's calendar</a>.</li>
+                {% if user|iscoordinatorofteam:team %}
+                    <li><a href="{% groupurl dregni_event_create group %}">Create a new team event</a>.</li>
+                {% endif %}
+            </ul>
+
         </div>
     {% endif %}
 {% endblock %}

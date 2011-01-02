@@ -33,6 +33,12 @@
 .bullet_yellow-link-hover:hover {
   background: transparent url("/media/icons/bullet_yellow.png") left center no-repeat; }
 
+.calendar-link {
+  background: transparent url("/media/icons/calendar.png") left center no-repeat; }
+
+.calendar-link-hover:hover {
+  background: transparent url("/media/icons/calendar.png") left center no-repeat; }
+
 .door_in-link {
   background: transparent url("/media/icons/door_in.png") left center no-repeat; }
 

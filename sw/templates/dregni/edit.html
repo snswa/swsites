@@ -1,0 +1,26 @@
+{% extends "dregni/base.html" %}
+
+{% load breadcrumbs %}
+{% load group_tags %}
+{% load wakacms_tags %}
+
+{% block title %}Edit "{{ event.title }}" - {{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+
+    {% groupurl dregni_event group event_id=event.id as event_url %}
+    {% breadcrumb event.title event.url %}
+
+    {% breadcrumb 'Edit' './' %}
+{% endblock %}
+
+{% block body %}
+
+    <h1>Edit "{{ event.title }}" in <strong>{{ group.name }}</strong></h1>
+
+    {% wikipagesnippet EditEventPreamble latest %}
+
+    {% include "dregni/event_form_edit.html" %}
+
+{% endblock %}

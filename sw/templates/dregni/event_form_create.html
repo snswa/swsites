@@ -1,0 +1,9 @@
+{% load group_tags %}
+{% load i18n %}
+
+<form class="uniForm" method="POST" action="{% groupurl dregni_event_create group %}">
+    {% include "dregni/event_form_contents.html" %}
+    <div class="buttonHolder">
+        <button class="primaryAction" type="submit">{% trans "Save" %}</button>
+    </div>
+</form>

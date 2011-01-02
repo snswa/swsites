@@ -1,0 +1,7 @@
+{% load uni_form_tags %}
+
+{% csrf_token %}
+
+<fieldset class="inlineLabels">
+    {{ event_form|as_uni_form }}
+</fieldset>
