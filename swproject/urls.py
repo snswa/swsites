@@ -76,6 +76,7 @@ urlpatterns += patterns('',
     url(r'^relationships/', include('relationships.urls'), kwargs=NEW_VOLUNTEER),
     url(r'^search/', include('swproject.urls_search'), kwargs=VERIFIED_VOLUNTEER),
     url(r'^teams/', include('teams.urls'), kwargs=VERIFIED_VOLUNTEER),
+    url(r'^teams/(?P<slug>[\w\._-]+)/activity/$', view='sw.views.team_activity_history', name='team_activity_history', kwargs=VERIFIED_VOLUNTEER),
     url(r'^voting/', include('voting.urls'), kwargs=VERIFIED_VOLUNTEER),
 )
 
