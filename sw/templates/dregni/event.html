@@ -2,6 +2,8 @@
 
 {% load breadcrumbs %}
 {% load group_tags %}
+{% load markup_tags %}
+{% load sw_tags %}
 {% load team_tags %}
 
 {% block title %}{{ event.title }} - {{ block.super }}{% endblock %}
@@ -38,7 +40,7 @@
 
     {% if event.description %}
         <div class="description">
-            {{ event.description }}
+            {{ event.description|wikify_creole_links:event.group|apply_markup:"creole" }}
         </div>
     {% endif %}
 
