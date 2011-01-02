@@ -1,6 +1,7 @@
 {% extends "dregni/base.html" %}
 
 {% load breadcrumbs %}
+{% load comments %}
 {% load group_tags %}
 {% load markup_tags %}
 {% load sw_tags %}
@@ -43,6 +44,19 @@
             {{ event.description|wikify_creole_links:event.group|apply_markup:"creole" }}
         </div>
     {% endif %}
+
+    <h1>Comments</h1>
+
+    {% get_comment_count for event as comment_count %}
+    {% if comment_count %}
+        {% render_comment_list for event %}
+    {% else %}
+        <p>Be the first to comment on this event.</p>
+    {% endif %}
+
+    {% with event.get_absolute_url as next %}
+        {% render_comment_form for event %}
+    {% endwith %}
 
 {% endblock %}
 

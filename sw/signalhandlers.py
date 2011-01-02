@@ -53,6 +53,21 @@ def stream_event(sender, instance, created, **kwargs):
 post_save.connect(stream_event, sender=Event)
 
 
+def stream_event_comment(sender, comment, request, **kwargs):
+    obj = comment.content_object
+    if isinstance(obj, Event):
+        action.send(
+            comment.user,
+            verb='commented on the event',
+            action_object=comment,
+            target=obj.group,
+            timestamp=comment.submit_date,
+            description=truncate_words(comment.comment, 25),
+        )
+
+comment_was_posted.connect(stream_event_comment)
+
+
 def stream_wiki_attachment(sender, instance, created, **kwargs):
     if created:
         obj = instance.content_object
