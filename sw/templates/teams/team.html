@@ -21,7 +21,7 @@
 
 
 {% block body %}
-    {% if group.is_private and not is_team_member %}
+    {% if group.is_private and not user|ismemberofgroup:group %}
         <p>This team is private.</p>
     {% else %}
         <h1>About the <strong>{{ group.name }}</strong> team</h1>
@@ -76,30 +76,15 @@
 {% endblock %}
 
 {% block sidebar_sections %}
-    {% if is_team_member or not group.is_private  %}
+    {% if user|ismemberofgroup:group or not group.is_private  %}
 
-        {% include "sidebars/moreteams.html" %}
+        {% include "sidebars/teammembers.html" %}
 
         {% include "sidebars/teamjoinleave.html" %}
 
+        {% include "sidebars/moreteams.html" %}
+
         {% include "sidebars/wikicommon.html" %}
-
-        <div class="section">
-            <h1>Members</h1>
-
-            {% with group.member_set.all as memberships %}
-                <ul>
-                    {% for membership in memberships %}
-                        <li>
-                            <a href="{{ membership.user.get_absolute_url }}">{{ membership.user.get_profile }}</a>
-                            {% if membership.is_coordinator %}
-                                <span class="coordinator">(coordinator)</span>
-                            {% endif %}
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% endwith %}
-        </div>
 
     {% endif %}
 {% endblock %}

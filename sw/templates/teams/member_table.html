@@ -1,0 +1,32 @@
+{% load sw_tags %}
+<table width="100%">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Profile Summary</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for member in member_list %}
+            {% with member.user as otheruser %}
+                <tr>
+                    <td width="20%">
+                        <a href="{{ otheruser.get_absolute_url }}">{{ otheruser.get_profile }}</a>
+                    </td>
+                    <td>
+                        {% if user|canview_bio_ofuser:otheruser %}
+                            {% with otheruser.get_profile.bio as bio %}
+                                {% if bio %}
+                                    <div>
+                                        <strong>Bio</strong>: {{ otheruser.get_profile.bio|truncatewords:25 }}
+                                        <a href="{{ otheruser.get_absolute_url }}">(read more)</a>
+                                    </div>
+                                {% endif %}
+                            {% endwith %}
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endwith %}
+        {% endfor %}
+    </tbody>
+</table>

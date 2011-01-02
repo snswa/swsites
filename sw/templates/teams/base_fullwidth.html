@@ -1,0 +1,16 @@
+{% extends "base_hq_12.html" %}
+
+{% load breadcrumbs feature_tag %}
+
+{% block body_class %}{{ block.super }} teams{% endblock %}
+
+{% block page_title %}{% block head_title %}{% endblock %}{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+{% endblock %}
+
+{% block content_body %}
+    {% block body %}
+    {% endblock %}
+{% endblock %}

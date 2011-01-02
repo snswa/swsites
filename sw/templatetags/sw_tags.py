@@ -72,6 +72,47 @@ def wikify_creole_links(value, group):
 # --- PROFILE PRIVACY ---
 
 
+def _is_coordinator(u, o):
+    coordinator_teams = set(m.team for m in u.member_set.filter(is_coordinator=True))
+    other_teams = set(o.team_set.all())
+    if other_teams.intersection(coordinator_teams):
+        return True
+    else:
+        return False
+
+_privacy_conditions = {
+    # privacy-code: lookup-fn,
+    'P': lambda u, o: False,
+    'C': lambda u, o: _is_coordinator(u, o),
+    'F': lambda u, o: _is_coordinator(u, o) or relationship_exists(o, u, 'following'),
+    'A': lambda u, o: True,
+}
+
+for _section in [
+    'name',
+    'zip_code',
+    'mailing_address',
+    'email',
+    'phone_number',
+    'messaging',
+    'preferred_contact_methods',
+    'bio',
+    'occupation',
+    'employer',
+    ]:
+    def canview_x_ofuser(user, other, _section=_section):
+        if user == other:
+            return True
+        # Check other user's profile for their privacy setting.
+        other_profile = other.get_profile()
+        privacy_name = '{0}_privacy'.format(_section)
+        privacy_code = getattr(other_profile, privacy_name)
+        # Determine the privacy condition based on their setting.
+        return _privacy_conditions[privacy_code](user, other)
+    _name = canview_x_ofuser.__name__ = 'canview_{0}_ofuser'.format(_section)
+    globals()[_name] = register.filter(canview_x_ofuser)
+
+
 @register.tag
 def profile_privacy(parser, token):
     """Determine profile visibility based on the the profile's privacy settings
@@ -109,7 +150,7 @@ class ProfilePrivacyNode(Node):
         is_friend = relationship_exists(other, user, 'following')
         #
         # Now determine privacy settings for each section.
-        privacy_map = {
+        privacy_conditions = {
             # privacy-code: lookup-fn,
             'P': False,
             'C': is_coordinator,
@@ -130,7 +171,7 @@ class ProfilePrivacyNode(Node):
             ]:
             privacy_name = '{0}_privacy'.format(section)
             privacy_code = getattr(profile, privacy_name)
-            context['can_view_{0}'.format(section)] = is_me or privacy_map[privacy_code]
+            context['can_view_{0}'.format(section)] = is_me or privacy_conditions[privacy_code]
             if privacy_code != 'A':
                 context['{0}_restricted'.format(section)] = True
         return u''

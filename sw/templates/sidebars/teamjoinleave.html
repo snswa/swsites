@@ -1,11 +1,13 @@
+{% load group_tags %}
+{% load team_tags %}
 <div class="section">
     <div id="team-membership">
-        {% if is_team_member %}
-            {% if team_membership.get.is_coordinator %}
+        {% if user|ismemberofgroup:group %}
+            {% if user|iscoordinatorofteam:group %}
                 <span class="coordinator">You are a coordinator of this team.</span>
             {% else %}
                 You are a member of this team.
-                <form action="{% url teams_team_membership slug=group.slug %}" method="post" accept-charset="utf-8">
+                <form action="{% url teams_team_change_membership slug=group.slug %}" method="post" accept-charset="utf-8">
                     {% csrf_token %}
                     <br /><input type="submit" name="leave" value="Leave Team">
                 </form>
@@ -13,7 +15,7 @@
         {% else %}
             Join to stay up-to-date with activity in this team.
             {% if not group.is_private %}
-                <form action="{% url teams_team_membership slug=group.slug %}" method="post" accept-charset="utf-8">
+                <form action="{% url teams_team_change_membership slug=group.slug %}" method="post" accept-charset="utf-8">
                     {% csrf_token %}
                     <br /><input type="submit" name="join" value="Join Team">
                 </form>

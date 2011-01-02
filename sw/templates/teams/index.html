@@ -31,7 +31,7 @@
             <p><a href="?update_memberships=1">Manage your team memberships here</a>.</p>
         {% endif %}
 
-        <form action="{% url teams_membership %}" method="POST" accept-charset="utf-8">
+        <form action="{% url teams_change_memberships %}" method="POST" accept-charset="utf-8">
             {% csrf_token %}
 
             {% if update_memberships == '1' %}

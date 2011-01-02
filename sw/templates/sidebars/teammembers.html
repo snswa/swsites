@@ -1,0 +1,25 @@
+{% load team_tags %}
+
+<div class="section">
+    <h1>Members</h1>
+
+    {% with group.member_set as members %}
+        {% if members %}
+            <ul>
+                {% for member in members|coordinatormembers %}
+                    <li>
+                        <a href="{{ member.user.get_absolute_url }}">{{ member.user.get_profile }}</a>
+                        <span class="coordinator">(coordinator)</span>
+                    </li>
+                {% endfor %}
+                <li>
+                    {% with members.count as num_members %}
+                        <a href="{% url teams_team_members slug=group.slug %}"><strong>All {{ num_members }} member{{ num_members|pluralize }} »</strong></a>
+                    {% endwith %}
+                </li>
+            </ul>
+        {% else %}
+            <p>No members have joined this team.</p>
+        {% endif %}
+    {% endwith %}
+</div>

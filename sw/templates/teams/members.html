@@ -1,0 +1,47 @@
+{% extends "teams/base_fullwidth.html" %}
+
+{% load breadcrumbs %}
+{% load group_tags %}
+{% load pagination_tags %}
+{% load team_tags %}
+
+{% block head_title %}Members - {{ group.name }}{% endblock %}
+
+{% block body_class %}{{ block.super }} team-{{ group.slug }} members{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% for parent in group.parents %}
+        {% breadcrumb_url_css "icon-link group-link" parent.name teams_team_index slug=parent.slug %}
+    {% endfor %}
+    {% breadcrumb_url_css "icon-link group-link" group.name teams_team_index slug=group.slug %}
+    {% breadcrumb 'Members' './' %}
+{% endblock %}
+
+
+{% block body %}
+    {% if group.is_private and not user|ismemberofgroup:group %}
+        <p>This team is private.</p>
+    {% else %}
+        <h1><strong>{{ group.name }}</strong> team coordinators</h1>
+
+        {% if coordinator_list %}
+            {% with coordinator_list as member_list %}
+                {% include "teams/member_table.html" %}
+            {% endwith %}
+        {% else %}
+            <p>There are currently no coordinators of this team.</p>
+        {% endif %}
+
+        <h1><strong>{{ group.name }}</strong> team members</h1>
+
+        {% if member_list %}
+            {% autopaginate member_list %}
+            {% include "teams/member_table.html" %}
+            {% paginate %}
+        {% else %}
+            <p>No members in this team.</p>
+        {% endif %}
+
+    {% endif %}
+{% endblock %}
