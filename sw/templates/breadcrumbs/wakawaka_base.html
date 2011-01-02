@@ -1,0 +1,10 @@
+{% load breadcrumbs feature_tag %}
+{% load group_tags %}
+
+{% for parent in group.parents %}
+    {% breadcrumb_url_css "icon-link group-link" parent.name teams_team_index slug=parent.slug %}
+{% endfor %}
+{% breadcrumb_url_css "icon-link group-link" group.name teams_team_index slug=group.slug %}
+
+{% groupurl wakawaka_index group as indexurl %}
+{% breadcrumb_css 'icon-link folder-link' 'Pages' indexurl %}
