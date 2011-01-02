@@ -9,6 +9,7 @@
 
 {% block breadcrumbs %}
     {{ block.super }}
+    {% breadcrumb_url_css 'icon-link vcard-link' 'Profiles' profile_list_all %}
 {% endblock %}
 
 {% block page_content %}
