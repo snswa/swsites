@@ -29,7 +29,7 @@ class HqPredicateMiddleware(object):
         user = request.user
         if user.is_authenticated():
             profile = user.get_profile()
-            has_verified_email = user.emailaddress_set.filter(verified=True).count() == 1
+            has_verified_email = user.emailaddress_set.filter(verified=True).count() > 0
             has_preferred_name = profile.preferred_name and profile.preferred_name.strip()
             has_zip_code = profile.zip_code and profile.zip_code.strip()
         else:
