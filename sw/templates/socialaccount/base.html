@@ -6,7 +6,9 @@
 
 {% block breadcrumbs %}
     {{ block.super }}
-    {% breadcrumb_url_css "icon-link vcard-link" user.get_profile profile_detail username=user.username %}
+    {% if user.is_authenticated %}
+        {% breadcrumb_url_css "icon-link vcard-link" user.get_profile profile_detail username=user.username %}
+    {% endif %}
 {% endblock %}
 
 {% block content_body %}
