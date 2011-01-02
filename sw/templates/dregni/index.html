@@ -22,9 +22,9 @@
 {% endblock %}
 
 {% block sidebar_sections %}
-    {% if group and user|iscoordinatorofteam:group %}
+    {% if group.is_private and user|ismemberofgroup:group or user|iscoordinatorofteam:group %}
         <div class="section">
-            <h1>Coordinators</h1>
+            <h1>Actions</h1>
 
             <ul>
                 <li><a href="{% groupurl dregni_event_create group %}">Create a new event</a></li>

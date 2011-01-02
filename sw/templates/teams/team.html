@@ -66,7 +66,7 @@
 
             <ul>
                 <li><a href="{% groupurl dregni_index group %}">View this team's calendar</a>.</li>
-                {% if user|iscoordinatorofteam:team %}
+                {% if group.is_private and user|ismemberofgroup:group or user|iscoordinatorofteam:group %}
                     <li><a href="{% groupurl dregni_event_create group %}">Create a new team event</a>.</li>
                 {% endif %}
             </ul>
