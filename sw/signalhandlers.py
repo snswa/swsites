@@ -1,16 +1,13 @@
 from django.conf import settings
+from django.contrib.auth.models import Group, User
+from django.contrib.comments.signals import comment_was_posted
 from django.db.models.signals import post_save, pre_delete
 from django.utils.text import truncate_words
 
-from django.contrib.auth.models import Group, User
-from django.contrib.comments.signals import comment_was_posted
-
 from actstream import action
-
 from attachments.models import Attachment
-
+from dregni.models import Event
 from teams.models import Member
-
 from wakawaka.models import Revision, WikiPage
 
 
@@ -32,6 +29,29 @@ post_save.connect(auto_join_user_to_groups, sender=User)
 
 # ====================================================================
 # Activity stream
+
+
+def stream_event(sender, instance, created, **kwargs):
+    if created:
+        action.send(
+            instance.creator,
+            verb='created the event',
+            action_object=instance,
+            target=instance.group,
+            timestamp=instance.modified,
+            description=truncate_words(instance.description, 25) if instance.description else None,
+        )
+    else:
+        action.send(
+            instance.modifier,
+            verb='changed the event',
+            action_object=instance,
+            target=instance.group,
+            timestamp=instance.modified,
+        )
+
+post_save.connect(stream_event, sender=Event)
+
 
 def stream_wiki_attachment(sender, instance, created, **kwargs):
     if created:
