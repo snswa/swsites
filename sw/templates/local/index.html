@@ -1,7 +1,7 @@
 {% extends "base_hq_6_6.html" %}
 
-{% load breadcrumbs feature_tag %}
-{% load teams_tags %}
+{% load breadcrumbs %}
+{% load group_tags %}
 {% load wakacms_tags %}
 
 {% block body_class %}{{ block.super }} local-section{% endblock %}
@@ -23,11 +23,11 @@
 
             <p>
                 <a href="{% url teams_team_index slug=team.slug %}">Visit this team's home page</a>.
-                {% teammember team %}
+                {% if user|ismemberofgroup:team %}
                     You are a member of this team.
-                {% nonmember %}
+                {% else %}
                     You may join this team there.
-                {% endteammember %}
+                {% endif %}
             </p>
 
             {% with team.coordinators as coordinators %}

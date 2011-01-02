@@ -25,38 +25,6 @@ def team_actions(request):
         return {}
 
 
-class TeamsUserIs(object):
-
-    def __init__(self, user):
-        self._user = user
-        self._calculated = False
-
-    def coordinator_of(self):
-        if not hasattr(self, '_coordinator_of'):
-            self._coordinator_of = set(m.team for m in self._user.member_set.filter(is_coordinator=True))
-        return self._coordinator_of
-
-    def member_of(self):
-        if not hasattr(self, '_member_of'):
-            self._member_of = set(m.team for m in self._user.member_set.all())
-        return self._member_of
-
-def team_membership(request):
-    """
-    Add `teams_member_of` and `teams_coordinator_of` functions to determine memberships across teams.
-    Also add `is_team_member` boolean and and `team_membership` queryset when inside an individual team.
-    """
-    d = {
-        'teams_user_is': TeamsUserIs(request.user),
-    }
-    if isinstance(request.group, Team):
-        d.update({
-            'is_team_member': request.group.user_is_member(request.user),
-            'team_membership': request.group.member_set.filter(user=request.user),
-        })
-    return d
-
-
 def team_wakacms_membership(request):
     """Add `is_wakacms_team_member` if the user is a member of the team named
     in WAKACMSPLUGIN_TEAM_SLUG."""

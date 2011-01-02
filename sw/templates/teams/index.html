@@ -1,8 +1,10 @@
 {% extends "teams/base.html" %}
 
-{% load breadcrumbs feature_tag %}
+{% load breadcrumbs %}
 {% load feature_tag %}
+{% load group_tags %}
 {% load pagination_tags %}
+{% load team_tags %}
 {% load wakacms_tags %}
 
 {% block head_title %}Teams{% endblock %}
@@ -47,8 +49,8 @@
                     {% if tree_item.slug %}
                         {% with tree_item as team %}
                             {% if update_memberships == '1' %}
-                                {% if team in teams_user_is.member_of %}
-                                    {% if team in teams_user_is.coordinator_of %}
+                                {% if user|ismemberofgroup:team %}
+                                    {% if user|iscoordinatorofteam:team %}
                                         <input type="checkbox" checked disabled>
                                         <input type="hidden" name="team_{{ team.id }}" value="1">
                                     {% else %}
@@ -63,7 +65,7 @@
                                 {% endif %}
                                 <label for="team_{{ team.id }}">{{ team.name }}</label>
                             {% else %}
-                                {% if team in teams_user_is.member_of %}
+                                {% if user|ismemberofgroup:team %}
                                     <strong><a href="{% url teams_team_index slug=team.slug %}">{{ team.name }}</a></strong>
                                 {% else %}
                                     <a href="{% url teams_team_index slug=team.slug %}">{{ team.name }}</a>
@@ -72,7 +74,7 @@
                             {% if team.is_private %}
                                 &mdash; invitation-only
                             {% endif %}
-                            {% if team in teams_user_is.coordinator_of %}
+                            {% if user|iscoordinatorofteam:team %}
                                 &mdash; you are a coordinator
                             {% endif %}
                         {% endwith %}
