@@ -1,4 +1,4 @@
-{% extends "dregni/base.html" %}
+{% extends "dregni/base_fullwidth.html" %}
 
 {% load group_tags %}
 {% load team_tags %}
@@ -9,28 +9,54 @@
 
     <h1>Calendar for <strong>{{ group.name }}</strong></h1>
 
-    {% if event_list %}
-        <ul>
-            {% for event in event_list %}
-                <li>{% include "dregni/event_summary.html" %}</li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No events.</p>
-    {% endif %}
-
-{% endblock %}
-
-{% block sidebar_sections %}
     {% if group.is_private and user|ismemberofgroup:group or user|iscoordinatorofteam:group %}
-        <div class="section">
-            <h1>Actions</h1>
-
-            <ul>
-                <li><a href="{% groupurl dregni_event_create group %}">Create a new event</a></li>
-            </ul>
-        </div>
+        <ul>
+            <li><a href="{% groupurl dregni_event_create group %}">Create a new event</a></li>
+        </ul>
     {% endif %}
 
-    {{ block.super }}
+    {% if weeks %}
+        <table class="calendar">
+            <thead>
+                <tr>
+                    <th>&nbsp;</th>
+                    {% for abbr in day_abbr %}
+                        <th>{{ abbr }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for week in weeks %}
+                    <tr>
+                        <td class="month-{{ week.0.date|date:"n" }} week">
+                            {{ week.0.date|date:"M" }}
+                            <br>
+                            {{ week.0.date|date:"Y" }}
+                        </td>
+                        {% for day in week %}
+                            <td class="month-{{ day.date|date:"n" }} day{% if day.date == today %} today{% endif %}">
+                                <div class="number">
+                                    {% if day.date.day == 1 %}
+                                        {{ day.date|date:"M j"}}
+                                    {% else %}
+                                        {{ day.date|date:"j" }}
+                                    {% endif %}
+                                </div>
+                                {% if day.events %}
+                                    <ul class="events">
+                                        {% for event in day.events %}
+                                            <li>
+                                                <a href="{{ event.get_absolute_url }}">{{ event.title }}</a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
 {% endblock %}

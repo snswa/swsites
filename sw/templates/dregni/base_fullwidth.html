@@ -1,0 +1,22 @@
+{% extends "base_hq_12.html" %}
+
+{% load breadcrumbs %}
+{% load group_tags %}
+{% load i18n %}
+
+{# Insert 'title' from templates into 'page_title' in base #}
+{% block page_title %}{% block title %}Events{% endblock %}{% endblock %}
+
+{% if group %}
+    {% block body_class %}{{ block.super }} team-{{ group.slug }} hq-section{% endblock %}
+{% endif %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% include "breadcrumbs/dregni_base.html" %}
+{% endblock %}
+
+{% block content_body %}
+    {% block body %}
+    {% endblock %}
+{% endblock %}

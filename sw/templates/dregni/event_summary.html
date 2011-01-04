@@ -1,9 +1,7 @@
 <div class="event summary">
     <div class="time">
-        {{ event.start_date }}
-        {% if event.start_time %}
-            @ {{ event.start_time }}
-        {% endif %}
+        {% if not hide_date %}{{ event.start_date }}{% if event.start_time %},{% endif %}{% endif %}
+        {{ event.start_time }}
         {% if event.end_date or event.end_time %}
             to
             {% if event.end_date %}

@@ -1,5 +1,7 @@
 # Top-level URLs
 
+import datetime
+
 import django
 from django.conf import settings
 from django.conf.urls.defaults import include, patterns, url
@@ -92,6 +94,8 @@ urlpatterns += wiki_bridge.include_urls('dregni.urls',
         VERIFIED_VOLUNTEER,
         event_delete_predicate=predicates.event_delete,
         event_edit_predicate=predicates.event_edit,
+        start_date=datetime.date.today,
+        weeks=6,
     ),
 )
 

@@ -640,3 +640,27 @@ ul.socialaccount_providers {
     margin-bottom: 10px; }
     #nags div p:last-child {
       margin-bottom: 0px; }
+
+table.calendar {
+  width: 100%; }
+  table.calendar td {
+    width: 12.5%; }
+  table.calendar td.month-1.week, table.calendar td.month-3.week, table.calendar td.month-5.week, table.calendar td.month-7.week, table.calendar td.month-9.week, table.calendar td.month-11.week {
+    font-weight: bold;
+    color: #8a5300; }
+  table.calendar td.month-1.day, table.calendar td.month-3.day, table.calendar td.month-5.day, table.calendar td.month-7.day, table.calendar td.month-9.day, table.calendar td.month-11.day {
+    background-color: #ffebcc; }
+  table.calendar td.month-2.week, table.calendar td.month-4.week, table.calendar td.month-6.week, table.calendar td.month-8.week, table.calendar td.month-10.week, table.calendar td.month-12.week {
+    font-weight: bold;
+    color: #0b4f96; }
+  table.calendar td.month-2.day, table.calendar td.month-4.day, table.calendar td.month-6.day, table.calendar td.month-8.day, table.calendar td.month-10.day, table.calendar td.month-12.day {
+    background-color: #d7e9fc; }
+  table.calendar td.today {
+    background-color: white !important; }
+  table.calendar .day .number {
+    font-weight: bold; }
+  table.calendar .day ul.events {
+    font-size: smaller; }
+    table.calendar .day ul.events li {
+      list-style: none;
+      margin-left: 0; }

@@ -704,3 +704,42 @@ ul.socialaccount_providers {
   }
 }
 
+table.calendar {
+  width: 100%;
+  td {
+    width: 12.5%
+  }
+  td.month-1, td.month-3, td.month-5, td.month-7, td.month-9, td.month-11 {
+    &.week {
+      font-weight: bold;
+      color: darken($color-s2, 18%);
+    }
+    &.day {
+      background-color: lighten($color-s2, 45%);
+    }
+  }
+  td.month-2, td.month-4, td.month-6, td.month-8, td.month-10, td.month-12 {
+    &.week {
+      font-weight: bold;
+      color: darken($color-s1, 0%);
+    }
+    &.day {
+      background-color: lighten($color-s1, 60%);
+    }
+  }
+  td.today {
+    background-color: white !important;
+  }
+  .day {
+    .number {
+      font-weight: bold;
+    }
+    ul.events {
+      font-size: smaller;
+      li {
+        list-style: none;
+        margin-left: 0;
+      }
+    }
+  }
+}
