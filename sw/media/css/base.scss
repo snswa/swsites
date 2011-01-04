@@ -727,6 +727,9 @@ table.calendar {
       background-color: lighten($color-s1, 60%);
     }
   }
+  td.nav {
+    text-align: center;
+  }
   td.today {
     background-color: white !important;
   }

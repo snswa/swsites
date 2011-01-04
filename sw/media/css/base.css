@@ -655,6 +655,8 @@ table.calendar {
     color: #0b4f96; }
   table.calendar td.month-2.day, table.calendar td.month-4.day, table.calendar td.month-6.day, table.calendar td.month-8.day, table.calendar td.month-10.day, table.calendar td.month-12.day {
     background-color: #d7e9fc; }
+  table.calendar td.nav {
+    text-align: center; }
   table.calendar td.today {
     background-color: white !important; }
   table.calendar .day .number {

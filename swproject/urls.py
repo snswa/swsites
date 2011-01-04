@@ -96,6 +96,7 @@ urlpatterns += wiki_bridge.include_urls('dregni.urls',
         event_edit_predicate=predicates.event_edit,
         start_date=datetime.date.today,
         weeks=6,
+        jump_weeks=4,
     ),
 )
 

@@ -26,6 +26,13 @@
                 </tr>
             </thead>
             <tbody>
+                <tr>
+                    <td colspan="8" class="nav">
+                        <a href="?start_date={{ prev_date.isoformat }}">&larr; Back {{ jump_weeks }} weeks</a>
+                        |
+                        <a href="?start_date={{ next_date.isoformat }}">Forward {{ jump_weeks }} weeks &rarr;</a>
+                    </td>
+                </tr>
                 {% for week in weeks %}
                     <tr>
                         <td class="month-{{ week.0.date|date:"n" }} week">
