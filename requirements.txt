@@ -106,3 +106,6 @@ feedparser==4.1
 # Calendar
 -e git+https://github.com/snswa/dregni.git@113a61a#egg=dregni
 vobject==0.8.1c
+
+# iris
+-e git+https://github.com/snswa/django-iris.git@ced4ffe#egg=django-iris

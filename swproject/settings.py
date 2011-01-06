@@ -382,4 +382,6 @@ INSTALLED_APPS = (
     'relationships',
     #
     'dregni',
+    #
+    'iris',
 )
