@@ -84,7 +84,7 @@ def stream_topic_item_message(sender, instance, created, **kwargs):
                 action.send(
                     instance.creator,
                     verb='added a message to',
-                    action_object=obj,
+                    action_object=topic,
                     target=team_joined.content,
                     timestamp=instance.created,
                     description=truncate_words(obj.text, TRUNCATE_WORDS)
