@@ -1,0 +1,25 @@
+{% extends "iris/base.html" %}
+
+{% load breadcrumbs %}
+{% load i18n %}
+{% load iris_tags %}
+
+{% block title %}{% blocktrans with item_type_plugin.label as label %}Add {{ label }}{% endblocktrans %} - {{ topic.subject }} - {{ block.super }}{% endblock %}
+
+{% block body_class %}item-add {{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb topic.subject topic.get_absolute_url %}
+    {% breadcrumb 'Add {{ label }}' './' %}
+{% endblock %}
+
+{% block body %}
+    <h1>
+        {% blocktrans with item_type_plugin.label as label %}
+            Add new {{ label }}
+        {% endblocktrans %}
+    </h1>
+
+    {% include item_type_plugin.add_template %}
+{% endblock %}

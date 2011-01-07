@@ -1,0 +1,8 @@
+{% load i18n %}
+{% load uni_form_tags %}
+
+{{ topic_create_form|as_uni_form }}
+
+<div class="buttonHolder">
+      <button class="primaryAction" type="submit" name="action_submit" >{% trans 'Create' %}</button>
+</div>

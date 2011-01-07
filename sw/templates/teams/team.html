@@ -4,6 +4,8 @@
 {% load events %}
 {% load feature_tag %}
 {% load group_tags %}
+{% load iris_tags %}
+{% load queryset_tags %}
 {% load sw_tags %}
 {% load team_tags %}
 
@@ -33,21 +35,30 @@
         {% endif %}
 
         <div class="grid_4 alpha">
-            <h1>Recent activity</h1>
+            <h1>Recent topics</h1>
 
-            {% with group|teamactions:5 as recent_actions %}
-                {% if recent_actions %}
-                    <ul class="stream">
-                        {% for action in recent_actions %}
-                            <li class="event">
-                                {% include "activity/action.html" %}
-                            </li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
+            {% if user|ismemberofgroup:group %}
+                <div>
+                    Create a new topic:
+
+                    <form class="topic_create uniForm" action="{% url team_topic_create slug=group.slug %}" method="post" accept-charset="utf-8">
+                        {% csrf_token %}
+                        <fieldset class="inlineLabels">
+                            {% include "iris/topic_create_form_contents.html" %}
+                        </fieldset>
+                    </form>
+                </div>
+            {% endif %}
+
+            {% with group|topicsjoined as topics_list %}
+            {% with topics_list|qslimit:20 as topics_list %}
+                <ul>
+                    {% for topic in topics_list.reverse %}
+                        <li><a href="{{ topic.get_absolute_url }}?team={{ group.slug }}">{{ topic.subject }}</a></li>
+                    {% endfor %}
+                </ul>
             {% endwith %}
-
-            <p><a href="{% url team_activity_history slug=group.slug %}"><strong>Activity history »</strong></a></p>
+            {% endwith %}
         </div>
 
         <div class="grid_4 omega">
@@ -80,13 +91,15 @@
 {% block sidebar_sections %}
     {% if user|ismemberofgroup:group or not group.is_private  %}
 
-        {% include "sidebars/teammembers.html" %}
-
         {% include "sidebars/teamjoinleave.html" %}
 
-        {% include "sidebars/moreteams.html" %}
+        {% include "sidebars/teammembers.html" %}
+
+        {% include "sidebars/teamrecentactions.html" %}
 
         {% include "sidebars/wikicommon.html" %}
+
+        {% include "sidebars/moreteams.html" %}
 
     {% endif %}
 {% endblock %}

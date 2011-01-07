@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 
 # Bump this to force reloading of static media tagged with
 # ?{{ MEDIA_SERIAL_NUMBER }} on next deploy.
-MEDIA_SERIAL_NUMBER = '2011010402'
+MEDIA_SERIAL_NUMBER = '2011010602'
 
 DEBUG = False
 TEMPLATE_DEBUG = True
@@ -111,6 +111,11 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'sw.context_processors.team_wiki_index_page',
 
     'featureflipper.context_processors.features',
+)
+
+AUTHENTICATION_BACKENDS = (
+    'swproject.predicates.TopicAccessBackend',
+    'django.contrib.auth.backends.ModelBackend',
 )
 
 # ==================================================================
@@ -276,6 +281,13 @@ CELERYBEAT_SCHEDULE = {
 FIRST_WEEKDAY = 'Sunday'
 
 # ==================================================================
+# iris (topics)
+
+IRIS_ITEM_TYPE_PLUGINS = (
+    'swtopics.plugins.MessageAddPlugin',
+)
+
+# ==================================================================
 
 INSTALLED_APPS = (
     #
@@ -384,4 +396,5 @@ INSTALLED_APPS = (
     'dregni',
     #
     'iris',
+    'swtopics',
 )

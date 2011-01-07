@@ -1,0 +1,55 @@
+{% extends "iris/base_8_4.html" %}
+
+{% load breadcrumbs %}
+{% load i18n %}
+{% load iris_tags %}
+
+{% block title %}{{ topic.subject }} - {{ block.super }}{% endblock %}
+
+{% block body_class %}topic {{ block.super }}{% endblock %}
+
+{% block extrahead %}
+<script type="text/javascript" charset="utf-8">
+    head.js(
+        '{{ STATIC_URL }}js/jquery-1.4.4{% if not debug %}.min{% endif %}.js?{{ MEDIA_SERIAL_NUMBER }}',
+        '{{ STATIC_URL }}iris/topic.js'
+    );
+</script>
+{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb topic.subject './' %}
+{% endblock %}
+
+{% block body %}
+    <div class="alpha grid_8">
+        <h1>
+            {% blocktrans with topic.subject as subject %}
+                Topic: {{ subject }}
+            {% endblocktrans %}
+        </h1>
+
+        {% if user|canaddtotopic:topic %}
+            <div id="item-add-forms">
+                {% include "iris/topic_item_add_list.html" %}
+            </div>
+        {% endif %}
+
+        <div id="items">
+            {% include "iris/topic_item_list.html" %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block sidebar_sections %}
+    <div id="metadata" class="section">
+        <h1>{% trans "About" %}</h1>
+        {% include "iris/topic_metadata.html" %}
+    </div>
+
+    <div id="participants" class="section">
+        <h1>{% trans "Participants" %}</h1>
+        {% include "iris/topic_participant_list.html" %}
+    </div>
+{% endblock %}

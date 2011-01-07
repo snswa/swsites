@@ -84,3 +84,13 @@ def team_activity_history(request, slug, *args, **kw):
         'group': team,
     }
     return render_to_response(template_name, template_context, RequestContext(request))
+
+
+# -- topics --
+
+
+def team_post_topic_create(request, topic, *args, **kwargs):
+    # Instead of adding the user as a participant, add the group
+    # instead.
+    team = get_object_or_404(Team, slug=kwargs['slug'])
+    topic.add_participant(creator=request.user, obj=team)

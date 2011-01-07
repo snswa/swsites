@@ -1,0 +1,15 @@
+{% spaceless %}
+    {% with content.get_profile as profile %}
+    {% with content.get_absolute_url as url %}
+        {% if url %}
+            <a href="{{ content.get_absolute_url }}">{% if profile %}{{ profile }}{% else %}{{ content }}{% endif %}</a>
+        {% else %}
+            {% if profile %}
+                {{ profile }}
+            {% else %}
+                {{ content }}
+            {% endif %}
+        {% endif %}
+    {% endwith %}
+    {% endwith %}
+{% endspaceless %}

@@ -1,0 +1,28 @@
+{% extends "base_hq_8_4.html" %}
+
+{% load breadcrumbs %}
+{% load i18n %}
+{% load team_tags %}
+
+{% block page_title %}{% block title %}Topics{% endblock %}{% endblock %}
+
+{% block body_class %}{{ block.super }} topics hq-section{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% with request.GET.team as team_slug %}
+        {% if team_slug %}
+            {% with team_slug|teamforslug as group %}
+                {% breadcrumb_url_css "icon-link group-link" group.name teams_team_index slug=group.slug %}
+                {% breadcrumb_url 'Topics' team_topics slug=group.slug %}
+            {% endwith %}
+        {% else %}
+            {% breadcrumb 'Topics' %}
+        {% endif %}
+    {% endwith %}
+{% endblock %}
+
+{% block content_body %}
+    {% block body %}
+    {% endblock %}
+{% endblock %}

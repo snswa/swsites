@@ -14,7 +14,9 @@ else:
     from staticfiles.urls import staticfiles_urlpatterns
 
 from groups.bridge import ContentBridge
+from iris.forms import TopicForm
 from sw.forms import ProfileForm
+from sw.views import team_post_topic_create
 from swproject import predicates
 from teams.models import Team
 
@@ -35,7 +37,7 @@ if settings.DEBUG:
     urlpatterns += staticfiles_urlpatterns()
 
 # Group bridges
-wiki_bridge = ContentBridge(Team, 'wakawaka')
+team_bridge = ContentBridge(Team)
 
 
 NEW_VOLUNTEER = {
@@ -52,48 +54,119 @@ VERIFIED_VOLUNTEER = {
 
 
 urlpatterns += patterns('',
-    url(r'^_site/', include('sw.urls')),    # Deployment tests and temporary views.
-
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-    url(r'^sentry/', include('sentry.urls')),
+    # Deployment tests and temporary views.
+    url(regex=  r'^_site/',
+        view=   include('sw.urls'),
+    ),
+    url(regex=  r'^admin/',
+        view=   include(admin.site.urls),
+    ),
+    url(regex=  r'^admin/doc/',
+        view=   include('django.contrib.admindocs.urls'),
+    ),
+    url(regex=  r'^sentry/',
+        view=   include('sentry.urls'),
+    ),
 
     # Figure out how to mesh these two together for login.
-    url(r'^accounts/', include('allauth.urls'), kwargs=dict(
-        email_preferred=True,
-        profile_preferred=True,
-    )),
-    url(r'^hq/', 'sw.views.hq', name='sw_hq'),
+    url(regex=  r'^accounts/',
+        view=   include('allauth.urls'),
+        kwargs= dict(
+            email_preferred=True,
+            profile_preferred=True,
+        ),
+    ),
+    url(name=   'sw_hq',
+        regex=  r'^hq/',
+        view=   'sw.views.hq',
+    ),
 
-    url(r'^attachments/', include('attachments.urls'), kwargs=VERIFIED_VOLUNTEER),
-    url(r'^comments/', include('django.contrib.comments.urls'), kwargs=VERIFIED_VOLUNTEER),
-    url(r'^dashboard/', include('dashboard.urls'), kwargs=VERIFIED_VOLUNTEER),
-    url(r'^features/', include('featurelabs.urls'), kwargs=VERIFIED_VOLUNTEER),
-    url(r'^local/', include('swlocal.urls'), kwargs=NEW_VOLUNTEER),
-    url(r'^placeholder/', include('swproject.urls_placeholders'), kwargs=VERIFIED_VOLUNTEER),
-    url(r'^profiles/', include('idios.urls'), kwargs=dict(
-        NEW_VOLUNTEER,
-        form_class=ProfileForm,
-    )),
-    url(r'^relationships/', include('relationships.urls'), kwargs=NEW_VOLUNTEER),
-    url(r'^search/', include('swproject.urls_search'), kwargs=VERIFIED_VOLUNTEER),
-    url(r'^teams/', include('teams.urls'), kwargs=VERIFIED_VOLUNTEER),
-    url(r'^teams/(?P<slug>[\w\._-]+)/activity/$', view='sw.views.team_activity_history', name='team_activity_history', kwargs=VERIFIED_VOLUNTEER),
+    url(regex=  r'^attachments/',
+        view=   include('attachments.urls'),
+        kwargs= VERIFIED_VOLUNTEER,
+    ),
+    url(regex=  r'^comments/',
+        view=   include('django.contrib.comments.urls'),
+        kwargs= VERIFIED_VOLUNTEER,
+    ),
+    url(regex=  r'^dashboard/',
+        view=   include('dashboard.urls'),
+        kwargs= VERIFIED_VOLUNTEER,
+    ),
+    url(regex=  r'^features/',
+        view=   include('featurelabs.urls'),
+        kwargs= VERIFIED_VOLUNTEER,
+    ),
+    url(regex=  r'^local/',
+        view=   include('swlocal.urls'),
+        kwargs= NEW_VOLUNTEER,
+    ),
+    url(regex=  r'^placeholder/',
+        view=   include('swproject.urls_placeholders'),
+        kwargs= VERIFIED_VOLUNTEER,
+    ),
+    url(regex=  r'^profiles/',
+        view=   include('idios.urls'),
+        kwargs= dict(
+            NEW_VOLUNTEER,
+            form_class=ProfileForm,
+        ),
+    ),
+    url(regex=  r'^relationships/',
+        view=   include('relationships.urls'),
+        kwargs= NEW_VOLUNTEER,
+    ),
+    url(regex=  r'^search/',
+        view=   include('swproject.urls_search'),
+        kwargs= VERIFIED_VOLUNTEER,
+    ),
+    url(r'^topics/', include('iris.urls'), kwargs=NEW_VOLUNTEER),
     url(r'^voting/', include('voting.urls'), kwargs=VERIFIED_VOLUNTEER),
 )
 
 
-# Bridged URLs.
-urlpatterns += wiki_bridge.include_urls('wakawaka.urls',
+# Team URLs.
+urlpatterns += patterns('',
+    url(name=   'team_activity_history',
+        regex=  r'^teams/(?P<slug>[\w\._-]+)/activity/$',
+        view=   'sw.views.team_activity_history',
+        kwargs= VERIFIED_VOLUNTEER,
+    ),
+    url(name=   'team_topics',
+        regex=  r'^teams/(?P<slug>[\w\._-]+)/topics/$',
+        view=   'iris.views.topics',
+        kwargs= VERIFIED_VOLUNTEER,
+    ),
+    url(name=   'team_topic_create',
+        regex=  r'^teams/(?P<slug>[\w\._-]+)/topics/create/$',
+        view=   'iris.views.topic_create',
+        kwargs= dict(
+            VERIFIED_VOLUNTEER,
+            post_topic_create=team_post_topic_create,
+        ),
+    ),
+    url(regex=  r'^teams/',
+        view=   include('teams.urls'),
+        kwargs= dict(
+            VERIFIED_VOLUNTEER,
+            extra_context=dict(
+                topic_create_form=TopicForm(),
+            ),
+        ),
+    ),
+)
+urlpatterns += team_bridge.include_urls(
+    'wakawaka.urls',
     r'^teams/(?P<team_slug>[\w\._-]+)/wiki/',
     kwargs=VERIFIED_VOLUNTEER,
 )
-urlpatterns += wiki_bridge.include_urls('dregni.urls',
+urlpatterns += team_bridge.include_urls(
+    'dregni.urls',
     r'^teams/(?P<team_slug>[\w\._-]+)/events/',
     kwargs=dict(
         VERIFIED_VOLUNTEER,
-        event_delete_predicate=predicates.event_delete,
-        event_edit_predicate=predicates.event_edit,
+        event_delete_predicate=predicates.event_delete, # @@@ see swproject.predicates
+        event_edit_predicate=predicates.event_edit,     # @@@ see swproject.predicates
         start_date=datetime.date.today,
         weeks=6,
         jump_weeks=4,

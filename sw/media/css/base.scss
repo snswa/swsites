@@ -419,7 +419,7 @@ div#sidebar {
     margin-bottom: .5em;
   }
   form {
-  	display: inline;
+  	display: inline; /* @@@ This needs be more specific to the join/leave team form */
   	margin: 0;
   	padding: 0;
   }
@@ -743,6 +743,39 @@ table.calendar {
         list-style: none;
         margin-left: 0;
       }
+    }
+  }
+}
+
+.topic {
+  #items {
+    & > ul {
+      list-style: none;
+      padding-left: 0;
+      li {
+        margin-left: 0;
+      }
+    }
+  }
+  .item-type {
+    .form {
+      display: none;
+    }
+  }
+  .item {
+    position: relative;
+    border-style: solid;
+    border-color: lightgrey;
+    border-width: 1px 1px 3px 1px;
+    margin-bottom: 2.5em;
+    padding: $gutter-width;
+    .timestamp {
+      position: absolute;
+      bottom: -1.5em;
+      color: lightgrey;
+    }
+    .items_after {
+      display: none;
     }
   }
 }

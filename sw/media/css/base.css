@@ -439,6 +439,7 @@ div#sidebar {
     margin-bottom: .5em; }
   div#sidebar form {
     display: inline;
+    /* @@@ This needs be more specific to the join/leave team form */
     margin: 0;
     padding: 0; }
 
@@ -666,3 +667,24 @@ table.calendar {
     table.calendar .day ul.events li {
       list-style: none;
       margin-left: 0; }
+
+.topic #items > ul {
+  list-style: none;
+  padding-left: 0; }
+  .topic #items > ul li {
+    margin-left: 0; }
+.topic .item-type .form {
+  display: none; }
+.topic .item {
+  position: relative;
+  border-style: solid;
+  border-color: lightgrey;
+  border-width: 1px 1px 3px 1px;
+  margin-bottom: 2.5em;
+  padding: 10px; }
+  .topic .item .timestamp {
+    position: absolute;
+    bottom: -1.5em;
+    color: lightgrey; }
+  .topic .item .items_after {
+    display: none; }

@@ -1,0 +1,11 @@
+{% load i18n %}
+{% load uni_form_tags %}
+<form class="uniForm" action="{% url iris_item_add topic_id=topic.id plugin_name=item_type_plugin.name %}" method="post" accept-charset="utf-8">
+    {% csrf_token %}
+    <fieldset class="blockLabels">
+        {{ item_add_form|as_uni_form }}
+        <div class="buttonHolder">
+            <button class="primaryAction" type="submit" name="action_submit" >{% trans 'Add to topic' %}</button>
+        </div>
+    </fieldset>
+</form>

@@ -1,0 +1,20 @@
+{% load sw_tags %}
+
+<div class="section">
+    <h1>Recent activity</h1>
+
+    {% with group|teamactions:5 as recent_actions %}
+        {% if recent_actions %}
+            <ul class="stream">
+                {% for action in recent_actions %}
+                    <li class="event">
+                        {% include "activity/action.html" %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <p><a href="{% url team_activity_history slug=group.slug %}"><strong>Activity history »</strong></a></p>
+</div>
+
