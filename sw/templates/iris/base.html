@@ -17,7 +17,10 @@
                 {% breadcrumb_url 'Topics' team_topics slug=group.slug %}
             {% endwith %}
         {% else %}
-            {% breadcrumb 'Topics' %}
+            {% if group %}
+                {% breadcrumb_url_css "icon-link group-link" group.name teams_team_index slug=group.slug %}
+                {% breadcrumb_url 'Topics' team_topics slug=group.slug %}
+            {% endif %}
         {% endif %}
     {% endwith %}
 {% endblock %}

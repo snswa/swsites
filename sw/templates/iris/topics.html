@@ -1,0 +1,56 @@
+{% extends "iris/base.html" %}
+
+{% load group_tags %}
+{% load i18n %}
+{% load iris_tags %}
+{% load pagination_tags %}
+
+{% block title %}{% trans "Topics" %} - {{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+{% endblock %}
+
+{% block body_class %}topics {{ block.super }}{% endblock %}
+
+{% block body %}
+
+    <h1>{% trans "Topics" %}</h1>
+
+    {% if user|ismemberofgroup:group %}
+        <div class="grid_6">
+            Create a new topic:
+
+            <form class="topic_create uniForm" action="{% url team_topic_create slug=group.slug %}" method="post" accept-charset="utf-8">
+                {% csrf_token %}
+                <fieldset class="inlineLabels">
+                    {% include "iris/topic_create_form_contents.html" %}
+                </fieldset>
+            </form>
+        </div>
+        <div class="clear"></div>
+    {% endif %}
+
+    {% if topic_list %}
+        {% with topic_list.reverse as topic_list %}
+        {% autopaginate topic_list 20 %}
+            <ul>
+                {% for topic in topic_list %}
+                    {% if user|canviewtopic:topic %}
+                        <li>
+                            <a href="{{ topic.get_absolute_url }}{% if group %}?team={{ group.slug }}{% endif %}">{{ topic.subject }}</a>
+                            {% blocktrans with topic.modified|timesince as modified %}
+                                ({{ modified }} ago)
+                            {% endblocktrans %}
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+
+            {% paginate %}
+        {% endwith %}
+    {% else %}
+        <p>{% trans "No topics." %}</p>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% load i18n %}
+<ul>
+    {% for item_type_plugin in item_type_plugin_list %}
+        <li class="item-type {{ item_type_plugin.css_class }}">
+            <div class="label">{% spaceless %}
+                <a href="{% url iris_item_add topic_id=topic.id plugin_name=item_type_plugin.name %}?{{ request.GET.urlencode }}">
+                    {% blocktrans with item_type_plugin.label as label %}
+                        Add new {{ label }}
+                    {% endblocktrans %}
+                </a>
+            {% endspaceless %}</div>
+            <div class="form">
+                {% with item_type_plugin.form_class as item_add_form %}
+                    {% include item_type_plugin.add_template %}
+                {% endwith %}
+            </div>
+        </li>
+    {% endfor %}
+</ul>

@@ -11,7 +11,7 @@
 {% block breadcrumbs %}
     {{ block.super }}
     {% breadcrumb topic.subject topic.get_absolute_url %}
-    {% breadcrumb 'Add {{ label }}' './' %}
+    {% breadcrumb 'Add item' './' %}
 {% endblock %}
 
 {% block body %}

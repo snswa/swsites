@@ -108,4 +108,4 @@ feedparser==4.1
 vobject==0.8.1c
 
 # iris
--e git+https://github.com/snswa/django-iris.git@17c4454#egg=django-iris
+-e git+https://github.com/snswa/django-iris.git@335ba0f#egg=django-iris
