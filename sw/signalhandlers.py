@@ -7,8 +7,13 @@ from django.utils.text import truncate_words
 from actstream import action
 from attachments.models import Attachment
 from dregni.models import Event
-from teams.models import Member
+from iris.models import Item
+from swtopics.models import Message
+from teams.models import Member, Team
 from wakawaka.models import Revision, WikiPage
+
+
+TRUNCATE_WORDS = 15
 
 
 # ====================================================================
@@ -39,7 +44,7 @@ def stream_event(sender, instance, created, **kwargs):
             action_object=instance,
             target=instance.group,
             timestamp=instance.modified,
-            description=truncate_words(instance.description, 25) if instance.description else None,
+            description=truncate_words(instance.description, TRUNCATE_WORDS) if instance.description else None,
         )
     else:
         action.send(
@@ -62,10 +67,30 @@ def stream_event_comment(sender, comment, request, **kwargs):
             action_object=comment,
             target=obj.group,
             timestamp=comment.submit_date,
-            description=truncate_words(comment.comment, 25),
+            description=truncate_words(comment.comment, TRUNCATE_WORDS),
         )
 
 comment_was_posted.connect(stream_event_comment)
+
+
+def stream_topic_item_message(sender, instance, created, **kwargs):
+    if created:
+        obj = instance.content
+        if isinstance(obj, Message):
+            topic = instance.topic
+            print 'topic', topic
+            print topic.participants_of_type(Team)
+            for team_joined in topic.participants_of_type(Team):
+                action.send(
+                    instance.creator,
+                    verb='added a message to',
+                    action_object=obj,
+                    target=team_joined.content,
+                    timestamp=instance.created,
+                    description=truncate_words(obj.text, TRUNCATE_WORDS)
+                )
+
+post_save.connect(stream_topic_item_message, sender=Item)
 
 
 def stream_wiki_attachment(sender, instance, created, **kwargs):
@@ -92,7 +117,7 @@ def stream_wiki_comment(sender, comment, request, **kwargs):
             action_object=comment,
             target=obj.group,
             timestamp=comment.submit_date,
-            description=truncate_words(comment.comment, 25),
+            description=truncate_words(comment.comment, TRUNCATE_WORDS),
         )
 
 comment_was_posted.connect(stream_wiki_comment)
