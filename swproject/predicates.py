@@ -45,7 +45,6 @@ class TopicAccessBackend(object):
             return False
         #
         if perm == 'iris.add_to_topic':
-            print 'checking add to topic'
             if user_obj.is_authenticated():
                 # Find teams joined to the topic.
                 # If the user is a member of any of the teams in the topic,
