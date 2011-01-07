@@ -21,7 +21,7 @@
         <div class="grid_6">
             Create a new topic:
 
-            <form class="topic_create uniForm" action="{% url team_topic_create slug=group.slug %}" method="post" accept-charset="utf-8">
+            <form class="topic_create uniForm" action="{% url team_topic_create slug=group.slug %}{% if group %}?team={{ group.slug }}{% endif %}" method="post" accept-charset="utf-8">
                 {% csrf_token %}
                 <fieldset class="inlineLabels">
                     {% include "iris/topic_create_form_contents.html" %}

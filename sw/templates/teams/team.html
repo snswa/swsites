@@ -51,6 +51,10 @@
                 </div>
             {% endif %}
 
+            <ul>
+                <li><a href="{% url team_topics slug=group.slug %}">{% trans "All team topics" %} &rarr;</a></li>
+            </ul>
+
             {% with group|topicsjoined as topics_list %}
             {% with topics_list|qslimit:20 as topics_list %}
                 <ul>
@@ -60,10 +64,6 @@
                 </ul>
             {% endwith %}
             {% endwith %}
-
-            <ul>
-                <li><a href="{% url team_topics slug=group.slug %}">{% trans "All team topics" %} &rarr;</a></li>
-            </ul>
         </div>
 
         <div class="grid_4 omega">

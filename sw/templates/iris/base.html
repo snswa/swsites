@@ -10,19 +10,7 @@
 
 {% block breadcrumbs %}
     {{ block.super }}
-    {% with request.GET.team as team_slug %}
-        {% if team_slug %}
-            {% with team_slug|teamforslug as group %}
-                {% breadcrumb_url_css "icon-link group-link" group.name teams_team_index slug=group.slug %}
-                {% breadcrumb_url 'Topics' team_topics slug=group.slug %}
-            {% endwith %}
-        {% else %}
-            {% if group %}
-                {% breadcrumb_url_css "icon-link group-link" group.name teams_team_index slug=group.slug %}
-                {% breadcrumb_url 'Topics' team_topics slug=group.slug %}
-            {% endif %}
-        {% endif %}
-    {% endwith %}
+    {% include "breadcrumbs/iris_base.html" %}
 {% endblock %}
 
 {% block page_content %}
