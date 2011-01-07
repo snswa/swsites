@@ -4,6 +4,7 @@
 {% load events %}
 {% load feature_tag %}
 {% load group_tags %}
+{% load i18n %}
 {% load iris_tags %}
 {% load queryset_tags %}
 {% load sw_tags %}
@@ -59,6 +60,10 @@
                 </ul>
             {% endwith %}
             {% endwith %}
+
+            <ul>
+                <li><a href="{% url team_topics slug=group.slug %}">{% trans "All team topics" %} &rarr;</a></li>
+            </ul>
         </div>
 
         <div class="grid_4 omega">
@@ -83,7 +88,6 @@
                     <li><a href="{% groupurl dregni_event_create group %}">Create a new team event</a>.</li>
                 {% endif %}
             </ul>
-
         </div>
     {% endif %}
 {% endblock %}
