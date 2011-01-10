@@ -1,4 +1,4 @@
-{% extends "teams/base_fullwidth.html" %}
+{% extends "teams/base.html" %}
 
 {% load breadcrumbs %}
 {% load feature_tag %}
@@ -18,82 +18,80 @@
 
 {% block body %}
 
-    <div class="grid_6 alpha">
-        {% wikipagesnippet Statewide latest %}
-    </div>
+    {% wikipagesnippet AllTeamsListPreamble latest %}
 
-    <div class="grid_6 omega">
-        {% wikipagesnippet AllTeamsListPreamble latest %}
+    {% with request.GET.update_memberships as update_memberships %}
+        {% if update_memberships == '1' %}
+            <p>Click on a team below to join or leave it.  Be sure to save
+            changes when you're done.</p>
+        {% else %}
+            <p>Click on a team below to visit it.  <strong>Boldface</strong> indicates teams you
+            have joined.<p>
 
-        {% with request.GET.update_memberships as update_memberships %}
+            <p><a href="?update_memberships=1"><strong>Change your team memberships &rarr;</strong></a></p>
+        {% endif %}
+
+        <form action="{% url teams_change_memberships %}" method="POST" accept-charset="utf-8">
+            {% csrf_token %}
+
             {% if update_memberships == '1' %}
-                <p>Click on a team below to join or leave it.  Be sure to save
-                changes when you're done.</p>
-            {% else %}
-                <p>Click on a team below to visit it.  <strong>Boldface</strong> indicates teams you
-                have joined.<p>
-
-                <p><a href="?update_memberships=1"><strong>Change your team memberships &rarr;</strong></a></p>
+                <p><input type="submit" name="save_changes" value="Save Changes">
+                or
+                <a href="?update_memberships=0">Cancel</a></p>
             {% endif %}
 
-            <form action="{% url teams_change_memberships %}" method="POST" accept-charset="utf-8">
-                {% csrf_token %}
-
-                {% if update_memberships == '1' %}
-                    <p><input type="submit" name="save_changes" value="Save Changes">
-                    or
-                    <a href="?update_memberships=0">Cancel</a></p>
-                {% endif %}
-
-                <div class="team-tree">
-                    {% for tree_item in team_tree %}
-                        {% if tree_item == 'li' %}<li>{% endif %}
-                        {% if tree_item == '/li' %}</li>{% endif %}
-                        {% if tree_item == 'ul' %}<ul>{% endif %}
-                        {% if tree_item == '/ul' %}</ul>{% endif %}
-                        {% if tree_item.slug %}
-                            {% with tree_item as team %}
-                                {% if update_memberships == '1' %}
-                                    {% if user|ismemberofgroup:team %}
-                                        {% if user|iscoordinatorofteam:team %}
-                                            <input type="checkbox" checked disabled>
-                                            <input type="hidden" name="team_{{ team.id }}" value="1">
-                                        {% else %}
-                                            <input type="checkbox" name="team_{{ team.id }}" id="team_{{ team.id }}" checked>
-                                        {% endif %}
+            <div class="team-tree">
+                {% for tree_item in team_tree %}
+                    {% if tree_item == 'li' %}<li>{% endif %}
+                    {% if tree_item == '/li' %}</li>{% endif %}
+                    {% if tree_item == 'ul' %}<ul>{% endif %}
+                    {% if tree_item == '/ul' %}</ul>{% endif %}
+                    {% if tree_item.slug %}
+                        {% with tree_item as team %}
+                            {% if update_memberships == '1' %}
+                                {% if user|ismemberofgroup:team %}
+                                    {% if user|iscoordinatorofteam:team %}
+                                        <input type="checkbox" checked disabled>
+                                        <input type="hidden" name="team_{{ team.id }}" value="1">
                                     {% else %}
-                                        {% if team.is_private %}
-                                            <input type="checkbox" name="team_{{ team.id }}" id="team_{{ team.id }}" disabled>
-                                        {% else %}
-                                            <input type="checkbox" name="team_{{ team.id }}" id="team_{{ team.id }}">
-                                        {% endif %}
+                                        <input type="checkbox" name="team_{{ team.id }}" id="team_{{ team.id }}" checked>
                                     {% endif %}
-                                    <label for="team_{{ team.id }}">{{ team.name }}</label>
                                 {% else %}
-                                    {% if user|ismemberofgroup:team %}
-                                        <strong><a href="{% url teams_team_index slug=team.slug %}">{{ team.name }}</a></strong>
+                                    {% if team.is_private %}
+                                        <input type="checkbox" name="team_{{ team.id }}" id="team_{{ team.id }}" disabled>
                                     {% else %}
-                                        <a href="{% url teams_team_index slug=team.slug %}">{{ team.name }}</a>
+                                        <input type="checkbox" name="team_{{ team.id }}" id="team_{{ team.id }}">
                                     {% endif %}
                                 {% endif %}
-                                {% if team.is_private %}
-                                    &mdash; invitation-only
+                                <label for="team_{{ team.id }}">{{ team.name }}</label>
+                            {% else %}
+                                {% if user|ismemberofgroup:team %}
+                                    <strong><a href="{% url teams_team_index slug=team.slug %}">{{ team.name }}</a></strong>
+                                {% else %}
+                                    <a href="{% url teams_team_index slug=team.slug %}">{{ team.name }}</a>
                                 {% endif %}
-                                {% if user|iscoordinatorofteam:team %}
-                                    &mdash; you are a coordinator
-                                {% endif %}
-                            {% endwith %}
-                        {% endif %}
-                    {% endfor %}
-                </div>
+                            {% endif %}
+                            {% if team.is_private %}
+                                &mdash; invitation-only
+                            {% endif %}
+                            {% if user|iscoordinatorofteam:team %}
+                                &mdash; you are a coordinator
+                            {% endif %}
+                        {% endwith %}
+                    {% endif %}
+                {% endfor %}
+            </div>
 
-                {% if update_memberships == '1' %}
-                    <p><input type="submit" name="save_changes" value="Save Changes">
-                    or
-                    <a href="?update_memberships=0">Cancel</a></p>
-                {% endif %}
-            </form>
-        {% endwith %}
-    </div>
+            {% if update_memberships == '1' %}
+                <p><input type="submit" name="save_changes" value="Save Changes">
+                or
+                <a href="?update_memberships=0">Cancel</a></p>
+            {% endif %}
+        </form>
+    {% endwith %}
 
+{% endblock %}
+
+{% block sidebar_sections %}
+    {% include "sidebars/yourteams.html" %}
 {% endblock %}
