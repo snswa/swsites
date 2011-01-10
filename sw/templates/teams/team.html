@@ -27,14 +27,6 @@
     {% if group.is_private and not user|ismemberofgroup:group %}
         <p>This team is private.</p>
     {% else %}
-        <h1>About the <strong>{{ group.name }}</strong> team</h1>
-
-        {% if team_wiki_index_page %}
-            {% with team_wiki_index_page.current as rev %}
-                {% include "wakawaka/page_content.html" %}
-            {% endwith %}
-        {% endif %}
-
         <div class="grid_4 alpha">
             <h1>Recent topics</h1>
 
@@ -56,7 +48,7 @@
             </ul>
 
             {% with group|topicsjoined as topics_list %}
-            {% with topics_list|qslimit:20 as topics_list %}
+            {% with topics_list|qslimit:10 as topics_list %}
                 <ul>
                     {% for topic in topics_list.reverse %}
                         <li><a href="{{ topic.get_absolute_url }}?team={{ group.slug }}">{{ topic.subject }}</a></li>
@@ -70,7 +62,7 @@
             <h1>Upcoming events</h1>
 
             {% content_objects group "dregni.Event" as events %}
-            {% with events|upcomingevents:28 as events %}
+            {% with events|qslimit:10 as events %}
                 {% if events %}
                     <ul>
                         {% for event in events %}
@@ -78,7 +70,7 @@
                         {% endfor %}
                     </ul>
                 {% else %}
-                    <p>No upcoming events in the next four weeks.</p>
+                    <p>No upcoming events.</p>
                 {% endif %}
             {% endwith %}
 
@@ -89,6 +81,17 @@
                 {% endif %}
             </ul>
         </div>
+
+        <div class="clear"></div>
+
+        <h1>About the <strong>{{ group.name }}</strong> team</h1>
+
+        {% if team_wiki_index_page %}
+            {% with team_wiki_index_page.current as rev %}
+                {% include "wakawaka/page_content.html" %}
+            {% endwith %}
+        {% endif %}
+
     {% endif %}
 {% endblock %}
 
