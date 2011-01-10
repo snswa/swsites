@@ -1,5 +1,5 @@
 <div class="section">
-    <h1>Teams you've joined</h1>
+    <h1><a href="{% url teams_index %}">Teams you've joined</a></h1>
 
     {% with user.member_set.all as memberships %}
         {% if memberships.count == 0 %}
