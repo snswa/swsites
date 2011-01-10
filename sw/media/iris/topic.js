@@ -75,7 +75,7 @@
             // clone and show.  generate from html for proper event hookups.
             $form = $('<div class="form">' + $itemtype.data('originalform') + '</div>');
             $form.hide().appendTo($itemtype).slideDown('fast');
-            $form.find(':input:first').focus();
+            $form.find(':input:first[type!="hidden"]').focus();
         }
         return false;
     });
@@ -100,7 +100,7 @@
                     $formparent = $form.parent();
                     $form.remove();
                     $formparent.append(data);
-                    $formparent.find('form :input:first').focus();
+                    $formparent.find('form :input:first[type!="hidden"]').focus();
                 }
             },
             error: function (req, status) {
