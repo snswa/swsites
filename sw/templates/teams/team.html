@@ -30,25 +30,8 @@
         <div class="grid_4 alpha">
             <h1>Recent topics</h1>
 
-            {% if user|ismemberofgroup:group %}
-                <div>
-                    Create a new topic:
-
-                    <form class="topic_create uniForm" action="{% url team_topic_create slug=group.slug %}?team={{ group.slug }}" method="post" accept-charset="utf-8">
-                        {% csrf_token %}
-                        <fieldset class="inlineLabels">
-                            {% include "iris/topic_create_form_contents.html" %}
-                        </fieldset>
-                    </form>
-                </div>
-            {% endif %}
-
-            <ul>
-                <li><a href="{% url team_topics slug=group.slug %}">{% trans "All team topics" %} &rarr;</a></li>
-            </ul>
-
             {% with group|topicsjoined as topics_list %}
-            {% with topics_list|qslimit:10 as topics_list %}
+            {% with topics_list|qslimit:5 as topics_list %}
                 <ul>
                     {% for topic in topics_list.reverse %}
                         <li><a href="{{ topic.get_absolute_url }}?team={{ group.slug }}">{{ topic.subject }}</a></li>
@@ -56,13 +39,21 @@
                 </ul>
             {% endwith %}
             {% endwith %}
+
+            <ul>
+                <li><a href="{% url team_topics slug=group.slug %}">{% trans "All team topics" %} &rarr;</a></li>
+                {% if user|ismemberofgroup:group %}
+                    <li><a href="{% url team_topics slug=group.slug %}">{% trans "Create a new topic" %} &rarr;</a></li>
+                {% endif %}
+
+            </ul>
         </div>
 
         <div class="grid_4 omega">
             <h1>Upcoming events</h1>
 
             {% content_objects group "dregni.Event" as events %}
-            {% with events|qslimit:10 as events %}
+            {% with events|qslimit:5 as events %}
                 {% if events %}
                     <ul>
                         {% for event in events %}
@@ -70,14 +61,14 @@
                         {% endfor %}
                     </ul>
                 {% else %}
-                    <p>No upcoming events.</p>
+                    <p>{% trans "No upcoming events." %}</p>
                 {% endif %}
             {% endwith %}
 
             <ul>
-                <li><a href="{% groupurl dregni_index group %}">View this team's calendar</a>.</li>
+                <li><a href="{% groupurl dregni_index group %}">{% trans "View team calendar" %} &rarr;</a></li>
                 {% if group.is_private and user|ismemberofgroup:group or user|iscoordinatorofteam:group %}
-                    <li><a href="{% groupurl dregni_event_create group %}">Create a new team event</a>.</li>
+                    <li><a href="{% groupurl dregni_event_create group %}">{% trans "Create a new team event" %} &rarr;</a></li>
                 {% endif %}
             </ul>
         </div>
