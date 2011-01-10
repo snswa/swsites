@@ -284,8 +284,9 @@ FIRST_WEEKDAY = 'Sunday'
 # iris (topics)
 
 IRIS_ITEM_TYPE_PLUGINS = (
-    'swtopics.plugins.ParticipantAddTeamPlugin',
     'swtopics.plugins.MessageAddPlugin',
+    'swtopics.plugins.ParticipantAddTeamPlugin',
+    'swtopics.plugins.SubjectChangePlugin',
 )
 
 # ==================================================================

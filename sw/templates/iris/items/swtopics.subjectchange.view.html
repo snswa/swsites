@@ -1,0 +1,6 @@
+{% load i18n %}
+<span class="author">{% with item.creator as content %}{% include "iris/content_link.html" %}{% endwith %}</span>
+{% trans "changed the subject from" %}
+<em>"{{ item.content.old_subject }}"</em>
+{% trans "to" %}
+<em>"{{ item.content.new_subject }}"</em>
