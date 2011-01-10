@@ -1,6 +1,6 @@
 from django import forms
 
-from iris.base import ModelPluginForm
+from iris.base import ModelPluginForm, PluginForm
 from iris.base import ItemTypePlugin
 
 from swtopics.models import SubjectChange, Message
@@ -26,12 +26,13 @@ class MessageAddPlugin(ItemTypePlugin):
 # ---
 
 
-class ParticipantAddTeamForm(forms.Form):
+class ParticipantAddTeamForm(PluginForm):
 
     team = forms.ModelChoiceField(queryset=Team.objects)
 
-    def save(self, request, topic):
-        user = request.user
+    def save(self):
+        user = self._request.user
+        topic = self._topic
         team = self.cleaned_data['team']
         if not topic.has_participant(team):
             return topic.add_participant(
@@ -56,8 +57,25 @@ class SubjectChangeForm(ModelPluginForm):
         model = SubjectChange
         fields = ('new_subject',)
 
-    def save(self, request, topic):
-        user = request.user
+    def __init__(self, *args, **kwargs):
+        initial = kwargs.pop('initial', {})
+        # Initial value for new subject is the current subject.
+        if 'new_subject' not in initial and 'topic' in kwargs:
+            initial['new_subject'] = kwargs['topic'].subject
+        kwargs['initial'] = initial
+        super(SubjectChangeForm, self).__init__(*args, **kwargs)
+
+    def clean_new_subject(self):
+        new_subject = self.cleaned_data['new_subject'].strip()
+        if new_subject == '':
+            raise forms.ValidationError('Subject must not be empty.')
+        if new_subject == self._topic.subject:
+            raise forms.ValidationError('Please choose a new subject.')
+        return new_subject
+
+    def save(self):
+        user = self._request.user
+        topic = self._topic
         new_subject = self.cleaned_data['new_subject']
         subject_change = SubjectChange(
             old_subject=topic.subject,
