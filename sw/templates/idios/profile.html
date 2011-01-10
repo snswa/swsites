@@ -214,7 +214,6 @@
                                 </ul>
                             {% endif %}
 
-                            <p><a href="{% url profile_list_all %}">Browse all profiles &rarr;</a></p>
                         </div>
                     {% endif %}
                 {% endwith %}
@@ -223,9 +222,17 @@
             {% endfeature %}
 
             <div class="section">
+                <strong><a href="{% url profile_list_all %}">Browse all profiles &rarr;</a></strong>
+            </div>
+
+            <div class="section">
                 <h1>Team memberships</h1>
 
-                <p>This volunteer is a member of the following teams:</p>
+                {% if is_me %}
+                    <p>You are a member of the following teams:</p>
+                {% else %}
+                    <p>This volunteer is a member of the following teams:</p>
+                {% endif %}
 
                 <ul>
                     {% for membership in profile.user.member_set.all %}
