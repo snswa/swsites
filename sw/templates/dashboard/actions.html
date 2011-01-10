@@ -1,0 +1,37 @@
+{% extends "base_hq_12.html" %}
+
+{% load breadcrumbs feature_tag %}
+{% load events %}
+{% load pagination_tags %}
+{% load group_tags %}
+{% load queryset_tags %}
+{% load wakacms_tags %}
+
+{% block page_title %}HQ{% endblock %}
+
+{% block body_class %}{{ block.super }} hq-section{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb 'Recent activity' './' %}
+{% endblock %}
+
+{% block content_body %}
+
+    <h1>Recent activity in your teams</h1>
+
+    {% if object_list %}
+        {% autopaginate object_list %}
+        <ul class="stream">
+            {% for action in object_list %}
+                <li class="event">
+                    {% include "activity/action.html" %}
+                </li>
+            {% endfor %}
+        </ul>
+        {% paginate %}
+    {% else %}
+        <p>No recent activity.</p>
+    {% endif %}
+
+{% endblock %}

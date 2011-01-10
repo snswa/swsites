@@ -104,7 +104,7 @@ feedparser==4.1
 -e git+https://github.com/snswa/django-relationships.git@d29a0ba#egg=django-relationships
 
 # Calendar
--e git+https://github.com/snswa/dregni.git@113a61a#egg=dregni
+-e git+https://github.com/snswa/dregni.git@0d990ce#egg=dregni
 vobject==0.8.1c
 
 # iris

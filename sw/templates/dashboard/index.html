@@ -1,8 +1,9 @@
-{% extends "base_hq_8_4.html" %}
+{% extends "base_hq_12.html" %}
 
 {% load breadcrumbs feature_tag %}
+{% load events %}
 {% load group_tags %}
-{% load pagination_tags %}
+{% load queryset_tags %}
 {% load wakacms_tags %}
 
 {% block page_title %}HQ{% endblock %}
@@ -17,21 +18,66 @@
 
     {% wikipagesnippet DashboardPreamble latest %}
 
-    {% if team_actions %}
-        <h1>Recent activity in teams you've joined</h1>
+    <div class="alpha grid_4">
+        <h1><a href="{% url dashboard_actions %}">Recent activity</a></h1>
 
-        {% autopaginate team_actions %}
+        {% if team_actions %}
+            <ul class="stream">
+                {% for action in team_actions|qslimit:20 %}
+                    <li class="event">
+                        {% include "activity/action.html" %}
+                    </li>
+                {% endfor %}
+            </ul>
 
-        <ul class="stream">
-            {% for action in team_actions %}
-                <li class="event">
-                    {% include "activity/action.html" %}
-                </li>
-            {% endfor %}
+            <ul>
+                <li><a href="{% url dashboard_actions %}">More activity &rarr;</a></li>
+            </ul>
+        {% else %}
+            (No activity)
+        {% endif %}
+    </div>
+
+    <div class="grid_4">
+        <h1><a href="{% url dashboard_topics %}">Latest topics</a></h1>
+
+        {% if team_topics %}
+            <ul class="stream">
+                {% for topic in team_topics|qslimit:20 %}
+                    <li class="event">
+                        <span class="action-object"><a href="{{ topic.get_absolute_url }}">{{ topic.subject }}</a><span>
+                        <span class="timestamp">{{ topic.modified|timesince }} ago</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No topics.</p>
+        {% endif %}
+
+        <ul>
+            <li><a href="{% url dashboard_topics %}">More topics &rarr;</a></li>
         </ul>
+    </div>
 
-        {% paginate %}
-    {% endif %}
+    <div class="grid_4 omega">
+        <h1><a href="{% url dashboard_events %}">Upcoming events</a></h1>
+
+        {% if team_events %}
+            <ul>
+                {% for event in team_events|upcomingevents|qslimit:20 %}
+                    <li>{% include "dregni/event_summary.html" %}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No upcoming events.</p>
+        {% endif %}
+
+        <ul>
+            <li><a href="{% url dashboard_events %}">Event calendar &rarr;</a></li>
+        </ul>
+    </div>
+
+    <div class="clear"></div>
 
 {% endblock %}
 

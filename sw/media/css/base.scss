@@ -379,6 +379,10 @@ div#content {
   h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
     color: $fgcolor;
+    a {
+      text-decoration: none;
+      color: $fgcolor;
+    }
   }
   h1 {
     border-bottom: $accent-width solid $fgcolor;
@@ -391,6 +395,9 @@ div#content {
   $bgcolor: lighten($color-s1, 55%);
   h1, h2, h3, h4, h5, h6 {
     color: $fgcolor;
+    a {
+      color: $fgcolor;
+    }
   }
   h1 {
     border-bottom: {

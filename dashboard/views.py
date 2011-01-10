@@ -1,35 +1,56 @@
 from django.contrib.auth.decorators import login_required
-from django.contrib.contenttypes.models import ContentType
-from django.db.models import Q
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 
-from actstream.models import Action
-
-from teams.models import Team
+from dashboard.models import team_actions_for_user, team_topics_for_user, team_events_for_user
+import dregni.views
 
 
 @login_required
-def index(request):
-    template_name = 'dashboard/index.html'
-    # Chain together queries to find all team activities.
-    q = None
-    team_ct = ContentType.objects.get(app_label='teams', model='team')
-    for team in request.user.team_set.all():
-        subq = Q(target_content_type=team_ct) & Q(target_object_id=team.id)
-        if q is None:
-            q = subq
-        else:
-            q |= subq
-    if q is not None:
-        team_actions = Action.objects.filter(q).order_by('-timestamp')
-    else:
-        team_actions = []
+def index(request, template_name='dashboard/index.html'):
+    user = request.user
+    team_actions = team_actions_for_user(user)
+    team_topics = team_topics_for_user(user)
+    team_events = team_events_for_user(user)
     template_context = {
         'team_actions': team_actions,
+        'team_topics': team_topics,
+        'team_events': team_events,
     }
     return render_to_response(
         template_name,
         template_context,
         RequestContext(request),
+    )
+
+
+@login_required
+def actions(request, template_name='dashboard/actions.html'):
+    user = request.user
+    team_actions = team_actions_for_user(user)
+    template_context = {
+        'object_list': team_actions,
+    }
+    return render_to_response(template_name, template_context, RequestContext(request))
+
+
+@login_required
+def topics(request, template_name='dashboard/topics.html'):
+    user = request.user
+    team_topics = team_topics_for_user(user)
+    template_context = {
+        'object_list': team_topics,
+    }
+    return render_to_response(template_name, template_context, RequestContext(request))
+
+
+@login_required
+def events(request, template_name='dashboard/events.html', *args, **kwargs):
+    user = request.user
+    team_events = team_events_for_user(user)
+    return dregni.views.index(
+        request,
+        template_name=template_name,
+        filter_qs=lambda qs: team_events,
+        *args, **kwargs
     )

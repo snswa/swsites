@@ -1,0 +1,48 @@
+<table class="calendar">
+    <thead>
+        <tr>
+            <th>&nbsp;</th>
+            {% for abbr in day_abbr %}
+                <th>{{ abbr }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="8" class="nav">
+                <a href="?start_date={{ prev_date.isoformat }}">&larr; Back {{ jump_weeks }} weeks</a>
+                |
+                <a href="?start_date={{ next_date.isoformat }}">Forward {{ jump_weeks }} weeks &rarr;</a>
+            </td>
+        </tr>
+        {% for week in weeks %}
+            <tr>
+                <td class="month-{{ week.0.date|date:"n" }} week">
+                    {{ week.0.date|date:"M" }}
+                    <br>
+                    {{ week.0.date|date:"Y" }}
+                </td>
+                {% for day in week %}
+                    <td class="month-{{ day.date|date:"n" }} day{% if day.date == today %} today{% endif %}">
+                        <div class="number">
+                            {% if day.date.day == 1 %}
+                                {{ day.date|date:"M j"}}
+                            {% else %}
+                                {{ day.date|date:"j" }}
+                            {% endif %}
+                        </div>
+                        {% if day.events %}
+                            <ul class="events">
+                                {% for event in day.events %}
+                                    <li>
+                                        <a href="{{ event.get_absolute_url }}">{{ event.title }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
