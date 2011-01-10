@@ -32,9 +32,9 @@
 
             {% with group|topicsjoined as topics_list %}
             {% with topics_list|qslimit:5 as topics_list %}
-                <ul>
+                <ul class="stream">
                     {% for topic in topics_list.reverse %}
-                        <li><a href="{{ topic.get_absolute_url }}?team={{ group.slug }}">{{ topic.subject }}</a></li>
+                        {% include "iris/topic_summary.html" %}
                     {% endfor %}
                 </ul>
             {% endwith %}
@@ -57,7 +57,7 @@
                 {% if events %}
                     <ul>
                         {% for event in events %}
-                            <li>{% include "dregni/event_summary.html" %}</li>
+                            {% include "dregni/event_summary.html" %}
                         {% endfor %}
                     </ul>
                 {% else %}

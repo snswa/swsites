@@ -498,23 +498,26 @@ ul#site-messages {
   font-size: smaller;
 }
 
-ul.stream li.event {
-  padding-bottom: 1em;
-  span.timestamp {
-    display: block;
-    font-size: smaller;
-    color: silver;
-    a {
+ul.stream {
+  margin-bottom: 0px;
+  li.event {
+    padding-bottom: 1em;
+    span.timestamp {
+      display: block;
+      font-size: smaller;
       color: silver;
+      a {
+        color: silver;
+      }
     }
-  }
-  div.description {
-    color: gray;
-    margin-left: 1em;
-    padding-left: 1em;
-    padding-top: .25em;
-    padding-bottom: .25em;
-    border-left: $accent-width solid silver;
+    div.description {
+      color: gray;
+      margin-left: 1em;
+      padding-left: 1em;
+      padding-top: .25em;
+      padding-bottom: .25em;
+      border-left: $accent-width solid silver;
+    }
   }
 }
 

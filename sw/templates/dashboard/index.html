@@ -24,10 +24,7 @@
         {% if team_topics %}
             <ul class="stream">
                 {% for topic in team_topics|qslimit:20 %}
-                    <li class="event">
-                        <span class="action-object"><a href="{{ topic.get_absolute_url }}">{{ topic.subject }}</a><span>
-                        <span class="timestamp">{{ topic.modified|timesince }} ago</span>
-                    </li>
+                    {% include "iris/topic_summary.html" %}
                 {% endfor %}
             </ul>
         {% else %}
@@ -43,9 +40,9 @@
         <h1><a href="{% url dashboard_events %}">Upcoming events</a></h1>
 
         {% if team_events %}
-            <ul>
+            <ul class="stream">
                 {% for event in team_events|upcomingevents|qslimit:20 %}
-                    <li>{% include "dregni/event_summary.html" %}</li>
+                    {% include "dregni/event_summary_dashboard.html" %}
                 {% endfor %}
             </ul>
         {% else %}

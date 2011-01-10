@@ -24,10 +24,7 @@
         {% autopaginate object_list %}
         <ul class="stream">
             {% for topic in object_list %}
-                <li class="event">
-                    <span class="action-object"><a href="{{ topic.get_absolute_url }}">{{ topic.subject }}</a><span>
-                    <span class="timestamp">{{ topic.modified|timesince }} ago</span>
-                </li>
+                {% include "iris/topic_summary.html" %}
             {% endfor %}
         </ul>
         {% paginate %}

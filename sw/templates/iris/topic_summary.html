@@ -1,0 +1,13 @@
+{% load queryset_tags %}
+<li class="event">
+    <span class="action-object"><a href="{{ topic.get_absolute_url }}">{{ topic.subject }}</a><span>
+    <span class="timestamp">
+        {{ topic.modified|timesince }} ago
+        by
+        <span class="target">
+            {% with topic.items.latest.creator as content %}
+                {% include "iris/content_link.html" %}
+            {% endwith %}
+        </span>
+    </span>
+</li>

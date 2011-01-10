@@ -18,4 +18,10 @@
         {% endif %}
     {% endspaceless %}</span> &mdash;
     <span class="action-object"><a href="{{ event.get_absolute_url }}">{{ event.title }}</a></span>
+    {% with event.group as content %}
+        {% if content %}
+            {# @@@ Wrong css class #}
+            <span class="timestamp">in {% include "iris/content_link.html" %}
+        {% endif %}
+    {% endwith %}
 </li>
