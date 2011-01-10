@@ -305,7 +305,7 @@ div#site-sections {
 
 .hq.hq-section            { @include active-hq-section('hq'); }
 .hq.local-section         { @include active-hq-section('local'); }
-.hq.state-section         { @include active-hq-section('state'); }
+.hq.teams-section         { @include active-hq-section('teams'); }
 .hq.support-section       { @include active-hq-section('support'); }
 .hq.library-section       { @include active-hq-section('library'); }
 .hq.coordinators-section  { @include active-hq-section('coordinators'); }
