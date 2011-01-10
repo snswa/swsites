@@ -53,7 +53,7 @@
             <h1>Upcoming events</h1>
 
             {% content_objects group "dregni.Event" as events %}
-            {% with events|qslimit:5 as events %}
+            {% with events|upcomingevents|qslimit:5 as events %}
                 {% if events %}
                     <ul>
                         {% for event in events %}
