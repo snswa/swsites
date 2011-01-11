@@ -1,6 +1,6 @@
 {% load queryset_tags %}
 <li class="event">
-    <span class="action-object"><a href="{{ topic.get_absolute_url }}">{{ topic.subject }}</a><span>
+    <span class="action-object"><a href="{{ topic.get_absolute_url }}{% if group.slug %}?team={{ group.slug }}{% endif %}">{{ topic.subject }}</a><span>
     <span class="timestamp">
         {{ topic.modified|timesince }} ago
         by
