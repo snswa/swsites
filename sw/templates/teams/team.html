@@ -24,73 +24,68 @@
 
 
 {% block body %}
-    {% if group.is_private and not user|ismemberofgroup:group %}
-        <p>This team is private.</p>
-    {% else %}
-        <div class="grid_4 alpha">
-            <h1><a href="{% url team_topics slug=group.slug %}">Latest topics</a></h1>
+    <div class="grid_4 alpha">
+        <h1><a href="{% url team_topics slug=group.slug %}">Latest topics</a></h1>
 
-            {% with group|topicsjoined as topics_list %}
-            {% with topics_list|qslimit:5 as topics_list %}
-                <ul class="stream">
-                    {% for topic in topics_list.reverse %}
-                        {% include "iris/topic_summary.html" %}
+        {% with group|topicsjoined as topics_list %}
+        {% with topics_list|qslimit:5 as topics_list %}
+            <ul class="stream">
+                {% for topic in topics_list.reverse %}
+                    {% include "iris/topic_summary.html" %}
+                {% endfor %}
+            </ul>
+        {% endwith %}
+        {% endwith %}
+
+        <ul>
+            <li><a href="{% url team_topics slug=group.slug %}">{% trans "All team topics" %} &rarr;</a></li>
+            {% if user|ismemberofgroup:group %}
+                <li>
+                    Create a new topic:
+
+                    <form class="topic_create uniForm" action="{% url team_topic_create slug=group.slug %}?team={{ group.slug }}" method="post" accept-charset="utf-8">
+                        {% csrf_token %}
+                        <fieldset class="inlineLabels">
+                            {% include "iris/topic_create_form_contents.html" %}
+                        </fieldset>
+                    </form>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+
+    <div class="grid_4 omega">
+        <h1><a href="{% groupurl dregni_index group %}">Upcoming events</a></h1>
+
+        {% content_objects group "dregni.Event" as events %}
+        {% with events|upcomingevents|qslimit:5 as events %}
+            {% if events %}
+                <ul>
+                    {% for event in events %}
+                        {% include "dregni/event_summary.html" %}
                     {% endfor %}
                 </ul>
-            {% endwith %}
-            {% endwith %}
+            {% else %}
+                <p>{% trans "No upcoming events." %}</p>
+            {% endif %}
+        {% endwith %}
 
-            <ul>
-                <li><a href="{% url team_topics slug=group.slug %}">{% trans "All team topics" %} &rarr;</a></li>
-                {% if user|ismemberofgroup:group %}
-                    <li>
-                        Create a new topic:
+        <ul>
+            <li><a href="{% groupurl dregni_index group %}">{% trans "View team calendar" %} &rarr;</a></li>
+            {% if group.is_private and user|ismemberofgroup:group or user|iscoordinatorofteam:group %}
+                <li><a href="{% groupurl dregni_event_create group %}">{% trans "Create a new team event" %} &rarr;</a></li>
+            {% endif %}
+        </ul>
+    </div>
 
-                        <form class="topic_create uniForm" action="{% url team_topic_create slug=group.slug %}?team={{ group.slug }}" method="post" accept-charset="utf-8">
-                            {% csrf_token %}
-                            <fieldset class="inlineLabels">
-                                {% include "iris/topic_create_form_contents.html" %}
-                            </fieldset>
-                        </form>
-                    </li>
-                {% endif %}
-            </ul>
-        </div>
+    <div class="clear"></div>
 
-        <div class="grid_4 omega">
-            <h1><a href="{% groupurl dregni_index group %}">Upcoming events</a></h1>
+    <h1>About the <strong>{{ group.name }}</strong> team</h1>
 
-            {% content_objects group "dregni.Event" as events %}
-            {% with events|upcomingevents|qslimit:5 as events %}
-                {% if events %}
-                    <ul>
-                        {% for event in events %}
-                            {% include "dregni/event_summary.html" %}
-                        {% endfor %}
-                    </ul>
-                {% else %}
-                    <p>{% trans "No upcoming events." %}</p>
-                {% endif %}
-            {% endwith %}
-
-            <ul>
-                <li><a href="{% groupurl dregni_index group %}">{% trans "View team calendar" %} &rarr;</a></li>
-                {% if group.is_private and user|ismemberofgroup:group or user|iscoordinatorofteam:group %}
-                    <li><a href="{% groupurl dregni_event_create group %}">{% trans "Create a new team event" %} &rarr;</a></li>
-                {% endif %}
-            </ul>
-        </div>
-
-        <div class="clear"></div>
-
-        <h1>About the <strong>{{ group.name }}</strong> team</h1>
-
-        {% if team_wiki_index_page %}
-            {% with team_wiki_index_page.current as rev %}
-                {% include "wakawaka/page_content.html" %}
-            {% endwith %}
-        {% endif %}
-
+    {% if team_wiki_index_page %}
+        {% with team_wiki_index_page.current as rev %}
+            {% include "wakawaka/page_content.html" %}
+        {% endwith %}
     {% endif %}
 {% endblock %}
 
