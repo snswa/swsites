@@ -14,7 +14,7 @@
     {% if obj %}
         <span class="action-object">
             {% if obj.get_absolute_url %}
-                <a href="{{ obj.get_absolute_url }}">{% if obj.content_object %}{{ obj.content_object }}{% else %}{{ obj }}{% endif %}</a>
+                <a href="{{ obj.get_absolute_url }}{% if action.target.slug %}?team={{ action.target.slug }}{% endif %}">{% if obj.content_object %}{{ obj.content_object }}{% else %}{{ obj }}{% endif %}</a>
             {% else %}
                 {{ obj }}
             {% endif %}
