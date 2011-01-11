@@ -3,7 +3,10 @@
 {% load breadcrumbs %}
 {% load comments %}
 {% load group_tags %}
+{% load i18n %}
+{% load iris_tags %}
 {% load markup_tags %}
+{% load queryset_tags %}
 {% load sw_tags %}
 {% load team_tags %}
 
@@ -45,19 +48,48 @@
         </div>
     {% endif %}
 
-    <h1>Comments</h1>
+    {# Deprecating built-in comments in favor of discussions. #}
+    {# Only show comments when they exist. #}
 
     {% get_comment_count for event as comment_count %}
     {% if comment_count %}
+        <h1>Comments</h1>
         {% render_comment_list for event %}
-    {% else %}
-        <p>Be the first to comment on this event.</p>
+    {# {% else %} #}
+    {#     <p>Be the first to comment on this event.</p> #}
     {% endif %}
 
-    {% with event.get_absolute_url as next %}
-        {% render_comment_form for event %}
+    {# {% with event.get_absolute_url as next %} #}
+    {#     {% render_comment_form for event %} #}
+    {# {% endwith %} #}
+
+    <h1>Topics about this event</h1>
+
+    {% with event|topicsjoined as topics_list %}
+    {% with topics_list|qslimit:5 as topics_list %}
+        <ul class="stream">
+            {% for topic in topics_list.reverse %}
+                {% include "iris/topic_summary.html" %}
+            {% endfor %}
+        </ul>
+    {% endwith %}
     {% endwith %}
 
+    <ul>
+        <li><a href="{% url team_event_topics slug=group.slug event_id=event.id %}">{% trans "All topics for this event" %} &rarr;</a></li>
+        {% if user|ismemberofgroup:group %}
+            <li>
+                Create a new topic:
+
+                <form class="topic_create uniForm" action="{% url team_event_topic_create slug=group.slug event_id=event.id %}?team={{ group.slug }}" method="post" accept-charset="utf-8">
+                    {% csrf_token %}
+                    <fieldset class="inlineLabels">
+                        {% include "iris/topic_create_form_contents.html" %}
+                    </fieldset>
+                </form>
+            </li>
+        {% endif %}
+    </ul>
 {% endblock %}
 
 

@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 
-from swtopics.views import team_post_topic_create, team_topics_queryset_fn
+import swtopics.views
 
 
 urlpatterns = patterns('',
@@ -8,18 +8,34 @@ urlpatterns = patterns('',
         regex=  r'^teams/(?P<slug>[\w\._-]+)/activity/$',
         view=   'swteams.views.activity',
     ),
+    #
     url(name=   'team_topics',
         regex=  r'^teams/(?P<slug>[\w\._-]+)/topics/$',
-        view=   'swteams.views.topics',
+        view=   'swteams.views.topics_with_team_slug',
         kwargs= dict(
-            queryset_fn=team_topics_queryset_fn,
+            queryset_fn=swtopics.views.team_topics_queryset_fn,
         ),
     ),
     url(name=   'team_topic_create',
         regex=  r'^teams/(?P<slug>[\w\._-]+)/topics/create/$',
         view=   'iris.views.topic_create',
         kwargs= dict(
-            post_topic_create=team_post_topic_create,
+            post_topic_create=swtopics.views.team_post_topic_create,
+        ),
+    ),
+    #
+    url(name=   'team_event_topics',
+        regex=  r'^teams/(?P<slug>[\w\._-]+)/events/(?P<event_id>\d+)/topics/$',
+        view=   'swteams.views.topics_with_team_slug',
+        kwargs= dict(
+            queryset_fn=swtopics.views.team_event_topics_queryset_fn,
+        ),
+    ),
+    url(name=   'team_event_topic_create',
+        regex=  r'^teams/(?P<slug>[\w\._-]+)/events/(?P<event_id>\d+)/topics/create/$',
+        view=   'iris.views.topic_create',
+        kwargs= dict(
+            post_topic_create=swtopics.views.team_event_post_topic_create,
         ),
     ),
 )

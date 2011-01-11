@@ -1,19 +1,20 @@
 {% load events %}
 {% load group_tags %}
+{% load queryset_tags %}
 
 <div class="section">
     <h1>Upcoming events in <strong>{{ group.name }}</strong></h1>
 
     {% content_objects group "dregni.Event" as events %}
-    {% with events|upcomingevents:28 as events %}
+    {% with events|upcomingevents|qslimit:20 as events %}
         {% if events %}
             <ul>
                 {% for event in events %}
-                    <li>{% include "dregni/event_summary.html" %}</li>
+                    {% include "dregni/event_summary.html" %}
                 {% endfor %}
             </ul>
         {% else %}
-            <p>No upcoming events in the next four weeks.</p>
+            <p>No upcoming events.</p>
         {% endif %}
     {% endwith %}
 </div>

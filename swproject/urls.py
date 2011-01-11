@@ -128,7 +128,12 @@ urlpatterns += patterns('',
 urlpatterns += patterns('',
     url(regex=  r'^teams/',
         view=   include('swteams.urls'),
-        kwargs= VERIFIED_VOLUNTEER,
+        kwargs= dict(
+            VERIFIED_VOLUNTEER,
+            extra_context=dict(
+                topic_create_form=TopicForm(),
+            ),
+        ),
     ),
     url(regex=  r'^teams/',
         view=   include('teams.urls'),
@@ -155,6 +160,9 @@ urlpatterns += team_bridge.include_urls(
         start_date=datetime.date.today,
         weeks=6,
         jump_weeks=4,
+        extra_context=dict(
+            topic_create_form=TopicForm(),
+        ),
     ),
 )
 

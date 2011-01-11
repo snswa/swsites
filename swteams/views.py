@@ -11,7 +11,7 @@ def activity(request, slug, *args, **kw):
     return render_to_response(template_name, template_context, RequestContext(request))
 
 
-def topics(*args, **kwargs):
+def topics_with_team_slug(*args, **kwargs):
     # Insert the team into the template context as 'group' so that
     # breadcrumbs, etc. render properly.
     slug = kwargs['slug']
