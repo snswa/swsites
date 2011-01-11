@@ -435,7 +435,8 @@ div#content {
       color: #06294f; }
   div#content h1 {
     border-bottom: 2px solid #06294f;
-    padding: 0 10px 0 10px; }
+    padding: 0 10px 0 10px;
+    font-size: 16pt; }
 
 .hq div#content h1, .hq div#content h2, .hq div#content h3, .hq div#content h4, .hq div#content h5, .hq div#content h6 {
   color: #003322; }
