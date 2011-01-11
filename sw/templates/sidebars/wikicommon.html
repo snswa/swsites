@@ -1,12 +1,10 @@
 {% load group_tags %}
 
 <div class="section">
-    <h1>Page tools</h1>
-
-    <p>Tools for pages in <em>{{ group.name }}</em>:</p>
+    <h1>Team pages</h1>
 
     <ul>
-        <li><a href="{% groupurl wakawaka_index group %}">View and edit the team home page</a></li>
-        <li><a href="{% groupurl wakawaka_page_list group %}">Alphabetical list of team pages</a></li>
+        <li><a href="{% groupurl wakawaka_page_list group %}"><strong>Alphabetical list of team pages &rarr;</strong></a></li>
+        <li><a href="{% groupurl wakawaka_index group %}"><a href="{% groupurl wakawaka_page_list group %}"><strong>View and edit the team home page &rarr;</strong></a></a></li>
     </ul>
 </div>
