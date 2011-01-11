@@ -6,7 +6,7 @@
 
 {% block page_title %}{% block title %}Topics{% endblock %}{% endblock %}
 
-{% block body_class %}{{ block.super }} topics hq-section{% endblock %}
+{% block body_class %}{{ block.super }} topics {% if request.GET.team %}teams-section{% else %}hq-section{% endif %}{% endblock %}
 
 {% block breadcrumbs %}
     {{ block.super }}
