@@ -43,9 +43,17 @@
             <ul>
                 <li><a href="{% url team_topics slug=group.slug %}">{% trans "All team topics" %} &rarr;</a></li>
                 {% if user|ismemberofgroup:group %}
-                    <li><a href="{% url team_topics slug=group.slug %}">{% trans "Create a new topic" %} &rarr;</a></li>
-                {% endif %}
+                    <li>
+                        Create a new topic:
 
+                        <form class="topic_create uniForm" action="{% url team_topic_create slug=group.slug %}?team={{ group.slug }}" method="post" accept-charset="utf-8">
+                            {% csrf_token %}
+                            <fieldset class="inlineLabels">
+                                {% include "iris/topic_create_form_contents.html" %}
+                            </fieldset>
+                        </form>
+                    </li>
+                {% endif %}
             </ul>
         </div>
 
