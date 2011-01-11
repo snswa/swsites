@@ -1,0 +1,39 @@
+{% extends "idios/base.html" %}
+
+{% load breadcrumbs feature_tag %}
+{% load group_tags %}
+{% load i18n %}
+{% load pagination_tags %}
+{% load wakacms_tags %}
+
+{% block head_title %}{% trans "Edit Your Profile" %}{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb_url_css 'icon-link vcard-link' user.get_profile profile_detail username=user.username %}
+    {% breadcrumb 'Team activity' './' %}
+{% endblock %}
+
+{% block body %}
+
+    <h1>Activity for <strong><a href="{{ page_user.get_absolute_url }}">{{ page_user.get_profile }}</a></strong></h1>
+
+    {% if object_list %}
+        {% autopaginate object_list %}
+        <ul class="stream">
+            {% for action in object_list %}
+                {% with action.target as team %}
+                    {% if user|ismemberofgroup:team or not team.is_private %}
+                        <li class="event">
+                            {% include "activity/action.html" %}
+                        </li>
+                    {% endif %}
+                {% endwith %}
+            {% endfor %}
+        </ul>
+        {% paginate %}
+    {% else %}
+        <p>No team activity.</p>
+    {% endif %}
+
+{% endblock %}

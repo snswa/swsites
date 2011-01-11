@@ -1,8 +1,11 @@
 {% extends "idios/base.html" %}
 
+{% load activity_tags %}
 {% load breadcrumbs %}
 {% load feature_tag %}
+{% load group_tags %}
 {% load i18n %}
+{% load queryset_tags %}
 {% load relationship_tags %}
 {% load sw_tags %}
 {% load uni_form_tags %}
@@ -19,10 +22,12 @@
 
 {% block body %}
     {% with page_user.get_profile as p %}
-        <div class="vcard">
+        <div class="vcard grid_4 alpha">
             {# TODO: needs fn (full name) class on some element that contains full name #}
 
-            <h1><strong>{{ page_user.get_profile }}</strong>'s profile{% if is_me %} (your profile){% endif %}</h1>
+            <h1><strong>{{ page_user.get_profile }}</strong>'s profile</h1>
+
+            {% if is_me %}<p>(This is your profile.)</p>{% endif %}
 
             {% profile_privacy %}
 
@@ -120,6 +125,28 @@
                     <p><b>{% trans "Bio" %}</b>{% if bio_restricted %}*{% endif %}: {{ p.bio|linebreaks }}</p>
                 {% endif %}
             </div>
+        </div>
+
+        <div class="grid_4 omega">
+            <h1>Recent activity</h1>
+
+            <ul class="stream">
+                {% with page_user|actionsisactorof|qslimit:20 as object_list %}
+                    {% for action in object_list %}
+                        {% with action.target as team %}
+                            {% if user|ismemberofgroup:team or not team.is_private %}
+                                <li class="event">
+                                    {% include "activity/action.html" %}
+                                </li>
+                            {% endif %}
+                        {% endwith %}
+                    {% endfor %}
+                {% endwith %}
+            </ul>
+
+            <ul>
+                <li><a href="{% url profile_activity username=page_user.username %}">More activity &rarr;</a></li>
+            </ul>
         </div>
     {% endwith %}
 {% endblock %}

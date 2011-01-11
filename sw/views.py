@@ -1,12 +1,16 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import user_passes_test, login_required
+from django.contrib.auth.models import User
+from django.contrib.contenttypes.models import ContentType
 from django.core.urlresolvers import reverse
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template.context import RequestContext
 from django.template import TemplateDoesNotExist, TemplateSyntaxError
+from django.views.generic.list_detail import object_list
 
 from actstream import action
+from actstream.templatetags.activity_tags import actionsisactorof
 from allauth.account.forms import LoginForm
 from sw.forms import HqSignupForm
 from sw.tasks import report_ok
@@ -72,3 +76,22 @@ def placeholder(request, slug, *args, **kw):
         )
     except TemplateDoesNotExist:
         raise Http404()
+
+
+# -- activity stream --
+
+
+@login_required
+def user_team_activity(request, username, template_name='idios/profile_activity.html', extra_context=None, *args, **kw):
+    extra_context = extra_context or {}
+    page_user = User.objects.get(username=username)
+    team_ct = ContentType.objects.get_for_model(Team)
+    queryset = actionsisactorof(page_user).filter(target_content_type=team_ct)
+    extra_context['page_user'] = page_user
+    return object_list(
+        request,
+        queryset=queryset,
+        template_name=template_name,
+        extra_context=extra_context,
+        *args, **kw
+    )
