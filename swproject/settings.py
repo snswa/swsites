@@ -115,6 +115,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 AUTHENTICATION_BACKENDS = (
     'swproject.predicates.TopicAccessBackend',
+    'teams.backends.TeamMembershipBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
 

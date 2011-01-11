@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseForbidden, HttpResponseRedirect
 
@@ -59,11 +60,9 @@ class HqPredicateMiddleware(object):
                 )
         #
         # Check for private team membership.
-        if (request.group is not None
-            and getattr(request.group, 'is_private', False)
-            and not request.group.user_is_member(request.user)
-            ):
-            return HttpResponseForbidden("You don't have permission to view this page.")
+        group = request.group
+        if group and not user.has_perm('teams.view', group):
+            raise PermissionDenied()
         #
         # Set up missing info for nags.
         request.missing_info = {
