@@ -29,7 +29,7 @@ def team_topics_for_user(user):
         subq = Q(participants__content_type=team_ct) & Q(participants__object_id=team.id)
         q = subq if q is None else q | subq
     if q is not None:
-        team_topics = Topic.objects.filter(q).order_by('-modified')
+        team_topics = Topic.objects.filter(q).order_by('-modified').distinct()
     else:
         team_topics = []
     return team_topics
