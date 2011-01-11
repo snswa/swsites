@@ -31,7 +31,7 @@ $color-c: #e64d00;
     padding-left: 16px !important;
   }
 }
-@mixin icon-link-image($icon-name) {
+@mixin icon-link($icon-name) {
   .#{$icon-name}-link {
     background: transparent url('/media/icons/#{$icon-name}.png') left center no-repeat;
   }
@@ -39,27 +39,38 @@ $color-c: #e64d00;
     background: transparent url('/media/icons/#{$icon-name}.png') left center no-repeat;
   }
 }
-@include icon-link-image("bullet_blue");
-@include icon-link-image("bullet_go");
-@include icon-link-image("bullet_yellow");
-@include icon-link-image("calendar");
-@include icon-link-image("door_in");
-@include icon-link-image("email_edit");
-@include icon-link-image("eye");
-@include icon-link-image("folder");
-@include icon-link-image("group");
-@include icon-link-image("group_link");
-@include icon-link-image("key");
-@include icon-link-image("lightning");
-@include icon-link-image("page");
-@include icon-link-image("pencil");
-@include icon-link-image("plugin");
-@include icon-link-image("plugin_edit");
-@include icon-link-image("sw");
-@include icon-link-image("user_go");
-@include icon-link-image("user_green");
-@include icon-link-image("vcard");
-@include icon-link-image("vcard_edit");
+@mixin content-type-icon-link($icon-name, $content-type-name) {
+  .#{$content-type-name}-link {
+    background: transparent url('/media/icons/#{$icon-name}.png') left center no-repeat;
+  }
+  .#{$content-type-name}-link-hover:hover {
+    background: transparent url('/media/icons/#{$icon-name}.png') left center no-repeat;
+  }
+}
+@include icon-link("bullet_blue");
+@include icon-link("bullet_go");
+@include icon-link("bullet_yellow");
+@include icon-link("calendar");
+@include content-type-icon-link("calendar", "dregni-event");
+@include icon-link("door_in");
+@include icon-link("email_edit");
+@include icon-link("eye");
+@include icon-link("folder");
+@include icon-link("group");
+@include content-type-icon-link("group", "teams-team");
+@include icon-link("group_link");
+@include icon-link("key");
+@include icon-link("lightning");
+@include icon-link("page");
+@include icon-link("pencil");
+@include icon-link("plugin");
+@include icon-link("plugin_edit");
+@include icon-link("sw");
+@include icon-link("user_go");
+@include icon-link("user_green");
+@include icon-link("vcard");
+@include content-type-icon-link("vcard", "auth-user");
+@include icon-link("vcard_edit");
 
 body {
   position: relative;

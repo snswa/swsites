@@ -1,14 +1,11 @@
+{% load contenttype_tags %}
 {% spaceless %}
     {% with content.get_profile as profile %}
     {% with content.get_absolute_url as url %}
         {% if url %}
-            <a href="{{ content.get_absolute_url }}">{% if profile %}{{ profile }}{% else %}{{ content }}{% endif %}</a>
+            <a class="{{ content|contenttypecssname }}-link icon-link" href="{{ content.get_absolute_url }}"><span>{% if profile %}{{ profile }}{% else %}{{ content }}</span>{% endif %}</a>
         {% else %}
-            {% if profile %}
-                {{ profile }}
-            {% else %}
-                {{ content }}
-            {% endif %}
+            {% if profile %}{{ profile }}{% else %}{{ content }}{% endif %}
         {% endif %}
     {% endwith %}
     {% endwith %}
