@@ -1,3 +1,4 @@
+{% load iris_tags %}
 {% load queryset_tags %}
 <li class="event">
     <span class="action-object"><a href="{{ topic.get_absolute_url }}{% if group.slug %}?team={{ group.slug }}{% endif %}">{{ topic.subject }}</a><span>
@@ -8,6 +9,18 @@
             {% with topic.items.latest.creator as content %}
                 {% include "iris/content_link.html" %}
             {% endwith %}
+            {% if not group %}
+                {% with topic|participantsoftype:"teams.team" as team_participants %}
+                {% with team_participants|length as length %}
+                    {% if length == 1 %}
+                        <br>in <a href="{{ team_participants.0.get_absolute_url }}">{{ team_participants.0 }}</a>
+                    {% endif %}
+                    {% if length > 1 %}
+                        <br>in {{ length }} team{{ length|pluralize }}
+                    {% endif %}
+                {% endwith %}
+                {% endwith %}
+            {% endif %}
         </span>
     </span>
 </li>
