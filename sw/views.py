@@ -72,15 +72,3 @@ def placeholder(request, slug, *args, **kw):
         )
     except TemplateDoesNotExist:
         raise Http404()
-
-
-# -- activity history --
-
-
-def team_activity_history(request, slug, *args, **kw):
-    template_name = 'teams/activity.html'
-    team = get_object_or_404(Team, slug=slug)
-    template_context = {
-        'group': team,
-    }
-    return render_to_response(template_name, template_context, RequestContext(request))

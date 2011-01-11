@@ -18,7 +18,6 @@ from iris.forms import TopicForm
 import iris.views
 from sw.forms import ProfileForm
 from swproject import predicates
-from swtopics.views import team_post_topic_create, team_topics_queryset_fn
 from teams.models import Team
 
 
@@ -126,35 +125,10 @@ urlpatterns += patterns('',
 )
 
 
-# Team URLs.
-def team_topics(*args, **kwargs):
-    # Insert the group into team_topics
-    # @@@ get this abstracted?
-    slug = kwargs['slug']
-    extra_context = kwargs.setdefault('extra_context', {})
-    extra_context['group'] = Team.objects.get(slug=slug)
-    return iris.views.topics(*args, **kwargs)
 urlpatterns += patterns('',
-    url(name=   'team_activity_history',
-        regex=  r'^teams/(?P<slug>[\w\._-]+)/activity/$',
-        view=   'sw.views.team_activity_history',
+    url(regex=  r'^teams/',
+        view=   include('swteams.urls'),
         kwargs= VERIFIED_VOLUNTEER,
-    ),
-    url(name=   'team_topics',
-        regex=  r'^teams/(?P<slug>[\w\._-]+)/topics/$',
-        view=   team_topics,
-        kwargs= dict(
-            VERIFIED_VOLUNTEER,
-            queryset_fn=team_topics_queryset_fn,
-        ),
-    ),
-    url(name=   'team_topic_create',
-        regex=  r'^teams/(?P<slug>[\w\._-]+)/topics/create/$',
-        view=   'iris.views.topic_create',
-        kwargs= dict(
-            VERIFIED_VOLUNTEER,
-            post_topic_create=team_post_topic_create,
-        ),
     ),
     url(regex=  r'^teams/',
         view=   include('teams.urls'),

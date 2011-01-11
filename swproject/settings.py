@@ -372,6 +372,7 @@ INSTALLED_APPS = (
     # teams
     'teams',
     'groups',
+    'swteams',
     #
     # activity stream
     'actstream',
