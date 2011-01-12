@@ -125,6 +125,13 @@ urlpatterns += patterns('',
         view=   include('swproject.urls_search'),
         kwargs= VERIFIED_VOLUNTEER,
     ),
+    # Prevent top-level list of topics.
+    url(regex=  r'^topics/$',
+        view=   redirect_to,
+        kwargs= dict(
+            url='/hq/',
+        ),
+    ),
     url(r'^topics/', include('iris.urls'), kwargs=NEW_VOLUNTEER),
     url(r'^voting/', include('voting.urls'), kwargs=VERIFIED_VOLUNTEER),
 )
