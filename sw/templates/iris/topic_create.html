@@ -1,0 +1,19 @@
+{% extends "iris/base.html" %}
+
+{% load i18n %}
+
+{% block title %}{% trans "Create topic" %} - {{ block.super }}{% endblock %}
+
+{% block body %}
+
+    <p><a href="{% url iris_topics %}">&larr; {% trans "Topics" %}</a></p>
+
+    <h1>{% trans "Create topic" %}</h1>
+
+    {# POST to current page in case as we are usually using a custom URL. #}
+    <form action="" method="post" accept-charset="utf-8">
+        {% csrf_token %}
+        {% include "iris/topic_create_form_contents.html" %}
+    </form>
+
+{% endblock %}
