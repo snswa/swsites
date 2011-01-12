@@ -48,6 +48,8 @@ class ParticipantAddTeamPlugin(ItemTypePlugin):
     form_class = ParticipantAddTeamForm
 
     def user_has_perm(self, user, topic):
+        if user.is_superuser:
+            return True
         # If a topic is in any team that is not private, allow adding
         # other teams to the topic.
         # If a topic is ONLY in private teams, disallow adding other
