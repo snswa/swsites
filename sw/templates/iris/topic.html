@@ -12,7 +12,7 @@
 <script type="text/javascript" charset="utf-8">
     head.js(
         '{{ STATIC_URL }}js/jquery-1.4.4{% if not debug %}.min{% endif %}.js?{{ MEDIA_SERIAL_NUMBER }}',
-        '{{ STATIC_URL }}iris/topic.js'
+        '{{ STATIC_URL }}iris/topic.js?{{ MEDIA_SERIAL_NUMBER }}'
     );
 </script>
 {% endblock %}
