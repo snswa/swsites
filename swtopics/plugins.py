@@ -47,6 +47,13 @@ class ParticipantAddTeamPlugin(ItemTypePlugin):
     name = 'iris.participantjoin.add.team'
     form_class = ParticipantAddTeamForm
 
+    def user_has_perm(self, user, topic):
+        # If a topic is in any team that is not private, allow adding
+        # other teams to the topic.
+        # If a topic is ONLY in private teams, disallow adding other
+        # teams to the topic.
+        teams = set(p.content for p in topic.participants_of_type(Team))
+        return any(not team.is_private for team in teams)
 
 # ---
 
