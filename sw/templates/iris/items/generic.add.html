@@ -5,6 +5,7 @@
     <fieldset class="blockLabels">
         {{ item_type.form|as_uni_form }}
         <div class="buttonHolder">
+            <a class="button cancel secondaryAction" href="{{ topic.get_absolute_url }}">Cancel</a>
             <button class="primaryAction" type="submit" name="action_submit" >{% trans 'Add to topic' %}</button>
         </div>
     </fieldset>

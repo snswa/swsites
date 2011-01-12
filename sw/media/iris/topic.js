@@ -11,14 +11,15 @@
         pollFactor = 1.25,
         currentPoll = 10000,
         currentTimeout,
-        updateItems;
+        updateItems,
+        itemTypeLinksActive = true;
 
     // Detach forms and attach to item types as original.
     $('.topic .item-type').each(function() {
-        var $itemtype = $(this),
-            $form = $itemtype.find('.form');
+        var $itemType = $(this),
+            $form = $itemType.find('.form');
         $form.detach();
-        $itemtype.data('originalform', $form.html());
+        $itemType.data('originalform', $form.html());
     });
 
     updateItems = function () {
@@ -58,25 +59,45 @@
     setTimeout(updateItems, currentPoll);
 
     $('.topic .item-type .label a').live('click', function (event) {
-        var $itemtype = $(event.target).parents('.item-type'),
-            $form = $itemtype.find('.form');
-        // Hide all other forms first as needed.
-        $('.topic .item-type .form').each(function () {
+        if (!itemTypeLinksActive) {
+            return false;
+        }
+
+        var $itemType = $(event.target).parents('.item-type'),
+            $form = $itemType.find('.form');
+
+        // Hide all other item types.
+        $('.topic .item-type').each(function () {
             var $candidate = $(this);
-            if ($candidate != $form && $candidate.find(':visible').length > 0) {
-                $candidate.slideUp('fast', function () { $candidate.remove(); });
+            if (this != $itemType[0]) {
+                $candidate.slideUp('fast', function () {
+                    // Remove any form copies that may exist, for good measure.
+                    $candidate.find('.form').remove();
+                });
             }
         });
-        // Now show or hide this one.
-        if ($form.find(':visible').length > 0) {
-            // hide and remove
-            $form.slideUp('fast', function () { $form.remove(); });
-        } else {
-            // clone and show.  generate from html for proper event hookups.
-            $form = $('<div class="form">' + $itemtype.data('originalform') + '</div>');
-            $form.hide().appendTo($itemtype).slideDown('fast');
-            $form.find(':input:first[type!="hidden"]').focus();
-        }
+
+        // Now clone and show the form for this item type.
+        $form = $('<div class="form">' + $itemType.data('originalform') + '</div>');
+        $form.hide().appendTo($itemType).slideDown('fast');
+        $form.find(':input:first[type!="hidden"]').focus();
+        itemTypeLinksActive = false;
+
+        return false;
+    });
+
+    // When cancel clicked, slide up this form, and make all other content types visible.
+    $('.topic .item-type .form a.cancel').live('click', function (event) {
+        var $itemType = $(event.target).parents('.item-type'),
+            $form = $itemType.find('.form');
+        $form.slideUp('fast', function () { $form.remove(); });
+        $('.topic .item-type').each(function () {
+            var $candidate = $(this);
+            if (this != $itemType[0]) {
+                $candidate.slideDown('fast');
+            }
+        });
+        itemTypeLinksActive = true;
         return false;
     });
 
@@ -92,15 +113,28 @@
             url: $form.attr('action'),
             data: $form.serialize(),
             success: function (data) {
-                var $formparent;
+                var $formDiv,
+                    $formItemType,
+                    $formParent;
                 if (data == '1') {
-                    $form.slideUp('slow');
+                    // Successful submit.  Destroy the form, and show other item types.
+                    $formDiv = $form.parent('.form');
+                    $formDiv.slideUp('slow', function () { $formDiv.remove(); });
+                    $formItemType = $form.parent('.item-type');
+                    $('.topic .item-type').each(function () {
+                        var $candidate = $(this);
+                        if (this != $formItemType[0]) {
+                            $candidate.slideDown('fast');
+                        }
+                    });
+                    itemTypeLinksActive = true;
                     updateItems();
                 } else {
-                    $formparent = $form.parent();
+                    // Unsuccessful; replace the form with the snippet received from the server.
+                    $formParent = $form.parent();
                     $form.remove();
-                    $formparent.append(data);
-                    $formparent.find('form :input:first[type!="hidden"]').focus();
+                    $formParent.append(data);
+                    $formParent.find('form :input:first[type!="hidden"]').focus();
                 }
             },
             error: function (req, status) {
