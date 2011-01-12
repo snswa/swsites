@@ -428,7 +428,6 @@ div#breadcrumbs {
 div#content {
   margin-top: 10px; }
   div#content h1, div#content h2, div#content h3, div#content h4, div#content h5, div#content h6 {
-    font-weight: normal;
     color: #06294f; }
     div#content h1 a, div#content h2 a, div#content h3 a, div#content h4 a, div#content h5 a, div#content h6 a {
       text-decoration: none;
@@ -436,7 +435,10 @@ div#content {
   div#content h1 {
     border-bottom: 2px solid #06294f;
     padding: 0 10px 0 10px;
-    font-size: 16pt; }
+    font-size: 16pt;
+    font-weight: normal; }
+  div#content h2 {
+    font-size: 14pt; }
 
 .hq div#content h1, .hq div#content h2, .hq div#content h3, .hq div#content h4, .hq div#content h5, .hq div#content h6 {
   color: #003322; }
@@ -446,6 +448,8 @@ div#content {
   border-bottom-color: #0b4f96;
   border-bottom-width: 3px;
   background-color: #bfdcfa; }
+.hq div#content h2 {
+  color: #083b70; }
 
 div#sidebar {
   font-size: smaller; }

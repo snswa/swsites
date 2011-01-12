@@ -388,7 +388,6 @@ div#content {
   $fgcolor: darken($color-s1, 15%);
   margin-top: $gutter-width;
   h1, h2, h3, h4, h5, h6 {
-    font-weight: normal;
     color: $fgcolor;
     a {
       text-decoration: none;
@@ -399,6 +398,10 @@ div#content {
     border-bottom: $accent-width solid $fgcolor;
     padding: 0 $gutter-width 0 $gutter-width;
     font-size: 16pt;
+    font-weight: normal;
+  }
+  h2 {
+    font-size: 14pt;
   }
 }
 
@@ -417,6 +420,9 @@ div#content {
       width: $shadow-width;
     };
     background-color: $bgcolor;
+  }
+  h2 {
+    color: darken($bgcolor, 63%);
   }
 }
 
