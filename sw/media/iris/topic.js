@@ -1,5 +1,9 @@
 (function ($) {
     var DEBUG = false;
+    if (!DEBUG && $.browser.msie) {
+        // Just skip IE for now.  :-/
+        return;
+    }
     function trace(s) {
         if (DEBUG) {
             try { console.log(s) } catch (e) { alert(s) }
@@ -101,7 +105,7 @@
         return false;
     });
 
-    $('.topic .item-type .form').live('submit', function (event) {
+    $('.topic .item-type form').live('submit', function (event) {
         var $form = $(event.target);
         if (!$form.is('form')) {
             // on IE, it's not the form that's submitted, it's
