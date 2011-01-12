@@ -1,0 +1,19 @@
+{% load queryset_tags %}
+
+<h1><a href="{% url dashboard_actions %}">Recent activity</a></h1>
+
+{% if team_actions %}
+    <ul class="stream">
+        {% for action in team_actions|qslimit:10 %}
+            <li class="event">
+                {% include "activity/action.html" %}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        <li><a href="{% url dashboard_actions %}">More activity &rarr;</a></li>
+    </ul>
+{% else %}
+    (No activity)
+{% endif %}

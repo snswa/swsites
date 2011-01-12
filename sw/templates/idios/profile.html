@@ -6,7 +6,6 @@
 {% load group_tags %}
 {% load i18n %}
 {% load queryset_tags %}
-{% load relationship_tags %}
 {% load sw_tags %}
 {% load uni_form_tags %}
 {% load zip_code_tags %}
@@ -155,97 +154,7 @@
     {% with page_user.get_profile as p %}
         <div id="sidebar" class="grid_4">
             {% feature friends %}
-                {% with page_user.relationships.friends as friends %}
-                {% with page_user.relationships.following as following %}
-                {% with page_user.relationships.followers as followers %}
-                    {% if friends or following or followers or not is_me %}
-                        <div class="section friends">
-                            <h1>{% trans "Friends" %}</h1>
-
-                            {% if not is_me %}
-                                <div class="follow-status">
-                                    {% ifrelationship user page_user "friends" %}
-                                        {% trans "You are friends with" %} {{ p }}.
-                                        <form action="{{ page_user|remove_relationship_url:'following' }}" method="post">
-                                            {% csrf_token %}
-                                            <input type="hidden" name="next" value="{% url profile_detail username=page_user.username %}">
-                                            <input type="submit" value="{% trans 'Stop following' %}">
-                                        </form>
-                                    {% else %}
-                                        {% ifrelationship user page_user "following" %}
-                                            {% trans "You follow" %} {{ p }}.
-                                            <form action="{{ page_user|remove_relationship_url:'following' }}" method="post">
-                                                {% csrf_token %}
-                                                <input type="hidden" name="next" value="{% url profile_detail username=page_user.username %}">
-                                                <input type="submit" value="{% trans 'Stop following' %}">
-                                            </form>
-                                        {% else %}
-                                            {% ifrelationship user page_user "followers" %}
-                                                {{ p }} {% trans "follows you" %}.
-                                            {% endifrelationship %}
-                                            <form action="{{ page_user|add_relationship_url:'following' }}" method="post">
-                                                {% csrf_token %}
-                                                <input type="hidden" name="next" value="{% url profile_detail username=page_user.username %}">
-                                                <input type="submit" value="{% trans 'Follow' %}">
-                                            </form>
-                                        {% endifrelationship %}
-                                    {% endifrelationship %}
-                                </div>
-                            {% endif %}
-
-                            {% if friends %}
-                                <h2>{% spaceless %}
-                                    {% if is_me %}
-                                        {% trans "Your mutual friends" %}
-                                    {% else %}
-                                        {% trans "Mutual friends" %}
-                                    {% endif %}
-                                {% endspaceless %}</h2>
-
-                                <ul>
-                                    {% for other_user in friends %}
-                                        <li><a href="{% url profile_detail username=other_user.username %}">{{ other_user.get_profile }}</a></li>
-                                    {% endfor %}
-                                </ul>
-                            {% endif %}
-
-                            {% if following %}
-                                <h2>{% spaceless %}
-                                    {% if is_me %}
-                                        {% trans "People you are following" %}
-                                    {% else %}
-                                        {% trans "Following these people" %}
-                                    {% endif %}
-                                {% endspaceless %}</h2>
-
-                                <ul>
-                                    {% for other_user in following %}
-                                        <li><a href="{% url profile_detail username=other_user.username %}">{{ other_user.get_profile }}</a></li>
-                                    {% endfor %}
-                                </ul>
-                            {% endif %}
-
-                            {% if followers %}
-                                <h2>{% spaceless %}
-                                    {% if is_me %}
-                                        {% trans "People following you" %}
-                                    {% else %}
-                                        {% trans "Followed by these people" %}
-                                    {% endif %}
-                                {% endspaceless %}</h2>
-
-                                <ul>
-                                    {% for other_user in followers %}
-                                        <li><a href="{% url profile_detail username=other_user.username %}">{{ other_user.get_profile }}</a></li>
-                                    {% endfor %}
-                                </ul>
-                            {% endif %}
-
-                        </div>
-                    {% endif %}
-                {% endwith %}
-                {% endwith %}
-                {% endwith %}
+                {% include "sidebars/friends.html" %}
             {% endfeature %}
 
             <div class="section">

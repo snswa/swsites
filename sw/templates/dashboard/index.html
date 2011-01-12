@@ -1,9 +1,7 @@
 {% extends "base_hq_12.html" %}
 
 {% load breadcrumbs feature_tag %}
-{% load events %}
 {% load group_tags %}
-{% load queryset_tags %}
 {% load wakacms_tags %}
 
 {% block page_title %}HQ{% endblock %}
@@ -19,67 +17,30 @@
     {% wikipagesnippet DashboardPreamble latest %}
 
     <div class="alpha grid_4">
-        <h1><a href="{% url dashboard_topics %}">Latest topics</a></h1>
-
-        {% if team_topics %}
-            <ul class="stream">
-                {% for topic in team_topics|qslimit:20 %}
-                    {% include "iris/topic_summary.html" %}
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>No topics.</p>
+        {% if request.GET.teamsontop %}     {# @@@ temporary #}
+            {% include "sidebars/yourteams.html" %}
         {% endif %}
 
-        <ul>
-            <li><a href="{% url dashboard_topics %}">More topics &rarr;</a></li>
-        </ul>
+        {% with 1 as is_me %}
+        {% with user as page_user %}
+            {% include "sidebars/friends.html" %}
+        {% endwith %}
+        {% endwith %}
+
+        {% if not request.GET.teamsontop %}     {# @@@ temporary #}
+            {% include "sidebars/yourteams.html" %}
+        {% endif %}
     </div>
 
     <div class="grid_4">
-        <h1><a href="{% url dashboard_events %}">Upcoming events</a></h1>
-
-        {% if team_events %}
-            <ul class="stream">
-                {% for event in team_events|upcomingevents|qslimit:20 %}
-                    {% include "dregni/event_summary_dashboard.html" %}
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>No upcoming events.</p>
-        {% endif %}
-
-        <ul>
-            <li><a href="{% url dashboard_events %}">Event calendar &rarr;</a></li>
-        </ul>
+        {% include "dashboard/actions_inline.html" %}
     </div>
 
     <div class="grid_4 omega">
-        {% include "sidebars/yourteams.html" %}
-
-        <h1><a href="{% url dashboard_actions %}">Recent activity</a></h1>
-
-        {% if team_actions %}
-            <ul class="stream">
-                {% for action in team_actions|qslimit:10 %}
-                    <li class="event">
-                        {% include "activity/action.html" %}
-                    </li>
-                {% endfor %}
-            </ul>
-
-            <ul>
-                <li><a href="{% url dashboard_actions %}">More activity &rarr;</a></li>
-            </ul>
-        {% else %}
-            (No activity)
-        {% endif %}
+        {% include "dashboard/events_inline.html" %}
+        {% include "dashboard/topics_inline.html" %}
     </div>
 
     <div class="clear"></div>
 
-{% endblock %}
-
-{% block sidebar_sections %}
-    {% include "sidebars/yourteams.html" %}
 {% endblock %}

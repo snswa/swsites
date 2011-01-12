@@ -1,0 +1,18 @@
+{% load events %}
+{% load queryset_tags %}
+
+<h1><a href="{% url dashboard_events %}">Upcoming events</a></h1>
+
+{% if team_events %}
+    <ul class="stream">
+        {% for event in team_events|upcomingevents|qslimit:20 %}
+            {% include "dregni/event_summary_dashboard.html" %}
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No upcoming events.</p>
+{% endif %}
+
+<ul>
+    <li><a href="{% url dashboard_events %}">Event calendar &rarr;</a></li>
+</ul>

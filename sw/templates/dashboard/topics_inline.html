@@ -1,0 +1,17 @@
+{% load queryset_tags %}
+
+<h1><a href="{% url dashboard_topics %}">Latest topics</a></h1>
+
+{% if team_topics %}
+    <ul class="stream">
+        {% for topic in team_topics|qslimit:20 %}
+            {% include "iris/topic_summary.html" %}
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No topics.</p>
+{% endif %}
+
+<ul>
+    <li><a href="{% url dashboard_topics %}">More topics &rarr;</a></li>
+</ul>
