@@ -1,26 +1,40 @@
 {% load iris_tags %}
 {% load queryset_tags %}
 <li class="event">
-    <span class="action-object"><a href="{{ topic.get_absolute_url }}{% if group.slug %}?team={{ group.slug }}{% endif %}">{{ topic.subject }}</a><span>
-    <span class="timestamp">
-        {{ topic.modified|timesince }} ago
-        by
-        <span class="target">
-            {% with topic.items.latest.creator as content %}
-                {% include "iris/content_link.html" %}
-            {% endwith %}
-            {% if not group %}
-                {% with topic|participantsoftype:"teams.team" as team_participants %}
-                {% with team_participants|length as length %}
-                    {% if length == 1 %}
-                        <br>in <a href="{{ team_participants.0.get_absolute_url }}">{{ team_participants.0 }}</a>
+    {% with topic|participantsoftype:"teams.team" as team_participants %}
+    {% with team_participants|length as team_participants_length %}
+        <span class="action-object">{% spaceless %}
+            {% if group.slug %}
+                <a href="{{ topic.get_absolute_url }}?team={{ group.slug }}">{{ topic.subject }}</a>
+            {% else %}
+                {% if team_participants_length == 1 %}
+                    <a href="{{ topic.get_absolute_url }}?team={{ team_participants.0.content.slug }}">{{ topic.subject }}</a>
+                {% else %}
+                    <a href="{{ topic.get_absolute_url }}">{{ topic.subject }}</a>
+                {% endif %}
+            {% endif %}
+        {% endspaceless %}<span>
+        <span class="timestamp">
+            {{ topic.modified|timesince }} ago
+            by
+            <span class="target">
+                {% with topic.items.latest.creator as content %}
+                    {% include "iris/content_link.html" %}
+                {% endwith %}
+                {% if not group %}
+                    {% if team_participants_length == 1 %}
+                        <br>
+                        in
+                        {% with team_participants.0.content as content %}
+                            {% include "iris/content_link.html" %}
+                        {% endwith %}
                     {% endif %}
-                    {% if length > 1 %}
+                    {% if team_participants_length > 1 %}
                         <br>in {{ length }} team{{ length|pluralize }}
                     {% endif %}
-                {% endwith %}
-                {% endwith %}
-            {% endif %}
+                {% endif %}
+            </span>
         </span>
-    </span>
+    {% endwith %}
+    {% endwith %}
 </li>
