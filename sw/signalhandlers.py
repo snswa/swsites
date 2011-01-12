@@ -8,6 +8,8 @@ from actstream import action
 from attachments.models import Attachment
 from dregni.models import Event
 from iris.models import Item
+from sw.models import Profile
+from swlocal.models import teams_for_zip_code
 from swtopics.models import Message
 from teams.models import Member, Team
 from wakawaka.models import Revision, WikiPage
@@ -30,6 +32,19 @@ def auto_join_user_to_groups(sender, instance, created, **kwargs):
                 instance.groups.add(group)
 
 post_save.connect(auto_join_user_to_groups, sender=User)
+
+
+# ====================================================================
+# Auto join users to teams based on ZIP code when saving profile
+
+def auto_join_user_to_teams(sender, instance, created, **kwargs):
+    user = instance.user
+    regional_teams = teams_for_zip_code(instance.zip_code)
+    for team in regional_teams:
+        if not team.user_is_member(user):
+            Member(user=user, team=team).save()
+
+post_save.connect(auto_join_user_to_teams, sender=Profile)
 
 
 # ====================================================================

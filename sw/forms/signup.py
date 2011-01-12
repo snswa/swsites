@@ -21,7 +21,7 @@ class HqSignupForm(SignupForm):
     zip_code = forms.CharField(
         label=_("ZIP Code"),
         max_length=30,
-        help_text=_('Outside the U.S.? Please name your location instead.')
+        help_text=_('Outside the U.S.? Please name your location instead.'),
     )
     email = forms.EmailField(
         widget=forms.TextInput(),
