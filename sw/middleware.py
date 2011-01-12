@@ -38,31 +38,26 @@ class HqPredicateMiddleware(object):
             has_preferred_name = False
             has_zip_code = False
         #
+        # Redirect to profile edit if profile is not complete.
         if not user.is_superuser:
-            # Redirect to profile edit if profile is not complete.
             if (profile_required
                 and not (has_preferred_name and has_zip_code)
                 and not request.GET.get('gather_profile', False)
                 ):
-                return HttpResponseRedirect(
-                    reverse('profile_edit')
-                    + '?gather_profile=1'
-                )
+                return HttpResponseRedirect('{0}?gather_profile=1'.format(reverse('profile_edit')))
             #
             # Redirect to email if no verified email.
             if (email_required
                 and not has_verified_email
                 and not request.GET.get('gather_email', False)
                 ):
-                return HttpResponseRedirect(
-                    reverse('account_email')
-                    + '?gather_email=1'
-                )
+                return HttpResponseRedirect('{0}?gather_email=1'.format(reverse('account_email')))
         #
         # Check for private team membership.
         group = request.group
         if group and not user.has_perm('teams.view', group):
-            raise PermissionDenied()
+            if group.is_private:
+                raise PermissionDenied()
         #
         # Set up missing info for nags.
         request.missing_info = {
