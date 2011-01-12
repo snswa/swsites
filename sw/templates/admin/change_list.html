@@ -23,7 +23,7 @@
 {{ block.super }}
 {{ media.js }}
 {% if action_form %}{% if actions_on_top or actions_on_bottom %}
-{# Added for snswa.org #}
+{# Added for sensiblewashington.org #}
 <style type="text/css">
     #changelist-filter h2 span{
         padding-right:15px;
@@ -38,13 +38,13 @@
         cursor:pointer;
     }
 </style>
-{# End added for snswa.org #}
+{# End added for sensiblewashington.org #}
 <script type="text/javascript">
 (function($) {
     $(document).ready(function($) {
         $("tr input.action-select").actions();
 
-        // // Added for snswa.org
+        // Added for sensiblewashington.org
         $("#changelist-filter h2").append('<span class="slidedown">&nbsp;</span>');
         $("#changelist-filter h2").bind("click",function(){
             if ($("#changelist-filter ul, #changelist-filter h3").is(":hidden")) {
@@ -57,7 +57,7 @@
                 $("#changelist-filter ul, #changelist-filter h3").slideUp();
             }
         });
-        // // End added for snswa.org
+        // End added for sensiblewashington.org
     });
 })(django.jQuery);
 </script>

@@ -13,7 +13,7 @@ _gaq.push(['_trackPageview']);
 // Clicky Analytics.
 
 var clicky = { log: function(){ return; }, goal: function(){ return; }};
-var clicky_site_id = 66349596;
+var clicky_site_id = 66349578;
 (function() {
   var s = document.createElement('script');
   s.type = 'text/javascript';
