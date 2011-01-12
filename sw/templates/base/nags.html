@@ -3,18 +3,18 @@
         {% if missing.email and not request.GET.gather_profile and not email_address %}
             <div>
                 {% if request.GET.gather_email %}
-                    <p>Please add and verify an email address to continue.</p>
+                    <p>Please verify an email address to continue.</p>
 
-                    <p>If you've already added an email address and are still seeing
-                    this message, please check your email and click on the
-                    verification link we emailed you.</p>
+                    <p>If you are still seeing this message, please check your email
+                    and click on the link in the email we sent.</p>
 
                     <p>You may need to check your "Spam" or "Junk" folder if you
                     don't receive an email. You can re-send a confirmation below.</p>
                 {% else %}
-                    <p>Please <a href="{% url account_email %}">add and verify an email address</a>.
-                    (If you've already added an email address and are still seeing this message,
-                    be sure to verify it by clicking on the link we emailed you.)</p>
+                    <p>Please <a href="{% url account_email %}">verify an email address</a>.
+                    (If you are still seeing this message,
+                    be sure to verify your email address it by clicking on the link in the
+                    email we sent.)</p>
                 {% endif %}
             </div>
         {% endif %}
