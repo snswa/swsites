@@ -442,6 +442,9 @@ div#sidebar {
     font-weight: normal;
     margin-bottom: .5em;
     border-bottom: $accent-width solid $color-p;
+    a {
+      text-decoration: none;
+    }
   }
   h2 {
     font-size: 12pt;

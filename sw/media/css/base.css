@@ -465,6 +465,8 @@ div#sidebar {
     font-weight: normal;
     margin-bottom: .5em;
     border-bottom: 2px solid #009966; }
+    div#sidebar h1 a {
+      text-decoration: none; }
   div#sidebar h2 {
     font-size: 12pt;
     margin-bottom: .5em; }
