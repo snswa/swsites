@@ -16,26 +16,22 @@ register = Library()
 # --- WIKI LINKS ---
 
 
-CREOLE_WIKILINK_REGEX = r'\[\[([^\]]*)\]\]'
+CREOLE_WIKILINK_REGEX = r'\[\[([ \w\._-]+)(\|(.+)){0,1}\]\]'
 CREOLE_WIKILINK_REGEX = re.compile(CREOLE_WIKILINK_REGEX)
 
 
 def replace_wikilinks(value, group, exists_template, missing_template):
     def replace_wikiword(m):
         slug = m.group(1)
-        parts = slug.split('|', 1)
-        if not parts:
-            # empty link
-            return ''
-        if len(parts) == 1:
-            slug = text = parts[0]
-        else:
-            slug, text = parts
+        text = m.group(3) or slug
         slug = slug.strip()
         text = text.strip()
-        if ':' in slug or '#' in slug or slug.startswith('.') or slug.startswith('/'):
-            # slug is an URL.
-            return exists_template.format(url=slug, text=text)
+        if not slug:
+            # empty link
+            return ''
+        # if ':' in slug or '#' in slug or slug.startswith('.') or slug.startswith('/'):
+        #     # slug is an URL.
+        #     return exists_template.format(url=slug, text=text)
         kwargs = dict(slug=slug)
         # See if the page exists.
         if group:

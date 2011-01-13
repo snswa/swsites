@@ -208,7 +208,7 @@ WAKAWAKA_REQUIRE_TEAM_ROLE = ('wiki', 'member')
 WAKAWAKA_EDITOR_COLUMNS = 70
 
 # This applies to URL matching only, not to parsing pages.
-WAKAWAKA_SLUG_REGEX = r'(.*)'
+WAKAWAKA_SLUG_REGEX = r'([ \w\._-]+)'
 
 WAKAWAKA_DEFAULT_INDEX = 'TeamHomePage'
 
