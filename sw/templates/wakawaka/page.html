@@ -5,6 +5,7 @@
 {% load comments %}
 {% load group_tags %}
 {% load i18n %}
+{% load sw_tags %}
 {% load wakawaka_tags %}
 {% load wakacms_tags %}
 
@@ -23,8 +24,8 @@
 	{% endif %}
 
 	{# Add support for the Universal Edit Button #}
-	{% if perms.wakawaka.change_wikipage %}
-	<link rel="edit" title="{% trans "Edit this page" %}" href="{% groupurl wakawaka_edit group slug=page.slug %}" />
+	{% if user|canchangewikipage:page %}
+	    <link rel="edit" title="{% trans "Edit this page" %}" href="{% groupurl wakawaka_edit group slug=page.slug %}" />
 	{% endif %}
 {% endblock %}
 
@@ -66,7 +67,7 @@
         <h1>This page</h1>
 
         <ul>
-        	{% if perms.wakawaka.change_wikipage %}
+        	{% if user|canchangewikipage:page %}
         		<li><span class="icon-link pencil-link"><strong><a href="{% groupurl wakawaka_edit group slug=page.slug %}"><span>Edit this page</span></a></strong></span></li>
         	{% endif %}
             <li>Revision: {{ rev.id }}</li>

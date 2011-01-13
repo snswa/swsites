@@ -70,6 +70,27 @@ def wikify_creole_links(value, group):
         )
 
 
+@register.filter
+def canviewwikipage(user, page):
+    return user.has_perm('wakawaka.can_view', page)
+
+@register.filter
+def canresetwikieditlockingroup(user, group):
+    return user.has_perm('wakawaka.reset_lock', group)
+
+@register.filter
+def candeletewikipage(user, page):
+    return user.has_perm('wakawaka.delete_wikipage', page)
+
+@register.filter
+def canchangewikipage(user, page):
+    return user.has_perm('wakawaka.change_wikipage', page)
+
+@register.filter
+def canaddwikipagetogroup(user, group):
+    return user.has_perm('wakawaka.add_wikipage', group)
+
+
 # --- PROFILE PRIVACY ---
 
 

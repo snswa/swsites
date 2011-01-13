@@ -1,5 +1,7 @@
 from iris.models import Topic
 from teams.models import Team
+from teams.templatetags.team_tags import iscoordinatorofteam
+from wakawaka.models import Revision, WikiPage
 
 
 class TopicAccessBackend(object):
@@ -56,6 +58,49 @@ class TopicAccessBackend(object):
                         return True
             # Default: cannot add any item.
             return False
+
+
+class WikiAccessBackend(object):
+
+    supports_object_permissions = True
+    supports_anonymous_user = True
+
+    def authenticate(self, username, password):
+        return None
+
+    def has_perm(self, user_obj, perm, obj=None):
+        def is_coordinator_of_group(group):
+            return (
+                # Page has a group associated.
+                group is not None
+                and (
+                    # User is coordinator of the group, or
+                    iscoordinatorofteam(user_obj, group)
+                    or (
+                        # User is member and group is private.
+                        group.user_is_member(user_obj)
+                        and group.is_private
+                    )
+                )
+            )
+        if isinstance(obj, WikiPage):
+            # Allow coordinators to change wiki pages in public groups.
+            # Allow any member to change wiki pages in private groups.
+            if perm == 'wakawaka.change_wikipage' or perm == 'wakawaka.change_revision':
+                return obj.group and is_coordinator_of_group(obj.group)
+            # Allow coordinators to reset edit locks on wiki pages in public groups.
+            # Allow any member to reset edit locks in private groups.
+            if perm == 'wakawaka.reset_lock':
+                return obj.group and is_coordinator_of_group(obj.group)
+            # Allow coordinators to delete wiki pages in public groups.
+            # Allow any member to delete wiki pages in private groups.
+            if perm == 'wakawaka.delete_wikipage' or perm == 'wakawaka.delete_revision':
+                return obj.group and is_coordinator_of_group(obj.group)
+        elif isinstance(obj, Team):
+            # Allow coordinators to add wiki pages in public groups.
+            # Allow any member to add wiki pages in private groups.
+            if perm == 'wakawaka.add_wikipage' or perm == 'wakawaka.add_revision':
+                return is_coordinator_of_group(obj)
 
 
 # @@@ replace this with use of per-object restrictions

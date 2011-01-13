@@ -86,7 +86,18 @@
         {% with team_wiki_index_page.current as rev %}
             {% include "wakawaka/page_content.html" %}
         {% endwith %}
+
+        {% if user|canaddwikipagetogroup:group %}
+            <p><a href="{% groupurl wakawaka_index group %}"><strong>View and edit the team home page &rarr;</strong></a></p>
+        {% endif %}
+    {% else %}
+        <p>(The home page for this team has not yet been written.)</p>
+
+        {% if user|canaddwikipagetogroup:group %}
+            <p><a href="{% groupurl wakawaka_index group %}"><strong>Create the team home page &rarr;</strong></a></p>
+        {% endif %}
     {% endif %}
+
 {% endblock %}
 
 {% block sidebar_sections %}

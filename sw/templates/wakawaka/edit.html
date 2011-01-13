@@ -3,14 +3,15 @@
 {% load breadcrumbs feature_tag %}
 {% load group_tags %}
 {% load i18n %}
+{% load sw_tags %}
 {% load uni_form_tags %}
 
 {% block extrahead %}
 	{{ block.super }}
 
 	{# Add support for the Universal Edit Button #}
-	{% if perms.wakawaka.change_wikipage %}
-	<link rel="edit" title="{% trans "Edit this page" %}" href="{% groupurl wakawaka_edit group slug=page.slug %}" />
+	{% if user|canchangewikipage:page %}
+	    <link rel="edit" title="{% trans "Edit this page" %}" href="{% groupurl wakawaka_edit group slug=page.slug %}" />
 	{% endif %}
 {% endblock %}
 
