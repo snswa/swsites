@@ -75,7 +75,7 @@ class Interest(models.Model):
     order = models.IntegerField(default=0)
 
     class Meta:
-        ordering = ('-order', 'name')
+        ordering = ('order', 'name')
 
     def __unicode__(self):
         return self.name
