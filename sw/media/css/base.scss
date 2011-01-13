@@ -190,6 +190,9 @@ div#user-bar {
   h2 {
     top: 15px;
     height: 40px;
+    .beta {
+      color: $color-p;
+    }
   }
 }
 

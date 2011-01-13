@@ -254,6 +254,8 @@ div#user-bar {
   .hq .header h2 {
     top: 15px;
     height: 40px; }
+    .hq .header h2 .beta {
+      color: #009966; }
 
 #site-search {
   position: absolute;
