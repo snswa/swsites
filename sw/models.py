@@ -30,8 +30,11 @@ class Profile(ProfileBase):
     zip_code = models.CharField(max_length=30, blank=True)
     zip_code_privacy = models.CharField(max_length=1, choices=PRIVACY_CHOICES_CFA, default='C')
 
-    mailing_address = models.TextField(blank=True)
-    mailing_address_privacy = models.CharField(max_length=1, choices=PRIVACY_CHOICES_PCFA, default='C')
+    interests = models.ManyToManyField('Interest')
+    interests_privacy = models.CharField(max_length=1, choices=PRIVACY_CHOICES_CFA, default='C')
+
+    bio = models.TextField(blank=True)
+    bio_privacy = models.CharField(max_length=1, choices=PRIVACY_CHOICES_CFA, default='C')
 
     email_privacy = models.CharField(max_length=1, choices=PRIVACY_CHOICES_PCFA, default='C',
         help_text='Manage email addresses by saving your profile, then clicking "Manage Email Addresses".')
@@ -46,19 +49,36 @@ class Profile(ProfileBase):
     skype = models.CharField(max_length=100, blank=True)
     messaging_privacy = models.CharField(max_length=1, choices=PRIVACY_CHOICES_CFA, default='C')
 
+    mailing_address = models.TextField(blank=True)
+    mailing_address_privacy = models.CharField(max_length=1, choices=PRIVACY_CHOICES_PCFA, default='C')
+
     preferred_contact_methods = models.CharField(max_length=255, blank=True)
     preferred_contact_methods_privacy = models.CharField(max_length=1, choices=PRIVACY_CHOICES_CFA, default='C')
-
-    bio = models.TextField(blank=True)
-    bio_privacy = models.CharField(max_length=1, choices=PRIVACY_CHOICES_CFA, default='C')
 
     occupation = models.CharField(max_length=100, blank=True)
     occupation_privacy = models.CharField(max_length=1, choices=PRIVACY_CHOICES_PCFA, default='C')
     employer = models.CharField(max_length=100, blank=True)
     employer_privacy = models.CharField(max_length=1, choices=PRIVACY_CHOICES_PCFA, default='C')
 
+    union_name = models.CharField(blank=True, max_length=100)
+    union_local_number = models.CharField(blank=True, max_length=100)
+    union_privacy = models.CharField(max_length=1, choices=PRIVACY_CHOICES_CFA, default='C')
+
     def __unicode__(self):
         return self.preferred_name or self.user.username
+
+
+class Interest(models.Model):
+    """Something users may be interested in, for attaching to profiles."""
+
+    name = models.CharField(max_length=100)
+    order = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ('-order', 'name')
+
+    def __unicode__(self):
+        return self.name
 
 
 # ========================================================================

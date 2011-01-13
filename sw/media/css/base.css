@@ -723,3 +723,15 @@ table.calendar {
     color: lightgrey; }
   .topic .item .items_after {
     display: none; }
+
+.uniForm .ctrlHolder ul {
+  display: block;
+  width: 45%;
+  float: left;
+  list-decoration: none; }
+  .uniForm .ctrlHolder ul li {
+    display: block;
+    margin-left: 0; }
+    .uniForm .ctrlHolder ul li label {
+      display: inline;
+      float: none; }

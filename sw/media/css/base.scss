@@ -814,3 +814,18 @@ table.calendar {
     }
   }
 }
+
+.uniForm .ctrlHolder ul {
+  display: block;
+  width: 45%;
+  float: left;
+  list-decoration: none;
+  li {
+    display: block;
+    margin-left: 0;
+    label {
+      display: inline;
+      float: none;
+    }
+  }
+}

@@ -1,9 +1,10 @@
-from idios.utils import get_profile_form
+from django import forms
 
+from idios.utils import get_profile_form
+from sw.decorators import autostrip
+from sw.models import Interest
 from uni_form.helpers import FormHelper, Submit, Reset
 from uni_form.helpers import Layout, Fieldset, Row, HTML
-
-from sw.decorators import autostrip
 
 
 BaseProfileForm = get_profile_form()
@@ -11,6 +12,9 @@ BaseProfileForm = get_profile_form()
 
 @autostrip
 class ProfileForm(BaseProfileForm):
+
+    interests = forms.ModelMultipleChoiceField(
+        queryset=Interest.objects.all(), widget=forms.CheckboxSelectMultiple)
 
     helper = FormHelper()
 
@@ -22,11 +26,13 @@ class ProfileForm(BaseProfileForm):
             Row('first_name', 'last_name'),
             'name_privacy',
         ),
-        Fieldset('Location',
+        Fieldset('More about yourself',
             'zip_code',
             'zip_code_privacy',
-            'mailing_address',
-            'mailing_address_privacy',
+            'interests',
+            'interests_privacy',
+            'bio',
+            'bio_privacy',
         ),
         Fieldset('Email',
             'email_privacy',
@@ -43,6 +49,10 @@ class ProfileForm(BaseProfileForm):
             'skype',
             'messaging_privacy',
         ),
+        Fieldset('Address',
+            'mailing_address',
+            'mailing_address_privacy',
+        ),
         Fieldset('Preferences',
             'preferred_contact_methods',
             'preferred_contact_methods_privacy',
@@ -53,11 +63,19 @@ class ProfileForm(BaseProfileForm):
             'employer',
             'employer_privacy',
         ),
-        Fieldset('More about yourself',
-            'bio',
-            'bio_privacy',
+        Fieldset('Union Outreach',
+            'union_name',
+            'union_local_number',
+            'union_privacy',
         ),
     )
     helper.add_layout(layout)
     submit = Submit('save', 'Save profile')
     helper.add_input(submit)
+
+    def save(self, *args, **kw):
+        # If we already have an instance, override commit so we can
+        # save interests set by the user.
+        if self.instance:
+            kw['commit'] = True
+        return super(ProfileForm, self).save(*args, **kw)

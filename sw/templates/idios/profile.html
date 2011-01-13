@@ -44,13 +44,78 @@
                     * Asterisks indicate information
                     {% if not is_me %}shared with you, but{% endif %}
                     not shared with all volunteers.
-                    {% if not is_me %}Please respect this user's privacy settings.{% endif %}
+                    {% if not is_me %}Please respect this user's privacy preferences.{% endif %}
                 </p>
 
                 {% if can_view_name %}
                     {% if p.first_name or p.last_name %}
                         <p><b>{% trans "Full Name" %}</b>{% if name_restricted %}*{% endif %}: {{ p.first_name }} {{p.last_name}}</p>
                     {% endif %}
+                {% endif %}
+
+                {% if can_view_zip_code and p.zip_code %}
+                    <p><b>{% trans "ZIP Code" %}</b>{% if zip_code_restricted %}*{% endif %}:
+                        {{ p.zip_code }}
+                        {% zip_code_object p.zip_code as zip_code_obj %}
+                        {% if zip_code_obj %}
+                            ({{ zip_code_obj.city|title }}, {{ zip_code_obj.state }})
+                        {% endif %}
+                    </p>
+                {% endif %}
+
+                {% if can_view_interests %}
+                    {% with p.interests.all as interests %}
+                        {% if interests|length > 0 %}
+                            <p><b>{% trans "Interests" %}</b>{% if interests_restricted %}*{% endif %}:</p>
+                            <ul>
+                                {% for interest in interests %}
+                                    <li>{{ interest }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% endwith %}
+                {% endif %}
+
+                {% if can_view_bio and p.bio %}
+                    <p><b>{% trans "Bio" %}</b>{% if bio_restricted %}*{% endif %}: {{ p.bio|linebreaks }}</p>
+                {% endif %}
+
+                {% if can_view_email %}
+                    <p><b>{% trans "Email Addresses" %}</b>{% if email_restricted %}*{% endif %}:
+                        {% for emailaddress in p.user.emailaddress_set.all %}
+                            <a href="mailto:{{ emailaddress.email }}">{{ emailaddress.email }}</a>{% if not forloop.last %},{% endif %}
+                        {% endfor %}
+                    </p>
+                {% endif %}
+
+                {% if can_view_phone_number and p.phone_number %}
+                    <p><b>{% trans "Phone Number" %}</b>{% if phone_number_restricted %}*{% endif %}: {{ p.phone_number }}</p>
+                {% endif %}
+
+                {% if can_view_messaging %}
+                    {% if p.yahoo_messenger %}
+                        <p><b>{% trans "Yahoo! Messenger" %}</b>{% if messaging_restricted %}*{% endif %}: <a href="ymsgr:sendIM?{{ p.yahoo_messenger }}">{{ p.yahoo_messenger }}</a></p>
+                    {% endif %}
+
+                    {% if p.aim %}
+                        <p><b>{% trans "AIM" %}</b>{% if messaging_restricted %}*{% endif %}: <a href="aim:goim?screenname={{ p.aim }}">{{ p.aim }}</a></p>
+                    {% endif %}
+
+                    {% if p.msn_messenger %}
+                        <p><b>{% trans "MSN Messenger" %}</b>{% if messaging_restricted %}*{% endif %}: <a href="msnim:chat?contact={{ p.msn_messenger }}">{{ p.msn_messenger }}</a></p>
+                    {% endif %}
+
+                    {% if p.skype %}
+                        <p><b>{% trans "Skype" %}</b>{% if messaging_restricted %}*{% endif %}: <a href="skype:{{ p.skype }}">{{ p.skype }}</a></p>
+                    {% endif %}
+                {% endif %}
+
+                {% if can_view_mailing_address and p.mailing_address %}
+                    <p><b>{% trans "Mailing Address" %}</b>{% if mailing_address_restricted %}*{% endif %}:<br /><pre>{{ p.mailing_address }}</pre></p>
+                {% endif %}
+
+                {% if can_view_preferred_contact_methods and p.preferred_contact_methods %}
+                    <p><b>{% trans "Preferred Contact Methods" %}</b>{% if preferred_contact_methods_restricted %}*{% endif %}: {{ p.preferred_contact_methods }}</p>
                 {% endif %}
 
                 {% if can_view_occupation and can_view_employer %}
@@ -72,56 +137,13 @@
                     {% endif %}
                 {% endif %}
 
-                {% if can_view_zip_code and p.zip_code %}
-                    <p><b>{% trans "ZIP Code" %}</b>{% if zip_code_restricted %}*{% endif %}:
-                        {{ p.zip_code }}
-                        {% zip_code_object p.zip_code as zip_code_obj %}
-                        {% if zip_code_obj %}
-                            ({{ zip_code_obj.city|title }}, {{ zip_code_obj.state }})
-                        {% endif %}
-                    </p>
-                {% endif %}
-
-                {% if can_view_mailing_address and p.mailing_address %}
-                    <p><b>{% trans "Mailing Address" %}</b>{% if mailing_address_restricted %}*{% endif %}:<br /><pre>{{ p.mailing_address }}</pre></p>
-                {% endif %}
-
-                {% if can_view_phone_number and p.phone_number %}
-                    <p><b>{% trans "Phone Number" %}</b>{% if phone_number_restricted %}*{% endif %}: {{ p.phone_number }}</p>
-                {% endif %}
-
-                {% if can_view_email %}
-                    <p><b>{% trans "Email Addresses" %}</b>{% if email_restricted %}*{% endif %}:
-                        {% for emailaddress in p.user.emailaddress_set.all %}
-                            <a href="mailto:{{ emailaddress.email }}">{{ emailaddress.email }}</a>{% if not forloop.last %},{% endif %}
-                        {% endfor %}
-                    </p>
-                {% endif %}
-
-                {% if can_view_messaging %}
-                    {% if p.yahoo_messenger %}
-                        <p><b>{% trans "Yahoo! Messenger" %}</b>{% if messaging_restricted %}*{% endif %}: <a href="ymsgr:sendIM?{{ p.yahoo_messenger }}">{{ p.yahoo_messenger }}</a></p>
+                {% if can_view_union %}
+                    {% if p.union_name %}
+                        <p><b>Union Name</b>{% if union_restricted %}*{% endif %}: {{ p.union_name }}</p>
                     {% endif %}
-
-                    {% if p.aim %}
-                        <p><b>{% trans "AIM" %}</b>{% if messaging_restricted %}*{% endif %}: <a href="aim:goim?screenname={{ p.aim }}">{{ p.aim }}</a></p>
+                    {% if p.union_local_number %}
+                        <p><b>Union Local Number</b>{% if union_restricted %}*{% endif %}: {{ p.union_local_number }}</p>
                     {% endif %}
-
-                    {% if p.msn_messenger %}
-                        <p><b>{% trans "MSN Messenger" %}</b>{% if messaging_restricted %}*{% endif %}: <a href="msnim:chat?contact={{ p.msn_messenger }}">{{ p.msn_messenger }}</a></p>
-                    {% endif %}
-
-                    {% if p.skype %}
-                        <p><b>{% trans "Skype" %}</b>{% if messaging_restricted %}*{% endif %}: <a href="skype:{{ p.skype }}">{{ p.skype }}</a></p>
-                    {% endif %}
-                {% endif %}
-
-                {% if can_view_preferred_contact_methods and p.preferred_contact_methods %}
-                    <p><b>{% trans "Preferred Contact Methods" %}</b>{% if preferred_contact_methods_restricted %}*{% endif %}: {{ p.preferred_contact_methods }}</p>
-                {% endif %}
-
-                {% if can_view_bio and p.bio %}
-                    <p><b>{% trans "Bio" %}</b>{% if bio_restricted %}*{% endif %}: {{ p.bio|linebreaks }}</p>
                 {% endif %}
             </div>
         </div>

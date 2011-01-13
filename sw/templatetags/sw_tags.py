@@ -161,14 +161,16 @@ class ProfilePrivacyNode(Node):
         for section in [
             'name',
             'zip_code',
-            'mailing_address',
+            'interests',
+            'bio',
             'email',
             'phone_number',
             'messaging',
+            'mailing_address',
             'preferred_contact_methods',
-            'bio',
             'occupation',
             'employer',
+            'union',
             ]:
             privacy_name = '{0}_privacy'.format(section)
             privacy_code = getattr(profile, privacy_name)
