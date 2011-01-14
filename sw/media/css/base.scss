@@ -33,18 +33,18 @@ $color-c: #e64d00;
 }
 @mixin icon-link($icon-name) {
   .#{$icon-name}-link {
-    background: transparent url('/media/icons/#{$icon-name}.png') left center no-repeat;
+    background: transparent url('../icons/#{$icon-name}.png') left center no-repeat;
   }
   .#{$icon-name}-link-hover:hover {
-    background: transparent url('/media/icons/#{$icon-name}.png') left center no-repeat;
+    background: transparent url('../icons/#{$icon-name}.png') left center no-repeat;
   }
 }
 @mixin content-type-icon-link($icon-name, $content-type-name) {
   .#{$content-type-name}-link {
-    background: transparent url('/media/icons/#{$icon-name}.png') left center no-repeat;
+    background: transparent url('../icons/#{$icon-name}.png') left center no-repeat;
   }
   .#{$content-type-name}-link-hover:hover {
-    background: transparent url('/media/icons/#{$icon-name}.png') left center no-repeat;
+    background: transparent url('../icons/#{$icon-name}.png') left center no-repeat;
   }
 }
 @include icon-link("bullet_blue");
@@ -152,7 +152,7 @@ div#user-bar {
 }
 
 .header {
-  background-image: url("/media/images/logos/logo-246x140.gif");
+  background-image: url("../images/logos/logo-246x140.gif");
   background-position: 5px;
   background-repeat: no-repeat;
   background-size: 246px 140px;
@@ -180,7 +180,7 @@ div#user-bar {
 }
 
 .hq .header {
-  background-image: url("/media/images/logos/logo-123x70.gif");
+  background-image: url("../images/logos/logo-123x70.gif");
   background-size: 123px 70px;
   height: 70px;
   margin-top: $user-bar-height + $gutter-width;
@@ -510,7 +510,7 @@ ul#site-messages {
   }
   #actwithus-link {
     display: inline-block;
-    background: transparent url('/media/images/logos/actwithus.png') left bottom no-repeat;
+    background: transparent url('../images/logos/actwithus.png') left bottom no-repeat;
     background-size: 63px 16px;
     width: 63px;
     text-indent: -9999px;
@@ -677,19 +677,19 @@ ul.socialaccount_providers {
       vertical-align: middle;
       text-indent: -9000px;
       &.local {
-        background:transparent url('/media/socialaccount/sw.png') left top no-repeat;
+        background:transparent url('../socialaccount/sw.png') left top no-repeat;
       }
       &.google {
-        background:transparent url('/media/socialaccount/google.png') left top no-repeat;
+        background:transparent url('../socialaccount/google.png') left top no-repeat;
       }
       &.twitter {
-        background:transparent url('/media/socialaccount/twitter.png') left top no-repeat;
+        background:transparent url('../socialaccount/twitter.png') left top no-repeat;
       }
       &.facebook {
-        background:transparent url('/media/socialaccount/facebook.png') left top no-repeat;
+        background:transparent url('../socialaccount/facebook.png') left top no-repeat;
       }
       &.yahoo {
-        background:transparent url('/media/socialaccount/yahoo.png') left top no-repeat;
+        background:transparent url('../socialaccount/yahoo.png') left top no-repeat;
       }
     }
   }
@@ -724,7 +724,7 @@ ul.socialaccount_providers {
 
 #nags {
   div {
-    background: lighten(yellow, 27%) url('/media/icons/exclamation.png') left center no-repeat;
+    background: lighten(yellow, 27%) url('../icons/exclamation.png') left center no-repeat;
     background-position-x: $gutter-width;
     border: {
       width: 1px 1px $shadow-width 1px;
