@@ -317,12 +317,12 @@ div#site-sections {
   @include active-site-section($name, $color-s1, white);
 }
 
-.hq.hq-section            { @include active-hq-section('hq'); }
-.hq.local-section         { @include active-hq-section('local'); }
-.hq.teams-section         { @include active-hq-section('teams'); }
-.hq.support-section       { @include active-hq-section('support'); }
-.hq.library-section       { @include active-hq-section('library'); }
-.hq.coordinators-section  { @include active-hq-section('coordinators'); }
+.hq.hq-section        { @include active-hq-section('hq'); }
+.hq.local-section     { @include active-hq-section('local'); }
+.hq.teams-section     { @include active-hq-section('teams'); }
+.hq.tools-section   { @include active-hq-section('tools'); }
+.hq.library-section   { @include active-hq-section('library'); }
+.hq.events-section    { @include active-hq-section('events'); }
 
 @mixin active-public-section($name) {
   @include active-site-section($name, $color-p, white);

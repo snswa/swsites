@@ -183,7 +183,7 @@ urlpatterns += team_bridge.include_urls(
 legacy_urls = (
     ('^wiki/', '/dashboard/'),
 
-    ('^support/$', '/placeholder/support/'),
+    ('^tools/$', '/placeholder/tools/'),
     ('^library/$', '/placeholder/library/'),
     ('^coordinators/$', '/placeholder/coordinators/'),
 )

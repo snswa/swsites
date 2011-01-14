@@ -2,6 +2,6 @@
 <li><a id="hq-link" href="{% if user.is_authenticated %}{% url dashboard_index %}{% else %}{% url sw_hq %}{% endif %}">HQ</a></li>
 <li><a id="local-link" href="/local/">Local</a></li>
 <li><a id="teams-link" href="{% url teams_index %}">Teams</a></li>
-<li><a id="support-link" href="/support/">Support</a></li>
+<li><a id="tools-link" href="/tools/">Tools</a></li>
 <li><a id="library-link" href="/library/">Library</a></li>
-<li><a id="coordinators-link" href="/coordinators/">Coordinators</a></li>
+<li><a id="events-link" href="{% url dashboard_events %}">Events</a></li>
