@@ -53,6 +53,7 @@ def collectstatic():
         run('{0} collectstatic --noinput'.format(_admin()))
     else:
         run('{0} build_static --noinput'.format(_admin()))
+    run('src/env/bin/s3vcp swhq-static staticexport')
 
 
 def restart_app_server():
