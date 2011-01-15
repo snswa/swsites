@@ -1,3 +1,6 @@
+from django.shortcuts import get_object_or_404, render_to_response
+from django.template.context import RequestContext
+
 import iris.views
 from teams.models import Team
 
