@@ -54,3 +54,10 @@ def events(request, template_name='dashboard/events.html', *args, **kwargs):
         filter_qs=lambda qs: team_events,
         *args, **kwargs
     )
+
+
+@login_required
+def digest(request, template_name='dashboard/digest.html', *args, **kwargs):
+    template_context = {
+    }
+    return render_to_response(template_name, template_context, RequestContext(request))
