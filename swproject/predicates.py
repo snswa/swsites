@@ -94,10 +94,6 @@ class WikiAccessBackend(object):
             # Allow any member to change wiki pages in private groups.
             if perm == 'wakawaka.change_wikipage' or perm == 'wakawaka.change_revision':
                 return obj.group and has_permission_for_group(obj.group)
-            # Allow coordinators to reset edit locks on wiki pages in public groups.
-            # Allow any member to reset edit locks in private groups.
-            if perm == 'wakawaka.reset_lock':
-                return obj.group and has_permission_for_group(obj.group)
             # Allow coordinators to delete wiki pages in public groups.
             # Allow any member to delete wiki pages in private groups.
             if perm == 'wakawaka.delete_wikipage' or perm == 'wakawaka.delete_revision':
@@ -106,6 +102,10 @@ class WikiAccessBackend(object):
             # Allow coordinators to add wiki pages in public groups.
             # Allow any member to add wiki pages in private groups.
             if perm == 'wakawaka.add_wikipage' or perm == 'wakawaka.add_revision':
+                return has_permission_for_group(obj)
+            # Allow coordinators to reset edit locks on wiki pages in public groups.
+            # Allow any member to reset edit locks in private groups.
+            if perm == 'wakawaka.reset_lock':
                 return has_permission_for_group(obj)
 
 
