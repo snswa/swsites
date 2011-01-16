@@ -285,17 +285,17 @@ CELERYBEAT_SCHEDULE = {
     'Send activity updates to users with 06/24 schedule': {
         'task': 'dashboard.tasks.send_emails_to_schedule',
         'args': ('06/24',),
-        'schedule': crontab(minute=0, hour=0),
+        'schedule': crontab(minute=0, hour=6),
     },
     'Send activity updates to users with 12/24 schedule': {
         'task': 'dashboard.tasks.send_emails_to_schedule',
         'args': ('12/24',),
-        'schedule': crontab(minute=0, hour=0),
+        'schedule': crontab(minute=0, hour=12),
     },
     'Send activity updates to users with 18/24 schedule': {
         'task': 'dashboard.tasks.send_emails_to_schedule',
         'args': ('18/24',),
-        'schedule': crontab(minute=0, hour=0),
+        'schedule': crontab(minute=0, hour=18),
     },
     'Send activity updates to users with 00/48 schedule': {
         'task': 'dashboard.tasks.send_emails_to_schedule',
