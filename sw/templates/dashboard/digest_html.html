@@ -1,3 +1,4 @@
+{% load shorturl team_tags %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -5,6 +6,68 @@
     </head>
     <body>
         <h1>Volunteer HQ Update - Sensible Washington</h1>
-        <p>From <strong>{{ start_date }}</strong> to <strong>{{ end_date }}</strong></p>
+        <ul>
+            <li>Prepared for <a href="{% shorturl user %}">{{ user.get_profile }}</a></li>
+            <li><strong>{{ start_date }}</strong> - <strong>{{ end_date }}</strong></li>
+        </ul>
+        <p>
+            This email is automatically generated, and was requested by you.
+            Please do not reply directly to this email.
+        </p>
+        <p>
+            Change your email delivery settings here, including unsubscribe:
+            <a href="http://swhq.org{% url profile_edit %}">http://swhq.org{% url profile_edit %}</a>
+        </p>
+        {% if site_wide_announcement %}
+            <h2>Site-wide announcement</h2>
+            <p>{{ site_wide_announcement }}</p>
+        {% endif %}
+        {% for team_info in team_info_list %}
+            {% if team_info.has_activity %}
+                <hr>
+                <h2><a href="http://swhq.org{{ team_info.team.get_absolute_url }}">{{ team_info.team }}</a>{% if user|iscoordinatorofteam:team_info.team %} <em>(you are a coordinator)</em>{% endif %}</h2>
+                {% if team_info.new_members %}
+                    <p><strong>New members:</strong></p>
+                    <ul>
+                        {% for user in team_info.new_members %}
+                            <li><a href="{% shorturl user %}">{{ user.get_profile }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No new members.</p>
+                {% endif %}
+                {% if team_info.events %}
+                    <p><strong>Recent and upcoming events:</strong></p>
+                    <ul>
+                        {% for event in team_info.events %}
+                            <li><a href="{% shorturl event %}">{{ event.start_date }}{% if event.start_time %} @ {{ event.start_time }}{% endif %} - {{ event.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No recent or upcoming events.</p>
+                {% endif %}
+                {% if team_info.topics %}
+                    <p><strong>Active topics:</strong></p>
+                    <ul>
+                        {% for topic in team_info.topics %}
+                            <li><a href="{% shorturl topic %}?team={{ team_info.team.slug }}">{{ topic.subject }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No active topics.</p>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+        {% if any_with_no_activity %}
+            <hr>
+            <h2>Teams that had no activity</h2>
+            <ul>
+                {% for team_info in team_info_list %}
+                    {% if not team_info.has_activity %}
+                        <li><a href="{{ team_info.team.get_absolute_url }}">{{ team_info.team }}</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% endif %}
     </body>
 </html>

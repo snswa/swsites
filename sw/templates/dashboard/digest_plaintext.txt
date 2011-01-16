@@ -1,13 +1,20 @@
-{% load group_tags shorturl team_tags %}Volunteer HQ Update - Sensible Washington
+{% load shorturl team_tags %}Volunteer HQ Update - Sensible Washington
 
 Prepared for: {{ user.get_profile }}
 {{ start_date }} - {{ end_date }}
 
+This email is automatically generated, and was requested by you.
+Please do not reply directly to this email.
+
+Change your email delivery settings here, including unsubscribe:
+http://swhq.org{% url profile_edit %}
+
+
 {% if site_wide_announcement %}{{ site_wide_announcement }}
 
-{% endif %}{% for team_info in team_info_list %}==================================================
+{% endif %}{% for team_info in team_info_list %}{% if team_info.has_activity %}==================================================
 {{ team_info.team|upper }}{% if user|iscoordinatorofteam:team_info.team %} (you are a coordinator){% endif %}
-http://swhq.org{% url teams_team_index slug=team_info.team.slug %}
+http://swhq.org{{ team_info.team.get_absolute_url }}
 ==================================================
 
 {% if team_info.new_members %}++ New members:
@@ -17,7 +24,7 @@ http://swhq.org{% url teams_team_index slug=team_info.team.slug %}
 {% endif %}
 {% if team_info.events %}++ Recent and upcoming events:
 {% for event in team_info.events %}
-   - {{ event.title|safe }}
+   - {{ event.start_date }}: {{ event.title|safe }}
        {% shorturl event %}
 {% endfor %}{% else %}-- No recent or upcoming events.
 {% endif %}
@@ -29,4 +36,10 @@ http://swhq.org{% url teams_team_index slug=team_info.team.slug %}
 {% else %}-- No active topics.
 {% endif %}
 
-{% endfor %}
+{% endif %}{% endfor %}{% if any_with_no_activity %}==================================================
+Teams that had no activity
+==================================================
+{% for team_info in team_info_list %}{% if not team_info.has_activity %}
+- {{ team_info.team }}
+    http://swhq.org{{ team_info.team.get_absolute_url }}
+{% endif %}{% endfor %}{% endif %}

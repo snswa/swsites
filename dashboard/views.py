@@ -2,11 +2,14 @@ import datetime
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 
+from dashboard import digests
 from dashboard.forms import DigestRangeForm
 from dashboard.models import team_actions_for_user, team_topics_for_user, team_events_for_user
+from dashboard.tasks import send_email
 from dregni.models import Event
 import dregni.views
 from iris.models import Topic
@@ -89,42 +92,15 @@ def digest(request, form_class=DigestRangeForm, template_name='dashboard/digest.
     )
     if start_date and end_date:
         user = request.user
-        # For each team the user is a member of, starting with their coordinator
-        # teams and then the rest of the teams...
-        teams = [member.team for member in user.member_set.filter(is_coordinator=True)]
-        teams.extend(member.team for member in user.member_set.filter(is_coordinator=False))
-        team_info_list = []
-        for team in teams:
-            new_members = User.objects.filter(
-                member__team=team,
-                member__joined__gte=start_date,
-                member__joined__lte=end_date,
-            )
-            events = team.content_objects(Event).filter(
-                start_date__gte=start_date.date() - datetime.timedelta(days=4),
-                start_date__lte=end_date.date() + datetime.timedelta(days=14),
-            )
-            topics = Topic.objects.with_participant(team).filter(
-                modified__gte=start_date,
-                modified__lte=end_date,
-            )
-            team_info_list.append(dict(
-                team=team,
-                new_members=new_members,
-                events=events,
-                topics=topics,
-            ))
-        template_context.update(
-            start_date=start_date,
-            end_date=end_date,
-            team_info_list=team_info_list,
-        )
-    if request.GET.get('submit') == 'email':
-        pass
-    else:
+        template_context = digests.daily_context(user, start_date, end_date)
         if request.GET.get('submit') == 'html':
             template_name = 'dashboard/digest_html.html'
+            return render_to_response(template_name, template_context, RequestContext(request))
         if request.GET.get('submit') == 'plaintext':
             template_name = 'dashboard/digest_plaintext.txt'
-            mimetype = 'text/plain'
-        return render_to_response(template_name, template_context, RequestContext(request), mimetype=mimetype)
+            return render_to_response(template_name, template_context, RequestContext(request), mimetype='text/plain')
+        if request.GET.get('submit') == 'email':
+            send_email.delay(user.id, start_date, end_date)
+            return HttpResponse('Email will be sent if any activity detected.', mimetype='text/plain')
+    else:
+        return render_to_response(template_name, template_context, RequestContext(request))
