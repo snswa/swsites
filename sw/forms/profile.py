@@ -14,7 +14,8 @@ BaseProfileForm = get_profile_form()
 class ProfileForm(BaseProfileForm):
 
     interests = forms.ModelMultipleChoiceField(
-        queryset=Interest.objects.all(), widget=forms.CheckboxSelectMultiple)
+        queryset=Interest.objects.all(), required=False,
+        widget=forms.CheckboxSelectMultiple)
 
     helper = FormHelper()
 
