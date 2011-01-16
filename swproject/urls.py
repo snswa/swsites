@@ -16,7 +16,7 @@ else:
 from groups.bridge import ContentBridge
 from iris.forms import TopicForm
 import iris.views
-from sw.forms import ProfileForm
+from sw.forms import EventForm, ProfileForm
 from swproject import predicates
 from teams.models import Team
 
@@ -177,6 +177,7 @@ urlpatterns += team_bridge.include_urls(
         event_edit_predicate=predicates.event_edit,     # @@@ see swproject.predicates
         start_date=datetime.date.today,
         weeks=6,
+        form_class=EventForm,
         jump_weeks=4,
         extra_context=dict(
             topic_create_form=TopicForm(),
