@@ -40,9 +40,16 @@ def send_email(user_id, start_date, end_date):
 
 @task
 def send_emails_to_schedule(schedule):
-    hour = int(schedule.split('/')[0])
+    hour, frequency = schedule.split('/')
+    hour, frequency = int(hour), int(frequency)
+    frequency /= 24
+    now = datetime.datetime.now()
+    if now.date().toordinal() % frequency != 0:
+        # Every other day schedule only on even numbered days
+        # according to Gregorian ordinal.
+        return
     end_date = datetime.datetime.now().replace(hour=hour, minute=0, second=0, microsecond=0)
-    start_date = end_date - datetime.timedelta(days=1)
+    start_date = end_date - datetime.timedelta(days=frequency)
     for user in User.objects.filter(profile__email_delivery=schedule):
-        print 'Will send email to', user
+        print 'Will possibly send email to', user
         send_email.delay(user.id, start_date, end_date)
