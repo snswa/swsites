@@ -6,6 +6,7 @@ from django.utils.translation import ugettext_lazy as _, ugettext
 
 from allauth.account.forms import SignupForm
 
+from sw.models import Profile
 from sw.decorators import autostrip
 
 
@@ -27,6 +28,7 @@ class HqSignupForm(SignupForm):
         widget=forms.TextInput(),
         help_text=_('Used to verify the account and receive email updates.'),
     )
+    email_delivery = forms.ChoiceField(choices=Profile.EMAIL_DELIVERY_CHOICES, initial='00/48')
     phone_number = forms.CharField(
         label=_("Phone Number"),
         help_text=_('Strongly preferred.'),
@@ -58,6 +60,7 @@ class HqSignupForm(SignupForm):
             'preferred_name',
             'zip_code',
             'email',
+            'email_delivery',
             'phone_number',
             'new_username',
             'password1',
@@ -75,4 +78,5 @@ class HqSignupForm(SignupForm):
         profile.preferred_name = self.cleaned_data['preferred_name']
         profile.zip_code = self.cleaned_data['zip_code']
         profile.phone_number = self.cleaned_data['phone_number']
+        profile.email_delivery = self.cleaned_data['email_delivery']
         profile.save()
