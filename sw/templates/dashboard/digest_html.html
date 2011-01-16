@@ -69,7 +69,7 @@
             <ul>
                 {% for team_info in team_info_list %}
                     {% if not team_info.has_activity %}
-                        <li><a href="{{ team_info.team.get_absolute_url }}">{{ team_info.team }}</a></li>
+                        <li><a href="{{ team_info.team.get_absolute_url }}">{{ team_info.team }}</a>{% if user|iscoordinatorofteam:team_info.team %} (you are a coordinator){% endif %}</li>
                     {% endif %}
                 {% endfor %}
             </ul>
