@@ -11,8 +11,8 @@ South==0.7.2
 amqplib==0.6.1
 anyjson==0.2.5
 carrot==0.10.7
-celery==2.1.1
-django-celery==2.1.1
+celery==2.1.4
+django-celery==2.1.4
 django-filter==0.5.3
 django-picklefield==0.1.6
 django-piston==0.2.2
