@@ -37,6 +37,7 @@ def daily_context(user, start_date, end_date):
     any_with_activity = any(team_info['has_activity'] for team_info in team_info_list)
     any_with_no_activity = any(not team_info['has_activity'] for team_info in team_info_list)
     return dict(
+        user=user,
         start_date=start_date,
         end_date=end_date,
         team_info_list=team_info_list,

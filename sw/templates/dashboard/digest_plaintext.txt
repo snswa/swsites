@@ -3,6 +3,10 @@
 Prepared for: {{ user.get_profile }}
 {{ start_date }} - {{ end_date }}
 
+Thank you for your bringing your grassroots volunteer effort to
+Sensible Washington! Here is a summary of recent activity in
+teams you've joined.
+
 This email is automatically generated, and was requested by you.
 Please do not reply directly to this email.
 
