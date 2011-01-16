@@ -81,6 +81,12 @@ urlpatterns += patterns('',
         view=   'sw.views.hq',
     ),
 
+    # Public-facing or general purpose
+    url(regex=  r'^short/',
+        view=   include('shorturls.urls'),
+    ),
+
+    # Volunteer HQ
     url(regex=  r'^attachments/',
         view=   include('attachments.urls'),
         kwargs= VERIFIED_VOLUNTEER,

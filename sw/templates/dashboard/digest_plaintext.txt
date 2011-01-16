@@ -1,0 +1,32 @@
+{% load group_tags shorturl team_tags %}Volunteer HQ Update - Sensible Washington
+
+Prepared for: {{ user.get_profile }}
+{{ start_date }} - {{ end_date }}
+
+{% if site_wide_announcement %}{{ site_wide_announcement }}
+
+{% endif %}{% for team_info in team_info_list %}==================================================
+{{ team_info.team|upper }}{% if user|iscoordinatorofteam:team_info.team %} (you are a coordinator){% endif %}
+http://swhq.org{% url teams_team_index slug=team_info.team.slug %}
+==================================================
+
+{% if team_info.new_members %}++ New members:
+{% for user in team_info.new_members %}
+   - {{ user.get_profile }}: {% shorturl user %}
+{% endfor %}{% else %}-- No new members.
+{% endif %}
+{% if team_info.events %}++ Recent and upcoming events:
+{% for event in team_info.events %}
+   - {{ event.title|safe }}
+       {% shorturl event %}
+{% endfor %}{% else %}-- No recent or upcoming events.
+{% endif %}
+{% if team_info.topics %}++ Active topics:
+{% for topic in team_info.topics %}
+   - {{ topic.subject|safe }}
+       {% shorturl topic %}?team={{ team_info.team.slug }}
+{% endfor %}
+{% else %}-- No active topics.
+{% endif %}
+
+{% endfor %}

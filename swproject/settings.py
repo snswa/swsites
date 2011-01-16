@@ -292,6 +292,19 @@ IRIS_ITEM_TYPE_PLUGINS = (
 )
 
 # ==================================================================
+# url shortening
+
+SHORTEN_MODELS = {
+    'U': 'auth.user',
+    'E': 'dregni.event',
+    'T': 'iris.topic',
+}
+
+SHORT_BASE_URL = 'http://swhq.org/r/'
+
+SHORTEN_FULL_BASE_URL = 'https://sensiblewashington.org/'
+
+# ==================================================================
 
 INSTALLED_APPS = (
     #
@@ -402,4 +415,6 @@ INSTALLED_APPS = (
     #
     'iris',
     'swtopics',
+    #
+    'shorturls',
 )

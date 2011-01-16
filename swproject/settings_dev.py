@@ -36,8 +36,6 @@ MEDIA_PATH = 'uploaded_media/'
 
 CMS_PAGE_MEDIA_PATH = 'cms_page_media/'
 
-ZINNIA_UPLOAD_TO = 'blog_uploads/'
-
 STATICFILES_DIRS = (
     ('uploaded_media', 'uploaded_media'),
 )
@@ -50,6 +48,8 @@ POSTMARK_DEBUG = True
 
 HAYSTACK_SEARCH_ENGINE = 'solr'
 HAYSTACK_SOLR_URL = 'http://127.0.0.1:8080/solr'
+
+SHORTEN_FULL_BASE_URL = 'http://localhost:8000/'
 
 ### Suggested additions to your localsettings.py ###
 

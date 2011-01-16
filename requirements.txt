@@ -114,3 +114,6 @@ vobject==0.8.1c
 boto==1.9b
 s3vcp==0.2.1
 -e hg+https://bitbucket.org/david/django-storages/@def732408163#egg=django-storages
+
+# short urls
+-e git+https://github.com/snswa/django-shorturls.git@3db7003#egg=django-shorturls

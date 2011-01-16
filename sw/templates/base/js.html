@@ -1,7 +1,9 @@
 
 <script src="{{ STATIC_URL }}js/head{% if not debug %}.min{% endif %}.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" charset="utf-8">
-    var headJsComplete = function () {};
+    var headJsComplete = function () {
+        jQuery(".datepicker").datepicker({ dateFormat: 'yy-mm-dd' });
+    };
 
     {% if not debug %}
         // Kick off analytics ASAP, no other dependencies.
@@ -12,6 +14,7 @@
         // Libs
         '{{ STATIC_URL }}js/jquery-1.4.4{% if not debug %}.min{% endif %}.js?{{ MEDIA_SERIAL_NUMBER }}',
         '{{ STATIC_URL }}js/jquery.watermark{% if not debug %}.min{% endif %}.js?{{ MEDIA_SERIAL_NUMBER }}',
+        '{{ STATIC_URL }}js/jquery-ui-1.8.8.custom.min.js?{{ MEDIA_SERIAL_NUMBER }}',
         '{{ STATIC_URL }}js/underscore{% if not debug %}.min{% endif %}.js?{{ MEDIA_SERIAL_NUMBER }}',
         '{{ STATIC_URL }}js/backbone{% if not debug %}.min{% endif %}.js?{{ MEDIA_SERIAL_NUMBER }}',
         '{{ STATIC_URL }}uni_form/uni-form.jquery.js?{{ MEDIA_SERIAL_NUMBER }}',

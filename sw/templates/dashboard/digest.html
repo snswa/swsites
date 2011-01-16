@@ -1,0 +1,25 @@
+{% extends "base_hq_12.html" %}
+
+{% load breadcrumbs feature_tag %}
+{% load group_tags %}
+{% load wakacms_tags %}
+
+{% block page_title %}HQ Digest{% endblock %}
+
+{% block body_class %}{{ block.super }} hq-section{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+{% endblock %}
+
+{% block content_body %}
+    <form action="{% url dashboard_digest %}" method="get" accept-charset="utf-8">
+        <table>
+            {{ form.as_table }}
+        </table>
+
+        <p><button class="primaryAction" type="submit" name="submit" value="html">View HTML &rarr;</button></p>
+        <p><button class="primaryAction" type="submit" name="submit" value="plaintext">View plaintext &rarr;</button></p>
+        <p><button class="primaryAction" type="submit" name="submit" value="email">Send email &rarr;</button></p>
+    </form>
+{% endblock %}
