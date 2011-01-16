@@ -35,6 +35,7 @@ class ProfileForm(BaseProfileForm):
             'bio_privacy',
         ),
         Fieldset('Email',
+            'email_delivery',
             'email_privacy',
         ),
         Fieldset('Phone',

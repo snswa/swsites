@@ -4,6 +4,8 @@ from datetime import timedelta
 import django
 from django.utils.translation import ugettext_lazy as _
 
+from celery.schedules import crontab
+
 # Bump this to force reloading of static media tagged with
 # ?{{ MEDIA_SERIAL_NUMBER }} on next deploy.
 MEDIA_SERIAL_NUMBER = '2011011301'
@@ -274,6 +276,31 @@ CELERYBEAT_SCHEDULE = {
         'task': 'sw.tasks.update_planet_feed',
         'args': ('https://sensiblewashington.org/blog/feed/',),
         'schedule': timedelta(seconds=15 * 60),
+    },
+    'Send activity updates to users with 00/24 schedule': {
+        'task': 'dashboard.tasks.send_emails_to_schedule',
+        'args': ('00/24',),
+        'schedule': crontab(minute=0, hour=0),
+    },
+    'Send activity updates to users with 06/24 schedule': {
+        'task': 'dashboard.tasks.send_emails_to_schedule',
+        'args': ('06/24',),
+        'schedule': crontab(minute=0, hour=0),
+    },
+    'Send activity updates to users with 12/24 schedule': {
+        'task': 'dashboard.tasks.send_emails_to_schedule',
+        'args': ('12/24',),
+        'schedule': crontab(minute=0, hour=0),
+    },
+    'Send activity updates to users with 18/24 schedule': {
+        'task': 'dashboard.tasks.send_emails_to_schedule',
+        'args': ('18/24',),
+        'schedule': crontab(minute=0, hour=0),
+    },
+    'Send activity updates to users with 00/48 schedule': {
+        'task': 'dashboard.tasks.send_emails_to_schedule',
+        'args': ('00/48',),
+        'schedule': crontab(minute=0, hour=0),
     },
 }
 

@@ -1,3 +1,5 @@
+import datetime
+
 from django.contrib.auth.models import User
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
@@ -34,3 +36,13 @@ def send_email(user_id, start_date, end_date):
     msg = EmailMultiAlternatives(subject, text_content, from_email, [to_email])
     msg.attach_alternative(html_content, 'text/html')
     msg.send()
+
+
+@task
+def send_emails_to_schedule(schedule):
+    hour = int(schedule.split('/')[0])
+    end_date = datetime.datetime.now().replace(hour=hour, minute=0, second=0, microsecond=0)
+    start_date = end_date - datetime.timedelta(days=1)
+    for user in User.objects.filter(profile__email_delivery=schedule):
+        print 'Will send email to', user
+        send_email.delay(user.id, start_date, end_date)

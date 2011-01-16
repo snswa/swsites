@@ -7,6 +7,15 @@ from idios.models import ProfileBase
 
 class Profile(ProfileBase):
 
+    EMAIL_DELIVERY_CHOICES = [
+        ('', 'No email updates.'),
+        ('00/24', 'Every day at midnight'),
+        ('06/24', 'Every day at 6:00 am'),
+        ('12/24', 'Every day at noon'),
+        ('18/24', 'Every day at 6:00 pm'),
+        ('00/48', 'Every other day at midnight'),
+    ]
+
     PRIVACY_CHOICES_PCFA = [
         ('P', 'Private'),
         ('C', 'Coordinators only'),
@@ -36,6 +45,8 @@ class Profile(ProfileBase):
     bio = models.TextField(blank=True)
     bio_privacy = models.CharField(max_length=1, choices=PRIVACY_CHOICES_CFA, default='C')
 
+    email_delivery = models.CharField(max_length=5, choices=EMAIL_DELIVERY_CHOICES, blank=True, default='',
+        help_text='Activity updates will be sent to your primary email address.')
     email_privacy = models.CharField(max_length=1, choices=PRIVACY_CHOICES_PCFA, default='C',
         help_text='Manage email addresses by saving your profile, then clicking "Manage Email Addresses".')
 
