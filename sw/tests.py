@@ -15,12 +15,3 @@ class SiteTests(TestCase):
         """
         response = self.client.get('/deploy_tests/report_ok')
         self.assertContains(response, 'OK')
-
-
-#__test__ = {"doctest": """
-#Another way to test that 1 + 1 is equal to 2.
-#
-#>>> 1 + 1 == 2
-#True
-#"""}
-
