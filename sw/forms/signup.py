@@ -1,6 +1,7 @@
 import re
 
 from django.contrib.auth import authenticate
+from django.contrib.auth.models import User
 from django import forms
 from django.utils.translation import ugettext_lazy as _, ugettext
 
@@ -72,6 +73,13 @@ class HqSignupForm(SignupForm):
         if 'new_username' in self.cleaned_data:
             self.cleaned_data['username'] = self.cleaned_data['new_username']
         return self.cleaned_data
+
+    def clean_new_username(self):
+        new_username = self.cleaned_data['new_username']
+        user_exists = User.objects.filter(username__iexact=new_username).exists()
+        if user_exists:
+            raise forms.ValidationError('This username is already in use.')
+        return new_username
 
     def after_signup(self, user, **kwargs):
         # Put everything into the user's profile.
