@@ -115,6 +115,7 @@ for _section in [
     'messaging',
     'preferred_contact_methods',
     'bio',
+    'interests',
     'occupation',
     'employer',
     ]:

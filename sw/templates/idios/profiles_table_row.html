@@ -1,0 +1,46 @@
+{% load sw_tags %}
+{% load zip_code_tags %}
+
+<tr>
+    <td width="20%">
+        {# Name #}
+        <a href="{{ otheruser.get_absolute_url }}">{{ p }}</a>
+        {% if user|canview_name_ofuser:otheruser %}
+            {% if p.first_name or p.last_name %}
+                ({{ p.first_name }} {{ p.last_name }})
+            {% endif %}
+        {% endif %}
+    </td>
+    <td>
+        {# Location #}
+        {% if user|canview_zip_code_ofuser:otheruser and p.zip_code %}
+            {{ p.zip_code }}
+            {% zip_code_object p.zip_code as zip_code_obj %}
+            {% if zip_code_obj %}
+                ({{ zip_code_obj.city|title }}, {{ zip_code_obj.state }})
+            {% endif %}
+        {% endif %}
+    </td>
+    <td>
+        {# Bio / Interests #}
+        {% if user|canview_interests_ofuser:otheruser %}
+            {% with p.interests.all as interests %}
+                {% if interests|length > 0 %}
+                    Interests:
+                    <ul>
+                        {% for interest in interests %}
+                            <li>{{ interest }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+        {% endif %}
+        {% if user|canview_bio_ofuser:otheruser and p.bio %}
+            Bio: {{ p.bio|truncatewords:15 }}
+            <a href="{{ otheruser.get_absolute_url }}">more...</a>
+        {% endif %}
+    </td>
+    <td width="20%">
+        {{ otheruser.date_joined|timesince }} ago
+    </td>
+</tr>

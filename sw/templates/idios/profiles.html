@@ -3,7 +3,6 @@
 {% load breadcrumbs feature_tag %}
 {% load i18n %}
 {% load pagination_tags %}
-{% load sw_tags %}
 
 {% block head_title %}{% trans "All Profiles" %}{% endblock %}
 
@@ -11,9 +10,7 @@
     {{ block.super }}
 {% endblock %}
 
-
 {% block body %}
-
 
     {% if order == 'date' %}
         <h1><strong>All members</strong>, sorted by date joined</h1>
@@ -23,44 +20,12 @@
         <p><a href="?order=date">Sort by date joined</a></p>
     {% endif %}
 
+    <p>Reminder: Volunteers may be sharing certain contact information with you
+    but not necessarily with all other users.  <strong>Please respect others' privacy
+    when using contact information presented here.</strong></p>
+
     {% autopaginate profiles 50 %}
-
-    <table width="100%">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Profile Summary</th>
-                <th>Joined</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for profile in profiles %}
-                {% with profile.user as otheruser %}
-                    <tr>
-                        <td width="20%">
-                            <a href="{{ otheruser.get_absolute_url }}">{{ profile }}</a>
-                        </td>
-                        <td>
-                            {% if user|canview_bio_ofuser:otheruser %}
-                                {% with profile.bio as bio %}
-                                    {% if bio %}
-                                        <div>
-                                            <strong>Bio</strong>: {{ otheruser.get_profile.bio|truncatewords:25 }}
-                                            <a href="{{ otheruser.get_absolute_url }}">(read more)</a>
-                                        </div>
-                                    {% endif %}
-                                {% endwith %}
-                            {% endif %}
-                        </td>
-                        <td width="20%">
-                            {{ otheruser.date_joined|timesince }} ago
-                        </td>
-                    </tr>
-                {% endwith %}
-            {% endfor %}
-        </tbody>
-    </table>
-
+    {% include "idios/profiles_table.html" %}
     {% paginate %}
 
 {% endblock %}

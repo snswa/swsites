@@ -1,0 +1,12 @@
+<table width="100%">
+    <thead>
+        {% include "idios/profiles_table_header_row.html" %}
+    </thead>
+    <tbody>
+        {% for p in profiles %}
+            {% with p.user as otheruser %}
+                {% include "idios/profiles_table_row.html" %}
+            {% endwith %}
+        {% endfor %}
+    </tbody>
+</table>
