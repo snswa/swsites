@@ -69,7 +69,8 @@ class HqSignupForm(SignupForm):
 
     def clean(self):
         super(HqSignupForm, self).clean()
-        self.cleaned_data['username'] = self.cleaned_data['new_username']
+        if 'new_username' in self.cleaned_data:
+            self.cleaned_data['username'] = self.cleaned_data['new_username']
         return self.cleaned_data
 
     def after_signup(self, user, **kwargs):
