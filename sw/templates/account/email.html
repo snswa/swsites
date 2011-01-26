@@ -14,7 +14,16 @@
 {% block body %}
 
 {% if user.emailaddress_set.all %}
-<p>{% trans 'The following email addresses are associated to your account:' %}</p>
+
+<p>{% blocktrans %}
+    The following email addresses are associated to your account.
+{% endblocktrans %}</p>
+
+<p>{% blocktrans %}
+    <b>If you see "unverified"</b>, it means that you have not yet verified the address. To complete
+    the verification process, check your email account for an email from "webmaster@sensiblewashington.org".
+    You may need to check your spam folder.
+{% endblocktrans %}</p>
 
 <form action="{% url account_email %}" class="email_list uniForm" method="post">
 {% csrf_token %}
