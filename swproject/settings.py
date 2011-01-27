@@ -8,7 +8,7 @@ from celery.schedules import crontab
 
 # Bump this to force reloading of static media tagged with
 # ?{{ MEDIA_SERIAL_NUMBER }} on next deploy.
-MEDIA_SERIAL_NUMBER = '2011011301'
+MEDIA_SERIAL_NUMBER = '2011012601'
 
 DEBUG = False
 TEMPLATE_DEBUG = True
