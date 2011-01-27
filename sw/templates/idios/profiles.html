@@ -20,9 +20,18 @@
         <p><a href="?order=date">Sort by date joined</a></p>
     {% endif %}
 
-    <p>Reminder: Volunteers may be sharing certain contact information with you
-    but not necessarily with all other users.  <strong>Please respect others' privacy
-    when using contact information presented here.</strong></p>
+    <p>
+        Reminder:
+
+        <strong>Please respect others' privacy
+        when using contact information presented here.</strong>
+
+        Volunteers may be sharing certain contact information with you
+        but not necessarily with all other users.
+
+        When in doubt, contact a volunteer first before sharing their
+        contact information with others.
+    </p>
 
     {% autopaginate profiles 50 %}
     {% include "idios/profiles_table.html" %}
