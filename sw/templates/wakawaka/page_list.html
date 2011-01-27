@@ -3,6 +3,8 @@
 {% load breadcrumbs feature_tag %}
 {% load group_tags %}
 {% load i18n %}
+{% load sw_tags %}
+{% load uni_form_tags %}
 
 {% block breadcrumbs %}
     {{ block.super }}
@@ -14,9 +16,33 @@
 {% endblock %}
 
 {% block content %}
-	<ul>
-	{% for page in page_list %}
-	<li><a href="{% groupurl wakawaka_page group slug=page.slug %}">{{ page.slug }}</a>
-	{% endfor %}
-	</ul>
+    {% if user|canaddwikipagetogroup:group %}
+        <h1>Create a new page</h1>
+        <p>
+            Enter the page's name here to create a new page.
+            <strong>Please use only letters, numbers, underscores, dashes, and periods.</strong>
+        </p>
+
+        <form method="post" action="{% groupurl wakawaka_create_page group %}" class="uniForm">
+            {% csrf_token %}
+            <fieldset class="inlineLabels">
+                {{ create_wiki_page_form|as_uni_form }}
+                 <div class="buttonHolder">
+                     <button name="action_add" type="submit">{% trans "Create Page" %}</button>
+                </div>
+            </fieldset>
+        </form>
+    {% endif %}
+
+    <h1>All pages</h1>
+
+    {% if page_list %}
+    	<ul>
+    	{% for page in page_list %}
+    	<li><a href="{% groupurl wakawaka_page group slug=page.slug %}">{{ page.slug }}</a>
+    	{% endfor %}
+    	</ul>
+    {% else %}
+        <p>No pages have been added to this team.</p>
+    {% endif %}
 {% endblock %}

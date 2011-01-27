@@ -19,6 +19,7 @@ import iris.views
 from sw.forms import EventForm, ProfileForm
 from swproject import predicates
 from teams.models import Team
+from wakawaka.forms import CreateWikiPageForm
 
 
 admin.autodiscover()
@@ -166,7 +167,12 @@ urlpatterns += patterns('',
 urlpatterns += team_bridge.include_urls(
     'wakawaka.urls',
     r'^teams/(?P<team_slug>[\w\._-]+)/wiki/',
-    kwargs=VERIFIED_VOLUNTEER,
+    kwargs=dict(
+        VERIFIED_VOLUNTEER,
+        extra_context=dict(
+            create_wiki_page_form=CreateWikiPageForm(),
+        ),
+    ),
 )
 urlpatterns += team_bridge.include_urls(
     'dregni.urls',
