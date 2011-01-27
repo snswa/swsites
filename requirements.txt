@@ -111,7 +111,7 @@ vobject==0.8.1c
 -e git+https://github.com/snswa/django-iris.git@28f3d20#egg=django-iris
 
 # aws
-boto==1.9b
+boto==2.0b3
 s3vcp==0.2.1
 -e hg+https://bitbucket.org/david/django-storages/@def732408163#egg=django-storages
 
