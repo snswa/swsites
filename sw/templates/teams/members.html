@@ -23,6 +23,19 @@
     {% if group.is_private and not user|ismemberofgroup:group %}
         <p>This team is private.</p>
     {% else %}
+        <p>
+            Reminder:
+
+            <strong>Please respect others' privacy
+            when using contact information presented here.</strong>
+
+            Volunteers may be sharing certain contact information with you
+            but not necessarily with all other users.
+
+            When in doubt, contact a volunteer first before sharing their
+            contact information with others.
+        </p>
+
         <h1><strong>{{ group.name }}</strong> team coordinators</h1>
 
         {% if coordinator_list %}
