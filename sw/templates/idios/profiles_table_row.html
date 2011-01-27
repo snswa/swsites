@@ -11,11 +11,10 @@
                 ({{ p.first_name }} {{ p.last_name }})
             {% endif %}
         {% endif %}
-    </td>
-    <td>
+
         {# Location #}
         {% if user|canview_zip_code_ofuser:otheruser and p.zip_code %}
-            {{ p.zip_code }}
+            <br>{{ p.zip_code }}
             {% zip_code_object p.zip_code as zip_code_obj %}
             {% if zip_code_obj %}
                 ({{ zip_code_obj.city|title }}, {{ zip_code_obj.state }})
