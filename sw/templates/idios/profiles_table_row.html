@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load sw_tags %}
 {% load zip_code_tags %}
 
@@ -22,6 +23,40 @@
         {% endif %}
     </td>
     <td>
+        {# Contact #}
+        <ul>
+            {% if user|canview_preferred_contact_methods_ofuser:otheruser and p.preferred_contact_methods %}
+                <li>Preferred method: {{ p.preferred_contact_methods }}</li>
+            {% endif %}
+            {% if user|canview_email_ofuser:otheruser %}
+                <li>
+                    Email addresses:
+                    {% for emailaddress in p.user.emailaddress_set.all %}
+                        <a href="mailto:{{ emailaddress.email }}">{{ emailaddress.email }}</a>{% if not forloop.last %},{% endif %}
+                    {% endfor %}
+                </li>
+            {% endif %}
+            {% if user|canview_phone_number_ofuser:otheruser and p.phone_number %}
+                <li>
+                    Phone number: {{ p.phone_number }}
+                </li>
+            {% endif %}
+            {% if user|canview_messaging_ofuser:otheruser %}
+                {% if p.yahoo_messenger %}
+                    <li>{% trans "Yahoo! Messenger" %}: <a href="ymsgr:sendIM?{{ p.yahoo_messenger }}">{{ p.yahoo_messenger }}</a></li>
+                {% endif %}
+                {% if p.aim %}
+                    <li>{% trans "AIM" %}: <a href="aim:goim?screenname={{ p.aim }}">{{ p.aim }}</a></li>
+                {% endif %}
+                {% if p.msn_messenger %}
+                    <li>{% trans "MSN Messenger" %}: <a href="msnim:chat?contact={{ p.msn_messenger }}">{{ p.msn_messenger }}</a></li>
+                {% endif %}
+                {% if p.skype %}
+                    <li>{% trans "Skype" %}: <a href="skype:{{ p.skype }}">{{ p.skype }}</a></li>
+                {% endif %}
+            {% endif %}
+        </ul>
+
         {# Bio / Interests #}
         {% if user|canview_interests_ofuser:otheruser %}
             {% with p.interests.all as interests %}
