@@ -101,7 +101,7 @@ pysolr==2.0.13
 feedparser==4.1
 
 # Friends
--e git+https://github.com/snswa/django-relationships.git@d29a0ba#egg=django-relationships
+-e git+https://github.com/snswa/django-relationships.git@51e2f1b#egg=django-relationships
 
 # Calendar
 -e git+https://github.com/snswa/dregni.git@0d990ce#egg=dregni
