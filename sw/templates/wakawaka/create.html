@@ -1,0 +1,36 @@
+{% extends "wakawaka/base.html" %}
+
+{% load breadcrumbs feature_tag %}
+{% load group_tags %}
+{% load i18n %}
+{% load sw_tags %}
+{% load uni_form_tags %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb 'Create page' %}
+{% endblock %}
+
+{% block title %}
+	{% trans "Create page" %}
+{% endblock %}
+
+{% block content %}
+    {% if user|canaddwikipagetogroup:group %}
+        <h1>Create a new page</h1>
+        <p>
+            Enter the page's name here to create a new page.
+            <strong>Please use only letters, numbers, underscores, dashes, and periods.</strong>
+        </p>
+
+        <form method="post" action="{% groupurl wakawaka_create_page group %}" class="uniForm">
+            {% csrf_token %}
+            <fieldset class="inlineLabels">
+                {{ create_wiki_page_form|as_uni_form }}
+                 <div class="buttonHolder">
+                     <button name="action_add" type="submit">{% trans "Create Page" %}</button>
+                </div>
+            </fieldset>
+        </form>
+    {% endif %}
+{% endblock %}
