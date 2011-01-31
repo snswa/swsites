@@ -23,6 +23,7 @@ def team_topics_queryset_fn(request, queryset, *args, **kwargs):
     return Topic.objects.filter(
         participants__content_type=content_type,
         participants__object_id=team.id,
+        participants__is_active=True,
     )
 
 

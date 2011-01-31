@@ -1,10 +1,12 @@
+from django.db.models import Q
 from django import forms
 
 from iris.base import ModelPluginForm, PluginForm
 from iris.base import ItemTypePlugin
 
 from swtopics.models import SubjectChange, Message
-from teams.models import Team
+from teams.models import Member, Team
+from teams.templatetags.team_tags import iscoordinatorofteam
 
 
 # ---
@@ -34,10 +36,25 @@ class ParticipantAddTeamForm(PluginForm):
         user = self._request.user
         topic = self._topic
         team = self.cleaned_data['team']
-        if not topic.has_participant(team):
+        participant = topic.get_participant(team)
+        if participant is None:
+            # New join.
             return topic.add_participant(
                 creator=user,
                 obj=team,
+            )
+        elif not participant.is_active:
+            # Re-join.
+            participant.is_active = True
+            participant.save()
+            from iris.models import ParticipantJoin
+            join = ParticipantJoin(
+                participant=participant,
+            )
+            join.save()
+            return topic.add_item(
+                creator=user,
+                obj=join,
             )
 
 
@@ -48,7 +65,7 @@ class ParticipantAddTeamPlugin(ItemTypePlugin):
     form_class = ParticipantAddTeamForm
 
     def user_has_perm(self, user, topic):
-        if user.is_superuser:
+        if user.is_superuser or user.is_staff:
             return True
         # If a topic is in any team that is not private, allow adding
         # other teams to the topic.
@@ -56,6 +73,75 @@ class ParticipantAddTeamPlugin(ItemTypePlugin):
         # teams to the topic.
         teams = set(p.content for p in topic.participants_of_type(Team))
         return any(not team.is_private for team in teams)
+
+
+# ---
+
+
+class ParticipantRemoveTeamForm(PluginForm):
+
+    team = forms.ModelChoiceField(queryset=Team.objects)
+
+    def __init__(self, *args, **kwargs):
+        super(ParticipantRemoveTeamForm, self).__init__(*args, **kwargs)
+        user = self._request.user
+        # Build a query that selects teams that are participants of this
+        # topic.
+        team_participants = self._topic.participants_of_type(Team).filter(is_active=True)
+        q = None
+        for participant in team_participants:
+            q2 = Q(id=participant.object_id)
+            if q is not None:
+                q |= q2
+            else:
+                q = q2
+        if not (user.is_superuser or user.is_staff):
+            # If not staff, restrict to only those teams for which the
+            # user is a coordinator.
+            q2 = Q(members=user) & Q(member__is_coordinator=True)
+            if q is not None:
+                q &= q2
+            else:
+                q = q2
+        if q is not None:
+            self.fields['team'].queryset = Team.objects.filter(q)
+        else:
+            self.fields['team'].queryset = Team.objects.none()
+
+    def save(self):
+        user = self._request.user
+        topic = self._topic
+        team = self.cleaned_data['team']
+        participant = topic.get_participant(team)
+        if participant is not None:
+            participant.is_active = False
+            participant.save()
+            from iris.models import ParticipantLeave
+            leave = ParticipantLeave(
+                participant=participant,
+            )
+            leave.save()
+            return topic.add_item(
+                creator=user,
+                obj=leave,
+            )
+
+
+class ParticipantRemoveTeamPlugin(ItemTypePlugin):
+
+    label = u'team removal'
+    name = 'iris.participantleave.remove.team'
+    action_label = u'Remove a participating team'
+    form_class = ParticipantRemoveTeamForm
+
+    def user_has_perm(self, user, topic):
+        if user.is_superuser or user.is_staff:
+            return True
+        # If the user is a coordinator of any of the teams that are active
+        # participants, allow them to remove a participating team.
+        teams = set(p.content for p in topic.participants_of_type(Team).filter(is_active=True))
+        return any(iscoordinatorofteam(user, team) for team in teams)
+
 
 # ---
 

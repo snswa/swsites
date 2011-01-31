@@ -37,7 +37,10 @@ class TopicAccessBackend(object):
                 # If the user is a member of any of the teams in the topic,
                 # or none of the teams joined to the topic are private,
                 # allow viewing.
-                teams_joined = obj.participants_of_type(Team)
+                teams_joined = obj.participants_of_type(Team).filter(is_active=True)
+                # If no teams are in the topic, don't allow access for non-staff users.
+                if not teams_joined.exists():
+                    return False
                 any_private = False
                 any_member = False
                 for participant in teams_joined:
@@ -59,7 +62,7 @@ class TopicAccessBackend(object):
                 # Find teams joined to the topic.
                 # If the user is a member of any of the teams in the topic,
                 # allow adding.
-                teams_joined = obj.participants_of_type(Team)
+                teams_joined = obj.participants_of_type(Team).filter(is_active=True)
                 for participant in teams_joined:
                     team = participant.content
                     if team.user_is_member(user_obj):

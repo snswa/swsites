@@ -26,7 +26,11 @@ def team_topics_for_user(user):
     q = None
     team_ct = ContentType.objects.get_for_model(Team)
     for team in user.team_set.all():
-        subq = Q(participants__content_type=team_ct) & Q(participants__object_id=team.id)
+        subq = (
+            Q(participants__content_type=team_ct)
+            & Q(participants__object_id=team.id)
+            & Q(participants__is_active=True)
+        )
         q = subq if q is None else q | subq
     if q is not None:
         team_topics = Topic.objects.filter(q).order_by('-modified').distinct()
