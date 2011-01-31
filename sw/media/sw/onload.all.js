@@ -5,10 +5,10 @@ $(function () {
     SLIDE_SECONDS = 1
   ;
 
-  (function () {
-    // Create a watermark in the search box.
-    $('#search_q').watermark('Search');
-  })();
+  // (function () {
+  //   // Create a watermark in the search box.
+  //   $('#search_q').watermark('Search');
+  // })();
 
   (function () {
     // Jump to comment if one was just posted.
