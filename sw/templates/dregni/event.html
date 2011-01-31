@@ -94,7 +94,7 @@
 
 
 {% block sidebar_sections %}
-    {% if group.is_private and user|ismemberofgroup:group or user|iscoordinatorofteam:group %}
+    {% if group.is_private and user|ismemberofgroup:group or user|iscoordinatorofteam:group or user.is_staff %}
         <div class="section">
             <h1>Actions</h1>
 

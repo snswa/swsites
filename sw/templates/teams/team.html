@@ -39,7 +39,7 @@
 
         <ul>
             <li><a href="{% url team_topics slug=group.slug %}">{% trans "All team topics" %} &rarr;</a></li>
-            {% if user|ismemberofgroup:group %}
+            {% if user|ismemberofgroup:group or user.is_staff %}
                 <li>
                     Create a new topic:
 
@@ -72,7 +72,7 @@
 
         <ul>
             <li><a href="{% groupurl dregni_index group %}">{% trans "View team calendar" %} &rarr;</a></li>
-            {% if group.is_private and user|ismemberofgroup:group or user|iscoordinatorofteam:group %}
+            {% if group.is_private and user|ismemberofgroup:group or user|iscoordinatorofteam:group or user.is_staff %}
                 <li><a href="{% groupurl dregni_event_create group %}">{% trans "Create a new team event" %} &rarr;</a></li>
             {% endif %}
         </ul>

@@ -17,6 +17,8 @@ class TopicAccessBackend(object):
     def has_perm(self, user_obj, perm, obj=None):
         #
         if perm == 'iris.add_topic':
+            if user_obj.is_staff:
+                return True
             # Authenticated users can add topics.
             if user_obj.is_authenticated():
                 return True
@@ -28,6 +30,8 @@ class TopicAccessBackend(object):
             return False
         #
         if perm == 'iris.view_topic' and isinstance(obj, Topic):
+            if user_obj.is_staff:
+                return True
             if user_obj.is_authenticated():
                 # Find teams joined to the topic.
                 # If the user is a member of any of the teams in the topic,
@@ -49,6 +53,8 @@ class TopicAccessBackend(object):
             return False
         #
         if perm == 'iris.add_to_topic':
+            if user_obj.is_staff:
+                return True
             if user_obj.is_authenticated():
                 # Find teams joined to the topic.
                 # If the user is a member of any of the teams in the topic,
@@ -72,7 +78,7 @@ class WikiAccessBackend(object):
 
     def has_perm(self, user_obj, perm, obj=None):
         def has_permission_for_group(group):
-            return (
+            return user_obj.is_staff or (
                 # Page has a group associated.
                 group is not None
                 and (
@@ -118,6 +124,8 @@ from teams.templatetags.team_tags import iscoordinatorofteam
 def event_edit(request, event):
     group = request.group
     user = request.user
+    if user.is_staff:
+        return True
     if iscoordinatorofteam(user, group):
         return True
     if getattr(group, 'is_private', False) and group.user_is_member(user):
