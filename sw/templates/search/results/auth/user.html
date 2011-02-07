@@ -1,0 +1,15 @@
+{% load highlight %}
+{% load group_tags %}
+
+{% with result.object as user %}
+    <span class="title"><a href="{% url profile_detail username=user.username %}">{{ user.get_profile }}</a></span>
+
+    <span class="location">
+        &mdash;
+        Volunteer
+    </span>
+
+    <div class="summary">
+        {% highlight result.text with query %}
+    </div>
+{% endwith %}

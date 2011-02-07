@@ -12,6 +12,9 @@ from django.views.generic.list_detail import object_list
 from actstream import action
 from actstream.templatetags.activity_tags import actionsisactorof
 from allauth.account.forms import LoginForm
+from haystack.forms import SearchForm
+from haystack.query import SearchQuerySet
+from haystack.views import basic_search
 from sw.forms import HqSignupForm
 from sw.tasks import report_ok
 from teams.models import Team
@@ -94,4 +97,30 @@ def user_team_activity(request, username, template_name='idios/profile_activity.
         template_name=template_name,
         extra_context=extra_context,
         *args, **kw
+    )
+
+
+# -- search --
+
+
+class TeamSearchForm(SearchForm):
+    pass
+
+
+def haystack_search(request, template="search/search.html", extra_context=None, *args, **kwargs):
+    extra_context = extra_context or {}
+    # Filter out private teams that the user is not a member of.
+    exclude_teams = [-1] + [
+        team.id
+        for team in Team.objects.filter(is_private=True)
+        if not team.user_is_member(request.user)
+    ]
+    searchqueryset = SearchQuerySet().exclude(team_id__in=exclude_teams)
+    return basic_search(
+        request,
+        template=template,
+        form_class=TeamSearchForm,
+        searchqueryset=searchqueryset,
+        extra_context=extra_context,
+        *args, **kwargs
     )

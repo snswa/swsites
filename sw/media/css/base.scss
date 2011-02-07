@@ -832,3 +832,21 @@ table.calendar {
     }
   }
 }
+
+ul.searchresults {
+  > li {
+    margin-bottom: $gutter-width;
+    .title {
+      font-weight: bold;
+    }
+    .location {
+      color: silver;
+      a {
+        color: darkgray;
+      }
+    }
+    .summary .highlighted {
+      background-color: yellow;
+    }
+  }
+}

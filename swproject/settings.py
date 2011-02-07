@@ -8,7 +8,7 @@ from celery.schedules import crontab
 
 # Bump this to force reloading of static media tagged with
 # ?{{ MEDIA_SERIAL_NUMBER }} on next deploy.
-MEDIA_SERIAL_NUMBER = '2011012601'
+MEDIA_SERIAL_NUMBER = '2011020601'
 
 DEBUG = False
 TEMPLATE_DEBUG = True
@@ -248,6 +248,8 @@ EMAILFWD_DEFAULT_DOMAIN = 'sensiblewashington.org'
 HAYSTACK_SITECONF = 'swproject.search_sites'
 HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10
 HAYSTACK_LIMIT_TO_REGISTERED_MODELS = False
+HAYSTACK_BATCH_SIZE = 1000
+HAYSTACK_SOLR_TIMEOUT = 30
 
 # ==================================================================
 # idios (profiles)

@@ -1,0 +1,23 @@
+{% load contenttype_tags %}
+{% load highlight %}
+{% load group_tags %}
+
+{% with result.object as obj %}
+{% with obj.content_object as content %}
+    {% if content|contenttype == 'wakawaka.wikipage' %}
+        <span class="title">Comment about <a href="{{ obj.get_absolute_url }}">{{ content.slug }}</a></span>
+        by <a href="{% url profile_detail username=obj.user.username %}">{{ obj.user.get_profile }}</a>
+
+        <span class="location">
+            &mdash;
+            Page in
+            {% with content.group as group %}
+                <a href="{% url teams_team_index slug=group.slug %}">{{ group.name }}</a>
+            {% endwith %}
+        </span>
+        <div class="summary">
+            {% highlight result.text with query %}
+        </div>
+    {% endif %}
+{% endwith %}
+{% endwith %}

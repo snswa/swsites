@@ -18,5 +18,10 @@
     "name": "local",
     "enabled": true,
     "description": "When enabled, show dynamic content in the 'local' tab in Volunteer HQ."
+  },
+  {
+    "name": "site_search",
+    "enabled": true,
+    "description": "Site-wide search of Volunteer HQ."
   }
 ]

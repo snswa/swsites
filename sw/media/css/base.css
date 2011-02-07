@@ -737,3 +737,14 @@ table.calendar {
     .uniForm .ctrlHolder ul li label {
       display: inline;
       float: none; }
+
+ul.searchresults > li {
+  margin-bottom: 10px; }
+  ul.searchresults > li .title {
+    font-weight: bold; }
+  ul.searchresults > li .location {
+    color: silver; }
+    ul.searchresults > li .location a {
+      color: darkgray; }
+  ul.searchresults > li .summary .highlighted {
+    background-color: yellow; }

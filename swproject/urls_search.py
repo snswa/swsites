@@ -1,14 +1,8 @@
 from django.conf.urls.defaults import patterns, url
 
-from haystack.forms import SearchForm
-from haystack.views import SearchView
+from sw.views import haystack_search
 
 
-search_view = SearchView(
-    form_class=SearchForm,
-)
-
-
-urlpatterns = patterns('haystack.views',
-    url(r'^$', search_view, name='haystack_search'),
+urlpatterns = patterns('',
+    url(r'^$', haystack_search, name='haystack_search'),
 )

@@ -1,6 +1,8 @@
-{% extends 'base_12.html' %}
+{% extends 'base_hq_12.html' %}
 
 {% load breadcrumbs feature_tag %}
+{% load contenttype_tags %}
+{% load search_tags %}
 {% load uni_form_tags %}
 
 {% block page_title %}Search{% endblock %}
@@ -11,12 +13,47 @@
 {% endblock %}
 
 {% block content_body %}
-    <div class="grid_6 prefix_3 suffix_3">
-        <div id="largepagepanel">
-            <p>
-                Sorry, site-wide search is under maintenance
-                and is not available.  Please check back soon.
-            </p>
+    {% if features.search %}
+        <form method="get" action="." class="uniForm">
+            {{ form|as_uni_form }}
+            <div class="form_block">
+                <input type="submit" value="Search">
+            </div>
+        </form>
+
+        {% if query %}
+            <h1>Results</h1>
+
+            {% with page.object_list as results %}
+                {% if results %}
+                    <ul class="searchresults">
+                        {% for result in results %}
+                            {% with result.object|searchresulttemplate as template %}
+                                <li>{% include template %}</li>
+                            {% endwith %}
+                        {% endfor %}
+                    </ul>
+
+                    <div>
+                        {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
+                        |
+                        {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
+                    </div>
+                {% else %}
+                    <p>No results found.</p>
+                {% endif %}
+            {% endwith %}
+        {% else %}
+            {# Show some example queries to run, maybe query syntax, something else? #}
+        {% endif %}
+    {% else %}
+        <div class="grid_6 prefix_3 suffix_3">
+            <div id="largepagepanel">
+                <p>
+                    Sorry, site-wide search is under maintenance
+                    and is not available.  Please check back soon.
+                </p>
+            </div>
         </div>
-    </div>
+    {% endif %}
 {% endblock %}

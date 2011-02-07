@@ -1,0 +1,28 @@
+{% load highlight %}
+{% load group_tags %}
+{% load iris_tags %}
+
+{% with result.object|itemreferencedby as item %}
+    <span class="title">Message in <a href="{{ item.topic.get_absolute_url }}">{{ item.topic.subject }}</a></span>
+
+    <span class="location">
+        &mdash;
+        Topic
+        {% with item.topic|participantsoftype:"teams.team" as team_participants %}
+            {% if team_participants %}
+                in
+                {% for p in team_participants %}
+                    {% with p.content as team %}
+                        <a href="{{ team.get_absolute_url }}">{{ team.name }}</a>{% if not forloop.last %}, {% endif %}
+                    {% endwith %}
+                {% endfor %}
+            {% else %}
+            {% endif %}
+        {% endwith %}
+    </span>
+
+    <div class="summary">
+        {% highlight result.text with query %}
+    </div>
+{% endwith %}
+

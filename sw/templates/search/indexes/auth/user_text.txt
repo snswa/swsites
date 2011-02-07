@@ -1,0 +1,11 @@
+{% with object.get_profile as p %}
+    {{ p.preferred_name }}
+
+    {% if p.name_privacy == 'A' %}
+        {{ p.first_name }} {{ p.last_name }}
+    {% endif %}
+
+    {% if p.bio_privacy == 'A' %}
+        {{ p.bio }}
+    {% endif %}
+{% endwith %}

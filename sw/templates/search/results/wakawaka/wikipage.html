@@ -1,0 +1,18 @@
+{% load highlight %}
+{% load group_tags %}
+
+{% with result.object as page %}
+    <span class="title"><a href="{{ page.get_absolute_url }}">{{ page.slug }}</a></span>
+
+    <span class="location">
+        &mdash;
+        Page in
+        {% with page.group as group %}
+            <a href="{% url teams_team_index slug=group.slug %}">{{ group.name }}</a>
+        {% endwith %}
+    </span>
+
+    <div class="summary">
+        {% highlight result.text with query %}
+    </div>
+{% endwith %}

@@ -184,3 +184,14 @@ $ sudo ln -sf $PWD/solr-schema.xml /etc/solr/conf/schema.xml
 $ sudo service jetty restart
 $ django-admin.py rebuild_index
 $ django-admin.py update_index
+
+
+Copying schema from OSX environment to VM
+-----------------------------------------
+
+# Do this once.
+VM$  sudo ln -sf $PWD/solr-schema.xml /etc/solr/conf/schema.xml
+
+OSX$ ssh -L 8080:localhost:8080 swdev.local
+OSX$ django-admin.py build_solr_schema | ssh swdev.local "cat > solr-schema.xml; sudo service jetty restart"
+OSX$ django-admin.py rebuild_index

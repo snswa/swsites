@@ -70,13 +70,7 @@
 <div class="header grid_12 alpha omega">
     <h1><a href="{% block logo_url %}/{% endblock %}">sensiblewashington.org</a></h1>
     <h2>{% block header_slogan %}Legalize Cannabis in 2011!<br>Washington State Marijuana<br>Reform and Legislation Act{% endblock %}</h2>
-    {% feature site_search %}
-        <div id="site-search">
-            <form action="/search/" method="get">
-                <input name="q" type="search" id="search_q">
-            </form>
-        </div>
-    {% endfeature %}
+    {% block site_search %}{% endblock %}
     <div id="follow-campaign">
         Follow the campaign:
         <ul>

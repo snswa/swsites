@@ -8,6 +8,8 @@
 
 {% block header_slogan %}Volunteer HQ <span class="beta">Beta</span>{% endblock %}
 
+{% block site_search %}{% include "base/site_search.html" %}{% endblock %}
+
 {% block breadcrumbs %}
     {{ block.super }}
     {% breadcrumb_url_css "icon-link sw-link" 'HQ' dashboard_index %}
