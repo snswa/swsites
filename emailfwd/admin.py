@@ -13,6 +13,9 @@ class ForwardedEmailAddressAdmin(admin.ModelAdmin):
     inlines = [
         EmailDestinationInline,
     ]
+    list_display = ['name', 'domain']
+    search_fields = ['name']
+    ordering = ['name']
 
 
 admin.site.register(ForwardedEmailAddress, ForwardedEmailAddressAdmin)

@@ -238,6 +238,8 @@ EMAIL_CONFIRMATION_DAYS = 7
 
 EMAILFWD_VALID_DOMAINS = [
     ('sensiblewashington.org', '@sensiblewashington.org'),
+    ('snswa.org', '@snswa.org'),
+    ('swhq.org', '@swhq.org'),
 ]
 
 EMAILFWD_DEFAULT_DOMAIN = 'sensiblewashington.org'
