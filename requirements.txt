@@ -77,7 +77,6 @@ pysolr==2.0.13
 -e git+https://github.com/snswa/idios.git@a7bff188b53388b47a204a7992d9a23907ae714a#egg=idios
 
 # Teams
--e git+https://github.com/snswa/django-teams.git@bd4b045#egg=django-teams
 -e git+https://github.com/snswa/django-groups.git@6b16aed#egg=django-groups
 
 # Activity stream
