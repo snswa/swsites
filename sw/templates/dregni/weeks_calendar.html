@@ -10,9 +10,9 @@
     <tbody>
         <tr>
             <td colspan="8" class="nav">
-                <a href="?start_date={{ prev_date.isoformat }}">&larr; Back {{ jump_weeks }} weeks</a>
+                <a href="?start_date={{ prev_date.isoformat }}{% if request.GET.teams %}&amp;teams={{ request.GET.teams }}{% endif %}">&larr; Back {{ jump_weeks }} weeks</a>
                 |
-                <a href="?start_date={{ next_date.isoformat }}">Forward {{ jump_weeks }} weeks &rarr;</a>
+                <a href="?start_date={{ next_date.isoformat }}{% if request.GET.teams %}&amp;teams={{ request.GET.teams }}{% endif %}">Forward {{ jump_weeks }} weeks &rarr;</a>
             </td>
         </tr>
         {% for week in weeks %}

@@ -3,16 +3,19 @@
 
 <h1><a href="{% url dashboard_events %}">Upcoming events</a></h1>
 
-{% if team_events %}
-    <ul class="stream">
-        {% for event in team_events|upcomingevents|qslimit:20 %}
-            {% include "dregni/event_summary_dashboard.html" %}
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>No upcoming events.</p>
-{% endif %}
+{% with events|upcomingevents|qslimit:10 as events %}
+    {% if events %}
+        <ul class="stream">
+            {% for event in events %}
+                {% include "dregni/event_summary_dashboard.html" %}
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No upcoming events.</p>
+    {% endif %}
+{% endwith %}
 
 <ul>
-    <li><a href="{% url dashboard_events %}">Event calendar &rarr;</a></li>
+    <li><a href="{% url dashboard_events %}">Full calendar &rarr;</a></li>
+    <li><a href="{% url dashboard_events %}?teams=1">My teams only &rarr;</a></li>
 </ul>

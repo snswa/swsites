@@ -48,7 +48,25 @@ def team_events_for_user(user):
         q = subq if q is None else q | subq
     if q is not None:
         q &= Q(site=site)
-        team_events = Event.objects.filter(q).order_by('-modified')
+        team_events = Event.objects.filter(q).order_by('start_date', 'start_time')
+    else:
+        team_events = []
+    return team_events
+
+
+def all_events_for_user(user):
+    q = None
+    site = Site.objects.get_current()
+    team_ct = ContentType.objects.get_for_model(Team)
+    for team in Team.objects.filter(is_private=False):
+        subq = Q(content_type=team_ct) & Q(object_id=team.id)
+        q = subq if q is None else q | subq
+    for team in user.team_set.filter(is_private=True):
+        subq = Q(content_type=team_ct) & Q(object_id=team.id)
+        q = subq if q is None else q | subq
+    if q is not None:
+        q &= Q(site=site)
+        team_events = Event.objects.filter(q).order_by('start_date', 'start_time')
     else:
         team_events = []
     return team_events

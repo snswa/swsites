@@ -8,7 +8,7 @@ from django.template.context import RequestContext
 
 from dashboard import digests
 from dashboard.forms import DigestRangeForm
-from dashboard.models import team_actions_for_user, team_topics_for_user, team_events_for_user
+from dashboard.models import all_events_for_user, team_actions_for_user, team_topics_for_user, team_events_for_user
 from dashboard.tasks import send_email
 from dregni.models import Event
 import dregni.views
@@ -23,11 +23,11 @@ def index(request, template_name='dashboard/index.html'):
     user = request.user
     team_actions = team_actions_for_user(user)
     team_topics = team_topics_for_user(user)
-    team_events = team_events_for_user(user)
+    events = all_events_for_user(user)
     template_context = {
         'team_actions': team_actions,
         'team_topics': team_topics,
-        'team_events': team_events,
+        'events': events,
     }
     return render_to_response(
         template_name,
@@ -59,11 +59,14 @@ def topics(request, template_name='dashboard/topics.html'):
 @login_required
 def events(request, template_name='dashboard/events.html', *args, **kwargs):
     user = request.user
-    team_events = team_events_for_user(user)
+    if 'teams' in request.GET:
+        events = team_events_for_user(user)
+    else:
+        events = all_events_for_user(user)
     return dregni.views.index(
         request,
         template_name=template_name,
-        filter_qs=lambda qs: team_events,
+        filter_qs=lambda qs: events,
         *args, **kwargs
     )
 

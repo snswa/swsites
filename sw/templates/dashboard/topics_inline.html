@@ -4,7 +4,7 @@
 
 {% if team_topics %}
     <ul class="stream">
-        {% for topic in team_topics|qslimit:20 %}
+        {% for topic in team_topics|qslimit:10 %}
             {% include "iris/topic_summary.html" %}
         {% endfor %}
     </ul>

@@ -18,7 +18,19 @@
 
 {% block content_body %}
 
-    <h1>Upcoming events in your teams</h1>
+    {% if request.GET.teams %}
+        <h1>Upcoming events in your teams</h1>
+
+        <ul>
+            <li><a href="{% url dashboard_events %}">Campaign-wide calendar &rarr;</a></li>
+        </ul>
+    {% else %}
+        <h1>Upcoming events campaign-wide</h1>
+
+        <ul>
+            <li><a href="{% url dashboard_events %}?teams=1">My teams only &rarr;</a></li>
+        </ul>
+    {% endif %}
 
     {% include "dregni/weeks_calendar.html" %}
 
