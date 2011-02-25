@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+{% with now|date:"Y-m-d H:i:s" as now %}
+<html>
+    <head>
+        <title>Sensible Washington Report -- All Volunteers -- {{ now }}</title>
+    </head>
+    <body>
+        <h1>Sensible Washington Report -- All Volunteers</h1>
+
+        <h2>Prepared for {{ user.get_profile }} ({{ user.username }}) on {{ now }}</h2>
+
+        <p>
+            Note: This information is considered confidential.  Please respect users
+            privacy preferences when sharing information with others.  DO NOT SHARE
+            THIS ENTIRE REPORT with others; if they need the entire report, they should
+            access to this web page directly after gaining staff privileges.
+        </p>
+
+        {% if request.GET.excel != '1' %}
+            <p><a href="./?excel=1">Open using Excel</a></p>
+        {% endif %}
+
+        <table border="1" cellspacing="5" cellpadding="5">
+            <thead>
+                <tr>
+                    <th>Last name</th>
+                    <th>First name</th>
+                    <th>Username</th>
+                    <th>Preferred name</th>
+                    <th>Joined</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for u in user_list %}
+                    {% with u.get_profile as p %}
+                        <tr>
+                            <td>{{ p.last_name }}</td>
+                            <td>{{ p.first_name }}</td>
+                            <td>{{ u.username }}</td>
+                            <td>{{ p.preferred_name }}</td>
+                            <td>{{ u.date_joined|date:"Y-m-d H:i:s" }}</td>
+                        </tr>
+                    {% endwith %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>
+{% endwith %}
