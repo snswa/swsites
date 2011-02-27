@@ -20,6 +20,10 @@
             <p><a href="./?excel=1">Open using Excel</a></p>
         {% endif %}
 
+        <p>
+            Total: {{ user_list|length }} user accounts
+        </p>
+
         <table border="1" cellspacing="5" cellpadding="5">
             <thead>
                 <tr>
@@ -27,6 +31,18 @@
                     <th>First name</th>
                     <th>Username</th>
                     <th>Preferred name</th>
+                    <th>Verified emails</th>
+                    <th>ZIP</th>
+                    <th>Bio</th>
+                    <th>Teams</th>
+                    <th>Interests</th>
+                    <th>Preferred Method</th>
+                    <th>Phone number</th>
+                    <th>Text OK?</th>
+                    <th>Yahoo</th>
+                    <th>AIM</th>
+                    <th>MSN</th>
+                    <th>Skype</th>
                     <th>Joined</th>
                 </tr>
             </thead>
@@ -38,6 +54,30 @@
                             <td>{{ p.first_name }}</td>
                             <td>{{ u.username }}</td>
                             <td>{{ p.preferred_name }}</td>
+                            <td>
+                                {% for emailaddress in u.emailaddress_set.all %}
+                                    <a href="mailto:{{ emailaddress.email }}">{{ emailaddress.email }}</a>{% if not forloop.last %}; {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td>{{ p.zip_code }}</td>
+                            <td>{{ p.bio }}</td>
+                            <td>
+                                {% for member in u.member_set.all %}
+                                    {{ member.team.name }}{% if member.is_coordinator %} (coordinator){% endif %}{% if not forloop.last %}; {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td>
+                                {% for interest in p.interests.all %}
+                                    {{ interest.name }}{% if not forloop.last %}; {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td>{{ p.preferred_contact_methods }}</td>
+                            <td>{{ p.phone_number }}</td>
+                            <td>{{ p.phone_number_accepts_texts }}</td>
+                            <td>{{ p.yahoo_messenger }}</td>
+                            <td>{{ p.aim }}</td>
+                            <td>{{ p.msn_messenger }}</td>
+                            <td>{{ p.skype }}</td>
                             <td>{{ u.date_joined|date:"Y-m-d H:i:s" }}</td>
                         </tr>
                     {% endwith %}

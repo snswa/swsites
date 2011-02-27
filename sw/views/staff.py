@@ -19,7 +19,7 @@ def allvolunteers(request, template_name="staff/allvolunteers.html", extra_conte
     )
     response = render_to_response(template_name, template_context, RequestContext(request))
     if request.GET.get('excel') == '1':
-        filename = 'sensible_washington_all_volunteers_{0}.xls'.format(now.strftime('%Y%m%d-%H%i%s'))
+        filename = 'sensible_washington_all_volunteers_{0}.xls'.format(now.strftime('%Y%m%d-%H%M%S'))
         response['Content-Disposition'] = 'attachment; filename={0}'.format(filename)
         response['Content-Type'] = 'application/vnd.ms-excel; charset=utf-8'
     return response
