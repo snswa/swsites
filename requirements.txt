@@ -118,3 +118,6 @@ s3vcp==0.2.1
 
 # short urls
 -e git+https://github.com/snswa/django-shorturls.git@55451b8#egg=django-shorturls
+
+# petitions
+baluhn==0.1
