@@ -150,6 +150,9 @@ urlpatterns += patterns('',
     ),
     url(r'^topics/', include('iris.urls'), kwargs=VERIFIED_VOLUNTEER),
     url(r'^voting/', include('voting.urls'), kwargs=VERIFIED_VOLUNTEER),
+    url(regex=  r'^wheretosign/$',
+        view=   include('wheretosign.urls'),
+    ),
 )
 
 

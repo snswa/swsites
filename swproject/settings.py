@@ -451,4 +451,6 @@ INSTALLED_APPS = (
     'shorturls',
     #
     'petitions',
+    #
+    'wheretosign',
 )
