@@ -20,7 +20,6 @@ class Petition(models.Model):
         return u"Petition"
 
 
-
 class Transmittal(models.Model):
     """A movement of a petition from one user to another."""
 
