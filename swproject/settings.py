@@ -449,8 +449,4 @@ INSTALLED_APPS = (
     'swtopics',
     #
     'shorturls',
-    #
-    'petitions',
-    #
-    'wheretosign',
 )
